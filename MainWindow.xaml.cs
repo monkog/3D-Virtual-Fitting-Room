@@ -198,8 +198,8 @@ namespace Showroom
         {
             DepthImagePoint point = Kinect.MapSkeletonPointToDepth(joint.Position, Kinect.DepthStream.Format);
 
-           // point.X *= (int)SkeletonCanvas.ActualWidth / Kinect.DepthStream.FrameWidth;
-           // point.Y *= (int)SkeletonCanvas.ActualHeight / Kinect.DepthStream.FrameHeight;
+            point.X *= (int)SkeletonCanvas.ActualWidth / Kinect.DepthStream.FrameWidth;
+            point.Y *= (int)SkeletonCanvas.ActualHeight / Kinect.DepthStream.FrameHeight;
 
             return new Point(point.X, point.Y);
         }
