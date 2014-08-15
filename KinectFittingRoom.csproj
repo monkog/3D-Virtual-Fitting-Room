@@ -7,7 +7,7 @@
     <ProjectGuid>{9DAFEADE-E692-42B2-923A-829807CBDFFE}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Showroom</RootNamespace>
+    <RootNamespace>KinectFittingRoom</RootNamespace>
     <AssemblyName>Showroom</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

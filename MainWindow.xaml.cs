@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Showroom
+namespace KinectFittingRoom
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -93,6 +93,8 @@ namespace Showroom
 
                 sensor.ColorFrameReady += KinectSensor_ColorFrameReady;
 
+                // TODO: Implement choosing the closet skeleton
+                sensor.SkeletonStream.AppChoosesSkeletons = false;
                 sensor.SkeletonStream.Enable();
                 m_skeletons = new Skeleton[sensor.SkeletonStream.FrameSkeletonArrayLength];
                 sensor.SkeletonFrameReady += KinectSensor_SkeletonFrameReady;

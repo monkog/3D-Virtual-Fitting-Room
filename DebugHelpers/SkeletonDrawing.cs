@@ -8,7 +8,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-namespace Showroom
+namespace KinectFittingRoom
 {
     public partial class MainWindow
     {
