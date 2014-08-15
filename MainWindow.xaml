@@ -1,9 +1,10 @@
 ﻿<Window x:Class="Showroom.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525" WindowState="Maximized">
+        Title="MainWindow" Height="350" Width="525" WindowState="Maximized"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}" >
     <Grid>
-        <Image Name="KinectCameraImage"/>
-        <Grid Name="SkeletonCanvas"/>
+        <Image Name="KinectCameraImage" />
+        <Grid Name="SkeletonCanvas" Width="{Binding ActualWidth, ElementName=KinectCameraImage}" Height="{Binding ActualHeight, ElementName=KinectCameraImage}"/>
     </Grid>
 </Window>

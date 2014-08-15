@@ -38,10 +38,6 @@ namespace Showroom
         /// Number of bytes per line
         /// </summary>
         private int m_colorStride;
-        /// <summary>
-        /// Captured skeletons
-        /// </summary>
-        private Skeleton[] m_skeletons;
         #endregion
 
         #region Properties
@@ -140,68 +136,6 @@ namespace Showroom
                     m_cameraSourceBitmap.WritePixels(m_cameraSourceBounds, pixels, m_colorStride, 0);
                 }
             }
-        }
-
-        private void KinectSensor_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
-        {
-            using (SkeletonFrame frame = e.OpenSkeletonFrame())
-            {
-                if (frame == null)
-                    return;
-
-                Polyline figure;
-                Brush brush = Brushes.Coral;
-                Skeleton skeleton;
-
-                SkeletonCanvas.Children.Clear();
-                frame.CopySkeletonDataTo(m_skeletons);
-
-                for (int i = 0; i < m_skeletons.Length; i++)
-                {
-                    skeleton = m_skeletons[i];
-                    if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
-                    {
-                        JointType[] joints = new[]
-                        {
-                            JointType.Head
-                            , JointType.ShoulderCenter
-                            , JointType.ShoulderLeft
-                            , JointType.Spine
-                            , JointType.ShoulderRight
-                            , JointType.ShoulderCenter
-                            , JointType.HipCenter
-                            , JointType.HipLeft
-                            , JointType.Spine
-                            , JointType.HipRight
-                            , JointType.HipCenter
-                        };
-
-                        SkeletonCanvas.Children.Add(CreateFigure(skeleton, brush, joints));
-                    }
-                }
-            }
-        }
-
-        private Polyline CreateFigure(Skeleton skeleton, Brush brush, JointType[] joints)
-        {
-            Polyline figure = new Polyline();
-            figure.StrokeThickness = 8;
-            figure.Stroke = brush;
-
-            for (int i = 0; i < joints.Length; i++)
-                figure.Points.Add(GetJointPoint(skeleton.Joints[joints[i]]));
-
-            return figure;
-        }
-
-        private Point GetJointPoint(Joint joint)
-        {
-            DepthImagePoint point = Kinect.MapSkeletonPointToDepth(joint.Position, Kinect.DepthStream.Format);
-
-            point.X *= (int)SkeletonCanvas.ActualWidth / Kinect.DepthStream.FrameWidth;
-            point.Y *= (int)SkeletonCanvas.ActualHeight / Kinect.DepthStream.FrameHeight;
-
-            return new Point(point.X, point.Y);
         }
 
         /// <summary>
