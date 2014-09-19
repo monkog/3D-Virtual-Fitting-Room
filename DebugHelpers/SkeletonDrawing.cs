@@ -42,7 +42,10 @@ namespace KinectFittingRoom
                 {
                     skeleton = m_skeletons[i];
                     if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
+                    {
+                        SetHandCursor(skeleton.Joints[JointType.HandLeft], skeleton.Joints[JointType.HandRight]);
                         DrawSkeleton(skeleton, brush);
+                    }
                 }
             }
         }
