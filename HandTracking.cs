@@ -49,13 +49,11 @@ namespace KinectFittingRoom
         {
             if (hand.TrackingState == JointTrackingState.NotTracked)
             {
-                // TODO: Why doesn't it work????
-                //HandCursor.Visibility = Visibility.Collapsed;
+                HandCursor.Visibility = System.Windows.Visibility.Collapsed;
                 return;
             }
 
-            // TODO: Why doesn't it work????
-            //HandCursor.Visibility = Visibility.Visible;
+            HandCursor.Visibility = System.Windows.Visibility.Visible;
 
             DepthImagePoint point = Kinect.CoordinateMapper.MapSkeletonPointToDepthPoint(hand.Position
                 , Kinect.DepthStream.Format);
