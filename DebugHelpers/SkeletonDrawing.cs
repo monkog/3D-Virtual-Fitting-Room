@@ -1,9 +1,4 @@
 ﻿using Microsoft.Kinect;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Shapes;
@@ -29,25 +24,38 @@ namespace KinectFittingRoom
         {
             using (SkeletonFrame frame = e.OpenSkeletonFrame())
             {
-                if (frame == null)
+                if (frame == null || frame.SkeletonArrayLength == 0)
                     return;
 
                 Brush brush = Brushes.Coral;
-                Skeleton skeleton;
 
                 SkeletonCanvas.Children.Clear();
                 frame.CopySkeletonDataTo(m_skeletons);
+                Skeleton skeleton = GetPrimarySkeleton(m_skeletons);
+                DrawHandCursor(skeleton);
 
-                for (int i = 0; i < m_skeletons.Length; i++)
-                {
-                    skeleton = m_skeletons[i];
-                    if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
-                    {
-                        SetHandCursor(skeleton.Joints[JointType.HandLeft], skeleton.Joints[JointType.HandRight]);
-                        DrawSkeleton(skeleton, brush);
-                    }
-                }
+                foreach (Skeleton skelet in m_skeletons)
+                    if (skelet.TrackingState != SkeletonTrackingState.NotTracked)
+                        DrawSkeleton(skelet, brush);
             }
+        }
+
+        /// <summary>
+        /// Looks for the closest skeleton
+        /// </summary>
+        /// <param name="skeletons">All skeletons recognised by Kinect</param>
+        /// <returns>The skeleton closestto the sensor</returns>
+        private Skeleton GetPrimarySkeleton(Skeleton[] skeletons)
+        {
+            Skeleton skeleton = null;
+
+            if (skeletons != null)
+                foreach (Skeleton skelet in skeletons)
+                    if (skelet.TrackingState == SkeletonTrackingState.Tracked)
+                        if (skeleton == null || skelet.Position.Z < skeleton.Position.Z)
+                            skeleton = skelet;
+
+            return skeleton;
         }
 
         /// <summary>

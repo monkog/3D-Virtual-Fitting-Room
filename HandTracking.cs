@@ -1,15 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Windows;
 using System.Windows.Controls;
+using KinectFittingRoom.Events;
 using Microsoft.Kinect;
 
 namespace KinectFittingRoom
 {
     partial class MainWindow
     {
+        /// <summary>
+        /// Invokes setting the hand's position if skeleton is not null
+        /// </summary>
+        /// <param name="skeleton">Recognised skeleton</param>
+        private void DrawHandCursor(Skeleton skeleton)
+        {
+            if (skeleton == null)
+            {
+                HandCursor.Visibility = Visibility.Collapsed;
+                return;
+            }
+
+            SetHandCursor(skeleton.Joints[JointType.HandLeft], skeleton.Joints[JointType.HandRight]);
+        }
+
         /// <summary>
         /// Sets hand cursor on the screen
         /// </summary>
@@ -49,19 +61,22 @@ namespace KinectFittingRoom
         {
             if (hand.TrackingState == JointTrackingState.NotTracked)
             {
-                HandCursor.Visibility = System.Windows.Visibility.Collapsed;
+                HandCursor.Visibility = Visibility.Collapsed;
                 return;
             }
 
-            HandCursor.Visibility = System.Windows.Visibility.Visible;
+            HandCursor.Visibility = Visibility.Visible;
 
             DepthImagePoint point = Kinect.CoordinateMapper.MapSkeletonPointToDepthPoint(hand.Position
                 , Kinect.DepthStream.Format);
             int x = (int)((point.X * KinectCameraImage.ActualWidth / Kinect.DepthStream.FrameWidth));
             int y = (int)((point.Y * KinectCameraImage.ActualHeight / Kinect.DepthStream.FrameHeight));
+            Point cursorPosition = new Point(x - (HandCursor.ActualWidth / 2.0), y - (HandCursor.Height / 2.0));
 
-            Canvas.SetLeft(HandCursor, x - (HandCursor.ActualWidth / 2.0));
-            Canvas.SetTop(HandCursor, y - (HandCursor.Height / 2.0));
+            Canvas.SetLeft(HandCursor, cursorPosition.X);
+            Canvas.SetTop(HandCursor, cursorPosition.Y);
+
+            HandCursorManager.Instance.HandleHandCursorEvents(cursorPosition, point.Depth);
         }
     }
 }

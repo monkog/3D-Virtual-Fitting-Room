@@ -63,8 +63,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Buttons\KinectButton.cs" />
     <Compile Include="DebugHelpers\SkeletonDrawing.cs" />
+    <Compile Include="Buttons\Events\HandCursorManager.cs" />
+    <Compile Include="Buttons\Events\KinectInput.cs" />
     <Compile Include="HandTracking.cs" />
+    <Compile Include="Buttons\Events\HandCursorEventArgs.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
