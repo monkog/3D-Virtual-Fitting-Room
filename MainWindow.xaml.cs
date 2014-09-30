@@ -1,4 +1,5 @@
-﻿using KinectFittingRoom.Events;
+﻿using System.Windows.Controls;
+using KinectFittingRoom.Events;
 using Microsoft.Kinect;
 using System;
 using System.Linq;
@@ -56,6 +57,11 @@ namespace KinectFittingRoom
                 }
             }
         }
+
+        /// <summary>
+        /// Parent canvas for all buttons
+        /// </summary>
+        public Canvas ParentButtonCanvas { get { return ButtonCanvas; } }
         #endregion
 
         #region Methods

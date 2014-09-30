@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using KinectFittingRoom.Buttons.Events;
 using KinectFittingRoom.Events;
 using Microsoft.Kinect;
 
@@ -71,12 +72,12 @@ namespace KinectFittingRoom
                 , Kinect.DepthStream.Format);
             int x = (int)((point.X * KinectCameraImage.ActualWidth / Kinect.DepthStream.FrameWidth));
             int y = (int)((point.Y * KinectCameraImage.ActualHeight / Kinect.DepthStream.FrameHeight));
-            Point cursorPosition = new Point(x - (HandCursor.ActualWidth / 2.0), y - (HandCursor.Height / 2.0));
 
-            Canvas.SetLeft(HandCursor, cursorPosition.X);
-            Canvas.SetTop(HandCursor, cursorPosition.Y);
+            Canvas.SetLeft(HandCursor, x - (HandCursor.ActualWidth / 2.0));
+            Canvas.SetTop(HandCursor, y - (HandCursor.Height / 2.0));
 
-            HandCursorManager.Instance.HandleHandCursorEvents(cursorPosition, point.Depth);
+            Point p = ButtonCanvas.TranslatePoint(new Point(x, y), MainGrid);
+            HandCursorManager.Instance.HandleHandCursorEvents(p, point.Depth);
         }
     }
 }

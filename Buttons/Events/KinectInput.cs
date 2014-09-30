@@ -2,7 +2,9 @@
 
 namespace KinectFittingRoom.Events
 {
-    // TODO: Add comments
+    /// <summary>
+    /// HandCursor event handler type declaration
+    /// </summary>
     public delegate void HandCursorEventHandler(object sender, HandCursorEventArgs args);
 
     public static class KinectInput

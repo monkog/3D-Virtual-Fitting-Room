@@ -4,9 +4,9 @@
         xmlns:buttons="clr-namespace:KinectFittingRoom.Buttons"
         Title="MainWindow" Height="350" Width="525" WindowState="Maximized"
         DataContext="{Binding RelativeSource={RelativeSource Self}}" >
-    <Grid>
+    <Grid Name="MainGrid">
         <Image Name="KinectCameraImage" />
-        <Canvas Width="{Binding ActualWidth, ElementName=KinectCameraImage}" Height="{Binding ActualHeight, ElementName=KinectCameraImage}">
+        <Canvas Name="ButtonCanvas" Width="{Binding ActualWidth, ElementName=KinectCameraImage}" Height="{Binding ActualHeight, ElementName=KinectCameraImage}">
             <Canvas Name="LeftPanel" Width="250" Height="{Binding ActualHeight, ElementName=KinectCameraImage}" Background="GhostWhite" Opacity="0.5" Canvas.Left="20" Margin="20,20,20,20"/>
             <Canvas Width="{Binding ActualWidth, ElementName=LeftPanel}" Height="{Binding ActualHeight, ElementName=LeftPanel}" Canvas.Left="{Binding (Canvas.Left), ElementName=LeftPanel}" Canvas.Top="{Binding (Canvas.Top), ElementName=LeftPanel}">
                 <buttons:KinectButton x:Name="ButtonHat" Background="Transparent" Width="200" Height="200" Canvas.Left="{Binding (Canvas.Left), ElementName=LeftPanel}" Canvas.Top="20" Margin="25,10,25,10">
@@ -21,11 +21,14 @@
                 <Image Source="/Images/Hat.png" Width="{Binding ActualWidth, ElementName=LeftBox1}" Height="{Binding ActualHeight, ElementName=LeftBox1}" Canvas.Left="{Binding (Canvas.Left), ElementName=LeftBox1}" Canvas.Top="{Binding (Canvas.Top), ElementName=LeftBox1}" Margin="{Binding Margin, ElementName=LeftBox1}"/>
             </Canvas>-->
             <Canvas Width="250" Height="{Binding ActualHeight, ElementName=KinectCameraImage}" Background="GhostWhite" Opacity="0.5" Canvas.Right="20" Margin="20,20,20,20"/>
+        </Canvas>
+        <Canvas Width="{Binding ActualWidth, ElementName=KinectCameraImage}" Height="{Binding ActualHeight, ElementName=KinectCameraImage}">
             <Canvas Name="HandCursor" Width="70" Height="70" Visibility="Collapsed" Canvas.Top="-4">
                 <Ellipse Width="{Binding ActualWidth, ElementName=HandCursor}" Height="{Binding ActualHeight, ElementName=HandCursor}" Fill="GhostWhite" Opacity="0.5" Stroke="Black" StrokeThickness="2"/>
                 <Image Source="/Images/Hand.png" Width="60" Height="60" Margin="5,5,5,5"/>
             </Canvas>
         </Canvas>
         <Grid Name="SkeletonCanvas" Width="{Binding ActualWidth, ElementName=KinectCameraImage}" Height="{Binding ActualHeight, ElementName=KinectCameraImage}"/>
+        <Label x:Name="TimerLabel" FontSize="30" x:FieldModifier="public" Width="100" Height="100" Margin="0,0,417,220"/>
     </Grid>
 </Window>

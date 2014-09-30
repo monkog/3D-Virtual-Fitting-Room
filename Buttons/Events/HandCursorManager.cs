@@ -1,15 +1,16 @@
-﻿using System.Dynamic;
-using System.Windows;
+﻿using System.Windows;
+using System.Windows.Controls;
+using KinectFittingRoom.Events;
 
-namespace KinectFittingRoom.Events
+namespace KinectFittingRoom.Buttons.Events
 {
     public class HandCursorManager
     {
         #region Variables
         /// <summary>
-        /// Window
+        /// Parent canvas for all buttons
         /// </summary>
-        private readonly Window m_window;
+        private readonly Canvas m_canvas;
         /// <summary>
         /// Last element hit by cursor
         /// </summary>
@@ -27,21 +28,21 @@ namespace KinectFittingRoom.Events
         public static HandCursorManager Instance { get; private set; }
         #endregion Properties
 
-        private HandCursorManager(Window window)
+        private HandCursorManager(Canvas canvas)
         {
-            m_window = window;
+            m_canvas = canvas;
         }
 
         #region Methods
         /// <summary>
         /// Creates the instance of HandCursorManager
         /// </summary>
-        /// <param name="window">Window</param>
-        public static void Create(Window window)
+        /// <param name="canvas">Parent canvas</param>
+        public static void Create(Canvas canvas)
         {
             if (!m_isInitialized)
             {
-                Instance = new HandCursorManager(window);
+                Instance = new HandCursorManager(canvas);
                 m_isInitialized = true;
             }
         }
@@ -53,7 +54,7 @@ namespace KinectFittingRoom.Events
         /// <param name="z">Depth</param>
         public void HandleHandCursorEvents(Point point, double z)
         {
-            UIElement element = GetElementAtPoint(point, m_window);
+            UIElement element = GetElementAtPoint(point, m_canvas);
 
             if (element != null)
             {
@@ -69,18 +70,18 @@ namespace KinectFittingRoom.Events
         }
 
         /// <summary>
-        /// Searches for the element in window at certain point
+        /// Searches for the element in canvas at certain point
         /// </summary>
         /// <param name="point">Point</param>
-        /// <param name="window">Window</param>
-        /// <returns>Element in window at point</returns>
-        private static UIElement GetElementAtPoint(Point point, Window window)
+        /// <param name="canvas">Canvas</param>
+        /// <returns>Element in canvas at point</returns>
+        private static UIElement GetElementAtPoint(Point point, Canvas canvas)
         {
-            if (!window.IsVisible)
+            if (!canvas.IsVisible)
                 return null;
 
-            Point windowPoint = window.PointFromScreen(point);
-            IInputElement element = window.InputHitTest(windowPoint);
+            Point canvasPoint = canvas.PointFromScreen(point);
+            IInputElement element = canvas.InputHitTest(canvasPoint);
 
             if (element is UIElement)
                 return (UIElement)element;
