@@ -1,5 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Animation;
+using System.Windows.Media.Media3D;
 using KinectFittingRoom.Events;
 
 namespace KinectFittingRoom.Buttons.Events
@@ -50,20 +52,37 @@ namespace KinectFittingRoom.Buttons.Events
         /// <summary>
         /// Handles hand cursor events
         /// </summary>
-        /// <param name="point">Cursor position</param>
-        /// <param name="z">Depth</param>
-        public void HandleHandCursorEvents(Point point, double z)
+        /// <param name="handCursor">Canvas with hand cursor</param>
+        /// <param name="leftHand">Left hand joint</param>
+        /// <param name="leftMappedHand">Left hand joint mapped to screen coordinates</param>
+        /// <param name="rightHand">Right hand joint</param>
+        /// <param name="rightMappedHand">Right hand joint mapped to screen coordinates</param>
+        public void HandleHandCursorEvents(Canvas handCursor, Vector3D leftHand, Point leftMappedHand, Vector3D rightHand, Point rightMappedHand)
         {
-            UIElement element = GetElementAtPoint(point, m_canvas);
+            UIElement element = GetElementAtPoint(new Point(leftHand.X, leftHand.Y), m_canvas);
+            Vector3D activeHand = leftHand;
+            Point activeMappedHand = leftMappedHand;
+            handCursor.Visibility = Visibility.Collapsed;
+
+            if (element == null)
+            {
+                element = GetElementAtPoint(new Point(rightHand.X, rightHand.Y), m_canvas);
+                activeHand = rightHand;
+                activeMappedHand = rightMappedHand;
+            }
 
             if (element != null)
             {
-                element.RaiseEvent(new HandCursorEventArgs(KinectInput.HandCursorMoveEvent, point, z));
+                handCursor.Visibility = Visibility.Visible;
+                Canvas.SetLeft(handCursor, activeMappedHand.X - (handCursor.ActualWidth / 2.0));
+                Canvas.SetTop(handCursor, activeMappedHand.Y - (handCursor.Height / 2.0));
+
+                element.RaiseEvent(new HandCursorEventArgs(KinectInput.HandCursorMoveEvent, activeHand));
                 if (element != m_lastElement)
                 {
                     if (m_lastElement != null)
-                        m_lastElement.RaiseEvent(new HandCursorEventArgs(KinectInput.HandCursorLeaveEvent, point, z));
-                    element.RaiseEvent(new HandCursorEventArgs(KinectInput.HandCursorEnterEvent, point, z));
+                        m_lastElement.RaiseEvent(new HandCursorEventArgs(KinectInput.HandCursorLeaveEvent, activeHand));
+                    element.RaiseEvent(new HandCursorEventArgs(KinectInput.HandCursorEnterEvent, activeHand));
                 }
             }
             m_lastElement = element;

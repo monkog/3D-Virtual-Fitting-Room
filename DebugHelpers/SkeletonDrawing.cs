@@ -182,8 +182,8 @@ namespace KinectFittingRoom
         {
             DepthImagePoint point = Kinect.CoordinateMapper.MapSkeletonPointToDepthPoint(joint.Position, Kinect.DepthStream.Format);
 
-            return new Point((int)point.X * (SkeletonCanvas.ActualWidth / Kinect.DepthStream.FrameWidth)
-                , (int)point.Y * (SkeletonCanvas.ActualHeight / Kinect.DepthStream.FrameHeight));
+            return new Point(point.X * (SkeletonCanvas.ActualWidth / Kinect.DepthStream.FrameWidth)
+                , point.Y * (SkeletonCanvas.ActualHeight / Kinect.DepthStream.FrameHeight));
         }
         #endregion
     }

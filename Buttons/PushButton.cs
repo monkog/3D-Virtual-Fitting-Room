@@ -53,7 +53,7 @@ namespace KinectFittingRoom.Buttons
         protected override void KinectButton_HandCursorMove(object sender, HandCursorEventArgs args)
         {
             if (args.Z < m_initialDepth - DEPTH_TOLERANCE)
-                RaiseEvent(new HandCursorEventArgs(HandCursorClickEvent, new Point(args.X, args.Y), args.Z));
+                RaiseEvent(new HandCursorEventArgs(HandCursorClickEvent, args.X, args.Y, args.Z));
         }
         #endregion Methods
     }

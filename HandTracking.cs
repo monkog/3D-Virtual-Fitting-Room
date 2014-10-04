@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Media3D;
 using KinectFittingRoom.Buttons.Events;
 using Microsoft.Kinect;
 
@@ -19,20 +20,10 @@ namespace KinectFittingRoom
                 return;
             }
 
-            SetHandCursor(skeleton.Joints[JointType.HandLeft], skeleton.Joints[JointType.HandRight]);
+            TrackHand(skeleton.Joints[JointType.HandLeft], skeleton.Joints[JointType.HandRight]);
         }
 
-        /// <summary>
-        /// Sets hand cursor on the screen
-        /// </summary>
-        /// <param name="leftHand"></param>
-        /// <param name="rightHand"></param>
-        private void SetHandCursor(Joint leftHand, Joint rightHand)
-        {
-            Joint hand = GetPrimaryHand(leftHand, rightHand);
-            TrackHand(hand);
-        }
-
+        // TODO: Is this necessary?
         /// <summary>
         /// Gets the primary hand
         /// </summary>
@@ -54,29 +45,29 @@ namespace KinectFittingRoom
         }
 
         /// <summary>
-        /// Keeps track of the hand
+        /// Mapps left and right hand cooridinates to the proper space
         /// </summary>
-        /// <param name="hand">Primary hand</param>
-        private void TrackHand(Joint hand)
+        /// <param name="leftHand">Left hand joint</param>
+        /// <param name="rightHand">Right hand joint</param>
+        private void TrackHand(Joint leftHand, Joint rightHand)
         {
-            if (hand.TrackingState == JointTrackingState.NotTracked)
-            {
-                HandCursor.Visibility = Visibility.Collapsed;
+            if (leftHand.TrackingState == JointTrackingState.NotTracked && rightHand.TrackingState == JointTrackingState.NotTracked)
                 return;
-            }
 
-            HandCursor.Visibility = Visibility.Visible;
-
-            DepthImagePoint point = Kinect.CoordinateMapper.MapSkeletonPointToDepthPoint(hand.Position
+            DepthImagePoint leftPoint = Kinect.CoordinateMapper.MapSkeletonPointToDepthPoint(leftHand.Position
                 , Kinect.DepthStream.Format);
-            int x = (int)((point.X * KinectCameraImage.ActualWidth / Kinect.DepthStream.FrameWidth));
-            int y = (int)((point.Y * KinectCameraImage.ActualHeight / Kinect.DepthStream.FrameHeight));
+            int lx = (int)((leftPoint.X * KinectCameraImage.ActualWidth / Kinect.DepthStream.FrameWidth));
+            int ly = (int)((leftPoint.Y * KinectCameraImage.ActualHeight / Kinect.DepthStream.FrameHeight));
 
-            Canvas.SetLeft(HandCursor, x - (HandCursor.ActualWidth / 2.0));
-            Canvas.SetTop(HandCursor, y - (HandCursor.Height / 2.0));
+            DepthImagePoint rightPoint = Kinect.CoordinateMapper.MapSkeletonPointToDepthPoint(rightHand.Position
+                , Kinect.DepthStream.Format);
+            int rx = (int)((rightPoint.X * KinectCameraImage.ActualWidth / Kinect.DepthStream.FrameWidth));
+            int ry = (int)((rightPoint.Y * KinectCameraImage.ActualHeight / Kinect.DepthStream.FrameHeight));
 
-            Point p = ButtonCanvas.TranslatePoint(new Point(x, y), MainGrid);
-            HandCursorManager.Instance.HandleHandCursorEvents(p, point.Depth);
+            Point lp = KinectCameraImage.TranslatePoint(new Point(lx, ly), MainGrid);
+            Point rp = KinectCameraImage.TranslatePoint(new Point(rx, ry), MainGrid);
+            HandCursorManager.Instance.HandleHandCursorEvents(HandCursor, new Vector3D(lp.X, lp.Y, leftPoint.Depth), new Point(lx, ly)
+                ,  new Vector3D(rp.X, rp.Y, rightPoint.Depth), new Point(rx, ry));
         }
     }
 }

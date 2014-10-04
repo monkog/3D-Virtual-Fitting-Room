@@ -61,7 +61,7 @@ namespace KinectFittingRoom.Buttons
             ((MainWindow)Application.Current.MainWindow).TimerLabel.Content = m_ticks / 60 + ":" + m_ticks % 60;
 
             if (m_ticks / 60 >= TIMEOUT)
-                RaiseEvent(new HandCursorEventArgs(HandCursorClickEvent, new Point(args.X, args.Y), args.Z));
+                RaiseEvent(new HandCursorEventArgs(HandCursorClickEvent, args.X, args.Y, args.Z));
         }
 
         /// <summary>
