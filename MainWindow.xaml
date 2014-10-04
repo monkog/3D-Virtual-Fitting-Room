@@ -8,20 +8,18 @@
         <Image Name="KinectCameraImage" />
         <Canvas Name="ButtonCanvas" Width="{Binding ActualWidth, ElementName=KinectCameraImage}" Height="{Binding ActualHeight, ElementName=KinectCameraImage}">
             <Canvas Name="LeftPanel" Width="250" Height="{Binding ActualHeight, ElementName=KinectCameraImage}" Background="GhostWhite" Opacity="0.5" Canvas.Left="20" Margin="20,20,20,20"/>
-            <Canvas Width="{Binding ActualWidth, ElementName=LeftPanel}" Height="{Binding ActualHeight, ElementName=LeftPanel}" Canvas.Left="{Binding (Canvas.Left), ElementName=LeftPanel}" Canvas.Top="{Binding (Canvas.Top), ElementName=LeftPanel}">
-                <buttons:TimerButton x:Name="ButtonHat" Style="{DynamicResource GlassButton}" Background="Transparent" Width="200" Height="200" Canvas.Left="{Binding (Canvas.Left), ElementName=LeftPanel}" Canvas.Top="20" Margin="25,10,25,10">
+            <StackPanel Width="{Binding ActualWidth, ElementName=LeftPanel}" Height="{Binding ActualHeight, ElementName=LeftPanel}" Canvas.Left="{Binding (Canvas.Left), ElementName=LeftPanel}" Canvas.Top="{Binding (Canvas.Top), ElementName=LeftPanel}" Margin="{Binding Margin, ElementName=LeftPanel}">
+                <buttons:TimerButton x:Name="ButtonHat" Style="{DynamicResource GlassButton}" Background="Transparent" Width="200" Height="200">
                     <Canvas Width="{Binding ActualWidth, ElementName=ButtonHat}" Height="{Binding ActualHeight, ElementName=ButtonHat}">
                         <Image Source="/Images/Hat.png" Width="{Binding ActualWidth, ElementName=ButtonHat}" Height="{Binding ActualHeight, ElementName=ButtonHat}"/>
                     </Canvas>
                 </buttons:TimerButton>
-            </Canvas>
-            <Canvas Width="{Binding ActualWidth, ElementName=LeftPanel}" Height="{Binding ActualHeight, ElementName=LeftPanel}" Canvas.Left="{Binding (Canvas.Left), ElementName=LeftPanel}" Canvas.Top="{Binding (Canvas.Top), ElementName=LeftPanel}">
-                <buttons:PushButton x:Name="ButtonHat1" Style="{DynamicResource GlassButton}" Background="Transparent" Width="200" Height="200" Canvas.Left="{Binding (Canvas.Left), ElementName=LeftPanel}" Canvas.Top="300" Margin="25,10,25,10">
+                <buttons:PushButton x:Name="ButtonHat1" Style="{DynamicResource GlassButton}" Background="Transparent" Width="200" Height="200">
                     <Canvas Width="{Binding ActualWidth, ElementName=ButtonHat}" Height="{Binding ActualHeight, ElementName=ButtonHat}">
                         <Image Source="/Images/Hat.png" Width="{Binding ActualWidth, ElementName=ButtonHat}" Height="{Binding ActualHeight, ElementName=ButtonHat}"/>
                     </Canvas>
                 </buttons:PushButton>
-            </Canvas>
+            </StackPanel>
             <Canvas Width="250" Height="{Binding ActualHeight, ElementName=KinectCameraImage}" Background="GhostWhite" Opacity="0.5" Canvas.Right="20" Margin="20,20,20,20"/>
         </Canvas>
         <Canvas Width="{Binding ActualWidth, ElementName=KinectCameraImage}" Height="{Binding ActualHeight, ElementName=KinectCameraImage}">

@@ -1,7 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using KinectFittingRoom.Buttons.Events;
-using KinectFittingRoom.Events;
 using Microsoft.Kinect;
 
 namespace KinectFittingRoom

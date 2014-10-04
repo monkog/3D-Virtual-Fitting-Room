@@ -1,5 +1,4 @@
 ﻿using System.Windows.Controls;
-using KinectFittingRoom.Events;
 using Microsoft.Kinect;
 using System;
 using System.Linq;
