@@ -64,6 +64,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Buttons\KinectButton.cs" />
+    <Compile Include="Buttons\PushButton.cs" />
+    <Compile Include="Buttons\TimerButton.cs" />
     <Compile Include="DebugHelpers\SkeletonDrawing.cs" />
     <Compile Include="Buttons\Events\HandCursorManager.cs" />
     <Compile Include="Buttons\Events\KinectInput.cs" />

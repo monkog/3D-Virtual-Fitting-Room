@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Threading;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
@@ -8,13 +8,9 @@ using KinectFittingRoom.Events;
 
 namespace KinectFittingRoom.Buttons
 {
-    public class KinectButton : Button
+    public abstract class KinectButton : Button
     {
         #region Constants
-        /// <summary>
-        /// Number of seconds that need to elapse to invoke Click event
-        /// </summary>
-        private const int TIMEOUT = 1;
         /// <summary>
         /// Number of seconds that Click event occures
         /// </summary>
@@ -23,13 +19,9 @@ namespace KinectFittingRoom.Buttons
 
         #region Variables
         /// <summary>
-        /// Determines how much time elapsed since HandCursorEnterEvent occured
+        /// Was button clicked
         /// </summary>
-        private DispatcherTimer m_timer;
-        /// <summary>
-        /// Number of elapsed ticks
-        /// </summary>
-        private int m_ticks;
+        protected bool m_wasClicked;
         /// <summary>
         /// Determines how much time elapsed since Click event occured
         /// </summary>
@@ -38,30 +30,7 @@ namespace KinectFittingRoom.Buttons
         /// Number of elapsed ticks for m_clickTimer
         /// </summary>
         private int m_clickTicks;
-        /// <summary>
-        /// Was button clicked
-        /// </summary>
-        private bool m_wasClicked;
         #endregion Variables
-
-        #region Properties
-        /// <summary>
-        /// Has Click event occured
-        /// </summary>
-        public bool IsClicked
-        {
-            get { return (bool)GetValue(IsClickedProperty); }
-            set { SetValue(IsClickedProperty, value); }
-        }
-        #endregion Properties
-
-        #region Dependrncy Properties
-        /// <summary>
-        /// IsClicked dependency property
-        /// </summary>
-        public static readonly DependencyProperty IsClickedProperty = DependencyProperty.Register(
-            "IsClicked", typeof(bool), typeof(KinectButton), new PropertyMetadata(default(bool)));
-        #endregion Dependency Properties
 
         #region Events
         /// <summary>
@@ -79,6 +48,11 @@ namespace KinectFittingRoom.Buttons
         /// </summary>
         public static readonly RoutedEvent HandCursorLeaveEvent
             = KinectInput.HandCursorLeaveEvent.AddOwner(typeof(KinectButton));
+        /// <summary>
+        /// Hand cursor click event
+        /// </summary>
+        public static readonly RoutedEvent HandCursorClickEvent
+            = KinectInput.HandCursorClickEvent.AddOwner(typeof(KinectButton));
         #endregion Events
 
         #region Event handlers
@@ -108,20 +82,43 @@ namespace KinectFittingRoom.Buttons
             add { AddHandler(HandCursorLeaveEvent, value); }
             remove { RemoveHandler(HandCursorLeaveEvent, value); }
         }
+
+        /// <summary>
+        /// Hand cursor click event handler
+        /// </summary>
+        public event HandCursorEventHandler HandCursorClick
+        {
+            add { AddHandler(HandCursorClickEvent, value); }
+            remove { RemoveHandler(HandCursorClickEvent, value); }
+        }
         #endregion Event handlers
+
+        #region Properties
+        /// <summary>
+        /// Has Click event occured
+        /// </summary>
+        public bool IsClicked
+        {
+            get { return (bool)GetValue(IsClickedProperty); }
+            set { SetValue(IsClickedProperty, value); }
+        }
+        #endregion Properties
+
+        #region Dependrncy Properties
+        /// <summary>
+        /// IsClicked dependency property
+        /// </summary>
+        public static readonly DependencyProperty IsClickedProperty = DependencyProperty.Register(
+            "IsClicked", typeof(bool), typeof(KinectButton), new PropertyMetadata(default(bool)));
+        #endregion Dependency Properties
 
         public KinectButton()
         {
-            if (!System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))
+            if (!DesignerProperties.GetIsInDesignMode(this))
                 HandCursorManager.Create(((MainWindow)Application.Current.MainWindow).ParentButtonCanvas);
 
-            SetValue(IsClickedProperty, false);
             m_wasClicked = false;
-
-            m_timer = new DispatcherTimer();
-            m_timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
-            m_ticks = 0;
-            m_timer.Tick += m_timer_Tick;
+            SetValue(IsClickedProperty, false);
 
             m_clickTimer = new DispatcherTimer();
             m_clickTimer.Interval = new TimeSpan(0, 0, 0, 0, 1);
@@ -131,15 +128,26 @@ namespace KinectFittingRoom.Buttons
             HandCursorEnter += KinectButton_HandCursorEnter;
             HandCursorMove += KinectButton_HandCursorMove;
             HandCursorLeave += KinectButton_HandCursorLeave;
+            HandCursorClick += KinectButton_HandCursorClick;
         }
-
+        
         #region Methods
         /// <summary>
-        /// Counts the number of timer ticks
+        /// Handles HandCursorEnter event
         /// </summary>
-        void m_timer_Tick(object sender, EventArgs e)
+        protected abstract void KinectButton_HandCursorEnter(object sender, HandCursorEventArgs args);
+
+        /// <summary>
+        /// Handles HandCursorMove event
+        /// </summary>
+        protected abstract void KinectButton_HandCursorMove(object sender, HandCursorEventArgs args);
+
+        /// <summary>
+        /// Handles HandCursorLeave event
+        /// </summary>
+        protected virtual void KinectButton_HandCursorLeave(object sender, HandCursorEventArgs args)
         {
-            m_ticks++;
+            m_wasClicked = false;
         }
 
         /// <summary>
@@ -158,55 +166,13 @@ namespace KinectFittingRoom.Buttons
         }
 
         /// <summary>
-        /// Handles HandCursorEnter event
-        /// </summary>
-        void KinectButton_HandCursorEnter(object sender, HandCursorEventArgs args)
-        {
-            m_timer.Start();
-        }
-
-        /// <summary>
-        /// Handles HandCursorMove event
-        /// </summary>
-        void KinectButton_HandCursorMove(object sender, HandCursorEventArgs args)
-        {
-            if (m_wasClicked)
-                return;
-
-            ((MainWindow)Application.Current.MainWindow).TimerLabel.Content = m_ticks / 60 + ":" + m_ticks % 60;
-
-            if (m_ticks / 60 >= TIMEOUT)
-                KinectButtonClick();
-        }
-
-        /// <summary>
-        /// Handles HandCursorLeave event
-        /// </summary>
-        void KinectButton_HandCursorLeave(object sender, HandCursorEventArgs args)
-        {
-            ResetTimer();
-            m_wasClicked = false;
-        }
-
-        /// <summary>
-        /// Resets the timer
-        /// </summary>
-        private void ResetTimer()
-        {
-            m_timer.Stop();
-            m_ticks = 0;
-        }
-
-        /// <summary>
         /// Imitates the click event
         /// </summary>
-        private void KinectButtonClick()
+        protected virtual void KinectButton_HandCursorClick(object sender, HandCursorEventArgs args)
         {
             SetValue(IsClickedProperty, true);
             m_wasClicked = true;
-            ResetTimer();
             ((MainWindow)Application.Current.MainWindow).TimerLabel.Content = "Click";
-
             m_clickTimer.Start();
         }
         #endregion Methods
