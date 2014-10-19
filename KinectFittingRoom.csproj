@@ -38,6 +38,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,6 +56,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Splash.xaml.cs">
+      <DependentUpon>Splash.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -78,6 +82,10 @@
     <Page Include="Resources\GlassButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Splash.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -116,6 +124,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Hand.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\tshirt.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\min.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\splash_back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\background_splash.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
