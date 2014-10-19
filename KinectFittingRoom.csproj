@@ -135,9 +135,6 @@
     <Resource Include="Images\min.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\splash_back.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\background_splash.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

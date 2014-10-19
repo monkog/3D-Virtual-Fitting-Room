@@ -43,9 +43,39 @@
         </Button>
         <TextBlock Text="WIRTUALNA PRZYMIERZALNIA" TextAlignment="Center" FontWeight="Bold" FontSize="60" HorizontalAlignment="Left" Margin="100,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="160" Width="521"/>
         <Grid Name="grid_menu" Margin="0,10,0,-10">
-            <Label Name="label_tryon" Content="PRZYMIERZAJ" FontSize="50" HorizontalAlignment="Left" Height="68" Margin="166,368,0,0" VerticalAlignment="Top" Width="387" MouseDown="label_tryon_MouseDown" HorizontalContentAlignment="Center" />
-            <Label Name="label_project" Content="O PROJEKCIE" FontSize="50" HorizontalAlignment="Left" Height="64" Margin="166,436,0,0" VerticalAlignment="Top" Width="387" MouseDown="label_project_MouseDown" HorizontalContentAlignment="Center" />
-            <Label Name="label_authors" Content="AUTORKI" FontSize="50" HorizontalAlignment="Left" Height="70" Margin="166,500,0,0" VerticalAlignment="Top" Width="387" MouseDown="label_authors_MouseDown" HorizontalContentAlignment="Center" />
+            <Label Name="label_tryon" Content="PRZYMIERZAJ" FontSize="50" HorizontalAlignment="Left" Height="68" Margin="166,368,0,0" VerticalAlignment="Top" Width="387" MouseDown="label_tryon_MouseDown" HorizontalContentAlignment="Center">
+                <Label.Style>
+                    <Style TargetType="Label">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="FontWeight" Value="Bold" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Label.Style>
+            </Label>
+            <Label Name="label_project" Content="O PROJEKCIE" FontSize="50" HorizontalAlignment="Left" Height="64" Margin="166,436,0,0" VerticalAlignment="Top" Width="387" MouseDown="label_project_MouseDown" HorizontalContentAlignment="Center">
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="FontWeight" Value="Bold" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+            </Label>
+            <Label Name="label_authors" Content="AUTORKI" FontSize="50" HorizontalAlignment="Left" Height="70" Margin="166,500,0,0" VerticalAlignment="Top" Width="387" MouseDown="label_authors_MouseDown" HorizontalContentAlignment="Center">
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="FontWeight" Value="Bold" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+            </Label>
         </Grid>
         <TextBlock Name="textblock_project" Visibility="Hidden" HorizontalAlignment="Left" Margin="172,387,0,0" FontSize="40" TextWrapping="Wrap" Text="Szczegóły projektu bla bla bla" VerticalAlignment="Top" Height="228" Width="398"/>
         <TextBlock Name="textblock_authors" Visibility="Hidden" TextAlignment="Center" HorizontalAlignment="Left" Margin="172,412,0,0" FontSize="40" TextWrapping="Wrap" Text="Monika Kogut Marta Kornaszewska" VerticalAlignment="Top" Height="228" Width="364"/>
