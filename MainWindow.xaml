@@ -2,8 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:buttons="clr-namespace:KinectFittingRoom.Buttons"
-        Title="Kinect Fitting Room" Height="760" Width="1360" WindowState="Maximized"
-        DataContext="{Binding RelativeSource={RelativeSource Self}}" Icon="Images/tshirt.ico" >
+        Title="Kinect Fitting Room" Height="760" Width="1360" WindowState="Maximized" 
+        DataContext="{Binding RelativeSource={RelativeSource Self}}" Icon="Images/tshirt.ico">
     <Grid Name="MainGrid">
         <Image Name="KinectCameraImage" />
         <Canvas Name="ButtonCanvas" Width="{Binding ActualWidth, ElementName=KinectCameraImage}" Height="{Binding ActualHeight, ElementName=KinectCameraImage}">

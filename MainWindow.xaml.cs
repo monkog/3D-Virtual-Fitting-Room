@@ -177,5 +177,6 @@ namespace KinectFittingRoom
             }
         }
         #endregion
+
     }
 }

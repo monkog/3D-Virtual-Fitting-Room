@@ -1,7 +1,7 @@
 ﻿<Application x:Class="KinectFittingRoom.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        StartupUri="Splash.xaml"> 
+             StartupUri="MainWindow.xaml"> 
     <Application.Resources>
         <ResourceDictionary Source="Resources/GlassButton.xaml"/>
     </Application.Resources>
