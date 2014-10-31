@@ -3,7 +3,7 @@ using KinectFittingRoom.Events;
 
 namespace KinectFittingRoom.Buttons
 {
-    class PushButton : KinectButton
+    public class PushButton : KinectButton
     {
         #region Constants
         /// <summary>

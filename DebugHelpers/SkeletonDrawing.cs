@@ -26,17 +26,20 @@ namespace KinectFittingRoom
             {
                 if (frame == null || frame.SkeletonArrayLength == 0)
                     return;
-
+# if DEBUG
                 Brush brush = Brushes.Coral;
 
                 SkeletonCanvas.Children.Clear();
+#endif
                 frame.CopySkeletonDataTo(m_skeletons);
                 Skeleton skeleton = GetPrimarySkeleton(m_skeletons);
                 DrawHandCursor(skeleton);
 
+#if DEBUG
                 foreach (Skeleton skelet in m_skeletons)
                     if (skelet.TrackingState != SkeletonTrackingState.NotTracked)
                         DrawSkeleton(skelet, brush);
+#endif
             }
         }
 
@@ -155,7 +158,7 @@ namespace KinectFittingRoom
         }
 
         /// <summary>
-        /// 
+        /// Creates user skeleton
         /// </summary>
         /// <param name="skeleton"></param>
         /// <param name="brush"></param>
