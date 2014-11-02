@@ -10,7 +10,7 @@ namespace KinectFittingRoom
     {
         App()
         {
-            System.Threading.Thread.Sleep(3000);
+            System.Threading.Thread.Sleep(2000);
         }
     }
 }

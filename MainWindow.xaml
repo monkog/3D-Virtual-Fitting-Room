@@ -5,6 +5,14 @@
         Title="Kinect Fitting Room" Height="760" Width="1360" WindowState="Maximized" 
         DataContext="{Binding RelativeSource={RelativeSource Self}}" Icon="Images/tshirt.ico">
     <Grid Name="MainGrid">
+        <Grid.Background>
+            <ImageBrush ImageSource="Images/curtains.png" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Grid Name="NoKinnectGrid" Opacity="0.7" Background="Black" Visibility="Hidden">
+            <TextBlock FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White">
+                Proszę podłączyć Kinnect!
+            </TextBlock>
+        </Grid>
         <Image Name="KinectCameraImage" />
         <Canvas Name="ButtonCanvas" Width="{Binding ActualWidth, ElementName=KinectCameraImage}" Height="{Binding ActualHeight, ElementName=KinectCameraImage}">
             <Canvas Name="LeftPanel" Width="250" Height="{Binding ActualHeight, ElementName=KinectCameraImage}" Background="GhostWhite" Opacity="0.5" Canvas.Left="20" Margin="20,20,20,20"/>

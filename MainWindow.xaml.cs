@@ -43,6 +43,7 @@ namespace KinectFittingRoom
             {
                 if (m_kinectSensor != value)
                 {
+                    NoKinnectGrid.Visibility = Visibility.Hidden;
                     if (m_kinectSensor != null)
                     {
                         UninitializeKinectSensor(m_kinectSensor);
@@ -54,6 +55,8 @@ namespace KinectFittingRoom
                         InitializeKinectSensor(m_kinectSensor);
                     }
                 }
+                else
+                    NoKinnectGrid.Visibility = Visibility.Visible;               
             }
         }
 
