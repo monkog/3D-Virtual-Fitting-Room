@@ -12,6 +12,15 @@ $RECYCLE.BIN/
 bin/
 obj/
 *.suo
+*.cache
+
+# ReSharper files
+_ReSharper.*
+*.resharper
+
+# User config
+*.csproj.user
+*.resharper.user
 
 # Windows Installer files
 *.cab
