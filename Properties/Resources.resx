@@ -121,6 +121,9 @@
   <data name="Hand" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\Hand.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Handbag" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\Handbag.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Hat" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\Hat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

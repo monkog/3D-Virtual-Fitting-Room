@@ -4,8 +4,8 @@
         xmlns:buttons="clr-namespace:KinectFittingRoom.Buttons"
         Title="Kinect Fitting Room" Height="760" Width="1360" WindowState="Maximized" 
         DataContext="{Binding RelativeSource={RelativeSource Self}}" Icon="Images/tshirt.ico">
-    <Grid Name="MainGrid">
-        <Image Name="KinectCameraImage" />
+    <Grid Name="MainGrid" Background="Black">
+        <Image Name="KinectCameraImage"/>
         <Canvas Name="ButtonCanvas" Width="{Binding ActualWidth, ElementName=KinectCameraImage}" Height="{Binding ActualHeight, ElementName=KinectCameraImage}">
             <Canvas Name="LeftPanel" Width="250" Height="{Binding ActualHeight, ElementName=KinectCameraImage}" Background="GhostWhite" Opacity="0.5" Canvas.Left="20" Margin="20,20,20,20"/>
             <StackPanel Width="{Binding ActualWidth, ElementName=LeftPanel}" Height="{Binding ActualHeight, ElementName=LeftPanel}" Canvas.Left="{Binding (Canvas.Left), ElementName=LeftPanel}" Canvas.Top="{Binding (Canvas.Top), ElementName=LeftPanel}" Margin="{Binding Margin, ElementName=LeftPanel}">
@@ -14,7 +14,7 @@
                         <Image Source="/Images/Hat.png" Width="{Binding ActualWidth, ElementName=ButtonHat}" Height="{Binding ActualHeight, ElementName=ButtonHat}"/>
                     </Canvas>
                 </buttons:TimerButton>
-                <buttons:PushButton x:Name="ButtonHat1" Style="{DynamicResource GlassButton}" Background="Transparent" Width="200" Height="200">
+                <buttons:PushButton x:Name="ButtonHat1" Style="{DynamicResource GlassButton}" Background="Transparent" Width="200" Height="200" HandCursorClick="ButtonHat1_OnHandCursorClick">
                     <Canvas Width="{Binding ActualWidth, ElementName=ButtonHat}" Height="{Binding ActualHeight, ElementName=ButtonHat}">
                         <Image Source="/Images/Hat.png" Width="{Binding ActualWidth, ElementName=ButtonHat}" Height="{Binding ActualHeight, ElementName=ButtonHat}"/>
                     </Canvas>
@@ -22,6 +22,19 @@
             </StackPanel>
             <Canvas Width="250" Height="{Binding ActualHeight, ElementName=KinectCameraImage}" Background="GhostWhite" Opacity="0.5" Canvas.Right="20" Margin="20,20,20,20"/>
         </Canvas>
+        <ItemsControl ItemsSource="{Binding Clothing}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas Width="{Binding ActualWidth, ElementName=KinectCameraImage}" Height="{Binding ActualHeight, ElementName=KinectCameraImage}"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemContainerStyle>
+                <Style>
+                    <Setter Property="Canvas.Top" Value="{Binding Path=Y}" />
+                    <Setter Property="Canvas.Left" Value="{Binding Path=X}" />
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+        </ItemsControl>
         <Canvas Width="{Binding ActualWidth, ElementName=KinectCameraImage}" Height="{Binding ActualHeight, ElementName=KinectCameraImage}">
             <Canvas Name="HandCursor" Width="70" Height="70" Visibility="Collapsed">
                 <Ellipse Width="{Binding ActualWidth, ElementName=HandCursor}" Height="{Binding ActualHeight, ElementName=HandCursor}" Fill="GhostWhite" Opacity="0.5" Stroke="Black" StrokeThickness="2"/>

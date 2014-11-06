@@ -72,6 +72,8 @@
     <Compile Include="Buttons\Events\KinectInput.cs" />
     <Compile Include="HandTracking.cs" />
     <Compile Include="Buttons\Events\HandCursorEventArgs.cs" />
+    <Compile Include="Items\ClothingItem.cs" />
+    <Compile Include="Items\HandItem.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -123,6 +125,12 @@
   </ItemGroup>
   <ItemGroup>
     <SplashScreen Include="Images\wirtualna_przym.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Handbag.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

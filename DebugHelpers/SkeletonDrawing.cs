@@ -13,7 +13,6 @@ namespace KinectFittingRoom
         /// </summary>
         private Skeleton[] m_skeletons;
         #endregion
-
         #region Methods
         /// <summary>
         /// Handles SkeletonFrameReady event
