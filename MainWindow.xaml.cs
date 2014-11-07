@@ -42,9 +42,7 @@ namespace KinectFittingRoom
             set
             {
                 if (m_kinectSensor != value)
-                {
-                    NoKinnectGrid.Visibility = Visibility.Hidden;
-                    if (m_kinectSensor != null)
+                {   if (m_kinectSensor != null)
                     {
                         UninitializeKinectSensor(m_kinectSensor);
                         m_kinectSensor = null;
@@ -54,9 +52,7 @@ namespace KinectFittingRoom
                         m_kinectSensor = value;
                         InitializeKinectSensor(m_kinectSensor);
                     }
-                }
-                else
-                    NoKinnectGrid.Visibility = Visibility.Visible;               
+                }          
             }
         }
 
@@ -71,7 +67,9 @@ namespace KinectFittingRoom
         {
             InitializeComponent();
             Loaded += DiscoverKinectSensors;
-            Unloaded += (sender, e) => { Kinect = null; };
+            if (Kinect == null)
+                NoKinnectGrid.Visibility = Visibility.Visible;
+            Unloaded += (sender, e) => { Kinect = null;};
         }
 
         /// <summary>
@@ -157,26 +155,30 @@ namespace KinectFittingRoom
         /// <param name="e">Arguments</param>
         private void KinectSensor_StatusChanged(object sender, StatusChangedEventArgs e)
         {
+            
             switch (e.Status)
             {
                 case KinectStatus.Initializing:
                 case KinectStatus.Connected:
                     if (Kinect == null)
                         Kinect = e.Sensor;
+                    NoKinnectGrid.Visibility = Visibility.Hidden;
                     break;
                 case KinectStatus.Disconnected:
                     if (Kinect == e.Sensor)
                     {
+                        
                         Kinect = null;
                         Kinect = KinectSensor.KinectSensors.FirstOrDefault(x => x.Status == KinectStatus.Connected);
                         if (Kinect == null)
+                            NoKinnectGrid.Visibility = Visibility.Visible;
                             //TODO: Notify about no sensors connected
-                            throw new NotImplementedException();
+                            //throw new NotImplementedException();
                     }
                     break;
                 default:
-                    //TODO: Notify about error
-                    throw new NotImplementedException();
+                        //TODO: Notify about error
+                        throw new NotImplementedException();
             }
         }
         #endregion
