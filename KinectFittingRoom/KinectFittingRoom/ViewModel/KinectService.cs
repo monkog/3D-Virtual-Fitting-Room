@@ -11,7 +11,7 @@ using Microsoft.Kinect;
 
 namespace KinectFittingRoom.ViewModel
 {
-    public class KinectService : INotifyPropertyChanged, IKinectService
+    public class KinectService : ViewModelBase, IKinectService
     {
         #region Variables
         /// <summary>
@@ -93,8 +93,11 @@ namespace KinectFittingRoom.ViewModel
             {
                 if (_skeletonModels == value)
                     return;
-                _skeletonModels = value;
-                OnPropertyChanged("SkeletonParts");
+                if (value.Count > 0)
+                {
+                    _skeletonModels = value;
+                    OnPropertyChanged("SkeletonParts");
+                }
             }
         }
         /// <summary>
@@ -169,7 +172,14 @@ namespace KinectFittingRoom.ViewModel
 
 #if DEBUG
                 Brush brush = Brushes.Coral;
-                _skeletonModels = SkeletonModel.DrawSkeleton(_skeletons, brush, _kinectSensor, KinectViewModel.Width, KinectViewModel.Height);
+                try
+                {
+                    SkeletonParts = SkeletonModel.DrawSkeleton(_skeletons, brush, _kinectSensor
+                        , Application.Current.MainWindow.ActualWidth, Application.Current.MainWindow.ActualHeight);
+                }
+                catch (Exception)
+                {
+                }
 #endif
             }
         }
@@ -270,8 +280,9 @@ namespace KinectFittingRoom.ViewModel
         {
             DepthImagePoint point = sensor.CoordinateMapper.MapSkeletonPointToDepthPoint(joint.Position, sensor.DepthStream.Format);
 
-            return new Point(point.X * (width / sensor.DepthStream.FrameWidth)
-                , point.Y * (height / sensor.DepthStream.FrameHeight));
+            Point newPoint = new Point(point.X*(width/sensor.DepthStream.FrameWidth)
+                , point.Y*(height/sensor.DepthStream.FrameHeight));
+            return new Point(point.X, point.Y);
         }
         /// <summary>
         /// Cleanups this instance.
@@ -282,18 +293,6 @@ namespace KinectFittingRoom.ViewModel
         }
         #endregion Public Methods
         #region Protected Methods
-        /// <summary>
-        /// Called when [property changed].
-        /// </summary>
-        /// <param name="property">The property.</param>
-        protected void OnPropertyChanged(string property)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(property));
-            }
-        }
         #endregion Protected Methods
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

@@ -61,6 +61,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\ReducedValueConverter.cs" />
     <Compile Include="UI\Buttons\Events\HandCursorEventArgs.cs" />
     <Compile Include="UI\Buttons\Events\HandCursorManager.cs" />
     <Compile Include="UI\Buttons\Events\KinectInput.cs" />

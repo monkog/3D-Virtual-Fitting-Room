@@ -2,17 +2,29 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:buttons="clr-namespace:KinectFittingRoom.UI.Buttons"
+        xmlns:converters="clr-namespace:KinectFittingRoom.Converters"
+		WindowState="Maximized"
         Title="Kinect Fitting Room"
-        WindowState="Maximized"
         Height="768" Width="1366"
         DataContext="{Binding KinectViewModel, Source={StaticResource KinectViewModelLoader}}">
-    <Grid Name="MainGrid" Background="Black">
-        <ItemsControl Width="{Binding CameraImageWidth, Mode=OneWayToSource}" Height="{Binding CameraImageHeight, Mode=OneWayToSource}">
-            <Image Source="{Binding KinectCameraImage}"/>
-        </ItemsControl>
-        <Canvas Name="ButtonCanvas" Width="{Binding CameraImageWidth}" Height="{Binding CameraImageHeight}">
-            <Canvas Name="LeftPanel" Width="250" Height="{Binding CameraImageHeight}" Background="GhostWhite" Opacity="0.5" Canvas.Left="20" Margin="20,20,20,20"/>
-            <StackPanel Width="{Binding ActualWidth, ElementName=LeftPanel}" Height="{Binding ActualHeight, ElementName=LeftPanel}" Canvas.Left="{Binding (Canvas.Left), ElementName=LeftPanel}" Canvas.Top="{Binding (Canvas.Top), ElementName=LeftPanel}" Margin="{Binding Margin, ElementName=LeftPanel}">
+    <Window.Resources>
+        <converters:ReducedValueConverter x:Key="ReducedValueConverter"/>
+    </Window.Resources>
+    <Grid Background="Black">
+        <Image Source="{Binding KinectCameraImage}"/>
+        <Canvas>
+            <Canvas Name="LeftPanel"
+                    Width="250" 
+                    Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Canvas}}
+                    , Path=ActualHeight, Converter={StaticResource ReducedValueConverter}, ConverterParameter=40}" 
+                    Background="GhostWhite" 
+                    Opacity="0.5" 
+                    Margin="220, 20"/>
+            <StackPanel Width="{Binding ActualWidth, ElementName=LeftPanel}"
+                        Height="{Binding ActualHeight, ElementName=LeftPanel}" 
+                        Canvas.Left="{Binding (Canvas.Left), ElementName=LeftPanel}" 
+                        Canvas.Top="{Binding (Canvas.Top), ElementName=LeftPanel}" 
+                        Margin="{Binding Margin, ElementName=LeftPanel}">
                 <ContentControl Content="{Binding ElementName=ClothingCategories, Path=SelectedItem}" DataContext="{Binding ClothingCategories}">
                     <ContentControl.Resources>
                         <DataTemplate DataType="{x:Type buttons:TimerButton}">
@@ -50,7 +62,7 @@
                 </Style>
             </ItemsControl.ItemContainerStyle>
         </ItemsControl>-->
-        <Canvas Width="{Binding ActualWidth, ElementName=KinectCameraImage}" Height="{Binding ActualHeight, ElementName=KinectCameraImage}">
+        <Canvas>
             <Canvas Name="HandCursor" Width="70" Height="70" Visibility="Collapsed">
                 <Ellipse Width="{Binding ActualWidth, ElementName=HandCursor}" Height="{Binding ActualHeight, ElementName=HandCursor}" Fill="GhostWhite" Opacity="0.5" Stroke="Black" StrokeThickness="2"/>
                 <Image Source="/Resources/Images/Hand.png" Width="60" Height="60" Margin="5,5,5,5">
@@ -62,7 +74,34 @@
                 </Image>
             </Canvas>
         </Canvas>
-        <Grid Name="SkeletonCanvas" Width="{Binding CameraImageWidth}" Height="{Binding CameraImageHeight}"/>
+        <ItemsControl Name="SkeletonCanvas" ItemsSource="{Binding KinectService.SkeletonParts}"/>
+		<Canvas>
+			<Ellipse Width="10" Height="10" Canvas.Left="100" Canvas.Top="100" Fill="Red"/>
+			<Ellipse Width="10" Height="10" Canvas.Left="100" Canvas.Top="200" Fill="Red"/>
+			<Ellipse Width="10" Height="10" Canvas.Left="100" Canvas.Top="300" Fill="Red"/>
+			<Ellipse Width="10" Height="10" Canvas.Left="100" Canvas.Top="400" Fill="Red"/>
+			<Ellipse Width="10" Height="10" Canvas.Left="100" Canvas.Top="500" Fill="Red"/>
+			<Ellipse Width="10" Height="10" Canvas.Left="200" Canvas.Top="100" Fill="Red"/>
+			<Ellipse Width="10" Height="10" Canvas.Left="200" Canvas.Top="200" Fill="Red"/>
+			<Ellipse Width="10" Height="10" Canvas.Left="200" Canvas.Top="300" Fill="Red"/>
+			<Ellipse Width="10" Height="10" Canvas.Left="200" Canvas.Top="400" Fill="Red"/>
+			<Ellipse Width="10" Height="10" Canvas.Left="200" Canvas.Top="500" Fill="Red"/>
+			<Ellipse Width="10" Height="10" Canvas.Left="300" Canvas.Top="100" Fill="Red"/>
+			<Ellipse Width="10" Height="10" Canvas.Left="300" Canvas.Top="200" Fill="Red"/>
+			<Ellipse Width="10" Height="10" Canvas.Left="300" Canvas.Top="300" Fill="Red"/>
+			<Ellipse Width="10" Height="10" Canvas.Left="300" Canvas.Top="400" Fill="Red"/>
+			<Ellipse Width="10" Height="10" Canvas.Left="300" Canvas.Top="500" Fill="Red"/>
+			<Ellipse Width="10" Height="10" Canvas.Left="400" Canvas.Top="100" Fill="Red"/>
+			<Ellipse Width="10" Height="10" Canvas.Left="400" Canvas.Top="200" Fill="Red"/>
+			<Ellipse Width="10" Height="10" Canvas.Left="400" Canvas.Top="300" Fill="Red"/>
+			<Ellipse Width="10" Height="10" Canvas.Left="400" Canvas.Top="400" Fill="Red"/>
+			<Ellipse Width="10" Height="10" Canvas.Left="400" Canvas.Top="500" Fill="Red"/>
+			<Ellipse Width="10" Height="10" Canvas.Left="500" Canvas.Top="100" Fill="Red"/>
+			<Ellipse Width="10" Height="10" Canvas.Left="500" Canvas.Top="200" Fill="Red"/>
+			<Ellipse Width="10" Height="10" Canvas.Left="500" Canvas.Top="300" Fill="Red"/>
+			<Ellipse Width="10" Height="10" Canvas.Left="500" Canvas.Top="400" Fill="Red"/>
+			<Ellipse Width="10" Height="10" Canvas.Left="500" Canvas.Top="500" Fill="Red"/>
+		</Canvas>
         <Label x:Name="TimerLabel" FontSize="30" x:FieldModifier="public" Width="100" Height="100" Margin="0,0,417,220"/>
     </Grid>
 </Window>

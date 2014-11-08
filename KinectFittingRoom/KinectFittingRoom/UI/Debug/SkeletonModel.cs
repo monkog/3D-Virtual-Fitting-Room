@@ -26,11 +26,14 @@ namespace KinectFittingRoom.UI.Debug
             var skeletonModels = new ObservableCollection<Polyline>();
             foreach (var skeleton in skeletons)
             {
-                skeletonModels.Add(CreateFigure(skeleton, brush, CreateBody(), sensor, width, height));
-                skeletonModels.Add(CreateFigure(skeleton, brush, CreateLeftHand(), sensor, width, height));
-                skeletonModels.Add(CreateFigure(skeleton, brush, CreateRightHand(), sensor, width, height));
-                skeletonModels.Add(CreateFigure(skeleton, brush, CreateLeftLeg(), sensor, width, height));
-                skeletonModels.Add(CreateFigure(skeleton, brush, CreateRightLeg(), sensor, width, height));
+                if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
+                {
+                    skeletonModels.Add(CreateFigure(skeleton, brush, CreateBody(), sensor, width, height));
+                    skeletonModels.Add(CreateFigure(skeleton, brush, CreateLeftHand(), sensor, width, height));
+                    skeletonModels.Add(CreateFigure(skeleton, brush, CreateRightHand(), sensor, width, height));
+                    skeletonModels.Add(CreateFigure(skeleton, brush, CreateLeftLeg(), sensor, width, height));
+                    skeletonModels.Add(CreateFigure(skeleton, brush, CreateRightLeg(), sensor, width, height));
+                }
             }
             return skeletonModels;
         }
