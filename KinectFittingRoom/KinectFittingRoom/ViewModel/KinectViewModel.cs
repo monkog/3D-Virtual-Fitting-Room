@@ -1,5 +1,7 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows.Media.Imaging;
+using KinectFittingRoom.ViewModel.ButtonItems;
 
 namespace KinectFittingRoom.ViewModel
 {
@@ -25,6 +27,10 @@ namespace KinectFittingRoom.ViewModel
         /// The Kinect service
         /// </summary>
         private KinectService _kinectService;
+        /// <summary>
+        /// The clothing category collection
+        /// </summary>
+        private ObservableCollection<ClothingCategory> _clothingCategory;
         #endregion Private Fields
         #region Public Properties
         /// <summary>
@@ -88,6 +94,24 @@ namespace KinectFittingRoom.ViewModel
                 OnPropertyChanged("KinectCameraImage");
             }
         }
+        /// <summary>
+        /// Gets or sets the clothing categories collection.
+        /// </summary>
+        /// <value>
+        /// The clothing categories collection.
+        /// </value>
+        public ObservableCollection<ClothingCategory> ClothingCategories
+        {
+            get { return _clothingCategory; }
+            set
+            {
+                if (_clothingCategory == value)
+                    return;
+                _clothingCategory = value;
+                OnPropertyChanged("ClothingCategory");
+            }
+        }
+
         #endregion Public Properties
         #region .ctor
         /// <summary>
@@ -129,8 +153,6 @@ namespace KinectFittingRoom.ViewModel
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
         #endregion Event Handlers
-
-
         #region Protected Methods
         /// <summary>
         /// Called when [property changed].

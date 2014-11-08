@@ -7,10 +7,23 @@
         Height="768" Width="1366"
         DataContext="{Binding KinectViewModel, Source={StaticResource KinectViewModelLoader}}">
     <Grid Name="MainGrid" Background="Black">
-        <Image Source="{Binding KinectCameraImage}" Width="{Binding CameraImageWidth, Mode=OneWayToSource}" Height="{Binding CameraImageHeight, Mode=OneWayToSource}"/>
+        <ItemsControl Width="{Binding CameraImageWidth, Mode=OneWayToSource}" Height="{Binding CameraImageHeight, Mode=OneWayToSource}">
+            <Image Source="{Binding KinectCameraImage}"/>
+        </ItemsControl>
         <Canvas Name="ButtonCanvas" Width="{Binding CameraImageWidth}" Height="{Binding CameraImageHeight}">
             <Canvas Name="LeftPanel" Width="250" Height="{Binding CameraImageHeight}" Background="GhostWhite" Opacity="0.5" Canvas.Left="20" Margin="20,20,20,20"/>
             <StackPanel Width="{Binding ActualWidth, ElementName=LeftPanel}" Height="{Binding ActualHeight, ElementName=LeftPanel}" Canvas.Left="{Binding (Canvas.Left), ElementName=LeftPanel}" Canvas.Top="{Binding (Canvas.Top), ElementName=LeftPanel}" Margin="{Binding Margin, ElementName=LeftPanel}">
+                <ContentControl Content="{Binding ElementName=ClothingCategories, Path=SelectedItem}" DataContext="{Binding ClothingCategories}">
+                    <ContentControl.Resources>
+                        <DataTemplate DataType="{x:Type buttons:TimerButton}">
+                            <buttons:TimerButton Style="{DynamicResource GlassButton}" Width="200" Height="200">
+                                <Canvas>
+                                    <Image Source="{Binding Image}" DataContext=""/>
+                                </Canvas>
+                            </buttons:TimerButton>
+                        </DataTemplate>
+                    </ContentControl.Resources>
+                </ContentControl>
                 <!--<buttons:TimerButton x:Name="ButtonHat" Style="{DynamicResource GlassButton}" Width="200" Height="200">
                     <Canvas Width="{Binding ActualWidth, ElementName=ButtonHat}" Height="{Binding ActualHeight, ElementName=ButtonHat}">
                         <Image Source="/Resources/Images/Hat.png" Width="{Binding ActualWidth, ElementName=ButtonHat}" Height="{Binding ActualHeight, ElementName=ButtonHat}"/>
