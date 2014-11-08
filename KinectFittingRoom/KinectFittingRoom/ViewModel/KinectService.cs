@@ -261,10 +261,9 @@ namespace KinectFittingRoom.ViewModel
             Skeleton skeleton = null;
 
             if (skeletons != null)
-                foreach (Skeleton skelet in skeletons)
-                    if (skelet.TrackingState == SkeletonTrackingState.Tracked)
-                        if (skeleton == null || skelet.Position.Z < skeleton.Position.Z)
-                            skeleton = skelet;
+                foreach (Skeleton skelet in skeletons.Where(s => s.TrackingState == SkeletonTrackingState.Tracked))
+                    if (skeleton == null || skelet.Position.Z < skeleton.Position.Z)
+                        skeleton = skelet;
 
             return skeleton;
         }
@@ -278,11 +277,10 @@ namespace KinectFittingRoom.ViewModel
         /// <returns>Mapped point</returns>
         public static Point GetJointPoint(Joint joint, KinectSensor sensor, double width, double height)
         {
-            DepthImagePoint point = sensor.CoordinateMapper.MapSkeletonPointToDepthPoint(joint.Position, sensor.DepthStream.Format);
+            var point = sensor.CoordinateMapper.MapSkeletonPointToDepthPoint(joint.Position, sensor.DepthStream.Format);
 
-            Point newPoint = new Point(point.X*(width/sensor.DepthStream.FrameWidth)
-                , point.Y*(height/sensor.DepthStream.FrameHeight));
-            return new Point(point.X, point.Y);
+            return new Point(point.X * (width / sensor.DepthStream.FrameWidth)
+                , point.Y * (height / sensor.DepthStream.FrameHeight));
         }
         /// <summary>
         /// Cleanups this instance.

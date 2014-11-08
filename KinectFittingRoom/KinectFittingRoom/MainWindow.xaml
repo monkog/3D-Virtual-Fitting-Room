@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:buttons="clr-namespace:KinectFittingRoom.UI.Buttons"
         xmlns:converters="clr-namespace:KinectFittingRoom.Converters"
-		WindowState="Maximized"
+		WindowState="Maximized"		
+		WindowStyle="None"
         Title="Kinect Fitting Room"
         Height="768" Width="1366"
         DataContext="{Binding KinectViewModel, Source={StaticResource KinectViewModelLoader}}">
@@ -74,7 +75,13 @@
                 </Image>
             </Canvas>
         </Canvas>
-        <ItemsControl Name="SkeletonCanvas" ItemsSource="{Binding KinectService.SkeletonParts}"/>
+        <ItemsControl Name="SkeletonCanvas" ItemsSource="{Binding KinectService.SkeletonParts}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
 		<Canvas>
 			<Ellipse Width="10" Height="10" Canvas.Left="100" Canvas.Top="100" Fill="Red"/>
 			<Ellipse Width="10" Height="10" Canvas.Left="100" Canvas.Top="200" Fill="Red"/>
