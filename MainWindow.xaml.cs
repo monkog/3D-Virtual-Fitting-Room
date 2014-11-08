@@ -67,8 +67,6 @@ namespace KinectFittingRoom
         {
             InitializeComponent();
             Loaded += DiscoverKinectSensors;
-            if (Kinect == null)
-                NoKinnectGrid.Visibility = Visibility.Visible;
             Unloaded += (sender, e) => { Kinect = null;};
         }
 
@@ -146,6 +144,8 @@ namespace KinectFittingRoom
         {
             KinectSensor.KinectSensors.StatusChanged += KinectSensor_StatusChanged;
             Kinect = KinectSensor.KinectSensors.FirstOrDefault(x => x.Status == KinectStatus.Connected);
+            if (Kinect == null)
+                NoKinnectGrid.Visibility = Visibility.Visible;
         }
 
         /// <summary>
