@@ -50,19 +50,16 @@ namespace KinectFittingRoom.ViewModel.Debug
         /// <param name="sensor">The sensor.</param>
         /// <param name="width">The width of the canvas.</param>
         /// <param name="height">The height of the canvas.</param>
-        /// <param name="top">The top of the canvas.</param>
-        /// <param name="left">The left of the canvas.</param>
-        public void DrawSkeleton(Skeleton[] skeletons, Brush brush, KinectSensor sensor
-            , double width, double height, double top, double left)
+        public void DrawSkeleton(Skeleton[] skeletons, Brush brush, KinectSensor sensor, double width, double height)
         {
             var skeletonModels = new ObservableCollection<Polyline>();
             foreach (var skeleton in skeletons.Where(skeleton => skeleton.TrackingState != SkeletonTrackingState.NotTracked))
             {
-                skeletonModels.Add(CreateFigure(skeleton, brush, CreateBody(), sensor, width, height, top, left));
-                skeletonModels.Add(CreateFigure(skeleton, brush, CreateLeftHand(), sensor, width, height, top, left));
-                skeletonModels.Add(CreateFigure(skeleton, brush, CreateRightHand(), sensor, width, height, top, left));
-                skeletonModels.Add(CreateFigure(skeleton, brush, CreateLeftLeg(), sensor, width, height, top, left));
-                skeletonModels.Add(CreateFigure(skeleton, brush, CreateRightLeg(), sensor, width, height, top, left));
+                skeletonModels.Add(CreateFigure(skeleton, brush, CreateBody(), sensor, width, height));
+                skeletonModels.Add(CreateFigure(skeleton, brush, CreateLeftHand(), sensor, width, height));
+                skeletonModels.Add(CreateFigure(skeleton, brush, CreateRightHand(), sensor, width, height));
+                skeletonModels.Add(CreateFigure(skeleton, brush, CreateLeftLeg(), sensor, width, height));
+                skeletonModels.Add(CreateFigure(skeleton, brush, CreateRightLeg(), sensor, width, height));
             }
             SkeletonParts = skeletonModels;
         }
@@ -154,16 +151,14 @@ namespace KinectFittingRoom.ViewModel.Debug
         /// <param name="sensor">The sensor.</param>
         /// <param name="width">The width of the canvas.</param>
         /// <param name="height">The height of the canvas.</param>
-        /// <param name="top">The top of the canvas.</param>
-        /// <param name="left">The left of the canvas.</param>
         /// <returns>Skeleton model as a polyline</returns>
         private Polyline CreateFigure(Skeleton skeleton, Brush brush, IEnumerable<JointType> joints
-            , KinectSensor sensor, double width, double height, double top, double left)
+            , KinectSensor sensor, double width, double height)
         {
             var figure = new Polyline { StrokeThickness = 8, Stroke = brush };
 
             foreach (var joint in joints)
-                figure.Points.Add(KinectService.GetJointPoint(skeleton.Joints[joint], sensor, width, height, top, left));
+                figure.Points.Add(KinectService.GetJointPoint(skeleton.Joints[joint], sensor, width, height));
 
             return figure;
         }

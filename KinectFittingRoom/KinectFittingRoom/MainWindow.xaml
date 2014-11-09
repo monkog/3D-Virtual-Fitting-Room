@@ -68,7 +68,7 @@
             </ItemsControl.ItemContainerStyle>
         </ItemsControl>-->
         <!--canvas containing hand cursor-->
-        <Canvas>
+        <Canvas Width="{Binding KinectService.Width}" Height="{Binding KinectService.Height}">
             <Canvas Width="70" Height="70" Visibility="{Binding KinectService.Hand.Visibility}">
                 <Ellipse Width="{Binding RelativeSource={RelativeSource AncestorType=Canvas}, Path=ActualWidth}" 
                          Height="{Binding RelativeSource={RelativeSource AncestorType=Canvas}, Path=ActualHeight}" 
@@ -83,6 +83,12 @@
                         </TransformGroup>
                     </Image.RenderTransform>-->
                 </Image>
+				<Canvas.Style>
+					<Style>
+						<Setter Property="Canvas.Top" Value="{Binding KinectService.Hand.Position.Y}" />
+						<Setter Property="Canvas.Left" Value="{Binding KinectService.Hand.Position.X}" />
+					</Style>
+				</Canvas.Style>
             </Canvas>
         </Canvas>
         <!--Grid containing Skeleton parts for debugging-->

@@ -47,14 +47,6 @@ namespace KinectFittingRoom.ViewModel
         /// The image height
         /// </summary>
         private double _imageHeight;
-        /// <summary>
-        /// The image left
-        /// </summary>
-        private double _imageLeft;
-        /// <summary>
-        /// The image top
-        /// </summary>
-        private double _imageTop;
         #endregion Private Fields
         #region Public Properties
         /// <summary>
@@ -165,41 +157,6 @@ namespace KinectFittingRoom.ViewModel
                 OnPropertyChanged("Height");
             }
         }
-        /// <summary>
-        /// Gets or sets the top of the image.
-        /// </summary>
-        /// <value>
-        /// The top of the image.
-        /// </value>
-        public double Top
-        {
-            get { return _imageTop; }
-            set
-            {
-                if (_imageTop == value)
-                    return;
-                _imageTop = value;
-                OnPropertyChanged("Top");
-            }
-        }
-        /// <summary>
-        /// Gets or sets the left of the image.
-        /// </summary>
-        /// <value>
-        /// The left of the image.
-        /// </value>
-        public double Left
-        {
-            get { return _imageLeft; }
-            set
-            {
-                if (_imageLeft == value)
-                    return;
-                _imageLeft = value;
-                OnPropertyChanged("Left");
-            }
-        }
-
         #endregion
         #region Private Methods
         /// <summary>
@@ -264,12 +221,12 @@ namespace KinectFittingRoom.ViewModel
                 frame.CopySkeletonDataTo(_skeletons);
 
                 var skeleton = GetPrimarySkeleton(_skeletons);
-                Hand.UpdateHandCursor(skeleton, Kinect);
+                Hand.UpdateHandCursor(skeleton, Kinect, Width, Height);
 #if DEBUG
                 Brush brush = Brushes.Coral;
                 try
                 {
-                    SkeletonManager.DrawSkeleton(_skeletons, brush, _kinectSensor, Width, Height, Top, Left);
+                    SkeletonManager.DrawSkeleton(_skeletons, brush, _kinectSensor, Width, Height);
                 }
                 catch (Exception)
                 {
@@ -370,10 +327,8 @@ namespace KinectFittingRoom.ViewModel
         /// <param name="sensor">The sensor.</param>
         /// <param name="width">Width of the canvas.</param>
         /// <param name="height">Height of the canvas.</param>
-        /// <param name="top">The top of the canvas.</param>
-        /// <param name="left">The left of the canvas.</param>
         /// <returns>Mapped point</returns>
-        public static Point GetJointPoint(Joint joint, KinectSensor sensor, double width, double height, double top, double left)
+        public static Point GetJointPoint(Joint joint, KinectSensor sensor, double width, double height)
         {
             var point = sensor.CoordinateMapper.MapSkeletonPointToDepthPoint(joint.Position, sensor.DepthStream.Format);
 
