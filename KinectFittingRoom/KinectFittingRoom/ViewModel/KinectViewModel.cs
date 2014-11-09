@@ -1,6 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Windows.Media.Imaging;
 using KinectFittingRoom.ViewModel.ButtonItems;
 
 namespace KinectFittingRoom.ViewModel
@@ -12,36 +10,15 @@ namespace KinectFittingRoom.ViewModel
     {
         #region Private Fields
         /// <summary>
-        /// Image from the Kinect 
-        /// </summary>
-        private WriteableBitmap _kinectCameraImage;
-        /// <summary>
         /// The Kinect service
         /// </summary>
-        private KinectService _kinectService;
+        private readonly KinectService _kinectService;
         /// <summary>
         /// The clothing category collection
         /// </summary>
         private ObservableCollection<ClothingCategory> _clothingCategory;
         #endregion Private Fields
         #region Public Properties
-        /// <summary>
-        /// Gets or sets the Kinect camera image.
-        /// </summary>
-        /// <value>
-        /// The Kinect camera image.
-        /// </value>
-        public WriteableBitmap KinectCameraImage
-        {
-            get { return _kinectCameraImage; }
-            set
-            {
-                if (_kinectCameraImage == value)
-                    return;
-                _kinectCameraImage = value;
-                OnPropertyChanged("KinectCameraImage");
-            }
-        }
         /// <summary>
         /// Gets or sets the clothing categories collection.
         /// </summary>
@@ -79,25 +56,10 @@ namespace KinectFittingRoom.ViewModel
         public KinectViewModel(KinectService kinectService)
         {
             _kinectService = kinectService;
-            _kinectService.PropertyChanged += _kinectService_PropertyChanged;
             _kinectService.Initialize();
         }
         #endregion .ctor
         #region Private Methods
-        /// <summary>
-        /// Handles PropertyChanged event on _kinectService
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void _kinectService_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            switch (e.PropertyName)
-            {
-                case "KinectCameraImage":
-                    KinectCameraImage = _kinectService.KinectCameraImage;
-                    break;
-            }
-        }
         /// <summary>
         /// Cleanups this instance.
         /// </summary>

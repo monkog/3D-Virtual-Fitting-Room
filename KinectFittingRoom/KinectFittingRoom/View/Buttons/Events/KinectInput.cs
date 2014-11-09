@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace KinectFittingRoom.UI.Buttons.Events
+namespace KinectFittingRoom.View.Buttons.Events
 {
     /// <summary>
     /// HandCursor event handler type declaration

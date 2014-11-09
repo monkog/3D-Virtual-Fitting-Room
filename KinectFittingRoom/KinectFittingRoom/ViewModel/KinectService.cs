@@ -1,19 +1,16 @@
 ﻿using System;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using KinectFittingRoom.UI.Debug;
+using KinectFittingRoom.ViewModel.Debug;
 using Microsoft.Kinect;
 
 namespace KinectFittingRoom.ViewModel
 {
     public class KinectService : ViewModelBase, IKinectService
     {
-        #region Variables
+        #region Private Fields
         /// <summary>
         /// Captured skeletons
         /// </summary>
@@ -35,10 +32,30 @@ namespace KinectFittingRoom.ViewModel
         /// </summary>
         private int _colorStride;
         /// <summary>
-        /// Models of all of the skeletons
+        /// User's Hand
         /// </summary>
-        private ObservableCollection<Polyline> _skeletonModels;
-        #endregion
+        private Hand _hand;
+        /// <summary>
+        /// The skeleton manager
+        /// </summary>
+        private SkeletonManager _skeletonManager;
+        /// <summary>
+        /// The image width
+        /// </summary>
+        private double _imageWidth;
+        /// <summary>
+        /// The image height
+        /// </summary>
+        private double _imageHeight;
+        /// <summary>
+        /// The image left
+        /// </summary>
+        private double _imageLeft;
+        /// <summary>
+        /// The image top
+        /// </summary>
+        private double _imageTop;
+        #endregion Private Fields
         #region Public Properties
         /// <summary>
         /// Current KinectSensor
@@ -81,29 +98,108 @@ namespace KinectFittingRoom.ViewModel
             }
         }
         /// <summary>
-        /// Gets or sets the skeleton parts.
+        /// Gets or sets the hand.
         /// </summary>
         /// <value>
-        /// The skeleton parts.
+        /// The hand.
         /// </value>
-        public ObservableCollection<Polyline> SkeletonParts
+        public Hand Hand
         {
-            get { return _skeletonModels; }
+            get { return _hand; }
             set
             {
-                if (_skeletonModels == value)
+                if (_hand == value)
                     return;
-                if (value.Count > 0)
-                {
-                    _skeletonModels = value;
-                    OnPropertyChanged("SkeletonParts");
-                }
+                _hand = value;
+                OnPropertyChanged("Hand");
             }
         }
         /// <summary>
-        /// Parent canvas for all buttons
+        /// Gets or sets the skeleton manager.
         /// </summary>
-        //public Canvas ParentButtonCanvas { get { return ButtonCanvas; } }
+        /// <value>
+        /// The skeleton manager.
+        /// </value>
+        public SkeletonManager SkeletonManager
+        {
+            get { return _skeletonManager; }
+            set
+            {
+                if (_skeletonManager == value)
+                    return;
+                _skeletonManager = value;
+                OnPropertyChanged("SkeletonManager");
+            }
+        }
+        /// <summary>
+        /// Gets or sets the width.
+        /// </summary>
+        /// <value>
+        /// The width.
+        /// </value>
+        public double Width
+        {
+            get { return _imageWidth; }
+            set
+            {
+                if (_imageWidth == value)
+                    return;
+                _imageWidth = value;
+                OnPropertyChanged("Width");
+            }
+        }
+        /// <summary>
+        /// Gets or sets the height.
+        /// </summary>
+        /// <value>
+        /// The height.
+        /// </value>
+        public double Height
+        {
+            get { return _imageHeight; }
+            set
+            {
+                if (_imageHeight == value)
+                    return;
+                _imageHeight = value;
+                OnPropertyChanged("Height");
+            }
+        }
+        /// <summary>
+        /// Gets or sets the top of the image.
+        /// </summary>
+        /// <value>
+        /// The top of the image.
+        /// </value>
+        public double Top
+        {
+            get { return _imageTop; }
+            set
+            {
+                if (_imageTop == value)
+                    return;
+                _imageTop = value;
+                OnPropertyChanged("Top");
+            }
+        }
+        /// <summary>
+        /// Gets or sets the left of the image.
+        /// </summary>
+        /// <value>
+        /// The left of the image.
+        /// </value>
+        public double Left
+        {
+            get { return _imageLeft; }
+            set
+            {
+                if (_imageLeft == value)
+                    return;
+                _imageLeft = value;
+                OnPropertyChanged("Left");
+            }
+        }
+
         #endregion
         #region Private Methods
         /// <summary>
@@ -168,14 +264,12 @@ namespace KinectFittingRoom.ViewModel
                 frame.CopySkeletonDataTo(_skeletons);
 
                 var skeleton = GetPrimarySkeleton(_skeletons);
-                //DrawHandCursor(skeleton);
-
+                Hand.UpdateHandCursor(skeleton, Kinect);
 #if DEBUG
                 Brush brush = Brushes.Coral;
                 try
                 {
-                    SkeletonParts = SkeletonModel.DrawSkeleton(_skeletons, brush, _kinectSensor
-                        , Application.Current.MainWindow.ActualWidth, Application.Current.MainWindow.ActualHeight);
+                    SkeletonManager.DrawSkeleton(_skeletons, brush, _kinectSensor, Width, Height, Top, Left);
                 }
                 catch (Exception)
                 {
@@ -249,6 +343,8 @@ namespace KinectFittingRoom.ViewModel
         /// </summary>
         public void Initialize()
         {
+            Hand = new Hand();
+            SkeletonManager = new SkeletonManager();
             DiscoverKinectSensors();
         }
         /// <summary>
@@ -274,8 +370,10 @@ namespace KinectFittingRoom.ViewModel
         /// <param name="sensor">The sensor.</param>
         /// <param name="width">Width of the canvas.</param>
         /// <param name="height">Height of the canvas.</param>
+        /// <param name="top">The top of the canvas.</param>
+        /// <param name="left">The left of the canvas.</param>
         /// <returns>Mapped point</returns>
-        public static Point GetJointPoint(Joint joint, KinectSensor sensor, double width, double height)
+        public static Point GetJointPoint(Joint joint, KinectSensor sensor, double width, double height, double top, double left)
         {
             var point = sensor.CoordinateMapper.MapSkeletonPointToDepthPoint(joint.Position, sensor.DepthStream.Format);
 
@@ -290,7 +388,5 @@ namespace KinectFittingRoom.ViewModel
             Kinect = null;
         }
         #endregion Public Methods
-        #region Protected Methods
-        #endregion Protected Methods
     }
 }

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Threading;
-using KinectFittingRoom.UI.Buttons.Events;
+using KinectFittingRoom.View.Buttons.Events;
 
-namespace KinectFittingRoom.UI.Buttons
+namespace KinectFittingRoom.View.Buttons
 {
     public class TimerButton : KinectButton
     {

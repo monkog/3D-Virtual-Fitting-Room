@@ -1,9 +1,10 @@
 ﻿<Window x:Class="KinectFittingRoom.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:buttons="clr-namespace:KinectFittingRoom.UI.Buttons"
         xmlns:converters="clr-namespace:KinectFittingRoom.Converters"
-		WindowState="Maximized"		
+        xmlns:buttons="clr-namespace:KinectFittingRoom.View.Buttons"
+        xmlns:helpers="clr-namespace:KinectFittingRoom.View.Helpers"
+        WindowState="Maximized"		
 		WindowStyle="None"
         Title="Kinect Fitting Room"
         Height="768" Width="1366"
@@ -12,7 +13,10 @@
         <converters:ReducedValueConverter x:Key="ReducedValueConverter"/>
     </Window.Resources>
     <Grid Background="Black">
-        <Image Source="{Binding KinectCameraImage}"/>
+        <Image Source="{Binding KinectService.KinectCameraImage}"
+			   helpers:PropertiesObserver.Observe="True"
+			   helpers:PropertiesObserver.ObservedWidth="{Binding KinectService.Width, Mode=OneWayToSource}"
+			   helpers:PropertiesObserver.ObservedHeight="{Binding KinectService.Height, Mode=OneWayToSource}"/>
         <Canvas>
             <Canvas Name="LeftPanel"
                     Width="250" 
@@ -63,9 +67,15 @@
                 </Style>
             </ItemsControl.ItemContainerStyle>
         </ItemsControl>-->
+        <!--canvas containing hand cursor-->
         <Canvas>
-            <Canvas Name="HandCursor" Width="70" Height="70" Visibility="Collapsed">
-                <Ellipse Width="{Binding ActualWidth, ElementName=HandCursor}" Height="{Binding ActualHeight, ElementName=HandCursor}" Fill="GhostWhite" Opacity="0.5" Stroke="Black" StrokeThickness="2"/>
+            <Canvas Width="70" Height="70" Visibility="{Binding KinectService.Hand.Visibility}">
+                <Ellipse Width="{Binding RelativeSource={RelativeSource AncestorType=Canvas}, Path=ActualWidth}" 
+                         Height="{Binding RelativeSource={RelativeSource AncestorType=Canvas}, Path=ActualHeight}" 
+                         Fill="GhostWhite"
+                         Opacity="0.5" 
+                         Stroke="Black" 
+                         StrokeThickness="2"/>
                 <Image Source="/Resources/Images/Hand.png" Width="60" Height="60" Margin="5,5,5,5">
                     <!--<Image.RenderTransform>
                         <TransformGroup>
@@ -75,10 +85,11 @@
                 </Image>
             </Canvas>
         </Canvas>
-        <ItemsControl Name="SkeletonCanvas" ItemsSource="{Binding KinectService.SkeletonParts}">
+        <!--Grid containing Skeleton parts for debugging-->
+        <ItemsControl ItemsSource="{Binding KinectService.SkeletonManager.SkeletonParts}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <Grid/>
+                    <Grid Width="{Binding KinectService.Width}" Height="{Binding KinectService.Height}"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>

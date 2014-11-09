@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Media.Media3D;
 
-namespace KinectFittingRoom.UI.Buttons.Events
+namespace KinectFittingRoom.View.Buttons.Events
 {
     /// <summary>
     /// Class handling Hand Cursor Events

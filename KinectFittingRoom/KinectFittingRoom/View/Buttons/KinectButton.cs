@@ -1,11 +1,10 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
-using KinectFittingRoom.UI.Buttons.Events;
+using KinectFittingRoom.View.Buttons.Events;
 
-namespace KinectFittingRoom.UI.Buttons
+namespace KinectFittingRoom.View.Buttons
 {
     /// <summary>
     /// Button class that responds to Kincect events

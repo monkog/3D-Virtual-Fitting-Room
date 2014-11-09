@@ -1,16 +1,46 @@
-﻿using System.Linq;
-#if DEBUG
+﻿#if DEBUG
+using Microsoft.Kinect;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Media;
 using System.Windows.Shapes;
-using KinectFittingRoom.ViewModel;
-using Microsoft.Kinect;
 
-namespace KinectFittingRoom.UI.Debug
+namespace KinectFittingRoom.ViewModel.Debug
 {
-    public class SkeletonModel
+    /// <summary>
+    /// Manages Skeleton parts when debugging
+    /// </summary>
+    public class SkeletonManager : ViewModelBase
     {
+        #region Public Properties
+        /// <summary>
+        /// Gets or sets the skeleton parts.
+        /// </summary>
+        /// <value>
+        /// The skeleton parts.
+        /// </value>
+        public ObservableCollection<Polyline> SkeletonParts
+        {
+            get { return _skeletonModels; }
+            set
+            {
+                if (_skeletonModels == value)
+                    return;
+                if (value.Count > 0)
+                {
+                    _skeletonModels = value;
+                    OnPropertyChanged("SkeletonParts");
+                }
+            }
+        }
+        #endregion Public Properties
+        #region Private Fields
+        /// <summary>
+        /// Models of all of the skeletons
+        /// </summary>
+        private ObservableCollection<Polyline> _skeletonModels;
+        #endregion Private Fields
         #region Public Methods
         /// <summary>
         /// Creates skeleton models for each of the tracked skeleton in the array
@@ -20,26 +50,29 @@ namespace KinectFittingRoom.UI.Debug
         /// <param name="sensor">The sensor.</param>
         /// <param name="width">The width of the canvas.</param>
         /// <param name="height">The height of the canvas.</param>
-        /// <returns>Collection of skeleton models</returns>
-        public static ObservableCollection<Polyline> DrawSkeleton(Skeleton[] skeletons, Brush brush
-            , KinectSensor sensor, double width, double height)
+        /// <param name="top">The top of the canvas.</param>
+        /// <param name="left">The left of the canvas.</param>
+        public void DrawSkeleton(Skeleton[] skeletons, Brush brush, KinectSensor sensor
+            , double width, double height, double top, double left)
         {
             var skeletonModels = new ObservableCollection<Polyline>();
             foreach (var skeleton in skeletons.Where(skeleton => skeleton.TrackingState != SkeletonTrackingState.NotTracked))
             {
-                skeletonModels.Add(CreateFigure(skeleton, brush, CreateBody(), sensor, width, height));
-                skeletonModels.Add(CreateFigure(skeleton, brush, CreateLeftHand(), sensor, width, height));
-                skeletonModels.Add(CreateFigure(skeleton, brush, CreateRightHand(), sensor, width, height));
-                skeletonModels.Add(CreateFigure(skeleton, brush, CreateLeftLeg(), sensor, width, height));
-                skeletonModels.Add(CreateFigure(skeleton, brush, CreateRightLeg(), sensor, width, height));
+                skeletonModels.Add(CreateFigure(skeleton, brush, CreateBody(), sensor, width, height, top, left));
+                skeletonModels.Add(CreateFigure(skeleton, brush, CreateLeftHand(), sensor, width, height, top, left));
+                skeletonModels.Add(CreateFigure(skeleton, brush, CreateRightHand(), sensor, width, height, top, left));
+                skeletonModels.Add(CreateFigure(skeleton, brush, CreateLeftLeg(), sensor, width, height, top, left));
+                skeletonModels.Add(CreateFigure(skeleton, brush, CreateRightLeg(), sensor, width, height, top, left));
             }
-            return skeletonModels;
+            SkeletonParts = skeletonModels;
         }
+        #endregion Public Methods
+        #region Private Methods
         /// <summary>
         /// Creates a body for skeleton
         /// </summary>
         /// <returns>Array of joint that refer to the body</returns>
-        private static IEnumerable<JointType> CreateBody()
+        private IEnumerable<JointType> CreateBody()
         {
             return new[]
                         {
@@ -60,7 +93,7 @@ namespace KinectFittingRoom.UI.Debug
         /// Creates a right hand for skeleton
         /// </summary>
         /// <returns>Array of joint that refer to the right hand</returns>
-        private static IEnumerable<JointType> CreateRightHand()
+        private IEnumerable<JointType> CreateRightHand()
         {
             return new[]
                         {
@@ -74,7 +107,7 @@ namespace KinectFittingRoom.UI.Debug
         /// Creates a left hand for skeleton
         /// </summary>
         /// <returns>Array of joint that refer to the left hand</returns>
-        private static IEnumerable<JointType> CreateLeftHand()
+        private IEnumerable<JointType> CreateLeftHand()
         {
             return new[]
                         {
@@ -88,7 +121,7 @@ namespace KinectFittingRoom.UI.Debug
         /// Creates a right leg for skeleton
         /// </summary>
         /// <returns>Array of joint that refer to the right leg</returns>
-        private static IEnumerable<JointType> CreateRightLeg()
+        private IEnumerable<JointType> CreateRightLeg()
         {
             return new[]
                         {
@@ -102,7 +135,7 @@ namespace KinectFittingRoom.UI.Debug
         /// Creates a left leg for skeleton
         /// </summary>
         /// <returns>Array of joint that refer to the left leg</returns>
-        private static IEnumerable<JointType> CreateLeftLeg()
+        private IEnumerable<JointType> CreateLeftLeg()
         {
             return new[]
                         {
@@ -121,18 +154,20 @@ namespace KinectFittingRoom.UI.Debug
         /// <param name="sensor">The sensor.</param>
         /// <param name="width">The width of the canvas.</param>
         /// <param name="height">The height of the canvas.</param>
+        /// <param name="top">The top of the canvas.</param>
+        /// <param name="left">The left of the canvas.</param>
         /// <returns>Skeleton model as a polyline</returns>
-        private static Polyline CreateFigure(Skeleton skeleton, Brush brush, IEnumerable<JointType> joints
-            , KinectSensor sensor, double width, double height)
+        private Polyline CreateFigure(Skeleton skeleton, Brush brush, IEnumerable<JointType> joints
+            , KinectSensor sensor, double width, double height, double top, double left)
         {
             var figure = new Polyline { StrokeThickness = 8, Stroke = brush };
 
             foreach (var joint in joints)
-                figure.Points.Add(KinectService.GetJointPoint(skeleton.Joints[joint], sensor, width, height));
+                figure.Points.Add(KinectService.GetJointPoint(skeleton.Joints[joint], sensor, width, height, top, left));
 
             return figure;
         }
-        #endregion Public Methods
+        #endregion Private Methods
     }
 }
 #endif
