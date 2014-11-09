@@ -1,4 +1,7 @@
-﻿using System.Windows.Controls;
+﻿using System.Collections.ObjectModel;
+using System.Windows.Controls;
+using KinectFittingRoom.Events;
+using KinectFittingRoom.Items;
 using Microsoft.Kinect;
 using System;
 using System.Linq;
@@ -30,9 +33,13 @@ namespace KinectFittingRoom
         /// Number of bytes per line
         /// </summary>
         private int m_colorStride;
+        /// <summary>
+        /// The clothing collection
+        /// </summary>
+        private ObservableCollection<ClothingItem> m_clothing;
         #endregion
 
-        #region Properties
+        #region Public Properties
         /// <summary>
         /// Current KinectSensor
         /// </summary>
@@ -55,21 +62,30 @@ namespace KinectFittingRoom
                 }          
             }
         }
-
         /// <summary>
         /// Parent canvas for all buttons
         /// </summary>
         public Canvas ParentButtonCanvas { get { return ButtonCanvas; } }
+        /// <summary>
+        /// Gets or sets the clothing collection.
+        /// </summary>
+        public ObservableCollection<ClothingItem> Clothing
+        {
+            get { return m_clothing; }
+            set { m_clothing = value; }
+        }
         #endregion
 
-        #region Methods
         public MainWindow()
         {
             InitializeComponent();
             Loaded += DiscoverKinectSensors;
             Unloaded += (sender, e) => { Kinect = null;};
+            Unloaded += (sender, e) => { Kinect = null; };
+            Clothing = new ObservableCollection<ClothingItem>();
         }
 
+        #region Methods
         /// <summary>
         /// Enables ColorStream from newly detected KinectSensor and sets output image
         /// </summary>
@@ -183,5 +199,9 @@ namespace KinectFittingRoom
         }
         #endregion
 
+        private void ButtonHat1_OnHandCursorClick(object sender, HandCursorEventArgs args)
+        {
+            Clothing.Add(new HandItem(Properties.Resources.Handbag, 200, 300));
+        }
     }
 }

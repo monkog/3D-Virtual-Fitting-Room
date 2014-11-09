@@ -11,14 +11,12 @@ namespace KinectFittingRoom.Buttons
         /// </summary>
         private const double DEPTH_TOLERANCE = 100;
         #endregion Constants
-
         #region Variables
         /// <summary>
         /// Depth of the hand entering the button
         /// </summary>
         private double m_initialDepth;
         #endregion Variables
-
         #region Properties
         /// <summary>
         /// Depth of the hand
@@ -29,7 +27,6 @@ namespace KinectFittingRoom.Buttons
             set { SetValue(HandDepthDependencyProperty, value); }
         }
         #endregion Properties
-
         #region Dependency Properties
         /// <summary>
         /// HandDepth Dependency Property
@@ -37,7 +34,6 @@ namespace KinectFittingRoom.Buttons
         public static readonly DependencyProperty HandDepthDependencyProperty = DependencyProperty.Register(
             "HandDepth", typeof(double), typeof(PushButton), new PropertyMetadata(default(double)));
         #endregion Dependency Properties
-
         #region Methods
         /// <summary>
         /// Sets the initial depth of the cursor
@@ -46,7 +42,6 @@ namespace KinectFittingRoom.Buttons
         {
             m_initialDepth = args.Z;
         }
-
         /// <summary>
         /// Raises HandCursorClickEvent when a push gesture is detected
         /// </summary>
