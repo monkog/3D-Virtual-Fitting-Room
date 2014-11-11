@@ -224,13 +224,7 @@ namespace KinectFittingRoom.ViewModel
                 Hand.UpdateHandCursor(skeleton, Kinect, Width, Height);
 #if DEBUG
                 Brush brush = Brushes.Coral;
-                try
-                {
-                    SkeletonManager.DrawSkeleton(_skeletons, brush, _kinectSensor, Width, Height);
-                }
-                catch (Exception)
-                {
-                }
+                SkeletonManager.DrawSkeleton(_skeletons, brush, _kinectSensor, Width, Height);
 #endif
             }
         }

@@ -17,14 +17,14 @@
 			   helpers:PropertiesObserver.Observe="True"
 			   helpers:PropertiesObserver.ObservedWidth="{Binding KinectService.Width, Mode=OneWayToSource}"
 			   helpers:PropertiesObserver.ObservedHeight="{Binding KinectService.Height, Mode=OneWayToSource}"/>
-        <Canvas>
+        <Canvas Name="ButtonPanelsCanvas" Width="{Binding KinectService.Width}" Height="{Binding KinectService.Height}">
             <Canvas Name="LeftPanel"
                     Width="250" 
                     Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Canvas}}
                     , Path=ActualHeight, Converter={StaticResource ReducedValueConverter}, ConverterParameter=40}" 
                     Background="GhostWhite" 
                     Opacity="0.5" 
-                    Margin="220, 20"/>
+                    Margin="20"/>
             <StackPanel Width="{Binding ActualWidth, ElementName=LeftPanel}"
                         Height="{Binding ActualHeight, ElementName=LeftPanel}" 
                         Canvas.Left="{Binding (Canvas.Left), ElementName=LeftPanel}" 
@@ -52,7 +52,14 @@
                     </Canvas>
                 </buttons:TimerButton>-->
             </StackPanel>
-            <Canvas Width="250" Height="{Binding CameraImageHeight}" Background="GhostWhite" Opacity="0.5" Canvas.Right="20" Margin="20,20,20,20"/>
+			<Canvas Name="RightPanel"
+                    Width="250" 
+                    Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Canvas}}
+                    , Path=ActualHeight, Converter={StaticResource ReducedValueConverter}, ConverterParameter=40}" 
+                    Background="GhostWhite" 
+                    Opacity="0.5" 
+					Canvas.Right="0"
+                    Margin="20"/>
         </Canvas>
         <!--<ItemsControl ItemsSource="{Binding Clothing}">
             <ItemsControl.ItemsPanel>
@@ -69,7 +76,7 @@
         </ItemsControl>-->
         <!--canvas containing hand cursor-->
         <Canvas Width="{Binding KinectService.Width}" Height="{Binding KinectService.Height}">
-            <Canvas Width="70" Height="70" Visibility="{Binding KinectService.Hand.Visibility}">
+            <Canvas Name="HandCursor" Width="70" Height="70" Visibility="Collapsed">
                 <Ellipse Width="{Binding RelativeSource={RelativeSource AncestorType=Canvas}, Path=ActualWidth}" 
                          Height="{Binding RelativeSource={RelativeSource AncestorType=Canvas}, Path=ActualHeight}" 
                          Fill="GhostWhite"
@@ -83,12 +90,6 @@
                         </TransformGroup>
                     </Image.RenderTransform>-->
                 </Image>
-				<Canvas.Style>
-					<Style>
-						<Setter Property="Canvas.Top" Value="{Binding KinectService.Hand.Position.Y}" />
-						<Setter Property="Canvas.Left" Value="{Binding KinectService.Hand.Position.X}" />
-					</Style>
-				</Canvas.Style>
             </Canvas>
         </Canvas>
         <!--Grid containing Skeleton parts for debugging-->

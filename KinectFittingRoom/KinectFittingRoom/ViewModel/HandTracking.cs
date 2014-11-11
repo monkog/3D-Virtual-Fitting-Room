@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
 using Microsoft.Kinect;
 
 namespace KinectFittingRoom.ViewModel
@@ -8,47 +7,47 @@ namespace KinectFittingRoom.ViewModel
     {
         #region Private Fields
         /// <summary>
-        /// The position of the hand cursor
+        /// The position of the left hand
         /// </summary>
-        private Point _position;
+        private Point _leftPosition;
         /// <summary>
-        /// Visibility of the hand cursor
+        /// The position of the right hand
         /// </summary>
-        private Visibility _visibility;
+        private Point _rightPosition;
         #endregion Private Fields
         #region Public Properties
         /// <summary>
-        /// Gets or sets the Position of the hand cursor.
+        /// Gets or sets the Position of the left hand.
         /// </summary>
         /// <value>
-        /// The Position of the hand cursor.
+        /// The Position of the left hand.
         /// </value>
-        public Point Position
+        public Point LeftPosition
         {
-            get { return _position; }
+            get { return _leftPosition; }
             set
             {
-                if (_position == value)
+                if (_leftPosition == value)
                     return;
-                _position = value;
-                OnPropertyChanged("Position");
+                _leftPosition = value;
+                OnPropertyChanged("LeftPosition");
             }
         }
         /// <summary>
-        /// Gets or sets the visibility of the hand cursor.
+        /// Gets or sets the Position of the right hand.
         /// </summary>
         /// <value>
-        /// The visibility of the hand cursor.
+        /// The Position of the right hand.
         /// </value>
-        public Visibility Visibility
+        public Point RightPosition
         {
-            get { return _visibility; }
+            get { return _rightPosition; }
             set
             {
-                if (_visibility == value)
+                if (_rightPosition == value)
                     return;
-                _visibility = value;
-                OnPropertyChanged("Visibility");
+                _rightPosition = value;
+                OnPropertyChanged("RightPosition");
             }
         }
         #endregion Public Properties
@@ -63,11 +62,8 @@ namespace KinectFittingRoom.ViewModel
         public void UpdateHandCursor(Skeleton skeleton, KinectSensor sensor, double width, double height)
         {
             if (skeleton == null)
-            {
-                Visibility = Visibility.Collapsed;
                 return;
-            }
-            Visibility = Visibility.Visible;
+
             TrackHand(skeleton.Joints[JointType.HandLeft], skeleton.Joints[JointType.HandRight], sensor, width, height);
         }
         /// <summary>
@@ -83,22 +79,18 @@ namespace KinectFittingRoom.ViewModel
             if (leftHand.TrackingState == JointTrackingState.NotTracked && rightHand.TrackingState == JointTrackingState.NotTracked)
                 return;
 
-            DepthImagePoint leftPoint = sensor.CoordinateMapper.MapSkeletonPointToDepthPoint(leftHand.Position
+            var leftPoint = sensor.CoordinateMapper.MapSkeletonPointToDepthPoint(leftHand.Position
                 , sensor.DepthStream.Format);
-            int lx = (int)((leftPoint.X * width / sensor.DepthStream.FrameWidth));
-            int ly = (int)((leftPoint.Y * height / sensor.DepthStream.FrameHeight));
+            var lx = (int)((leftPoint.X * width / sensor.DepthStream.FrameWidth));
+            var ly = (int)((leftPoint.Y * height / sensor.DepthStream.FrameHeight));
 
-            DepthImagePoint rightPoint = sensor.CoordinateMapper.MapSkeletonPointToDepthPoint(rightHand.Position
+            var rightPoint = sensor.CoordinateMapper.MapSkeletonPointToDepthPoint(rightHand.Position
                 , sensor.DepthStream.Format);
-            int rx = (int)((rightPoint.X * width / sensor.DepthStream.FrameWidth));
-            int ry = (int)((rightPoint.Y * height / sensor.DepthStream.FrameHeight));
+            var rx = (int)((rightPoint.X * width / sensor.DepthStream.FrameWidth));
+            var ry = (int)((rightPoint.Y * height / sensor.DepthStream.FrameHeight));
 
-            Position = new Point(lx, ly);
-            
-            //Point lp = KinectCameraImage.TranslatePoint(new Point(lx, ly), MainGrid);
-            //Point rp = KinectCameraImage.TranslatePoint(new Point(rx, ry), MainGrid);
-            //HandCursorManager.Instance.HandleHandCursorEvents(HandCursor, new Vector3D(lp.X, lp.Y, leftPoint.Depth), new Point(lx, ly)
-            //    , new Vector3D(rp.X, rp.Y, rightPoint.Depth), new Point(rx, ry));
+            LeftPosition = new Point(lx, ly);
+            RightPosition = new Point(rx, ry);
         }
         #endregion Methods
     }
