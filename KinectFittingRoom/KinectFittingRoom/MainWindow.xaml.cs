@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Media3D;
+using KinectFittingRoom.View.Buttons.Events;
 using KinectFittingRoom.ViewModel;
 
 namespace KinectFittingRoom
@@ -64,6 +66,7 @@ namespace KinectFittingRoom
             HandCursor.Visibility = Visibility.Visible;
             Canvas.SetLeft(HandCursor, hand.X - HandCursor.ActualWidth / 2.0);
             Canvas.SetTop(HandCursor, hand.Y - HandCursor.ActualHeight / 2.0);
+            ButtonsManager.Instance.RaiseCursorEvents(element, hand);
         }
         #endregion Private Methods
     }

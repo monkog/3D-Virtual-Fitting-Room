@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems
 {
@@ -6,11 +7,32 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
     {
         #region Private Fields
         /// <summary>
+        /// List of clothes in current category
+        /// </summary>
+        private List<ClothingCategory> _clothes;
+        /// <summary>
         /// The button's image
         /// </summary>
         private Bitmap _image;
         #endregion Private Fields
-        #region Public Properties
+        #region Public Properties        
+        /// <summary>
+        /// Gets or sets the clothes list.
+        /// </summary>
+        /// <value>
+        /// The clothes list.
+        /// </value>
+        public List<ClothingCategory> Clothes
+        {
+            get { return _clothes; }
+            set
+            {
+                if (_clothes == value)
+                    return;
+                _clothes = value;
+                OnPropertyChanged("Clothes");
+            }
+        }
         /// <summary>
         /// Gets or sets the button's image.
         /// </summary>
@@ -28,7 +50,6 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
                 OnPropertyChanged("Image");
             }
         }
-
         #endregion Public Properties
     }
 }

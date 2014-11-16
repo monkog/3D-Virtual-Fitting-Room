@@ -163,7 +163,7 @@ namespace KinectFittingRoom.ViewModel
         /// Enables ColorStream from newly detected KinectSensor and sets output image
         /// </summary>
         /// <param name="sensor">Detected KinectSensor</param>
-        private void InitializeKinectSensor(KinectSensor sensor/*, ref WriteableBitmap kinectCameraImage*/)
+        private void InitializeKinectSensor(KinectSensor sensor)
         {
             if (sensor != null)
             {
@@ -198,14 +198,12 @@ namespace KinectFittingRoom.ViewModel
         /// <param name="sensor">Disconnected KinectSensor</param>
         private void UninitializeKinectSensor(KinectSensor sensor)
         {
-            if (sensor != null)
-            {
-                sensor.Stop();
-                sensor.ColorFrameReady -= KinectSensor_ColorFrameReady;
-                sensor.SkeletonFrameReady -= KinectSensor_SkeletonFrameReady;
-                sensor.SkeletonStream.Disable();
-                _skeletons = null;
-            }
+            if (sensor == null) return;
+            sensor.Stop();
+            sensor.ColorFrameReady -= KinectSensor_ColorFrameReady;
+            sensor.SkeletonFrameReady -= KinectSensor_SkeletonFrameReady;
+            sensor.SkeletonStream.Disable();
+            _skeletons = null;
         }
         /// <summary>
         /// Handles SkeletonFrameReady event
@@ -240,14 +238,12 @@ namespace KinectFittingRoom.ViewModel
         {
             using (ColorImageFrame colorFrame = e.OpenColorImageFrame())
             {
-                if (colorFrame != null)
-                {
-                    var pixels = new byte[colorFrame.PixelDataLength];
-                    colorFrame.CopyPixelDataTo(pixels);
+                if (colorFrame == null) return;
+                var pixels = new byte[colorFrame.PixelDataLength];
+                colorFrame.CopyPixelDataTo(pixels);
 
-                    KinectCameraImage.WritePixels(_cameraSourceBounds, pixels, _colorStride, 0);
-                    OnPropertyChanged("KinectCameraImage");
-                }
+                KinectCameraImage.WritePixels(_cameraSourceBounds, pixels, _colorStride, 0);
+                OnPropertyChanged("KinectCameraImage");
             }
         }
         /// <summary>

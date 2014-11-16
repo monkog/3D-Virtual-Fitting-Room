@@ -61,8 +61,7 @@ namespace KinectFittingRoom.ViewModel
         /// <param name="height">Kinect image height</param>
         public void UpdateHandCursor(Skeleton skeleton, KinectSensor sensor, double width, double height)
         {
-            if (skeleton == null)
-                return;
+            if (skeleton == null) return;
 
             TrackHand(skeleton.Joints[JointType.HandLeft], skeleton.Joints[JointType.HandRight], sensor, width, height);
         }
@@ -79,15 +78,15 @@ namespace KinectFittingRoom.ViewModel
             if (leftHand.TrackingState == JointTrackingState.NotTracked && rightHand.TrackingState == JointTrackingState.NotTracked)
                 return;
 
-            var leftPoint = sensor.CoordinateMapper.MapSkeletonPointToDepthPoint(leftHand.Position
+            DepthImagePoint leftPoint = sensor.CoordinateMapper.MapSkeletonPointToDepthPoint(leftHand.Position
                 , sensor.DepthStream.Format);
-            var lx = (int)((leftPoint.X * width / sensor.DepthStream.FrameWidth));
-            var ly = (int)((leftPoint.Y * height / sensor.DepthStream.FrameHeight));
+            int lx = (int)((leftPoint.X * width / sensor.DepthStream.FrameWidth));
+            int ly = (int)((leftPoint.Y * height / sensor.DepthStream.FrameHeight));
 
-            var rightPoint = sensor.CoordinateMapper.MapSkeletonPointToDepthPoint(rightHand.Position
+            DepthImagePoint rightPoint = sensor.CoordinateMapper.MapSkeletonPointToDepthPoint(rightHand.Position
                 , sensor.DepthStream.Format);
-            var rx = (int)((rightPoint.X * width / sensor.DepthStream.FrameWidth));
-            var ry = (int)((rightPoint.Y * height / sensor.DepthStream.FrameHeight));
+            int rx = (int)((rightPoint.X * width / sensor.DepthStream.FrameWidth));
+            int ry = (int)((rightPoint.Y * height / sensor.DepthStream.FrameHeight));
 
             LeftPosition = new Point(lx, ly);
             RightPosition = new Point(rx, ry);

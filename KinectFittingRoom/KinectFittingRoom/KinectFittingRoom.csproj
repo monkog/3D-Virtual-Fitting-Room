@@ -61,12 +61,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\BitmapToImageSourceConverter.cs" />
     <Compile Include="Converters\ReducedValueConverter.cs" />
     <Compile Include="View\Buttons\Events\HandCursorEventArgs.cs" />
-    <Compile Include="View\Buttons\Events\HandCursorManager.cs" />
+    <Compile Include="View\Buttons\Events\ButtonsManager.cs" />
     <Compile Include="View\Buttons\Events\KinectInput.cs" />
     <Compile Include="View\Buttons\KinectButton.cs" />
-    <Compile Include="View\Buttons\TimerButton.cs" />
     <Compile Include="ViewModel\Debug\SkeletonManager.cs" />
     <Compile Include="ViewModel\ButtonItems\ClothingCategory.cs" />
     <Compile Include="ViewModel\HandTracking.cs" />
@@ -88,6 +88,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Resources\Styles\GlassButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -119,10 +123,6 @@
   <ItemGroup>
     <None Include="Resources\tshirt.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Styles\GlassButton.xml" />
-  </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\Images\Hand.png" />
   </ItemGroup>
