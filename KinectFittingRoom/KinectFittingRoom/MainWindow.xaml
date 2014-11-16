@@ -4,7 +4,8 @@
         xmlns:converters="clr-namespace:KinectFittingRoom.Converters"
         xmlns:buttons="clr-namespace:KinectFittingRoom.View.Buttons"
         xmlns:helpers="clr-namespace:KinectFittingRoom.View.Helpers"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"        
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         WindowState="Maximized"		
@@ -22,6 +23,11 @@
                                            Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Width}"
                                            Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Height}"/>
                 </Canvas>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="HandCursorClickEvent">
+                        <i:InvokeCommandAction Command="{Binding CategoryCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
             </buttons:KinectButton>
         </DataTemplate>
     </Window.Resources>
@@ -42,13 +48,34 @@
                     Opacity="0.5" 
                     Margin="20"/>
             <!--StackPanel containing all the buttons with clothing categories-->
-            <StackPanel Width="{Binding ActualWidth, ElementName=LeftPanel}"
-                        Height="{Binding ActualHeight, ElementName=LeftPanel}" 
-                        Canvas.Left="{Binding (Canvas.Left), ElementName=LeftPanel}" 
-                        Canvas.Top="{Binding (Canvas.Top), ElementName=LeftPanel}" 
-                        Margin="{Binding Margin, ElementName=LeftPanel}">
-                <ItemsControl ItemsSource="{Binding ClothingCategories}" ItemTemplate="{StaticResource ButtonTemplate}"/>
-            </StackPanel>
+            <ItemsControl ItemsSource="{Binding ClothingCategories}" 
+                          Width="{Binding ActualWidth, ElementName=LeftPanel}"
+                          Height="{Binding ActualHeight, ElementName=LeftPanel}" 
+                          Canvas.Left="{Binding (Canvas.Left), ElementName=LeftPanel}" 
+                          Canvas.Top="{Binding (Canvas.Top), ElementName=LeftPanel}" 
+                          Margin="{Binding Margin, ElementName=LeftPanel}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <buttons:KinectButton Width="200" Height="200" Margin="5">
+                            <Canvas>
+                                <Image Source="{Binding Image}" 
+                                       Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Width}"
+									   Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Height}"/>
+                            </Canvas>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="HandCursorClick">
+                                    <i:InvokeCommandAction Command="{Binding CategoryCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </buttons:KinectButton>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
             <Canvas Name="RightPanel"
                     Width="250" 
                     Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Canvas}}
@@ -57,14 +84,35 @@
                     Opacity="0.5" 
 					Canvas.Right="0"
                     Margin="20"/>
-            <!--StackPanel containing all the buttons with clothing categories-->
-            <StackPanel Width="{Binding ActualWidth, ElementName=RightPanel}"
-                        Height="{Binding ActualHeight, ElementName=RightPanel}" 
-                        Canvas.Right="{Binding (Canvas.Right), ElementName=RightPanel}" 
-                        Canvas.Top="{Binding (Canvas.Top), ElementName=RightPanel}" 
-                        Margin="{Binding Margin, ElementName=RightPanel}">
-                <ItemsControl ItemsSource="{Binding ClothingCategories}" ItemTemplate="{StaticResource ButtonTemplate}"/>
-            </StackPanel>
+            <!--StackPanel containing all the buttons with clothes-->
+            <ItemsControl ItemsSource="{Binding ClothingCategories}"
+                          Width="{Binding ActualWidth, ElementName=RightPanel}"
+                          Height="{Binding ActualHeight, ElementName=RightPanel}" 
+                          Canvas.Right="{Binding (Canvas.Right), ElementName=RightPanel}" 
+                          Canvas.Top="{Binding (Canvas.Top), ElementName=RightPanel}" 
+                          Margin="{Binding Margin, ElementName=RightPanel}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <buttons:KinectButton Width="200" Height="200" Margin="5">
+                            <Canvas>
+                                <Image Source="{Binding Image}" 
+                                       Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Width}"
+									   Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Height}"/>
+                            </Canvas>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="HandCursorClick">
+                                    <i:InvokeCommandAction Command="{Binding CategoryCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </buttons:KinectButton>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </Canvas>
         <!--Hand Cursor canvas-->
         <Canvas Width="{Binding KinectService.Width}" Height="{Binding KinectService.Height}">
@@ -87,33 +135,6 @@
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>
-        <Canvas>
-            <Ellipse Width="10" Height="10" Canvas.Left="100" Canvas.Top="100" Fill="Red"/>
-            <Ellipse Width="10" Height="10" Canvas.Left="100" Canvas.Top="200" Fill="Red"/>
-            <Ellipse Width="10" Height="10" Canvas.Left="100" Canvas.Top="300" Fill="Red"/>
-            <Ellipse Width="10" Height="10" Canvas.Left="100" Canvas.Top="400" Fill="Red"/>
-            <Ellipse Width="10" Height="10" Canvas.Left="100" Canvas.Top="500" Fill="Red"/>
-            <Ellipse Width="10" Height="10" Canvas.Left="200" Canvas.Top="100" Fill="Red"/>
-            <Ellipse Width="10" Height="10" Canvas.Left="200" Canvas.Top="200" Fill="Red"/>
-            <Ellipse Width="10" Height="10" Canvas.Left="200" Canvas.Top="300" Fill="Red"/>
-            <Ellipse Width="10" Height="10" Canvas.Left="200" Canvas.Top="400" Fill="Red"/>
-            <Ellipse Width="10" Height="10" Canvas.Left="200" Canvas.Top="500" Fill="Red"/>
-            <Ellipse Width="10" Height="10" Canvas.Left="300" Canvas.Top="100" Fill="Red"/>
-            <Ellipse Width="10" Height="10" Canvas.Left="300" Canvas.Top="200" Fill="Red"/>
-            <Ellipse Width="10" Height="10" Canvas.Left="300" Canvas.Top="300" Fill="Red"/>
-            <Ellipse Width="10" Height="10" Canvas.Left="300" Canvas.Top="400" Fill="Red"/>
-            <Ellipse Width="10" Height="10" Canvas.Left="300" Canvas.Top="500" Fill="Red"/>
-            <Ellipse Width="10" Height="10" Canvas.Left="400" Canvas.Top="100" Fill="Red"/>
-            <Ellipse Width="10" Height="10" Canvas.Left="400" Canvas.Top="200" Fill="Red"/>
-            <Ellipse Width="10" Height="10" Canvas.Left="400" Canvas.Top="300" Fill="Red"/>
-            <Ellipse Width="10" Height="10" Canvas.Left="400" Canvas.Top="400" Fill="Red"/>
-            <Ellipse Width="10" Height="10" Canvas.Left="400" Canvas.Top="500" Fill="Red"/>
-            <Ellipse Width="10" Height="10" Canvas.Left="500" Canvas.Top="100" Fill="Red"/>
-            <Ellipse Width="10" Height="10" Canvas.Left="500" Canvas.Top="200" Fill="Red"/>
-            <Ellipse Width="10" Height="10" Canvas.Left="500" Canvas.Top="300" Fill="Red"/>
-            <Ellipse Width="10" Height="10" Canvas.Left="500" Canvas.Top="400" Fill="Red"/>
-            <Ellipse Width="10" Height="10" Canvas.Left="500" Canvas.Top="500" Fill="Red"/>
-        </Canvas>
         <Canvas Background="Brown" Opacity="0.8" Width="100" Height="100" Margin="0,0,417,220" >
             <Label x:Name="TimerLabel" FontSize="30" x:FieldModifier="public" Width="100" Height="100" Margin="0,0,417,220" />
         </Canvas>

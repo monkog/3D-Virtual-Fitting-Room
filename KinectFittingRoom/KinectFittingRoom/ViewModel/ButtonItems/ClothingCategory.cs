@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
+using System.Windows.Input;
+using Microsoft.Practices.Prism.Commands;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems
 {
@@ -51,5 +53,28 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
             }
         }
         #endregion Public Properties
+        #region Commands
+        /// <summary>
+        /// The category command, executed after clicking on Category button
+        /// </summary>
+        private ICommand _categoryCommand;
+        /// <summary>
+        /// Gets the category command.
+        /// </summary>
+        /// <value>
+        /// The category command.
+        /// </value>
+        public ICommand CategoryCommand
+        {
+            get { return _categoryCommand ?? (_categoryCommand = new DelegateCommand<object>(CategoryExecuted)); }
+        }
+
+        public void CategoryExecuted(object parameter)
+        {
+            if (true)
+                ;
+        }
+
+        #endregion Commands
     }
 }

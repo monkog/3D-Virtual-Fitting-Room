@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 using KinectFittingRoom.ViewModel.ButtonItems;
+using Microsoft.Practices.Prism.Commands;
 
 namespace KinectFittingRoom.ViewModel
 {

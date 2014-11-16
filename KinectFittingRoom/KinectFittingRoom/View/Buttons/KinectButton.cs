@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Threading;
 using KinectFittingRoom.View.Buttons.Events;
 using Microsoft.Practices.Prism.Commands;
@@ -16,7 +17,7 @@ namespace KinectFittingRoom.View.Buttons
         /// <summary>
         /// Number of seconds that Click event occures
         /// </summary>
-        private const int ClickTimeout = 5;
+        private const int ClickTimeout = 20;
         #endregion Constants
         #region Private Fields
         /// <summary>
@@ -31,10 +32,6 @@ namespace KinectFittingRoom.View.Buttons
         /// The last hand position
         /// </summary>
         private Point _lastHandPosition;
-        /// <summary>
-        /// Was button clicked
-        /// </summary>
-        private bool _wasClicked;
         #endregion Private Fields
         #region Events
         /// <summary>
@@ -101,8 +98,16 @@ namespace KinectFittingRoom.View.Buttons
             get { return (bool)GetValue(IsClickedProperty); }
             set { SetValue(IsClickedProperty, value); }
         }
+        /// <summary>
+        /// Gets or sets the command to invoke when this button is pressed.
+        /// </summary>
+        public new ICommand Command
+        {
+            get { return (ICommand)GetValue(CommandProperty); }
+            set { SetValue(CommandProperty, value); }
+        }
         #endregion Properties
-        #region Dependrncy Properties
+        #region Dependency Properties
         /// <summary>
         /// IsClicked dependency property
         /// </summary>
@@ -115,10 +120,9 @@ namespace KinectFittingRoom.View.Buttons
         /// </summary>
         public KinectButton()
         {
-            _wasClicked = false;
             SetValue(IsClickedProperty, false);
 
-            _clickTimer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0, 1, 0) };
+            _clickTimer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0, 0, 1) };
             _clickTicks = 0;
             _clickTimer.Tick += m_clickTimer_Tick;
 
@@ -148,7 +152,6 @@ namespace KinectFittingRoom.View.Buttons
         /// </summary>
         protected virtual void KinectButton_HandCursorLeave(object sender, HandCursorEventArgs args)
         {
-            _wasClicked = false;
             ResetTimer();
         }
         /// <summary>
@@ -171,7 +174,6 @@ namespace KinectFittingRoom.View.Buttons
         protected virtual void KinectButton_HandCursorClick(object sender, HandCursorEventArgs args)
         {
             SetValue(IsClickedProperty, true);
-            _wasClicked = true;
             ((MainWindow)Application.Current.MainWindow).TimerLabel.Content = "Click";
         }
         /// <summary>
