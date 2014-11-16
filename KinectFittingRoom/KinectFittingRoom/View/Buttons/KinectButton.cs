@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using KinectFittingRoom.View.Buttons.Events;
+using Microsoft.Practices.Prism.Commands;
 
 namespace KinectFittingRoom.View.Buttons
 {
@@ -15,22 +16,26 @@ namespace KinectFittingRoom.View.Buttons
         /// <summary>
         /// Number of seconds that Click event occures
         /// </summary>
-        private const int ClickTimeout = 20;
+        private const int ClickTimeout = 5;
         #endregion Constants
-        #region Variables
+        #region Private Fields
         /// <summary>
-        /// Was button clicked
+        /// Number of elapsed ticks for _clickTimer
         /// </summary>
-        private bool _wasClicked;
+        private int _clickTicks;
         /// <summary>
         /// Determines how much time elapsed since HandCursorEnterEvent occured
         /// </summary>
         private readonly DispatcherTimer _clickTimer;
         /// <summary>
-        /// Number of elapsed ticks for _clickTimer
+        /// The last hand position
         /// </summary>
-        private int _clickTicks;
-        #endregion Variables
+        private Point _lastHandPosition;
+        /// <summary>
+        /// Was button clicked
+        /// </summary>
+        private bool _wasClicked;
+        #endregion Private Fields
         #region Events
         /// <summary>
         /// Hand cursor enter event
@@ -113,7 +118,7 @@ namespace KinectFittingRoom.View.Buttons
             _wasClicked = false;
             SetValue(IsClickedProperty, false);
 
-            _clickTimer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0, 0, 1) };
+            _clickTimer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0, 1, 0) };
             _clickTicks = 0;
             _clickTimer.Tick += m_clickTimer_Tick;
 
@@ -136,13 +141,7 @@ namespace KinectFittingRoom.View.Buttons
         /// </summary>
         protected void KinectButton_HandCursorMove(object sender, HandCursorEventArgs args)
         {
-            if (_wasClicked)
-                return;
-
-            ((MainWindow)Application.Current.MainWindow).TimerLabel.Content = _clickTicks / 60 + ":" + _clickTicks % 60;
-
-            if (_clickTicks / 60 >= ClickTimeout)
-                RaiseEvent(new HandCursorEventArgs(HandCursorClickEvent, args.X, args.Y));
+            _lastHandPosition = new Point(args.X, args.Y);
         }
         /// <summary>
         /// Handles HandCursorLeave event
@@ -150,6 +149,7 @@ namespace KinectFittingRoom.View.Buttons
         protected virtual void KinectButton_HandCursorLeave(object sender, HandCursorEventArgs args)
         {
             _wasClicked = false;
+            ResetTimer();
         }
         /// <summary>
         /// Counts the number of timer ticks of m_clickTimer
@@ -157,10 +157,13 @@ namespace KinectFittingRoom.View.Buttons
         private void m_clickTimer_Tick(object sender, EventArgs e)
         {
             _clickTicks++;
-            if (_clickTicks <= ClickTimeout) return;
+            ((MainWindow)Application.Current.MainWindow).TimerLabel.Content = _clickTicks / 60 + ":" + _clickTicks % 60;
+
+            if (_clickTicks <= ClickTimeout)
+                return;
 
             ResetTimer();
-            SetValue(IsClickedProperty, false);
+            RaiseEvent(new HandCursorEventArgs(HandCursorClickEvent, _lastHandPosition));
         }
         /// <summary>
         /// Imitates the click event
@@ -170,7 +173,6 @@ namespace KinectFittingRoom.View.Buttons
             SetValue(IsClickedProperty, true);
             _wasClicked = true;
             ((MainWindow)Application.Current.MainWindow).TimerLabel.Content = "Click";
-            _clickTimer.Start();
         }
         /// <summary>
         /// Resets the timer
