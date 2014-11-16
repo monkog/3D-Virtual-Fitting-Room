@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using System.Windows.Media.Media3D;
 
 namespace KinectFittingRoom.View.Buttons.Events
 {

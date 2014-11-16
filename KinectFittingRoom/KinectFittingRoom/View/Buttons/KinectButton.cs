@@ -4,7 +4,6 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
 using KinectFittingRoom.View.Buttons.Events;
-using Microsoft.Practices.Prism.Commands;
 
 namespace KinectFittingRoom.View.Buttons
 {

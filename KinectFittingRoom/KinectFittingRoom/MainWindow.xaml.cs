@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media.Media3D;
 using KinectFittingRoom.View.Buttons.Events;
 using KinectFittingRoom.ViewModel;
 

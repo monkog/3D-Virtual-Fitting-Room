@@ -13,6 +13,7 @@
         Title="Kinect Fitting Room"
         Height="768" Width="1366"
         DataContext="{Binding KinectViewModel, Source={StaticResource KinectViewModelLoader}}">
+    <!--Resources used in MainWindow-->
     <Window.Resources>
         <converters:ReducedValueConverter x:Key="ReducedValueConverter"/>
         <converters:BitmapToImageSourceConverter x:Key="BitmapToImageSourceConverter"/>
@@ -114,6 +115,32 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </Canvas>
+        <!--Container for all models-->
+        <Viewport3D RenderOptions.CachingHint="Cache" ClipToBounds="True" >
+            <!--Camera-->
+            <Viewport3D.Camera>
+                <PerspectiveCamera FarPlaneDistance="300" LookDirection="0,0,-1" UpDirection="0,1,0" NearPlaneDistance="1"  Position="0,3,25" FieldOfView="45">
+                    <PerspectiveCamera.Transform>
+                        <MatrixTransform3D>
+                        </MatrixTransform3D>
+                    </PerspectiveCamera.Transform>
+                </PerspectiveCamera>
+            </Viewport3D.Camera>
+            <!--Clothing models-->
+            <ContainerUIElement3D />
+            <!--Light-->
+            <ModelVisual3D>
+                <ModelVisual3D.Content>
+                    <Model3DGroup>
+                        <AmbientLight Color="#666666"/>
+                        <DirectionalLight Color="#444444" Direction="0 -1 -1">
+                        </DirectionalLight>
+                        <SpotLight Color="#666666" Direction="0 0 -1" InnerConeAngle="30" OuterConeAngle="60" Position="0 1 30" >
+                        </SpotLight>
+                    </Model3DGroup>
+                </ModelVisual3D.Content>
+            </ModelVisual3D>
+        </Viewport3D>
         <!--Hand Cursor canvas-->
         <Canvas Width="{Binding KinectService.Width}" Height="{Binding KinectService.Height}">
             <Canvas Name="HandCursor" Width="70" Height="70" Visibility="Collapsed">
@@ -135,7 +162,7 @@
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>
-        <Canvas Background="Brown" Opacity="0.8" Width="100" Height="100" Margin="0,0,417,220" >
+        <Canvas Background="Brown" Opacity="0.8" Width="100" Height="100">
             <Label x:Name="TimerLabel" FontSize="30" x:FieldModifier="public" Width="100" Height="100" Margin="0,0,417,220" />
         </Canvas>
     </Grid>
