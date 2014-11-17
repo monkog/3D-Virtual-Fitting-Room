@@ -62,7 +62,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <buttons:KinectButton Width="200" Height="200" Margin="5">
+                        <buttons:KinectButton Width="200" Height="200" Margin="5" Style="{StaticResource GlassButton}">
                             <Canvas>
                                 <Image Source="{Binding Image}" 
                                        Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Width}"
@@ -99,7 +99,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <buttons:KinectButton Width="200" Height="200" Margin="5">
+                        <buttons:KinectButton Width="200" Height="200" Margin="5" Style="{StaticResource GlassButton}">
                             <Canvas>
                                 <Image Source="{Binding Image}" 
                                        Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Width}"

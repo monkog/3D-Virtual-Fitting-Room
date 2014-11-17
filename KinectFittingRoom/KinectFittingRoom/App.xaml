@@ -4,6 +4,12 @@
              xmlns:viewModel="clr-namespace:KinectFittingRoom.ViewModel"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <viewModel:KinectViewModelLoader x:Key="KinectViewModelLoader"/>
+        <ResourceDictionary>
+            <viewModel:KinectViewModelLoader x:Key="KinectViewModelLoader"/>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/GlassButton.xaml"/>
+                <ResourceDictionary Source="Resources/Models/BirthdayHat.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
