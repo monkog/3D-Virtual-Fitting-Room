@@ -63,11 +63,11 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <buttons:KinectButton Width="200" Height="200" Margin="5" Style="{StaticResource GlassButton}">
-                            <Canvas>
-                                <Image Source="{Binding Image}" 
-                                       Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Width}"
-									   Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Height}"/>
-                            </Canvas>
+                            <Image Source="{Binding Image, Converter={StaticResource BitmapToImageSourceConverter}}" 
+                                   Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Width}"
+								   Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Height}"
+                                   Canvas.Left="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=(Canvas.Left)}"
+                                   Canvas.Top="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=(Canvas.Top)}"/>
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="HandCursorClick">
                                     <i:InvokeCommandAction Command="{Binding CategoryCommand}"/>
@@ -127,7 +127,7 @@
                 </PerspectiveCamera>
             </Viewport3D.Camera>
             <!--Clothing models-->
-            <ContainerUIElement3D />
+            <ContainerUIElement3D/>
             <!--Light-->
             <ModelVisual3D>
                 <ModelVisual3D.Content>

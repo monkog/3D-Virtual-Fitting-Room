@@ -68,7 +68,7 @@ namespace KinectFittingRoom.ViewModel
         private void InitializeClothingCategories()
         {
             ClothingCategories = new ObservableCollection<ClothingCategory>();
-            ClothingCategory clothing = new ClothingCategory();
+            ClothingCategory clothing = new ClothingCategory { Image = Properties.Resources.Hat };
             clothing.Clothes = new List<ClothingCategory>();
             clothing.Clothes.Add(new ClothingCategory { Image = Properties.Resources.Hat });
             clothing.Clothes.Add(new ClothingCategory { Image = Properties.Resources.Hand });
