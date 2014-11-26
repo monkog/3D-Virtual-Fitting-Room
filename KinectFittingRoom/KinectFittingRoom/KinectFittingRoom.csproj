@@ -67,13 +67,17 @@
     </ApplicationDefinition>
     <Compile Include="Converters\BitmapToImageSourceConverter.cs" />
     <Compile Include="Converters\ReducedValueConverter.cs" />
+    <Compile Include="ViewModel\ButtonItems\ButtonViewModelBase.cs" />
+    <Compile Include="ViewModel\ButtonItems\ClothingButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\ModelBase.cs" />
+    <Compile Include="ViewModel\ClothingItems\ClothingItemBase.cs" />
+    <Compile Include="ViewModel\ClothingItems\ClothingManager.cs" />
     <Compile Include="View\Buttons\Events\HandCursorEventArgs.cs" />
     <Compile Include="View\Buttons\Events\ButtonsManager.cs" />
     <Compile Include="View\Buttons\Events\KinectInput.cs" />
     <Compile Include="View\Buttons\KinectButton.cs" />
     <Compile Include="ViewModel\Debug\SkeletonManager.cs" />
-    <Compile Include="ViewModel\ButtonItems\ClothingCategory.cs" />
+    <Compile Include="ViewModel\ButtonItems\ClothingCategoryButtonViewModel.cs" />
     <Compile Include="ViewModel\HandTracking.cs" />
     <Compile Include="ViewModel\KinectService.cs" />
     <Compile Include="ViewModel\IKinectService.cs" />

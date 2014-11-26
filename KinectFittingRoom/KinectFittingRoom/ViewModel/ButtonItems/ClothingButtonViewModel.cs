@@ -1,30 +1,29 @@
 ﻿using System.Collections.Generic;
-using System.Drawing;
 using System.Windows.Input;
+using KinectFittingRoom.ViewModel.ClothingItems;
 using Microsoft.Practices.Prism.Commands;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems
 {
-    public class ClothingCategory : ViewModelBase
+    /// <summary>
+    /// View model for the Clothing buttons
+    /// </summary>
+    public class ClothingButtonViewModel : ButtonViewModelBase
     {
         #region Private Fields
         /// <summary>
         /// List of clothes in current category
         /// </summary>
-        private List<ClothingCategory> _clothes;
-        /// <summary>
-        /// The button's image
-        /// </summary>
-        private Bitmap _image;
+        private List<ClothingItemBase> _clothes;
         #endregion Private Fields
-        #region Public Properties        
+        #region Public Properties
         /// <summary>
         /// Gets or sets the clothes list.
         /// </summary>
         /// <value>
         /// The clothes list.
         /// </value>
-        public List<ClothingCategory> Clothes
+        public List<ClothingItemBase> Clothes
         {
             get { return _clothes; }
             set
@@ -35,46 +34,35 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
                 OnPropertyChanged("Clothes");
             }
         }
-        /// <summary>
-        /// Gets or sets the button's image.
-        /// </summary>
-        /// <value>
-        /// The button's image.
-        /// </value>
-        public Bitmap Image
-        {
-            get { return _image; }
-            set
-            {
-                if (_image == value)
-                    return;
-                _image = value;
-                OnPropertyChanged("Image");
-            }
-        }
         #endregion Public Properties
         #region Commands
         /// <summary>
         /// The category command, executed after clicking on Category button
         /// </summary>
-        private ICommand _categoryCommand;
+        private ICommand _clothCommand;
         /// <summary>
         /// Gets the category command.
         /// </summary>
         /// <value>
         /// The category command.
         /// </value>
-        public ICommand CategoryCommand
+        public ICommand ClothCommand
         {
-            get { return _categoryCommand ?? (_categoryCommand = new DelegateCommand<object>(CategoryExecuted)); }
+            get { return _clothCommand ?? (_clothCommand = new DelegateCommand<object>(CategoryExecuted)); }
         }
-
+        /// <summary>
+        /// Executes when the Category button was hit.
+        /// </summary>
+        /// <param name="parameter">The parameter.</param>
         public void CategoryExecuted(object parameter)
         {
+            // TODO: Resolve the Clothing Manager via the IOC container?
+            // TODO: Change the clothing collection in Clothing Manager to the one corresponding to the chosen button
+            // TODO: Preload the collection at startup or load dynamically in another thread?
+
             if (true)
                 ;
         }
-
         #endregion Commands
     }
 }

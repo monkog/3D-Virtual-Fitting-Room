@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using KinectFittingRoom.ViewModel.ButtonItems;
+using KinectFittingRoom.ViewModel.ClothingItems;
 
 namespace KinectFittingRoom.ViewModel
 {
@@ -11,13 +12,17 @@ namespace KinectFittingRoom.ViewModel
     {
         #region Private Fields
         /// <summary>
+        /// The clothing category collection
+        /// </summary>
+        private ObservableCollection<ClothingCategoryButtonViewModel> _clothingCategory;
+        /// <summary>
+        /// The clothing manager
+        /// </summary>
+        private ClothingManager _clothingManager;
+        /// <summary>
         /// The Kinect service
         /// </summary>
         private readonly KinectService _kinectService;
-        /// <summary>
-        /// The clothing category collection
-        /// </summary>
-        private ObservableCollection<ClothingCategory> _clothingCategory;
         #endregion Private Fields
         #region Public Properties
         /// <summary>
@@ -26,7 +31,7 @@ namespace KinectFittingRoom.ViewModel
         /// <value>
         /// The clothing categories collection.
         /// </value>
-        public ObservableCollection<ClothingCategory> ClothingCategories
+        public ObservableCollection<ClothingCategoryButtonViewModel> ClothingCategories
         {
             get { return _clothingCategory; }
             set
@@ -35,6 +40,23 @@ namespace KinectFittingRoom.ViewModel
                     return;
                 _clothingCategory = value;
                 OnPropertyChanged("ClothingCategory");
+            }
+        }
+        /// <summary>
+        /// Gets or sets the clothing manager.
+        /// </summary>
+        /// <value>
+        /// The clothing manager.
+        /// </value>
+        public ClothingManager ClothingManager
+        {
+            get { return _clothingManager; }
+            set
+            {
+                if (_clothingManager == value)
+                    return;
+                _clothingManager = value;
+                OnPropertyChanged("ClothingManager");
             }
         }
         /// <summary>
@@ -67,24 +89,39 @@ namespace KinectFittingRoom.ViewModel
         /// </summary>
         private void InitializeClothingCategories()
         {
-            ClothingCategories = new ObservableCollection<ClothingCategory>();
-            ClothingCategory clothing = new ClothingCategory { Image = Properties.Resources.Hat };
-            clothing.Clothes = new List<ClothingCategory>();
-            clothing.Clothes.Add(new ClothingCategory { Image = Properties.Resources.Hat });
-            clothing.Clothes.Add(new ClothingCategory { Image = Properties.Resources.Hand });
-            clothing.Clothes.Add(new ClothingCategory { Image = Properties.Resources.Hand });
-            clothing.Clothes.Add(new ClothingCategory { Image = Properties.Resources.Hat });
+            ClothingCategories = new ObservableCollection<ClothingCategoryButtonViewModel>();
+            ClothingCategoryButtonViewModel clothing = new ClothingCategoryButtonViewModel
+            {
+                Image = Properties.Resources.Hat,
+                Clothes = new List<ClothingButtonViewModel>
+                {
+                    new ClothingButtonViewModel {Image = Properties.Resources.Hat},
+                    new ClothingButtonViewModel {Image = Properties.Resources.Hand},
+                    new ClothingButtonViewModel {Image = Properties.Resources.Hand},
+                    new ClothingButtonViewModel {Image = Properties.Resources.Hat}
+                }
+            };
 
-            ClothingCategory clothing1 = new ClothingCategory();
-            clothing1.Clothes = new List<ClothingCategory>();
-            clothing1.Clothes.Add(new ClothingCategory { Image = Properties.Resources.Hat });
-            clothing1.Clothes.Add(new ClothingCategory { Image = Properties.Resources.Hand });
-            clothing1.Clothes.Add(new ClothingCategory { Image = Properties.Resources.Hand });
+            ClothingCategoryButtonViewModel clothing1 = new ClothingCategoryButtonViewModel
+            {
+                Clothes =
+                    new List<ClothingButtonViewModel>
+                    {
+                        new ClothingButtonViewModel {Image = Properties.Resources.Hat},
+                        new ClothingButtonViewModel {Image = Properties.Resources.Hand},
+                        new ClothingButtonViewModel {Image = Properties.Resources.Hand}
+                    }
+            };
 
-            ClothingCategory clothing2 = new ClothingCategory();
-            clothing2.Clothes = new List<ClothingCategory>();
-            clothing2.Clothes.Add(new ClothingCategory { Image = Properties.Resources.Hat });
-            clothing2.Clothes.Add(new ClothingCategory { Image = Properties.Resources.Hand });
+            ClothingCategoryButtonViewModel clothing2 = new ClothingCategoryButtonViewModel
+            {
+                Clothes =
+                    new List<ClothingButtonViewModel>
+                    {
+                        new ClothingButtonViewModel {Image = Properties.Resources.Hat},
+                        new ClothingButtonViewModel {Image = Properties.Resources.Hand}
+                    }
+            };
 
             ClothingCategories.Add(clothing);
             ClothingCategories.Add(clothing1);

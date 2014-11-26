@@ -17,20 +17,6 @@
     <Window.Resources>
         <converters:ReducedValueConverter x:Key="ReducedValueConverter"/>
         <converters:BitmapToImageSourceConverter x:Key="BitmapToImageSourceConverter"/>
-        <DataTemplate x:Key="ButtonTemplate">
-            <buttons:KinectButton Width="200" Height="200" Margin="5">
-                <Canvas>
-                    <Image Source="{Binding Image}" 
-                                           Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Width}"
-                                           Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Height}"/>
-                </Canvas>
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="HandCursorClickEvent">
-                        <i:InvokeCommandAction Command="{Binding CategoryCommand}"/>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </buttons:KinectButton>
-        </DataTemplate>
     </Window.Resources>
     <!--Main Grid. Keeps all of the UI elements.-->
     <Grid Background="Black">
@@ -86,7 +72,7 @@
 					Canvas.Right="0"
                     Margin="20"/>
             <!--StackPanel containing all the buttons with clothes-->
-            <ItemsControl ItemsSource="{Binding ClothingCategories}"
+            <ItemsControl ItemsSource="{Binding ClothingManager.Clothing}"
                           Width="{Binding ActualWidth, ElementName=RightPanel}"
                           Height="{Binding ActualHeight, ElementName=RightPanel}" 
                           Canvas.Right="{Binding (Canvas.Right), ElementName=RightPanel}" 
@@ -107,7 +93,7 @@
                             </Canvas>
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="HandCursorClick">
-                                    <i:InvokeCommandAction Command="{Binding CategoryCommand}"/>
+                                    <i:InvokeCommandAction Command="{Binding ClothingCommand}"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                         </buttons:KinectButton>
@@ -141,6 +127,14 @@
                 </ModelVisual3D.Content>
             </ModelVisual3D>
         </Viewport3D>
+        <!--Temporary container for flat 2D clothing models-->
+        <ItemsControl ItemsSource="{Binding ClothingManager.ChosenClothes}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid Width="{Binding KinectService.Width}" Height="{Binding KinectService.Height}"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
         <!--Hand Cursor canvas-->
         <Canvas Width="{Binding KinectService.Width}" Height="{Binding KinectService.Height}">
             <Canvas Name="HandCursor" Width="70" Height="70" Visibility="Collapsed">
