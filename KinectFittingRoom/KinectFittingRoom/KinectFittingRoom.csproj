@@ -131,27 +131,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Hat.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Hat.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Hand.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\tshirt.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\curtains.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <SplashScreen Include="Images\splash_screen_image.png" />
     <None Include="Resources\Models\Hat.mtl" />
     <None Include="Resources\Models\Hat.obj" />
     <None Include="Resources\tshirt.ico" />
@@ -161,6 +143,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Images\Hat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\curtains.png" />
+    <Resource Include="Resources\splash_screen_image.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
