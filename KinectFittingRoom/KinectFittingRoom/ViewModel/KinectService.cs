@@ -40,7 +40,7 @@ namespace KinectFittingRoom.ViewModel
         /// </summary>
         private SkeletonManager _skeletonManager;
         /// <summary>
-        /// Visibility od ErrorGrid 
+        /// Visibility of ErrorGrid 
         /// </summary>
         private Visibility _errorGridVisibility;
         /// <summary>
@@ -98,7 +98,7 @@ namespace KinectFittingRoom.ViewModel
         /// </summary>
         /// <value>
         /// The hand.
-        /// </value>
+        /// </value>z
         public Hand Hand
         {
             get { return _hand; }

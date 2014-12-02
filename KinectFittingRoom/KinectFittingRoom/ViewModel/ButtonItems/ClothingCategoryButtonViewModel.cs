@@ -57,12 +57,13 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
             // TODO: Resolve the Clothing Manager via the IOC container?
             // TODO: Change the clothing collection in Clothing Manager to the one corresponding to the chosen button
             // TODO: Preload the collection at startup or load dynamically in another thread?
-            
+
             //MOJE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            ClothingManager ClothingManager = new ClothingManager();
-            ClothingManager.Clothing=new ObservableCollection<ClothingButtonViewModel>();
+            List<ClothingButtonViewModel> tmp = new List<ClothingButtonViewModel>();
             foreach (var c in Clothes)
-                ClothingManager.Clothing.Add(c);
+                tmp.Add(c);
+            ClothingManager.Instance.Clothing = new ObservableCollection<ClothingButtonViewModel>(tmp);
+            tmp.Clear();
         }
         #endregion Commands
     }

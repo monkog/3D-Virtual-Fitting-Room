@@ -3,9 +3,13 @@ using KinectFittingRoom.ViewModel.ButtonItems;
 
 namespace KinectFittingRoom.ViewModel.ClothingItems
 {
-    public class ClothingManager : ViewModelBase
+    public sealed class ClothingManager : ViewModelBase
     {
         #region Private Fields
+        /// <summary>
+        /// Only instance of ClothingManager
+        /// </summary>
+        private static ClothingManager _instance;
         /// <summary>
         /// The chosen clothing collection
         /// </summary>
@@ -50,6 +54,24 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
                 OnPropertyChanged("Clothing");
             }
         }
+
         #endregion Public Properties
+        /// <summary>
+        /// Private constructor of ClothingManager. 
+        /// </summary>
+        private ClothingManager() { }
+        /// <summary>
+        /// Method with access to only instance of ClothingManager
+        /// </summary>
+        public static ClothingManager Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new ClothingManager();
+                return _instance;
+            }
+        }
+        
     }
 }
