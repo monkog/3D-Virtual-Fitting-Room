@@ -8,6 +8,11 @@ namespace KinectFittingRoom
     /// </summary>
     public partial class App
     {
+        App()
+        {
+            System.Threading.Thread.Sleep(2000);
+        }
+
         #region Protected Methods
         /// <summary>
         /// Raises the <see cref="E:System.Windows.Application.Exit" /> event.

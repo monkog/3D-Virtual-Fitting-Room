@@ -118,13 +118,37 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="glasses_symbol" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\glasses_symbol.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Hand" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Images\Hand.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Hat" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Images\Hat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="hat_symbol" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\hat_symbol.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="skirt_jeans" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Models\skirt_jeans.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="skirt_maroon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Models\skirt_maroon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="skirt_symbol" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\skirt_symbol.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="tshirt" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tshirt.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hat_blue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Models\hat_blue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hat_brown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Models\hat_brown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hat_superman" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Models\hat_superman.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
+using System.Collections.ObjectModel;
+using KinectFittingRoom.ViewModel.ClothingItems;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems
 {
@@ -44,20 +46,23 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// </value>
         public ICommand CategoryCommand
         {
-            get { return _categoryCommand ?? (_categoryCommand = new DelegateCommand<object>(CategoryExecuted)); }
+            get { return _categoryCommand ?? (_categoryCommand = new DelegateCommand(CategoryExecuted)); }
         }
         /// <summary>
         /// Executes when the Category button was hit.
         /// </summary>
         /// <param name="parameter">The parameter.</param>
-        public void CategoryExecuted(object parameter)
+        public void CategoryExecuted()
         {
             // TODO: Resolve the Clothing Manager via the IOC container?
             // TODO: Change the clothing collection in Clothing Manager to the one corresponding to the chosen button
             // TODO: Preload the collection at startup or load dynamically in another thread?
-
-            if (true)
-                ;
+            
+            //MOJE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            ClothingManager ClothingManager = new ClothingManager();
+            ClothingManager.Clothing=new ObservableCollection<ClothingButtonViewModel>();
+            foreach (var c in Clothes)
+                ClothingManager.Clothing.Add(c);
         }
         #endregion Commands
     }

@@ -19,7 +19,10 @@
         <converters:BitmapToImageSourceConverter x:Key="BitmapToImageSourceConverter"/>
     </Window.Resources>
     <!--Main Grid. Keeps all of the UI elements.-->
-    <Grid Background="Black">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="Resources/curtains.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
         <!--Image from the Kinect camera-->
         <Image Source="{Binding KinectService.KinectCameraImage}"
 			   helpers:PropertiesObserver.Observe="True"
@@ -56,7 +59,7 @@
                                    Canvas.Top="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=(Canvas.Top)}"/>
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="HandCursorClick">
-                                    <i:InvokeCommandAction Command="{Binding CategoryCommand}"/>
+                                    <i:InvokeCommandAction Command="{Binding CategoryCommand}" />
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                         </buttons:KinectButton>
@@ -86,14 +89,14 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <buttons:KinectButton Width="200" Height="200" Margin="5" Style="{StaticResource GlassButton}">
-                            <Canvas>
-                                <Image Source="{Binding Image}" 
+                            <Image Source="{Binding Image, Converter={StaticResource BitmapToImageSourceConverter}}" 
                                        Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Width}"
-									   Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Height}"/>
-                            </Canvas>
+									   Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Height}" RenderTransformOrigin="0,0.01"
+                                       Canvas.Left="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=(Canvas.Left)}"
+                                       Canvas.Top="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=(Canvas.Top)}"/>
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="HandCursorClick">
-                                    <i:InvokeCommandAction Command="{Binding ClothingCommand}"/>
+                                    <i:InvokeCommandAction Command="{Binding ClothCommand}" CommandParameter="{Binding Image}"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                         </buttons:KinectButton>
@@ -157,7 +160,12 @@
             </ItemsControl.ItemsPanel>
         </ItemsControl>
         <Canvas Background="Brown" Opacity="0.8" Width="100" Height="100">
-            <Label x:Name="TimerLabel" FontSize="30" x:FieldModifier="public" Width="100" Height="100" Margin="0,0,417,220" />
+            <Label x:Name="TimerLabel" FontSize="10" x:FieldModifier="public" Width="100" Height="100" Margin="0,0,417,220" />
         </Canvas>
+        <Grid Name="ErrorGrid" Opacity="0.7" Background="Black" Visibility="{Binding KinectService.ErrorGridVisibility}">
+            <TextBlock Name="ErrorGridText" FontSize="20" HorizontalAlignment="Center" Opacity="0.7" VerticalAlignment="Center" Foreground="White">
+                Proszę podłączyć Kinnect!
+            </TextBlock>
+        </Grid>
     </Grid>
 </Window>

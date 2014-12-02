@@ -92,29 +92,26 @@ namespace KinectFittingRoom.ViewModel
             ClothingCategories = new ObservableCollection<ClothingCategoryButtonViewModel>();
             ClothingCategoryButtonViewModel clothing = new ClothingCategoryButtonViewModel
             {
-                Image = Properties.Resources.Hat,
+                Image = Properties.Resources.hat_symbol,
                 Clothes = new List<ClothingButtonViewModel>
                 {
-                    new ClothingButtonViewModel {Image = Properties.Resources.Hat},
-                    new ClothingButtonViewModel {Image = Properties.Resources.Hand},
-                    new ClothingButtonViewModel {Image = Properties.Resources.Hand},
-                    new ClothingButtonViewModel {Image = Properties.Resources.Hat}
+                    new ClothingButtonViewModel {Image = Properties.Resources.hat_blue},
+                    new ClothingButtonViewModel {Image = Properties.Resources.hat_brown},
+                    new ClothingButtonViewModel {Image = Properties.Resources.hat_superman}
                 }
             };
-
             ClothingCategoryButtonViewModel clothing1 = new ClothingCategoryButtonViewModel
             {
-                Clothes =
-                    new List<ClothingButtonViewModel>
+                Image = Properties.Resources.skirt_symbol,
+                Clothes = new List<ClothingButtonViewModel>
                     {
-                        new ClothingButtonViewModel {Image = Properties.Resources.Hat},
-                        new ClothingButtonViewModel {Image = Properties.Resources.Hand},
-                        new ClothingButtonViewModel {Image = Properties.Resources.Hand}
+                        new ClothingButtonViewModel {Image = Properties.Resources.skirt_jeans},
+                        new ClothingButtonViewModel {Image = Properties.Resources.skirt_maroon}
                     }
             };
-
             ClothingCategoryButtonViewModel clothing2 = new ClothingCategoryButtonViewModel
             {
+                Image = Properties.Resources.glasses_symbol,
                 Clothes =
                     new List<ClothingButtonViewModel>
                     {
@@ -122,7 +119,6 @@ namespace KinectFittingRoom.ViewModel
                         new ClothingButtonViewModel {Image = Properties.Resources.Hand}
                     }
             };
-
             ClothingCategories.Add(clothing);
             ClothingCategories.Add(clothing1);
             ClothingCategories.Add(clothing2);

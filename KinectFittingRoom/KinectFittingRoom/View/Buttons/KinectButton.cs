@@ -174,6 +174,7 @@ namespace KinectFittingRoom.View.Buttons
         {
             SetValue(IsClickedProperty, true);
             ((MainWindow)Application.Current.MainWindow).TimerLabel.Content = "Click";
+            
         }
         /// <summary>
         /// Resets the timer

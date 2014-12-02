@@ -40,6 +40,10 @@ namespace KinectFittingRoom.ViewModel
         /// </summary>
         private SkeletonManager _skeletonManager;
         /// <summary>
+        /// Visibility od ErrorGrid 
+        /// </summary>
+        private Visibility _errorGridVisibility;
+        /// <summary>
         /// The image width
         /// </summary>
         private double _imageWidth;
@@ -157,6 +161,23 @@ namespace KinectFittingRoom.ViewModel
                 OnPropertyChanged("Height");
             }
         }
+        /// <summary>
+        /// Gets or sets visibility of ErrorGrid
+        /// </summary>
+        /// <value>
+        /// The visibility of ErrorGrid
+        /// </value>
+        public Visibility ErrorGridVisibility
+        {
+            get { return _errorGridVisibility; }
+            set 
+            {
+                if (_errorGridVisibility == value)
+                    return;
+                _errorGridVisibility = value;
+                OnPropertyChanged("ErrorGridVisibility");
+            }
+        }
         #endregion
         #region Private Methods
         /// <summary>
@@ -253,6 +274,8 @@ namespace KinectFittingRoom.ViewModel
         {
             KinectSensor.KinectSensors.StatusChanged += KinectSensor_StatusChanged;
             Kinect = KinectSensor.KinectSensors.FirstOrDefault(x => x.Status == KinectStatus.Connected);
+            if (Kinect == null)
+                ErrorGridVisibility=Visibility.Visible;
         }
         /// <summary>
         /// Updates KinectSensor
@@ -267,6 +290,7 @@ namespace KinectFittingRoom.ViewModel
                 case KinectStatus.Connected:
                     if (Kinect == null)
                         Kinect = e.Sensor;
+                    ErrorGridVisibility = Visibility.Hidden;
                     break;
                 case KinectStatus.Disconnected:
                     if (Kinect == e.Sensor)
@@ -274,8 +298,9 @@ namespace KinectFittingRoom.ViewModel
                         Kinect = null;
                         Kinect = KinectSensor.KinectSensors.FirstOrDefault(x => x.Status == KinectStatus.Connected);
                         if (Kinect == null)
+                            ErrorGridVisibility = Visibility.Visible;
                             //TODO: Notify about no sensors connected
-                            throw new NotImplementedException();
+                            //throw new NotImplementedException();
                     }
                     break;
                 default:
@@ -292,7 +317,9 @@ namespace KinectFittingRoom.ViewModel
         {
             Hand = new Hand();
             SkeletonManager = new SkeletonManager();
+            ErrorGridVisibility = Visibility.Hidden;
             DiscoverKinectSensors();
+
         }
         /// <summary>
         /// Looks for the closest skeleton
