@@ -159,7 +159,7 @@ namespace KinectFittingRoom.View.Buttons
         private void m_clickTimer_Tick(object sender, EventArgs e)
         {
             _clickTicks++;
-            ((MainWindow)Application.Current.MainWindow).TimerLabel.Content = _clickTicks / 60 + ":" + _clickTicks % 60;
+            //((MainWindow)Application.Current.MainWindow).TimerLabel.Content = _clickTicks / 60 + ":" + _clickTicks % 60;
 
             if (_clickTicks <= ClickTimeout)
                 return;
@@ -173,7 +173,7 @@ namespace KinectFittingRoom.View.Buttons
         protected virtual void KinectButton_HandCursorClick(object sender, HandCursorEventArgs args)
         {
             SetValue(IsClickedProperty, true);
-            ((MainWindow)Application.Current.MainWindow).TimerLabel.Content = "Click";
+           // ((MainWindow)Application.Current.MainWindow).TimerLabel.Content = "Click";
             
         }
         /// <summary>

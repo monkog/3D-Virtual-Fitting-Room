@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using KinectFittingRoom.ViewModel.ButtonItems;
 using KinectFittingRoom.ViewModel.ClothingItems;
+using System.Windows;
 
 namespace KinectFittingRoom.ViewModel
 {
@@ -100,6 +101,9 @@ namespace KinectFittingRoom.ViewModel
                     new ClothingButtonViewModel {Image = Properties.Resources.hat_superman}
                 }
             };
+            clothing.Clothes[0].Image.Tag = new Point(2.07, 0.0);
+            clothing.Clothes[1].Image.Tag = new Point(1.83, 0.0);
+            clothing.Clothes[2].Image.Tag = new Point(1.24, 0.0);
             ClothingCategoryButtonViewModel clothing1 = new ClothingCategoryButtonViewModel
             {
                 Image = Properties.Resources.skirt_symbol,
@@ -109,19 +113,29 @@ namespace KinectFittingRoom.ViewModel
                         new ClothingButtonViewModel {Image = Properties.Resources.skirt_maroon}
                     }
             };
+            clothing1.Clothes[0].Image.Tag = new Point(2.21, 1.0);
+            clothing1.Clothes[1].Image.Tag = new Point(2.0, 1.0);
             ClothingCategoryButtonViewModel clothing2 = new ClothingCategoryButtonViewModel
             {
                 Image = Properties.Resources.glasses_symbol,
                 Clothes =
                     new List<ClothingButtonViewModel>
                     {
-                        new ClothingButtonViewModel {Image = Properties.Resources.Hat},
-                        new ClothingButtonViewModel {Image = Properties.Resources.Hand}
+                        new ClothingButtonViewModel {Image = Properties.Resources.glasses_black},
+                        new ClothingButtonViewModel {Image = Properties.Resources.glasses_blue},
+                        new ClothingButtonViewModel {Image = Properties.Resources.sunglasses_rayban},
+                        new ClothingButtonViewModel {Image = Properties.Resources.sunglasses_aviator}
                     }
             };
+            clothing2.Clothes[0].Image.Tag = new Point(1.0, 2.0);
+            clothing2.Clothes[1].Image.Tag = new Point(1.0, 2.0);
+            clothing2.Clothes[2].Image.Tag = new Point(1.0, 2.0);
+            clothing2.Clothes[3].Image.Tag = new Point(1.0, 2.0);
+
             ClothingCategories.Add(clothing);
             ClothingCategories.Add(clothing1);
             ClothingCategories.Add(clothing2);
+
         }
         /// <summary>
         /// Cleanups this instance.

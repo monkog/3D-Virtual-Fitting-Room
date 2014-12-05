@@ -63,6 +63,26 @@ namespace KinectFittingRoom.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap glasses_black {
+            get {
+                object obj = ResourceManager.GetObject("glasses_black", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap glasses_blue {
+            get {
+                object obj = ResourceManager.GetObject("glasses_blue", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap glasses_symbol {
             get {
                 object obj = ResourceManager.GetObject("glasses_symbol", resourceCulture);
@@ -156,6 +176,26 @@ namespace KinectFittingRoom.Properties {
         internal static System.Drawing.Bitmap skirt_symbol {
             get {
                 object obj = ResourceManager.GetObject("skirt_symbol", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sunglasses_aviator {
+            get {
+                object obj = ResourceManager.GetObject("sunglasses_aviator", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sunglasses_rayban {
+            get {
+                object obj = ResourceManager.GetObject("sunglasses_rayban", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

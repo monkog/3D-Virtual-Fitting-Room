@@ -59,11 +59,12 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
             // TODO: Preload the collection at startup or load dynamically in another thread?
 
             //MOJE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            List<ClothingButtonViewModel> tmp = new List<ClothingButtonViewModel>();
-            foreach (var c in Clothes)
-                tmp.Add(c);
-            ClothingManager.Instance.Clothing = new ObservableCollection<ClothingButtonViewModel>(tmp);
-            tmp.Clear();
+            ClothingManager.Instance.Clothing = new ObservableCollection<ClothingButtonViewModel>(Clothes);
+            //ObservableCollection<ClothingButtonViewModel> tmp = new ObservableCollection<ClothingButtonViewModel>();
+            //foreach (var c in Clothes)
+            //    tmp.Add(c);
+            //ClothingManager.Instance.Clothing = tmp;
+            //tmp.Clear();
         }
         #endregion Commands
     }

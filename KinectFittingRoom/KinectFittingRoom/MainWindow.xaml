@@ -7,6 +7,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"        
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KinectFittingRoom.ViewModel.ClothingItems"
         mc:Ignorable="d"
         WindowState="Maximized"		
 		WindowStyle="None"
@@ -75,7 +76,7 @@
 					Canvas.Right="0"
                     Margin="20"/>
             <!--StackPanel containing all the buttons with clothes-->
-            <ItemsControl ItemsSource="{Binding ClothingManager.Clothing}"
+            <ItemsControl ItemsSource="{Binding Clothing, Source={x:Static local:ClothingManager.Instance}}"
                           Width="{Binding ActualWidth, ElementName=RightPanel}"
                           Height="{Binding ActualHeight, ElementName=RightPanel}" 
                           Canvas.Right="{Binding (Canvas.Right), ElementName=RightPanel}" 
@@ -131,12 +132,17 @@
             </ModelVisual3D>
         </Viewport3D>
         <!--Temporary container for flat 2D clothing models-->
-        <ItemsControl ItemsSource="{Binding ClothingManager.ChosenClothes}">
+        <ItemsControl ItemsSource="{Binding ChosenClothes, Source={x:Static local:ClothingManager.Instance}}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <Grid Width="{Binding KinectService.Width}" Height="{Binding KinectService.Height}"/>
+                    <Canvas Width="{Binding KinectService.Width}" Height="{Binding KinectService.Height}"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Image Source="{Binding Image, Converter={StaticResource BitmapToImageSourceConverter}}" Height="{Binding Height}" Width="{Binding Width}"  />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
         </ItemsControl>
         <!--Hand Cursor canvas-->
         <Canvas Width="{Binding KinectService.Width}" Height="{Binding KinectService.Height}">
@@ -159,9 +165,9 @@
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>
-        <Canvas Background="Brown" Opacity="0.8" Width="100" Height="100">
+        <!--<Canvas Background="Brown" Opacity="0.8" Width="100" Height="100">
             <Label x:Name="TimerLabel" FontSize="10" x:FieldModifier="public" Width="100" Height="100" Margin="0,0,417,220" />
-        </Canvas>
+        </Canvas>-->
         <Grid Name="ErrorGrid" Opacity="0.7" Background="Black" Visibility="{Binding KinectService.ErrorGridVisibility}">
             <TextBlock Name="ErrorGridText" FontSize="20" HorizontalAlignment="Center" Opacity="0.7" VerticalAlignment="Center" Foreground="White">
                 Proszę podłączyć Kinnect!

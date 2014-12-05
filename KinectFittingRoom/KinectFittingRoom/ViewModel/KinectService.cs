@@ -201,6 +201,7 @@ namespace KinectFittingRoom.ViewModel
                 sensor.SkeletonStream.AppChoosesSkeletons = false;
                 sensor.SkeletonStream.Enable();
                 _skeletons = new Skeleton[sensor.SkeletonStream.FrameSkeletonArrayLength];
+                Skeletons = new Skeleton[sensor.SkeletonStream.FrameSkeletonArrayLength];
                 sensor.SkeletonFrameReady += KinectSensor_SkeletonFrameReady;
                 try
                 {
@@ -238,7 +239,7 @@ namespace KinectFittingRoom.ViewModel
                 if (frame == null || frame.SkeletonArrayLength == 0)
                     return;
                 frame.CopySkeletonDataTo(_skeletons);
-
+                frame.CopySkeletonDataTo(Skeletons);
                 var skeleton = GetPrimarySkeleton(_skeletons);
                 Hand.UpdateHandCursor(skeleton, Kinect, Width, Height);
 #if DEBUG
@@ -360,5 +361,7 @@ namespace KinectFittingRoom.ViewModel
             Kinect = null;
         }
         #endregion Public Methods
+
+        public static Skeleton[] Skeletons;
     }
 }

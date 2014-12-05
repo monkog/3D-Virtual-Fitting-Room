@@ -2,8 +2,10 @@
 using System.Windows.Input;
 using KinectFittingRoom.ViewModel.ClothingItems;
 using Microsoft.Practices.Prism.Commands;
-using System.Drawing;
 using System.Collections.ObjectModel;
+using KinectFittingRoom.ViewModel.Debug;
+using System.Windows;
+using System.Drawing;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems
 {
@@ -61,12 +63,11 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
             // TODO: Resolve the Clothing Manager via the IOC container?
             // TODO: Change the clothing collection in Clothing Manager to the one corresponding to the chosen button
             // TODO: Preload the collection at startup or load dynamically in another thread?
-
+            
             //MOJE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            List<ClothingItemBase> tmp = new List<ClothingItemBase>(ClothingManager.Instance.ChosenClothes);
-            tmp.Add(Clothes.Find(a => a.Height == (parameter as Bitmap).Height && a.Width == (parameter as Bitmap).Width));
-            ClothingManager.Instance.ChosenClothes = new ObservableCollection<ClothingItemBase>(tmp);
-            tmp.Clear(); 
+            Bitmap image=(Bitmap)parameter;
+            System.Windows.Point data=(System.Windows.Point)image.Tag;
+            ClothingManager.Instance.ChosenClothes.Add(new ClothingItemBase(image, data.X, data.Y));
         }
         #endregion Commands
     }

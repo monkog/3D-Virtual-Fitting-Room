@@ -59,7 +59,10 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// <summary>
         /// Private constructor of ClothingManager. 
         /// </summary>
-        private ClothingManager() { }
+        private ClothingManager() 
+        {
+            ChosenClothes = new ObservableCollection<ClothingItemBase>();        
+        }
         /// <summary>
         /// Method with access to only instance of ClothingManager
         /// </summary>
