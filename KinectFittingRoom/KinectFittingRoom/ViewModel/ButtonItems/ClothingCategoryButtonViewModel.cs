@@ -60,11 +60,6 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
 
             //MOJE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             ClothingManager.Instance.Clothing = new ObservableCollection<ClothingButtonViewModel>(Clothes);
-            //ObservableCollection<ClothingButtonViewModel> tmp = new ObservableCollection<ClothingButtonViewModel>();
-            //foreach (var c in Clothes)
-            //    tmp.Add(c);
-            //ClothingManager.Instance.Clothing = tmp;
-            //tmp.Clear();
         }
         #endregion Commands
     }

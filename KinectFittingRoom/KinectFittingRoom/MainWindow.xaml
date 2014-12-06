@@ -4,10 +4,10 @@
         xmlns:converters="clr-namespace:KinectFittingRoom.Converters"
         xmlns:buttons="clr-namespace:KinectFittingRoom.View.Buttons"
         xmlns:helpers="clr-namespace:KinectFittingRoom.View.Helpers"
+        xmlns:local="clr-namespace:KinectFittingRoom.ViewModel.ClothingItems"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"        
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:KinectFittingRoom.ViewModel.ClothingItems"
         mc:Ignorable="d"
         WindowState="Maximized"		
 		WindowStyle="None"
@@ -135,12 +135,14 @@
         <ItemsControl ItemsSource="{Binding ChosenClothes, Source={x:Static local:ClothingManager.Instance}}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <Canvas Width="{Binding KinectService.Width}" Height="{Binding KinectService.Height}"/>
+                    <Grid Width="{Binding KinectService.Width}" Height="{Binding KinectService.Height}"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Image Source="{Binding Image, Converter={StaticResource BitmapToImageSourceConverter}}" Height="{Binding Height}" Width="{Binding Width}"  />
+                    <Canvas>
+                    <Image Source="{Binding Image, Converter={StaticResource BitmapToImageSourceConverter}}" Height="{Binding Height}" Width="{Binding Width}" Canvas.Left="{Binding Left}" Canvas.Top="{Binding Top}"/>
+                    </Canvas>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

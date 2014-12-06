@@ -201,7 +201,6 @@ namespace KinectFittingRoom.ViewModel
                 sensor.SkeletonStream.AppChoosesSkeletons = false;
                 sensor.SkeletonStream.Enable();
                 _skeletons = new Skeleton[sensor.SkeletonStream.FrameSkeletonArrayLength];
-                Skeletons = new Skeleton[sensor.SkeletonStream.FrameSkeletonArrayLength];
                 sensor.SkeletonFrameReady += KinectSensor_SkeletonFrameReady;
                 try
                 {
@@ -239,9 +238,10 @@ namespace KinectFittingRoom.ViewModel
                 if (frame == null || frame.SkeletonArrayLength == 0)
                     return;
                 frame.CopySkeletonDataTo(_skeletons);
-                frame.CopySkeletonDataTo(Skeletons);
                 var skeleton = GetPrimarySkeleton(_skeletons);
                 Hand.UpdateHandCursor(skeleton, Kinect, Width, Height);
+                foreach (var c in ClothingItems.ClothingManager.Instance.ChosenClothes)
+                    c.UpdateItemPosition(skeleton, Kinect, Width, Height);               
 #if DEBUG
                 Brush brush = Brushes.Coral;
                 SkeletonManager.DrawSkeleton(_skeletons, brush, _kinectSensor, Width, Height);
@@ -300,8 +300,6 @@ namespace KinectFittingRoom.ViewModel
                         Kinect = KinectSensor.KinectSensors.FirstOrDefault(x => x.Status == KinectStatus.Connected);
                         if (Kinect == null)
                             ErrorGridVisibility = Visibility.Visible;
-                            //TODO: Notify about no sensors connected
-                            //throw new NotImplementedException();
                     }
                     break;
                 default:
@@ -361,7 +359,5 @@ namespace KinectFittingRoom.ViewModel
             Kinect = null;
         }
         #endregion Public Methods
-
-        public static Skeleton[] Skeletons;
     }
 }
