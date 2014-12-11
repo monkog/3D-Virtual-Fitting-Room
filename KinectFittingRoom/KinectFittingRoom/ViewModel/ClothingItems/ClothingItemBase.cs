@@ -9,6 +9,10 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
     {
         #region Private Fields
         /// <summary>
+        /// Position of item in clothes list
+        /// </summary>
+        private int _positionInCategoryList;
+        /// <summary>
         /// Category of item
         /// <para>0 - hat, 1 - skirt, 2 - glasses</para>
         /// </summary>
@@ -39,6 +43,19 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         private double _top;
         #endregion Private Fields
         #region Public Properties
+        public int PositionInCategoryList
+        {
+            get
+            {
+                return _positionInCategoryList;
+            }
+            set
+            {
+                if (_positionInCategoryList == value)
+                    return;
+                _positionInCategoryList = value;
+            }
+        }
         /// <summary>
         /// Gets of sets category of item
         /// <para>0 - hat, 1 - skirt, 2 - glasses</para>

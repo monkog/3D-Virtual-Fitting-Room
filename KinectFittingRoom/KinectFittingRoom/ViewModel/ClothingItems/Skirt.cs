@@ -14,11 +14,13 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// Constructor of Skirt object
         /// </summary>
         /// <param name="image">Image of item</param>
-        /// <param name="significantWidth">Significant width of skirt</param>
-        public Skirt(Bitmap image, double imageWidthToItemWidth)
+        /// <param name="imageWidthToItemWidth">Proportion image width to significant width of item</param>
+        /// <param name="position">Position of item in clothes list</param>
+        public Skirt(Bitmap image, double imageWidthToItemWidth, int position)
         {
             Image = image;
             ImageWidthToItemWidth = imageWidthToItemWidth;
+            PositionInCategoryList = position;
             Category = 1;
 
             for (int i = ClothingManager.Instance.ChosenClothes.Count - 1; i >= 0; i--)

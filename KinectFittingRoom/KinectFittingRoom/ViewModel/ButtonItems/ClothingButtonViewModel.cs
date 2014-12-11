@@ -29,7 +29,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// List of clothes in current category
         /// </summary>
         private List<ClothingItemBase> _clothes;
-        #endregion Private Fields   
+        #endregion Private Fields
         /// <summary>
         /// Gets of sets category of item
         /// <para>0 - hat, 1 - skirt, 2 - glasses</para>
@@ -103,23 +103,30 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
 
             //MOJE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             Bitmap im = (Bitmap)parameter;
+            int counter = 0;
             foreach (var i in ClothingManager.Instance.Clothing)
+            {
                 if (i.Image.Width == im.Width && i.Image.Height == im.Height)
                 {
+                    foreach (var j in ClothingManager.Instance.ChosenClothes)
+                        if (j.PositionInCategoryList == counter)
+                            return;
                     switch (i.Category)
                     {
                         case 0:
-                            ClothingManager.Instance.ChosenClothes.Add(new Hat(i.Image, i.ImageWidthToItemWidth));
+                            ClothingManager.Instance.ChosenClothes.Add(new Hat(i.Image, i.ImageWidthToItemWidth, counter));
                             break;
                         case 1:
-                            ClothingManager.Instance.ChosenClothes.Add(new Skirt(i.Image, i.ImageWidthToItemWidth));
+                            ClothingManager.Instance.ChosenClothes.Add(new Skirt(i.Image, i.ImageWidthToItemWidth, counter));
                             break;
                         case 2:
-                            ClothingManager.Instance.ChosenClothes.Add(new Glasses(i.Image));
+                            ClothingManager.Instance.ChosenClothes.Add(new Glasses(i.Image, counter));
                             break;
                     }
                     break;
                 }
+                counter++;
+            }
         }
         #endregion Commands
     }

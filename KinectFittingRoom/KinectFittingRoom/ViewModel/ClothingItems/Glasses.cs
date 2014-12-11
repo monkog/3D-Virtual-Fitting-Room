@@ -14,9 +14,11 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// Constructor of Glasses object
         /// </summary>
         /// <param name="image">Image of item</param>
-        public Glasses(Bitmap image)
+        /// <param name="position">Position of item in clothes list</param>
+        public Glasses(Bitmap image, int position)
         {
             Image = image;
+            PositionInCategoryList = position;
             Category = 2;
 
             for (int i = ClothingManager.Instance.ChosenClothes.Count - 1; i >= 0; i--)
