@@ -102,6 +102,9 @@
     <Compile Include="ViewModel\ButtonItems\ModelBase.cs" />
     <Compile Include="ViewModel\ClothingItems\ClothingItemBase.cs" />
     <Compile Include="ViewModel\ClothingItems\ClothingManager.cs" />
+    <Compile Include="ViewModel\ClothingItems\Glasses.cs" />
+    <Compile Include="ViewModel\ClothingItems\Hat.cs" />
+    <Compile Include="ViewModel\ClothingItems\Skirt.cs" />
     <Compile Include="View\Buttons\Events\HandCursorEventArgs.cs" />
     <Compile Include="View\Buttons\Events\ButtonsManager.cs" />
     <Compile Include="View\Buttons\Events\KinectInput.cs" />

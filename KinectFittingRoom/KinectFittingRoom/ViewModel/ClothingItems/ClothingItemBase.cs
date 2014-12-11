@@ -5,17 +5,18 @@ using System.Drawing;
 using System.Windows;
 namespace KinectFittingRoom.ViewModel.ClothingItems
 {
-    public class ClothingItemBase : ViewModelBase
+    public abstract class ClothingItemBase : ViewModelBase
     {
         #region Private Fields
         /// <summary>
-        /// Proportion image width to significant width 
+        /// Category of item
+        /// <para>0 - hat, 1 - skirt, 2 - glasses</para>
         /// </summary>
-        private double _proportion;
+        private int _category;
         /// <summary>
-        /// The part of set
+        /// Proportion image width to significant width of item
         /// </summary>
-        private double _part;
+        private double _imageWidthToItemWidth;
         /// <summary>
         /// The image
         /// </summary>
@@ -38,6 +39,42 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         private double _top;
         #endregion Private Fields
         #region Public Properties
+        /// <summary>
+        /// Gets of sets category of item
+        /// <para>0 - hat, 1 - skirt, 2 - glasses</para>
+        /// </summary>
+        public int Category
+        {
+            get
+            {
+                return _category;
+            }
+            set
+            {
+                if (_category == value)
+                    return;
+                _category = value;
+            }
+        }
+        /// <summary>
+        /// Gets or sets proportion image width to significant width of item
+        /// </summary>
+        /// <value>
+        /// The height.
+        /// </value>
+        public double ImageWidthToItemWidth
+        {
+            get
+            {
+                return _imageWidthToItemWidth;
+            }
+            set
+            {
+                if (_imageWidthToItemWidth == value)
+                    return;
+                _imageWidthToItemWidth = value;
+            }
+        }
         /// <summary>
         /// Gets or sets the image.
         /// </summary>
@@ -127,22 +164,6 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
 
         #region Methods
         /// <summary>
-        /// Constructor of ClothingItemBase object, removes clothes from the same category
-        /// </summary>
-        /// <param name="image">Image of item</param>
-        /// <param name="proportion">Proportion image width to significant width </param>
-        /// <param name="part">The part of set</param>
-        public ClothingItemBase(Bitmap image, double proportion, double part)
-        {
-            _image = image;
-            _proportion = proportion;
-            _part = part;
-
-            for (int i = ClothingManager.Instance.ChosenClothes.Count - 1; i >= 0; i--)
-                if (ClothingManager.Instance.ChosenClothes[i]._part == part)
-                    ClothingManager.Instance.ChosenClothes.RemoveAt(i);
-        }
-        /// <summary>
         /// Invokes setting the item's position
         /// </summary>
         /// <param name="skeleton">Recognised skeleton</param>
@@ -162,52 +183,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// <param name="sensor">Kinect sensor</param>
         /// <param name="width">Kinect image width</param>
         /// <param name="height">Kinect image height</param>
-        private void TrackSkeletonParts(Skeleton skeleton, KinectSensor sensor, double width, double height)
-        {
-            ///_part=0 => hat
-            ///_part=1 => skirt
-            ///_part=2 => glasses
-
-            double newWidth, shoulderWidth;
-            double heightWidth = Height / Width;
-            System.Windows.Point shoulderLeft, shoulderRight, head = KinectService.GetJointPoint(skeleton.Joints[JointType.Head], sensor, width, height); ;
-            switch ((int)_part)
-            {
-                case 0:
-                    shoulderLeft = KinectService.GetJointPoint(skeleton.Joints[JointType.ShoulderLeft], sensor, width, height);
-                    shoulderRight = KinectService.GetJointPoint(skeleton.Joints[JointType.ShoulderRight], sensor, width, height);
-
-                    shoulderWidth = shoulderRight.X - shoulderLeft.X;
-                    newWidth = 0.5 * shoulderWidth;
-                    Width = _proportion * newWidth;
-                    Height = Width * heightWidth;
-                    Top = head.Y - 10;
-                    Left = head.X - Width / 2;
-                    break;
-                case 1:
-                    System.Windows.Point footLeft = KinectService.GetJointPoint(skeleton.Joints[JointType.FootLeft], sensor, width, height);
-                    System.Windows.Point spine = KinectService.GetJointPoint(skeleton.Joints[JointType.Spine], sensor, width, height);
-
-                    double theHeight = footLeft.Y - head.Y;
-                    newWidth = theHeight * 0.18;
-                    Width = _proportion * newWidth;
-                    Height = Width * heightWidth;
-                    Top = spine.Y + 20;
-                    Left = spine.X - Width / 2;
-                    break;
-                case 2:
-                    shoulderLeft = KinectService.GetJointPoint(skeleton.Joints[JointType.ShoulderLeft], sensor, width, height);
-                    shoulderRight = KinectService.GetJointPoint(skeleton.Joints[JointType.ShoulderRight], sensor, width, height);
-
-                    shoulderWidth = shoulderRight.X - shoulderLeft.X;
-                    newWidth = 0.5 * shoulderWidth;
-                    Width = _proportion * newWidth;
-                    Height = Width * heightWidth;
-                    Top = head.Y + 50;
-                    Left = head.X - Width / 2;
-                    break;
-            }
-        }
+        public abstract void TrackSkeletonParts(Skeleton skeleton, KinectSensor sensor, double width, double height);
         #endregion Methods
     }
 }

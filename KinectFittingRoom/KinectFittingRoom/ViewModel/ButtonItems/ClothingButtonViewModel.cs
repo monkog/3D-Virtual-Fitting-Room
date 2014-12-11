@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using KinectFittingRoom.ViewModel.Debug;
 using System.Windows;
 using System.Drawing;
+using System;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems
 {
@@ -16,10 +17,46 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
     {
         #region Private Fields
         /// <summary>
+        /// Category of item
+        /// <para>0 - hat, 1 - skirt, 2 - glasses</para>
+        /// </summary>
+        private int _category;
+        /// <summary>
+        /// Proportion image width to significant width of item
+        /// </summary>
+        private double _imageWidthToItemWidth;
+        /// <summary>
         /// List of clothes in current category
         /// </summary>
         private List<ClothingItemBase> _clothes;
-        #endregion Private Fields
+        #endregion Private Fields   
+        /// <summary>
+        /// Gets of sets category of item
+        /// <para>0 - hat, 1 - skirt, 2 - glasses</para>
+        /// </summary>
+        public int Category
+        {
+            get { return _category; }
+            set
+            {
+                if (_category == value)
+                    return;
+                _category = value;
+            }
+        }
+        /// <summary>
+        /// Gets or sets proportion image width to significant width of item
+        /// </summary>
+        public double ImageWidthToItemWidth
+        {
+            get { return _imageWidthToItemWidth; }
+            set
+            {
+                if (_imageWidthToItemWidth == value)
+                    return;
+                _imageWidthToItemWidth = value;
+            }
+        }
         #region Public Properties
         /// <summary>
         /// Gets or sets the clothes list.
@@ -63,11 +100,26 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
             // TODO: Resolve the Clothing Manager via the IOC container?
             // TODO: Change the clothing collection in Clothing Manager to the one corresponding to the chosen button
             // TODO: Preload the collection at startup or load dynamically in another thread?
-            
+
             //MOJE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            Bitmap image=(Bitmap)parameter;
-            System.Windows.Point data=(System.Windows.Point)image.Tag;
-            ClothingManager.Instance.ChosenClothes.Add(new ClothingItemBase(image, data.X, data.Y));
+            Bitmap im = (Bitmap)parameter;
+            foreach (var i in ClothingManager.Instance.Clothing)
+                if (i.Image.Width == im.Width && i.Image.Height == im.Height)
+                {
+                    switch (i.Category)
+                    {
+                        case 0:
+                            ClothingManager.Instance.ChosenClothes.Add(new Hat(i.Image, i.ImageWidthToItemWidth));
+                            break;
+                        case 1:
+                            ClothingManager.Instance.ChosenClothes.Add(new Skirt(i.Image, i.ImageWidthToItemWidth));
+                            break;
+                        case 2:
+                            ClothingManager.Instance.ChosenClothes.Add(new Glasses(i.Image));
+                            break;
+                    }
+                    break;
+                }
         }
         #endregion Commands
     }

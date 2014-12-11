@@ -167,9 +167,9 @@
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>
-        <!--<Canvas Background="Brown" Opacity="0.8" Width="100" Height="100">
+        <Canvas Background="Brown" Opacity="0.8" Width="100" Height="100" Visibility="Collapsed">
             <Label x:Name="TimerLabel" FontSize="10" x:FieldModifier="public" Width="100" Height="100" Margin="0,0,417,220" />
-        </Canvas>-->
+        </Canvas>
         <Grid Name="ErrorGrid" Opacity="0.7" Background="Black" Visibility="{Binding KinectService.ErrorGridVisibility}">
             <TextBlock Name="ErrorGridText" FontSize="20" HorizontalAlignment="Center" Opacity="0.7" VerticalAlignment="Center" Foreground="White">
                 Proszę podłączyć Kinnect!
