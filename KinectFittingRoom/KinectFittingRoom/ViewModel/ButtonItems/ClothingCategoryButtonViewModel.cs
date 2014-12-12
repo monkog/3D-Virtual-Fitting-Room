@@ -58,7 +58,6 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
             // TODO: Change the clothing collection in Clothing Manager to the one corresponding to the chosen button
             // TODO: Preload the collection at startup or load dynamically in another thread?
 
-            //MOJE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             if (ClothingManager.Instance.Clothing != null && ClothingManager.Instance.Clothing[0].Image == Clothes[0].Image)
                 return;
             ClothingManager.Instance.Clothing = new ObservableCollection<ClothingButtonViewModel>(Clothes);

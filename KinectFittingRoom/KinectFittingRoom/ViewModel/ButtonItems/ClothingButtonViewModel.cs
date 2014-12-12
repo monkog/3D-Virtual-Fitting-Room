@@ -101,14 +101,13 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
             // TODO: Change the clothing collection in Clothing Manager to the one corresponding to the chosen button
             // TODO: Preload the collection at startup or load dynamically in another thread?
 
-            //MOJE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             Bitmap im = (Bitmap)parameter;
             int counter = 0;
-            foreach (var i in ClothingManager.Instance.Clothing)
+            foreach (ClothingButtonViewModel i in ClothingManager.Instance.Clothing)
             {
                 if (i.Image.Width == im.Width && i.Image.Height == im.Height)
                 {
-                    foreach (var j in ClothingManager.Instance.ChosenClothes)
+                    foreach (ClothingItemBase j in ClothingManager.Instance.ChosenClothes)
                         if (j.PositionInCategoryList == counter)
                             return;
                     switch (i.Category)
