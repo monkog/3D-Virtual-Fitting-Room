@@ -15,12 +15,10 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// </summary>
         /// <param name="image">Image of item</param>
         /// <param name="imageWidthToItemWidth">Proportion image width to significant width of item</param>
-        /// <param name="position">Position of item in clothes list</param>
-        public Hat(Bitmap image, double imageWidthToItemWidth, int position)
+        public Hat(Bitmap image, double imageWidthToItemWidth)
         {
             Image = image;
             ImageWidthToItemWidth = imageWidthToItemWidth;
-            PositionInCategoryList = position;
             Category = 0;
 
             for (int i = ClothingManager.Instance.ChosenClothes.Count - 1; i >= 0; i--)
@@ -45,7 +43,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
             double newWidth = (shoulderRight.X - shoulderLeft.X) * 0.5;
             Width = ImageWidthToItemWidth * newWidth;
             Height = heightToWidth * Width;
-            Top = head.Y - 10;
+            Top = head.Y - 20;
             Left = head.X - Width / 2;
         }
     }

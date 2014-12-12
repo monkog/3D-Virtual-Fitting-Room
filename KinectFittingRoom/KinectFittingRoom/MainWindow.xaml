@@ -97,7 +97,7 @@
                                        Canvas.Top="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=(Canvas.Top)}"/>
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="HandCursorClick">
-                                    <i:InvokeCommandAction Command="{Binding ClothCommand}" CommandParameter="{Binding Image}"/>
+                                    <i:InvokeCommandAction Command="{Binding ClothCommand}" CommandParameter="{Binding Object}"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                         </buttons:KinectButton>

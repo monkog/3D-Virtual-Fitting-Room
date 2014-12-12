@@ -14,11 +14,9 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// Constructor of Glasses object
         /// </summary>
         /// <param name="image">Image of item</param>
-        /// <param name="position">Position of item in clothes list</param>
-        public Glasses(Bitmap image, int position)
+        public Glasses(Bitmap image)
         {
             Image = image;
-            PositionInCategoryList = position;
             Category = 2;
 
             for (int i = ClothingManager.Instance.ChosenClothes.Count - 1; i >= 0; i--)
@@ -40,8 +38,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
             System.Windows.Point shoulderRight = KinectService.GetJointPoint(skeleton.Joints[JointType.ShoulderRight], sensor, width, height);
 
             double heightToWidth = Height / Width;
-            double newWidth = (shoulderRight.X - shoulderLeft.X) * 0.5;
-            Width = Width * newWidth;
+            Width = (shoulderRight.X - shoulderLeft.X) * 0.5;
             Height = heightToWidth * Width;
             Top = head.Y + 50;
             Left = head.X - Width / 2;

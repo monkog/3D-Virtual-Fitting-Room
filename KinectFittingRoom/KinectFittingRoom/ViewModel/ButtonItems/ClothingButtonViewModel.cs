@@ -26,10 +26,26 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// </summary>
         private double _imageWidthToItemWidth;
         /// <summary>
-        /// List of clothes in current category
+        /// Clicked button object
         /// </summary>
-        private List<ClothingItemBase> _clothes;
+        private ClothingButtonViewModel _buttonObject;
         #endregion Private Fields
+        #region Public Properties
+        /// <summary>
+        /// Gets or sets button object
+        /// </summary>
+        public ClothingButtonViewModel ButtonObject
+        {
+            get { return _buttonObject; }
+            set
+            {
+                if (_buttonObject == value)
+                    return;
+                _buttonObject = value;
+                OnPropertyChanged("ButtonObject");
+            }
+
+        }
         /// <summary>
         /// Gets of sets category of item
         /// <para>0 - hat, 1 - skirt, 2 - glasses</para>
@@ -57,25 +73,16 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
                 _imageWidthToItemWidth = value;
             }
         }
-        #region Public Properties
-        /// <summary>
-        /// Gets or sets the clothes list.
-        /// </summary>
-        /// <value>
-        /// The clothes list.
-        /// </value>
-        public List<ClothingItemBase> Clothes
-        {
-            get { return _clothes; }
-            set
-            {
-                if (_clothes == value)
-                    return;
-                _clothes = value;
-                OnPropertyChanged("Clothes");
-            }
-        }
         #endregion Public Properties
+        #region .ctor
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ClothingButtonViewModel"/> class.
+        /// </summary>
+        public ClothingButtonViewModel()
+        {
+            ButtonObject = this;
+        }
+        #endregion
         #region Commands
         /// <summary>
         /// The category command, executed after clicking on Category button
@@ -101,30 +108,23 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
             // TODO: Change the clothing collection in Clothing Manager to the one corresponding to the chosen button
             // TODO: Preload the collection at startup or load dynamically in another thread?
 
-            Bitmap im = (Bitmap)parameter;
-            int counter = 0;
-            foreach (ClothingButtonViewModel i in ClothingManager.Instance.Clothing)
+            ClothingButtonViewModel clickedButton = (ClothingButtonViewModel)parameter;
+
+            foreach (ClothingItemBase item in ClothingManager.Instance.ChosenClothes)
+                if (item.Image == clickedButton.Image)
+                    return;
+
+            switch (clickedButton.Category)
             {
-                if (i.Image.Width == im.Width && i.Image.Height == im.Height)
-                {
-                    foreach (ClothingItemBase j in ClothingManager.Instance.ChosenClothes)
-                        if (j.PositionInCategoryList == counter)
-                            return;
-                    switch (i.Category)
-                    {
-                        case 0:
-                            ClothingManager.Instance.ChosenClothes.Add(new Hat(i.Image, i.ImageWidthToItemWidth, counter));
-                            break;
-                        case 1:
-                            ClothingManager.Instance.ChosenClothes.Add(new Skirt(i.Image, i.ImageWidthToItemWidth, counter));
-                            break;
-                        case 2:
-                            ClothingManager.Instance.ChosenClothes.Add(new Glasses(i.Image, counter));
-                            break;
-                    }
+                case 0:
+                    ClothingManager.Instance.ChosenClothes.Add(new Hat(clickedButton.Image, clickedButton.ImageWidthToItemWidth));
                     break;
-                }
-                counter++;
+                case 1:
+                    ClothingManager.Instance.ChosenClothes.Add(new Skirt(clickedButton.Image, clickedButton.ImageWidthToItemWidth));
+                    break;
+                case 2:
+                    ClothingManager.Instance.ChosenClothes.Add(new Glasses(clickedButton.Image));
+                    break;
             }
         }
         #endregion Commands
