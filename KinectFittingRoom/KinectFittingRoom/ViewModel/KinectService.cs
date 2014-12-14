@@ -241,7 +241,7 @@ namespace KinectFittingRoom.ViewModel
                 var skeleton = GetPrimarySkeleton(_skeletons);
                 Hand.UpdateHandCursor(skeleton, Kinect, Width, Height);
                 foreach (var c in ClothingItems.ClothingManager.Instance.ChosenClothes)
-                    c.UpdateItemPosition(skeleton, Kinect, Width, Height);               
+                    c.Value.UpdateItemPosition(skeleton, Kinect, Width, Height);               
 #if DEBUG
                 Brush brush = Brushes.Coral;
                 SkeletonManager.DrawSkeleton(_skeletons, brush, _kinectSensor, Width, Height);

@@ -1,6 +1,7 @@
 ﻿using KinectFittingRoom.ViewModel.Debug;
 using Microsoft.Kinect;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows;
 namespace KinectFittingRoom.ViewModel.ClothingItems
@@ -8,11 +9,6 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
     public abstract class ClothingItemBase : ViewModelBase
     {
         #region Private Fields
-        /// <summary>
-        /// Category of item
-        /// <para>0 - hat, 1 - skirt, 2 - glasses</para>
-        /// </summary>
-        private int _category;
         /// <summary>
         /// Proportion image width to significant width of item
         /// </summary>
@@ -39,23 +35,6 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         private double _top;
         #endregion Private Fields
         #region Public Properties
-        /// <summary>
-        /// Gets of sets category of item
-        /// <para>0 - hat, 1 - skirt, 2 - glasses</para>
-        /// </summary>
-        public int Category
-        {
-            get
-            {
-                return _category;
-            }
-            set
-            {
-                if (_category == value)
-                    return;
-                _category = value;
-            }
-        }
         /// <summary>
         /// Gets or sets proportion image width to significant width of item
         /// </summary>
@@ -161,6 +140,11 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
             }
         }
         #endregion Public Properties
+        public ClothingItemBase(Bitmap image, double imageWidthToItemWidth)
+        {
+            Image = image;
+            ImageWidthToItemWidth = imageWidthToItemWidth;
+        }
         #region Methods
         /// <summary>
         /// Invokes setting the item's position
@@ -184,5 +168,11 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// <param name="height">Kinect image height</param>
         public abstract void TrackSkeletonParts(Skeleton skeleton, KinectSensor sensor, double width, double height);
         #endregion Methods
+        public enum ClothingType
+        {
+            HatItem,
+            SkirtItem,
+            GlassesItem
+        }  
     }
 }

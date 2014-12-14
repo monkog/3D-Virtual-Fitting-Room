@@ -97,7 +97,7 @@
                                        Canvas.Top="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=(Canvas.Top)}"/>
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="HandCursorClick">
-                                    <i:InvokeCommandAction Command="{Binding ClothCommand}" CommandParameter="{Binding Object}"/>
+                                    <i:InvokeCommandAction Command="{Binding ClothCommand}" CommandParameter="{Binding ButtonObject}"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                         </buttons:KinectButton>
@@ -132,7 +132,7 @@
             </ModelVisual3D>
         </Viewport3D>
         <!--Temporary container for flat 2D clothing models-->
-        <ItemsControl ItemsSource="{Binding ChosenClothes, Source={x:Static local:ClothingManager.Instance}}">
+        <ItemsControl ItemsSource="{Binding ChosenClothes.Values, Source={x:Static local:ClothingManager.Instance}}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <Grid Width="{Binding KinectService.Width}" Height="{Binding KinectService.Height}"/>

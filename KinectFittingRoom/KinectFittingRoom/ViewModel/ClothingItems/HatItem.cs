@@ -8,24 +8,20 @@ using System.Threading.Tasks;
 
 namespace KinectFittingRoom.ViewModel.ClothingItems
 {
-    class Glasses : ClothingItemBase
+    class HatItem : ClothingItemBase
     {
         /// <summary>
-        /// Constructor of Glasses object
+        /// Constructor of Hat object
         /// </summary>
         /// <param name="image">Image of item</param>
-        public Glasses(Bitmap image)
+        /// <param name="imageWidthToItemWidth">Proportion image width to significant width of item</param>
+        public HatItem(Bitmap image, double imageWidthToItemWidth)
+            : base(image, imageWidthToItemWidth)
         {
-            Image = image;
-            Category = 2;
-
-            for (int i = ClothingManager.Instance.ChosenClothes.Count - 1; i >= 0; i--)
-                if (ClothingManager.Instance.ChosenClothes[i].Category == 2)
-                    ClothingManager.Instance.ChosenClothes.RemoveAt(i);
         }
 
         /// <summary>
-        ///Set position for glasses
+        ///Set position for hat
         /// </summary>
         /// <param name="skeleton">Recognised skeleton</param>
         /// <param name="sensor">Kinect sensor</param>
@@ -38,9 +34,10 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
             System.Windows.Point shoulderRight = KinectService.GetJointPoint(skeleton.Joints[JointType.ShoulderRight], sensor, width, height);
 
             double heightToWidth = Height / Width;
-            Width = (shoulderRight.X - shoulderLeft.X) * 0.5;
+            double newWidth = (shoulderRight.X - shoulderLeft.X) * 0.5;
+            Width = ImageWidthToItemWidth * newWidth;
             Height = heightToWidth * Width;
-            Top = head.Y + 50;
+            Top = head.Y - 20;
             Left = head.X - Width / 2;
         }
     }

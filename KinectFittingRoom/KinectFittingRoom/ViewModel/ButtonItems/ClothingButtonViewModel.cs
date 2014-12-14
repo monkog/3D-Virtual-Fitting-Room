@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Windows.Input;
-using KinectFittingRoom.ViewModel.ClothingItems;
-using Microsoft.Practices.Prism.Commands;
-using System.Collections.ObjectModel;
+﻿using KinectFittingRoom.ViewModel.ClothingItems;
 using KinectFittingRoom.ViewModel.Debug;
-using System.Windows;
-using System.Drawing;
+using Microsoft.Practices.Prism.Commands;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Drawing;
+using System.Windows;
+using System.Windows.Input;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems
 {
@@ -18,17 +18,16 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         #region Private Fields
         /// <summary>
         /// Category of item
-        /// <para>0 - hat, 1 - skirt, 2 - glasses</para>
         /// </summary>
-        private int _category;
+        private ClothingItemBase.ClothingType _category;
         /// <summary>
         /// Proportion image width to significant width of item
         /// </summary>
         private double _imageWidthToItemWidth;
         /// <summary>
-        /// Clicked button object
+        /// Path to original size of item's image
         /// </summary>
-        private ClothingButtonViewModel _buttonObject;
+        private string _pathToImage;
         #endregion Private Fields
         #region Public Properties
         /// <summary>
@@ -36,21 +35,25 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// </summary>
         public ClothingButtonViewModel ButtonObject
         {
-            get { return _buttonObject; }
-            set
-            {
-                if (_buttonObject == value)
-                    return;
-                _buttonObject = value;
-                OnPropertyChanged("ButtonObject");
-            }
-
+            get { return this; }
         }
         /// <summary>
-        /// Gets of sets category of item
-        /// <para>0 - hat, 1 - skirt, 2 - glasses</para>
+        /// Gets or sets path to original size of item's image
         /// </summary>
-        public int Category
+        public string PathToImage
+        {
+            get { return _pathToImage; }
+            set
+            {
+                if (_pathToImage == value)
+                    return;
+                _pathToImage = value;
+            }
+        }
+        /// <summary>
+        /// Gets or sets category of item
+        /// </summary>
+        public ClothingItemBase.ClothingType Category
         {
             get { return _category; }
             set
@@ -74,15 +77,6 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
             }
         }
         #endregion Public Properties
-        #region .ctor
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ClothingButtonViewModel"/> class.
-        /// </summary>
-        public ClothingButtonViewModel()
-        {
-            ButtonObject = this;
-        }
-        #endregion
         #region Commands
         /// <summary>
         /// The category command, executed after clicking on Category button
@@ -109,24 +103,31 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
             // TODO: Preload the collection at startup or load dynamically in another thread?
 
             ClothingButtonViewModel clickedButton = (ClothingButtonViewModel)parameter;
+            ClothingItemBase clickedClothingItem;
 
-            foreach (ClothingItemBase item in ClothingManager.Instance.ChosenClothes)
-                if (item.Image == clickedButton.Image)
+            if (ClothingManager.Instance.ChosenClothes.TryGetValue(clickedButton.Category, out clickedClothingItem))
+                if (clickedButton.ImageWidthToItemWidth == clickedClothingItem.ImageWidthToItemWidth)
                     return;
+
+            Dictionary<ClothingItemBase.ClothingType, ClothingItemBase> tmp = new Dictionary<ClothingItemBase.ClothingType, ClothingItemBase>(ClothingManager.Instance.ChosenClothes);
 
             switch (clickedButton.Category)
             {
-                case 0:
-                    ClothingManager.Instance.ChosenClothes.Add(new Hat(clickedButton.Image, clickedButton.ImageWidthToItemWidth));
+                case ClothingItemBase.ClothingType.GlassesItem:
+                    clickedClothingItem = new GlassesItem(new Bitmap(Bitmap.FromFile(clickedButton.PathToImage)));
                     break;
-                case 1:
-                    ClothingManager.Instance.ChosenClothes.Add(new Skirt(clickedButton.Image, clickedButton.ImageWidthToItemWidth));
+                case ClothingItemBase.ClothingType.HatItem:
+                    clickedClothingItem = new HatItem(new Bitmap(Bitmap.FromFile(clickedButton.PathToImage)), clickedButton.ImageWidthToItemWidth);
                     break;
-                case 2:
-                    ClothingManager.Instance.ChosenClothes.Add(new Glasses(clickedButton.Image));
+                case ClothingItemBase.ClothingType.SkirtItem:
+                    clickedClothingItem = new SkirtItem(new Bitmap(Bitmap.FromFile(clickedButton.PathToImage)), clickedButton.ImageWidthToItemWidth);
                     break;
             }
+
+            tmp[clickedButton.Category] = clickedClothingItem;
+            ClothingManager.Instance.ChosenClothes = new Dictionary<ClothingItemBase.ClothingType, ClothingItemBase>(tmp);
         }
         #endregion Commands
     }
 }
+

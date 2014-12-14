@@ -102,9 +102,9 @@
     <Compile Include="ViewModel\ButtonItems\ModelBase.cs" />
     <Compile Include="ViewModel\ClothingItems\ClothingItemBase.cs" />
     <Compile Include="ViewModel\ClothingItems\ClothingManager.cs" />
-    <Compile Include="ViewModel\ClothingItems\Glasses.cs" />
-    <Compile Include="ViewModel\ClothingItems\Hat.cs" />
-    <Compile Include="ViewModel\ClothingItems\Skirt.cs" />
+    <Compile Include="ViewModel\ClothingItems\GlassesItem.cs" />
+    <Compile Include="ViewModel\ClothingItems\HatItem.cs" />
+    <Compile Include="ViewModel\ClothingItems\SkirtItem.cs" />
     <Compile Include="View\Buttons\Events\HandCursorEventArgs.cs" />
     <Compile Include="View\Buttons\Events\ButtonsManager.cs" />
     <Compile Include="View\Buttons\Events\KinectInput.cs" />
@@ -155,7 +155,6 @@
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config">
@@ -182,8 +181,12 @@
     <SplashScreen Include="Resources\splash_screen_image.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Models\skirt_jeans.png" />
-    <Resource Include="Resources\Models\skirt_maroon.png" />
+    <None Include="Resources\Models\skirt_jeans.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\skirt_maroon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\hat_symbol.png" />
@@ -193,18 +196,59 @@
     <Resource Include="Resources\Images\glasses_symbol.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Models\hat_blue.png" />
-    <Resource Include="Resources\Models\hat_brown.png" />
-    <Resource Include="Resources\Models\hat_superman.png" />
+    <None Include="Resources\Models\hat_blue.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\hat_brown.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\hat_superman.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\curtains.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Models\glasses_black.png" />
-    <Resource Include="Resources\Models\glasses_blue.png" />
-    <Resource Include="Resources\Models\sunglasses_aviator.png" />
-    <Resource Include="Resources\Models\sunglasses_rayban.png" />
+    <None Include="Resources\Models\glasses_black.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\glasses_blue.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\sunglasses_aviator.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\sunglasses_rayban.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\small_glasses_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\small_glasses_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\small_hat_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\small_hat_brown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\small_hat_superman.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\small_skirt_jeans.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\small_skirt_maroon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\small_sunglasses_aviator.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\small_sunglasses_rayban.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

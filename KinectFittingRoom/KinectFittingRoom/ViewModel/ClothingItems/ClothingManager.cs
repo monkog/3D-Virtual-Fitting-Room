@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using KinectFittingRoom.ViewModel.ButtonItems;
 
 namespace KinectFittingRoom.ViewModel.ClothingItems
@@ -13,7 +14,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// <summary>
         /// The chosen clothing collection
         /// </summary>
-        private ObservableCollection<ClothingItemBase> _chosenClothes;
+        private Dictionary<ClothingItemBase.ClothingType, ClothingItemBase> _chosenClothes;
         /// <summary>
         /// The clothing collection
         /// </summary>
@@ -26,7 +27,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// <value>
         /// The chosen clothing collection.
         /// </value>
-        public ObservableCollection<ClothingItemBase> ChosenClothes
+        public Dictionary<ClothingItemBase.ClothingType, ClothingItemBase> ChosenClothes
         {
             get { return _chosenClothes; }
             set
@@ -61,7 +62,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// </summary>
         private ClothingManager() 
         {
-            ChosenClothes = new ObservableCollection<ClothingItemBase>();        
+            ChosenClothes = new Dictionary<ClothingItemBase.ClothingType,ClothingItemBase>();        
         }
         /// <summary>
         /// Method with access to only instance of ClothingManager
