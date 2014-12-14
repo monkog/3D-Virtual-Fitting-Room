@@ -13,9 +13,9 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// <summary>
         /// Constructor of Glasses object
         /// </summary>
-        /// <param name="image">Image of item</param>
-        public GlassesItem(Bitmap image)
-            : base(image, 1.0)
+        /// <param name="pathToImage">Path to original image of item</param>
+        public GlassesItem(string pathToImage)
+            : base(pathToImage, 1.0)
         {
         }
 

@@ -97,22 +97,16 @@ namespace KinectFittingRoom.ViewModel
                 Image = Properties.Resources.hat_symbol,
                 Clothes = new List<ClothingButtonViewModel>
                 {
-                    new ClothingButtonViewModel {
+                    new ClothingButtonViewModel(ClothingItemBase.ClothingType.HatItem, @".\Resources\Models\hat_blue.png")  {
                         Image = Properties.Resources.small_hat_blue, 
-                        Category = ClothingItemBase.ClothingType.HatItem, 
-                        PathToImage=@".\Resources\Models\hat_blue.png", 
                         ImageWidthToItemWidth = 2.07
                     },
-                    new ClothingButtonViewModel {
+                    new ClothingButtonViewModel(ClothingItemBase.ClothingType.HatItem, @".\Resources\Models\hat_brown.png") {
                         Image = Properties.Resources.small_hat_brown, 
-                        Category = ClothingItemBase.ClothingType.HatItem, 
-                        PathToImage=@".\Resources\Models\hat_brown.png", 
                         ImageWidthToItemWidth = 1.83
                     },
-                    new ClothingButtonViewModel {
+                    new ClothingButtonViewModel(ClothingItemBase.ClothingType.HatItem, @".\Resources\Models\hat_superman.png") {
                         Image = Properties.Resources.small_hat_superman, 
-                        Category = ClothingItemBase.ClothingType.HatItem, 
-                        PathToImage=@".\Resources\Models\hat_superman.png", 
                         ImageWidthToItemWidth = 1.24
                     }
                 }
@@ -122,16 +116,12 @@ namespace KinectFittingRoom.ViewModel
                 Image = Properties.Resources.skirt_symbol,
                 Clothes = new List<ClothingButtonViewModel>
                     {
-                        new ClothingButtonViewModel {
+                        new ClothingButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\skirt_jeans.png") {
                             Image = Properties.Resources.small_skirt_jeans, 
-                            Category = ClothingItemBase.ClothingType.SkirtItem, 
-                            PathToImage=@".\Resources\Models\skirt_jeans.png", 
                             ImageWidthToItemWidth = 2.21
                         },
-                        new ClothingButtonViewModel {
+                        new ClothingButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\skirt_maroon.png") {
                             Image = Properties.Resources.small_skirt_maroon, 
-                            Category = ClothingItemBase.ClothingType.SkirtItem, 
-                            PathToImage=@".\Resources\Models\skirt_maroon.png", 
                             ImageWidthToItemWidth = 2.0
                         }
                     }
@@ -142,25 +132,17 @@ namespace KinectFittingRoom.ViewModel
                 Clothes =
                     new List<ClothingButtonViewModel>
                     {
-                        new ClothingButtonViewModel {
+                        new ClothingButtonViewModel(ClothingItemBase.ClothingType.GlassesItem, @".\Resources\Models\glasses_black.png") {
                             Image = Properties.Resources.small_glasses_black, 
-                            Category = ClothingItemBase.ClothingType.GlassesItem, 
-                            PathToImage=@".\Resources\Models\glasses_black.png"
                         },
-                        new ClothingButtonViewModel {
+                        new ClothingButtonViewModel(ClothingItemBase.ClothingType.GlassesItem, @".\Resources\Models\glasses_blue.png") {
                             Image = Properties.Resources.small_glasses_blue, 
-                            Category = ClothingItemBase.ClothingType.GlassesItem, 
-                            PathToImage=@".\Resources\Models\glasses_blue.png"
                         },
-                        new ClothingButtonViewModel {
+                        new ClothingButtonViewModel(ClothingItemBase.ClothingType.GlassesItem, @".\Resources\Models\sunglasses_rayban.png") {
                             Image = Properties.Resources.small_sunglasses_rayban, 
-                            Category = ClothingItemBase.ClothingType.GlassesItem, 
-                            PathToImage=@".\Resources\Models\sunglasses_rayban.png"
                         },
-                        new ClothingButtonViewModel {
+                        new ClothingButtonViewModel(ClothingItemBase.ClothingType.GlassesItem, @".\Resources\Models\sunglasses_aviator.png") {
                             Image = Properties.Resources.small_sunglasses_aviator, 
-                            Category = ClothingItemBase.ClothingType.GlassesItem, 
-                            PathToImage=@".\Resources\Models\sunglasses_aviator.png"
                         }
                     }
             };

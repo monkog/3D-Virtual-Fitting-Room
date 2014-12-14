@@ -14,6 +14,10 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// </summary>
         private double _imageWidthToItemWidth;
         /// <summary>
+        /// Path to original image of item
+        /// </summary>
+        private string _pathToImage;
+        /// <summary>
         /// The image
         /// </summary>
         private Bitmap _image;
@@ -36,24 +40,26 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         #endregion Private Fields
         #region Public Properties
         /// <summary>
-        /// Gets or sets proportion image width to significant width of item
+        /// Gets the proportion of image width to significant width of item
         /// </summary>
-        /// <value>
-        /// The height.
-        /// </value>
         public double ImageWidthToItemWidth
         {
             get
             {
                 return _imageWidthToItemWidth;
             }
-            set
+        }
+        /// <summary>
+        /// Gets the path to original image of item
+        /// </summary>
+        public string PathToImage 
+        {
+            get
             {
-                if (_imageWidthToItemWidth == value)
-                    return;
-                _imageWidthToItemWidth = value;
+                return _pathToImage;
             }
         }
+
         /// <summary>
         /// Gets or sets the image.
         /// </summary>
@@ -140,11 +146,19 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
             }
         }
         #endregion Public Properties
-        public ClothingItemBase(Bitmap image, double imageWidthToItemWidth)
+        #region .ctor
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ClothingItemBase"/> class.
+        /// </summary>
+        /// <param name="pathToImage">Path to original image of item</param>
+        /// <param name="imageWidthToItemWidth">Proportion image width to significant width of item</param>
+        public ClothingItemBase(string pathToImage, double imageWidthToItemWidth)
         {
-            Image = image;
-            ImageWidthToItemWidth = imageWidthToItemWidth;
+            Image = new Bitmap(Bitmap.FromFile(pathToImage));
+            _pathToImage = pathToImage;
+            _imageWidthToItemWidth = imageWidthToItemWidth;
         }
+        #endregion
         #region Methods
         /// <summary>
         /// Invokes setting the item's position

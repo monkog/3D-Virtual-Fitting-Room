@@ -13,10 +13,10 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// <summary>
         /// Constructor of Hat object
         /// </summary>
-        /// <param name="image">Image of item</param>
+        /// <param name="pathToImage">Path to original image of item</param>
         /// <param name="imageWidthToItemWidth">Proportion image width to significant width of item</param>
-        public HatItem(Bitmap image, double imageWidthToItemWidth)
-            : base(image, imageWidthToItemWidth)
+        public HatItem(string pathToImage, double imageWidthToItemWidth)
+            : base(pathToImage, imageWidthToItemWidth)
         {
         }
 

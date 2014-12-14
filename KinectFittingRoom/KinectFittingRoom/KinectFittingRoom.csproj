@@ -155,6 +155,8 @@
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config">
@@ -222,33 +224,6 @@
     <None Include="Resources\Models\sunglasses_rayban.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Images\small_glasses_black.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Images\small_glasses_blue.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Images\small_hat_blue.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Images\small_hat_brown.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Images\small_hat_superman.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Images\small_skirt_jeans.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Images\small_skirt_maroon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Images\small_sunglasses_aviator.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Images\small_sunglasses_rayban.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

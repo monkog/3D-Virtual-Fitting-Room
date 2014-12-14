@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
+using System.IO;
 using System.Windows;
 using System.Windows.Input;
 
@@ -25,7 +26,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// </summary>
         private double _imageWidthToItemWidth;
         /// <summary>
-        /// Path to original size of item's image
+        /// Path to original image of item
         /// </summary>
         private string _pathToImage;
         #endregion Private Fields
@@ -38,17 +39,11 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
             get { return this; }
         }
         /// <summary>
-        /// Gets or sets path to original size of item's image
+        /// Gets or sets path to original image of item
         /// </summary>
         public string PathToImage
         {
             get { return _pathToImage; }
-            set
-            {
-                if (_pathToImage == value)
-                    return;
-                _pathToImage = value;
-            }
         }
         /// <summary>
         /// Gets or sets category of item
@@ -56,12 +51,6 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         public ClothingItemBase.ClothingType Category
         {
             get { return _category; }
-            set
-            {
-                if (_category == value)
-                    return;
-                _category = value;
-            }
         }
         /// <summary>
         /// Gets or sets proportion image width to significant width of item
@@ -106,21 +95,21 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
             ClothingItemBase clickedClothingItem;
 
             if (ClothingManager.Instance.ChosenClothes.TryGetValue(clickedButton.Category, out clickedClothingItem))
-                if (clickedButton.ImageWidthToItemWidth == clickedClothingItem.ImageWidthToItemWidth)
+                if (clickedButton.PathToImage == clickedClothingItem.PathToImage)
                     return;
 
-            Dictionary<ClothingItemBase.ClothingType, ClothingItemBase> tmp = new Dictionary<ClothingItemBase.ClothingType, ClothingItemBase>(ClothingManager.Instance.ChosenClothes);
+            Dictionary<ClothingItemBase.ClothingType, ClothingItemBase> tmp = ClothingManager.Instance.ChosenClothes;
 
             switch (clickedButton.Category)
             {
                 case ClothingItemBase.ClothingType.GlassesItem:
-                    clickedClothingItem = new GlassesItem(new Bitmap(Bitmap.FromFile(clickedButton.PathToImage)));
+                    clickedClothingItem = new GlassesItem(clickedButton.PathToImage);
                     break;
                 case ClothingItemBase.ClothingType.HatItem:
-                    clickedClothingItem = new HatItem(new Bitmap(Bitmap.FromFile(clickedButton.PathToImage)), clickedButton.ImageWidthToItemWidth);
+                    clickedClothingItem = new HatItem(clickedButton.PathToImage, clickedButton.ImageWidthToItemWidth);
                     break;
                 case ClothingItemBase.ClothingType.SkirtItem:
-                    clickedClothingItem = new SkirtItem(new Bitmap(Bitmap.FromFile(clickedButton.PathToImage)), clickedButton.ImageWidthToItemWidth);
+                    clickedClothingItem = new SkirtItem(clickedButton.PathToImage, clickedButton.ImageWidthToItemWidth);
                     break;
             }
 
@@ -128,6 +117,18 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
             ClothingManager.Instance.ChosenClothes = new Dictionary<ClothingItemBase.ClothingType, ClothingItemBase>(tmp);
         }
         #endregion Commands
+        #region .ctor
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ClothingButtonViewModel"/> class.
+        /// </summary>
+        /// <param name="type">Type of clothing item</param>
+        /// <param name="pathToImage">Path to original image of item</param>
+        public ClothingButtonViewModel(ClothingItemBase.ClothingType type, string pathToImage)
+        {
+            _category = type;
+            _pathToImage = pathToImage;
+        }
+        #endregion
     }
 }
 
