@@ -1,4 +1,6 @@
-﻿using KinectFittingRoom.ViewModel.Debug;
+﻿#if DEBUG
+using KinectFittingRoom.ViewModel.Debug;
+#endif
 using Microsoft.Kinect;
 using System;
 using System.Collections.Generic;
@@ -52,7 +54,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// <summary>
         /// Gets the path to original image of item
         /// </summary>
-        public string PathToImage 
+        public string PathToImage
         {
             get
             {
@@ -187,6 +189,6 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
             HatItem,
             SkirtItem,
             GlassesItem
-        }  
+        }
     }
 }

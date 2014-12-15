@@ -1,5 +1,7 @@
-﻿using KinectFittingRoom.ViewModel.ClothingItems;
+﻿#if DEBUG
 using KinectFittingRoom.ViewModel.Debug;
+#endif
+using KinectFittingRoom.ViewModel.ClothingItems;
 using Microsoft.Practices.Prism.Commands;
 using System;
 using System.Collections.Generic;

@@ -1,9 +1,11 @@
-﻿using System;
+﻿#if DEBUG
+using KinectFittingRoom.ViewModel.Debug;
+#endif
+using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using KinectFittingRoom.ViewModel.Debug;
 using Microsoft.Kinect;
 
 namespace KinectFittingRoom.ViewModel
@@ -35,10 +37,12 @@ namespace KinectFittingRoom.ViewModel
         /// User's Hand
         /// </summary>
         private Hand _hand;
+#if DEBUG
         /// <summary>
         /// The skeleton manager
         /// </summary>
         private SkeletonManager _skeletonManager;
+#endif
         /// <summary>
         /// Visibility of ErrorGrid 
         /// </summary>
@@ -110,6 +114,7 @@ namespace KinectFittingRoom.ViewModel
                 OnPropertyChanged("Hand");
             }
         }
+#if DEBUG
         /// <summary>
         /// Gets or sets the skeleton manager.
         /// </summary>
@@ -127,6 +132,7 @@ namespace KinectFittingRoom.ViewModel
                 OnPropertyChanged("SkeletonManager");
             }
         }
+#endif
         /// <summary>
         /// Gets or sets the width.
         /// </summary>
@@ -170,7 +176,7 @@ namespace KinectFittingRoom.ViewModel
         public Visibility ErrorGridVisibility
         {
             get { return _errorGridVisibility; }
-            set 
+            set
             {
                 if (_errorGridVisibility == value)
                     return;
@@ -208,6 +214,7 @@ namespace KinectFittingRoom.ViewModel
                 }
                 catch (Exception exc)
                 {
+#warning TODO
                     // TODO: Handle IOException when Kinect is being used by another process
                     MessageBox.Show(exc.Message);
                 }
@@ -241,7 +248,7 @@ namespace KinectFittingRoom.ViewModel
                 var skeleton = GetPrimarySkeleton(_skeletons);
                 Hand.UpdateHandCursor(skeleton, Kinect, Width, Height);
                 foreach (var c in ClothingItems.ClothingManager.Instance.ChosenClothes)
-                    c.Value.UpdateItemPosition(skeleton, Kinect, Width, Height);               
+                    c.Value.UpdateItemPosition(skeleton, Kinect, Width, Height);
 #if DEBUG
                 Brush brush = Brushes.Coral;
                 SkeletonManager.DrawSkeleton(_skeletons, brush, _kinectSensor, Width, Height);
@@ -276,7 +283,7 @@ namespace KinectFittingRoom.ViewModel
             KinectSensor.KinectSensors.StatusChanged += KinectSensor_StatusChanged;
             Kinect = KinectSensor.KinectSensors.FirstOrDefault(x => x.Status == KinectStatus.Connected);
             if (Kinect == null)
-                ErrorGridVisibility=Visibility.Visible;
+                ErrorGridVisibility = Visibility.Visible;
         }
         /// <summary>
         /// Updates KinectSensor
@@ -303,6 +310,7 @@ namespace KinectFittingRoom.ViewModel
                     }
                     break;
                 default:
+#warning TODO
                     //TODO: Notify about error
                     throw new NotImplementedException();
             }
@@ -315,7 +323,9 @@ namespace KinectFittingRoom.ViewModel
         public void Initialize()
         {
             Hand = new Hand();
+#if DEBUG
             SkeletonManager = new SkeletonManager();
+#endif
             ErrorGridVisibility = Visibility.Hidden;
             DiscoverKinectSensors();
 
