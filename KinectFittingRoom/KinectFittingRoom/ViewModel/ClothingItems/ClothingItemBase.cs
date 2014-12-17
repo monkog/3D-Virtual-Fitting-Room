@@ -1,11 +1,6 @@
-﻿#if DEBUG
-using KinectFittingRoom.ViewModel.Debug;
-#endif
+﻿using System;
 using Microsoft.Kinect;
-using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Windows;
 namespace KinectFittingRoom.ViewModel.ClothingItems
 {
     public abstract class ClothingItemBase : ViewModelBase
@@ -161,7 +156,27 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
             _imageWidthToItemWidth = imageWidthToItemWidth;
         }
         #endregion
-        #region Methods
+        #region Protected Methods
+        /// <summary>
+        /// Tracks the rotation angle between two joints.
+        /// </summary>
+        /// <param name="sensor">Kinect sensor</param>
+        /// <param name="joint1">The first joint.</param>
+        /// <param name="joint2">The second joint.</param>
+        /// <returns>Rotation angle between two joints or NaN if at least one of the joints isn't tracked</returns>
+        protected double TrackJointsRotation(KinectSensor sensor, Joint joint1, Joint joint2)
+        {
+            if (joint1.TrackingState == JointTrackingState.NotTracked
+                || joint2.TrackingState == JointTrackingState.NotTracked)
+                return double.NaN;
+
+            var rightHip = sensor.CoordinateMapper.MapSkeletonPointToDepthPoint(joint1.Position, sensor.DepthStream.Format);
+            var leftHip = sensor.CoordinateMapper.MapSkeletonPointToDepthPoint(joint2.Position, sensor.DepthStream.Format);
+
+            return (Math.Atan(((double)rightHip.Depth - leftHip.Depth) / ((double)leftHip.X - rightHip.X)) * 180.0 / Math.PI);
+        }
+        #endregion Protected Methods
+        #region Public Methods
         /// <summary>
         /// Invokes setting the item's position
         /// </summary>
@@ -183,7 +198,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// <param name="width">Kinect image width</param>
         /// <param name="height">Kinect image height</param>
         public abstract void TrackSkeletonParts(Skeleton skeleton, KinectSensor sensor, double width, double height);
-        #endregion Methods
+        #endregion Public Methods
         public enum ClothingType
         {
             HatItem,

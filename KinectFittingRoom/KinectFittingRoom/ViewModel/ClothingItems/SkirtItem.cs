@@ -1,15 +1,10 @@
 ﻿using Microsoft.Kinect;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KinectFittingRoom.ViewModel.ClothingItems
 {
     class SkirtItem : ClothingItemBase
     {
+        #region .ctor
         /// <summary>
         /// Constructor of Skirt object
         /// </summary>
@@ -17,9 +12,9 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// <param name="imageWidthToItemWidth">Proportion image width to significant width of item</param>
         public SkirtItem(string pathToImage, double imageWidthToItemWidth)
             : base(pathToImage, imageWidthToItemWidth)
-        {
-        }
-
+        { }
+        #endregion .ctor
+        #region Public Methods
         /// <summary>
         ///Set position for skirt
         /// </summary>
@@ -29,9 +24,11 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// <param name="height">Kinect image height</param>
         public override void TrackSkeletonParts(Skeleton skeleton, KinectSensor sensor, double width, double height)
         {
-            System.Windows.Point head = KinectService.GetJointPoint(skeleton.Joints[JointType.Head], sensor, width, height); ;
-            System.Windows.Point footLeft = KinectService.GetJointPoint(skeleton.Joints[JointType.FootLeft], sensor, width, height);
-            System.Windows.Point spine = KinectService.GetJointPoint(skeleton.Joints[JointType.Spine], sensor, width, height);
+            double rotationAngle = TrackJointsRotation(sensor, skeleton.Joints[JointType.HipRight], skeleton.Joints[JointType.HipLeft]);
+            
+            var head = KinectService.GetJointPoint(skeleton.Joints[JointType.Head], sensor, width, height);
+            var footLeft = KinectService.GetJointPoint(skeleton.Joints[JointType.FootLeft], sensor, width, height);
+            var spine = KinectService.GetJointPoint(skeleton.Joints[JointType.Spine], sensor, width, height);
 
             double heightToWidth = Height / Width;
             double newWidth = (footLeft.Y - head.Y) * 0.18;
@@ -40,5 +37,6 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
             Top = spine.Y + 20;
             Left = spine.X - Width / 2;
         }
+        #endregion Public Methods
     }
 }

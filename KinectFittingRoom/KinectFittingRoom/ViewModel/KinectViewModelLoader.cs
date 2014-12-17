@@ -40,9 +40,6 @@
         /// </summary>
         public static void Cleanup()
         {
-            if (_kinectViewModel != null)
-                _kinectViewModel.Cleanup();
-
             _kinectService.Cleanup();
         }
         #endregion Public Methods

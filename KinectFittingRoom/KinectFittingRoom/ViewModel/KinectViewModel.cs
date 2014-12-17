@@ -2,8 +2,6 @@
 using System.Collections.ObjectModel;
 using KinectFittingRoom.ViewModel.ButtonItems;
 using KinectFittingRoom.ViewModel.ClothingItems;
-using System.Windows;
-using System.Drawing;
 
 namespace KinectFittingRoom.ViewModel
 {
@@ -71,7 +69,6 @@ namespace KinectFittingRoom.ViewModel
         {
             get { return _kinectService; }
         }
-
         #endregion Public Properties
         #region .ctor
         /// <summary>
@@ -92,7 +89,18 @@ namespace KinectFittingRoom.ViewModel
         private void InitializeClothingCategories()
         {
             ClothingCategories = new ObservableCollection<ClothingCategoryButtonViewModel>();
-            ClothingCategoryButtonViewModel clothing = new ClothingCategoryButtonViewModel
+
+            ClothingCategories.Add(CreateHatsClothingCategoryButton());
+            ClothingCategories.Add(CreateSkirtsClothingCategoryButton());
+            ClothingCategories.Add(CreateGlassesClothingCategoryButton());
+        }
+        /// <summary>
+        /// Creates the hats clothing category button.
+        /// </summary>
+        /// <returns>Hats clothing category button</returns>
+        private ClothingCategoryButtonViewModel CreateHatsClothingCategoryButton()
+        {
+            return new ClothingCategoryButtonViewModel
             {
                 Image = Properties.Resources.hat_symbol,
                 Clothes = new List<ClothingButtonViewModel>
@@ -111,22 +119,36 @@ namespace KinectFittingRoom.ViewModel
                     }
                 }
             };
-            ClothingCategoryButtonViewModel clothing1 = new ClothingCategoryButtonViewModel
+        }
+        /// <summary>
+        /// Creates the skirts clothing category button.
+        /// </summary>
+        /// <returns>Skirts clothing category button</returns>
+        private ClothingCategoryButtonViewModel CreateSkirtsClothingCategoryButton()
+        {
+            return new ClothingCategoryButtonViewModel
             {
                 Image = Properties.Resources.skirt_symbol,
                 Clothes = new List<ClothingButtonViewModel>
-                    {
-                        new ClothingButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\skirt_jeans.png") {
-                            Image = Properties.Resources.small_skirt_jeans, 
-                            ImageWidthToItemWidth = 2.21
-                        },
-                        new ClothingButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\skirt_maroon.png") {
-                            Image = Properties.Resources.small_skirt_maroon, 
-                            ImageWidthToItemWidth = 2.0
-                        }
+                {
+                    new ClothingButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\skirt_jeans.png") {
+                        Image = Properties.Resources.small_skirt_jeans, 
+                        ImageWidthToItemWidth = 2.21
+                    },
+                    new ClothingButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\skirt_maroon.png") {
+                        Image = Properties.Resources.small_skirt_maroon, 
+                        ImageWidthToItemWidth = 2.0
                     }
+                }
             };
-            ClothingCategoryButtonViewModel clothing2 = new ClothingCategoryButtonViewModel
+        }
+        /// <summary>
+        /// Creates the glasses clothing category button.
+        /// </summary>
+        /// <returns>Glasses clothing category button</returns>
+        private ClothingCategoryButtonViewModel CreateGlassesClothingCategoryButton()
+        {
+            return new ClothingCategoryButtonViewModel
             {
                 Image = Properties.Resources.glasses_symbol,
                 Clothes =
@@ -146,21 +168,7 @@ namespace KinectFittingRoom.ViewModel
                         }
                     }
             };
-
-            ClothingCategories.Add(clothing);
-            ClothingCategories.Add(clothing1);
-            ClothingCategories.Add(clothing2);
-        }
-        /// <summary>
-        /// Cleanups this instance.
-        /// </summary>
-        public void Cleanup()
-        {
         }
         #endregion Private Methods
-        #region Event Handlers
-        #endregion Event Handlers
-        #region Protected Methods
-        #endregion Protected Methods
     }
 }

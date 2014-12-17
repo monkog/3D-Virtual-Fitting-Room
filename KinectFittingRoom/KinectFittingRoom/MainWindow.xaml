@@ -105,32 +105,6 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </Canvas>
-        <!--Container for all models-->
-        <Viewport3D RenderOptions.CachingHint="Cache" ClipToBounds="True" >
-            <!--Camera-->
-            <Viewport3D.Camera>
-                <PerspectiveCamera FarPlaneDistance="300" LookDirection="0,0,-1" UpDirection="0,1,0" NearPlaneDistance="1"  Position="0,3,25" FieldOfView="45">
-                    <PerspectiveCamera.Transform>
-                        <MatrixTransform3D>
-                        </MatrixTransform3D>
-                    </PerspectiveCamera.Transform>
-                </PerspectiveCamera>
-            </Viewport3D.Camera>
-            <!--Clothing models-->
-            <ContainerUIElement3D/>
-            <!--Light-->
-            <ModelVisual3D>
-                <ModelVisual3D.Content>
-                    <Model3DGroup>
-                        <AmbientLight Color="#666666"/>
-                        <DirectionalLight Color="#444444" Direction="0 -1 -1">
-                        </DirectionalLight>
-                        <SpotLight Color="#666666" Direction="0 0 -1" InnerConeAngle="30" OuterConeAngle="60" Position="0 1 30" >
-                        </SpotLight>
-                    </Model3DGroup>
-                </ModelVisual3D.Content>
-            </ModelVisual3D>
-        </Viewport3D>
         <!--Temporary container for flat 2D clothing models-->
         <ItemsControl ItemsSource="{Binding ChosenClothes.Values, Source={x:Static local:ClothingManager.Instance}}">
             <ItemsControl.ItemsPanel>
@@ -155,8 +129,7 @@
                          Opacity="0.5" 
                          Stroke="Black" 
                          StrokeThickness="2"/>
-                <Image Source="/Resources/Images/Hand.png" Width="60" Height="60" Margin="5,5,5,5">
-                </Image>
+                <Image Source="/Resources/Images/Hand.png" Width="60" Height="60" Margin="5,5,5,5"/>
             </Canvas>
         </Canvas>
         <!--Grid containing Skeleton parts for debugging-->
@@ -167,9 +140,10 @@
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>
-        <Canvas Background="Brown" Opacity="0.8" Width="100" Height="100" Visibility="Collapsed">
-            <Label x:Name="TimerLabel" FontSize="10" x:FieldModifier="public" Width="100" Height="100" Margin="0,0,417,220" />
+        <Canvas Background="Brown" Opacity="0.8" Width="100" Height="100" Visibility="Visible">
+            <Label x:Name="TimerLabel" FontSize="30" x:FieldModifier="public" Width="900" Height="500" Margin="0,0,417,220" />
         </Canvas>
+        <!--Grid used for viewing error messages-->
         <Grid Name="ErrorGrid" Opacity="0.7" Background="Black" Visibility="{Binding KinectService.ErrorGridVisibility}">
             <TextBlock Name="ErrorGridText" FontSize="20" HorizontalAlignment="Center" Opacity="0.7" VerticalAlignment="Center" Foreground="White">
                 Proszę podłączyć Kinnect!
