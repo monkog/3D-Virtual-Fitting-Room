@@ -8,6 +8,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"        
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:h="http://helix-toolkit.org/wpf"
         mc:Ignorable="d"
         WindowState="Maximized"		
 		WindowStyle="None"
@@ -132,6 +133,14 @@
                 <Image Source="/Resources/Images/Hand.png" Width="60" Height="60" Margin="5,5,5,5"/>
             </Canvas>
         </Canvas>
+		<!--3D control-->
+        <h:HelixViewport3D CameraRotationMode="Trackball">
+            <h:HelixViewport3D.Camera>
+                <PerspectiveCamera Position="0,-2,0" LookDirection="0,6,0" UpDirection="0,0,1" NearPlaneDistance="0.01" FarPlaneDistance="1000" FieldOfView="57"/>
+            </h:HelixViewport3D.Camera>
+            <h:SunLight/>
+            <ModelVisual3D Content="{Binding Model, Source={x:Static local:ClothingManager.Instance}}"/>
+        </h:HelixViewport3D>
         <!--Grid containing Skeleton parts for debugging-->
         <ItemsControl ItemsSource="{Binding KinectService.SkeletonManager.SkeletonParts}">
             <ItemsControl.ItemsPanel>

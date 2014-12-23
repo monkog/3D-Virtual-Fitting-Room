@@ -1,5 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Media.Media3D;
+using HelixToolkit.Wpf;
 using KinectFittingRoom.ViewModel.ButtonItems;
 
 namespace KinectFittingRoom.ViewModel.ClothingItems
@@ -60,22 +63,35 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// <summary>
         /// Private constructor of ClothingManager. 
         /// </summary>
-        private ClothingManager() 
+        private ClothingManager()
         {
-            ChosenClothes = new Dictionary<ClothingItemBase.ClothingType,ClothingItemBase>();        
+            ChosenClothes = new Dictionary<ClothingItemBase.ClothingType, ClothingItemBase>();
+            Model = new GeometryModel3D();
+            ModelImporter importer = new ModelImporter();
+            Model3DGroup group = importer.Load("skirt.obj");
+            var model = (GeometryModel3D)group.Children.First();
+            Model = new GeometryModel3D(model.Geometry, MaterialHelper.CreateImageMaterial("skirt_denim.bmp"));
+            Model.Transform = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(1, 0, 0), 90));
         }
         /// <summary>
         /// Method with access to only instance of ClothingManager
         /// </summary>
         public static ClothingManager Instance
         {
-            get
+            get { return _instance ?? (_instance = new ClothingManager()); }
+        }
+
+        private GeometryModel3D _model;
+        public GeometryModel3D Model
+        {
+            get { return _model; }
+            set
             {
-                if (_instance == null)
-                    _instance = new ClothingManager();
-                return _instance;
+                if (_model == value)
+                    return;
+                _model = value;
+                OnPropertyChanged("Model");
             }
         }
-        
     }
 }
