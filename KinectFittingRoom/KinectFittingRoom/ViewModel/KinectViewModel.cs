@@ -81,6 +81,7 @@ namespace KinectFittingRoom.ViewModel
         public KinectViewModel(KinectService kinectService)
         {
             InitializeClothingCategories();
+            InitializeTopMenu();
             _kinectService = kinectService;
             _kinectService.Initialize();
         }
@@ -150,6 +151,11 @@ namespace KinectFittingRoom.ViewModel
             ClothingCategories.Add(clothing);
             ClothingCategories.Add(clothing1);
             ClothingCategories.Add(clothing2);
+        }
+
+        private void InitializeTopMenu()
+        {
+            TopMenuManager.Instance.TopMenuButtons.Add(new TopMenuButtonViewModel(TopMenuButtonViewModel.Functionality.showMenu) { Image = Properties.Resources.menu });
         }
         /// <summary>
         /// Cleanups this instance.

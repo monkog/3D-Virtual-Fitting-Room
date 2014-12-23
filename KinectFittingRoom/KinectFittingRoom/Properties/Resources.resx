@@ -163,4 +163,43 @@
   <data name="small_sunglasses_rayban" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\small_sunglasses_rayban.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="menu" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Menu\menu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="menu_arrows" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Menu\menu_arrows.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="menu_camera" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Menu\menu_camera.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="menu_clearSet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Menu\menu_clearSet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="menu_doors" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Menu\menu_doors.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="menu_menWomen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Menu\menu_menWomen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="menu_speaker" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Menu\menu_speaker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="vertical_arrows" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Menu\vertical_arrows.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="vertical_arrows_smaller" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Menu\vertical_arrows_smaller.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="man" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Menu\man.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="woman" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Menu\woman.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ButtonClick" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ButtonClick.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CameraClick" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CameraClick.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

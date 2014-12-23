@@ -19,8 +19,25 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// The clothing collection
         /// </summary>
         private ObservableCollection<ClothingButtonViewModel> _clothing;
+        /// <summary>
+        /// The last added item to ChosenClothes collection
+        /// </summary>
+        private ClothingItemBase _lastAddedItem;
         #endregion Private Fields
         #region Public Properties
+        /// <summary>
+        /// Gets or sets the last added item to ChosenClothes collection
+        /// </summary>
+        public ClothingItemBase LastAddedItem
+        {
+            get { return _lastAddedItem; }
+            set
+            {
+                if (_lastAddedItem == value)
+                    return;
+                _lastAddedItem = value;
+            }
+        }
         /// <summary>
         /// Gets or sets the chosen clothing collection.
         /// </summary>

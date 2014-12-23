@@ -100,6 +100,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
                 if (clickedButton.PathToImage == clickedClothingItem.PathToImage)
                     return;
 
+           
             Dictionary<ClothingItemBase.ClothingType, ClothingItemBase> tmp = ClothingManager.Instance.ChosenClothes;
 
             switch (clickedButton.Category)
@@ -114,7 +115,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
                     clickedClothingItem = new SkirtItem(clickedButton.PathToImage, clickedButton.ImageWidthToItemWidth);
                     break;
             }
-
+            ClothingManager.Instance.LastAddedItem = clickedClothingItem;
             tmp[clickedButton.Category] = clickedClothingItem;
             ClothingManager.Instance.ChosenClothes = new Dictionary<ClothingItemBase.ClothingType, ClothingItemBase>(tmp);
         }

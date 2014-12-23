@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
 using KinectFittingRoom.View.Buttons.Events;
+using System.Media;
 
 namespace KinectFittingRoom.View.Buttons
 {
@@ -16,13 +17,21 @@ namespace KinectFittingRoom.View.Buttons
         /// <summary>
         /// Number of seconds that Click event occures
         /// </summary>
-        private const int ClickTimeout = 20;
+        private const int ClickTimeout = 40;
         #endregion Constants
         #region Private Fields
         /// <summary>
         /// Number of elapsed ticks for _clickTimer
         /// </summary>
         private int _clickTicks;
+        /// <summary>
+        /// Sounds player
+        /// </summary>
+        private SoundPlayer _player;
+        /// <summary>
+        /// Determines if sounds are played
+        /// </summary>
+        private static bool _soundsOn;
         /// <summary>
         /// Determines how much time elapsed since HandCursorEnterEvent occured
         /// </summary>
@@ -89,6 +98,16 @@ namespace KinectFittingRoom.View.Buttons
         }
         #endregion Event handlers
         #region Properties
+        public static bool SoundsOn
+        {
+            get { return _soundsOn; }
+            set
+            {
+                if (_soundsOn == value)
+                    return;
+                _soundsOn = value;
+            }
+        }
         /// <summary>
         /// Has Click event occured
         /// </summary>
@@ -129,6 +148,9 @@ namespace KinectFittingRoom.View.Buttons
             HandCursorMove += KinectButton_HandCursorMove;
             HandCursorLeave += KinectButton_HandCursorLeave;
             HandCursorClick += KinectButton_HandCursorClick;
+
+            _soundsOn = true;
+            _player = new SoundPlayer(Properties.Resources.ButtonClick);
         }
         #endregion .ctor
         #region Methods
@@ -163,7 +185,6 @@ namespace KinectFittingRoom.View.Buttons
 
             if (_clickTicks <= ClickTimeout)
                 return;
-
             ResetTimer();
             RaiseEvent(new HandCursorEventArgs(HandCursorClickEvent, _lastHandPosition));
         }
@@ -174,6 +195,9 @@ namespace KinectFittingRoom.View.Buttons
         {
             SetValue(IsClickedProperty, true);
             ((MainWindow)Application.Current.MainWindow).TimerLabel.Content = "Click";
+            if(SoundsOn)
+                _player.Play();
+            ResetTimer();
 
         }
         /// <summary>
@@ -181,6 +205,7 @@ namespace KinectFittingRoom.View.Buttons
         /// </summary>
         private void ResetTimer()
         {
+            SetValue(IsClickedProperty, false);
             _clickTimer.Stop();
             _clickTicks = 0;
         }

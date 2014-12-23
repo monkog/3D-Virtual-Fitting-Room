@@ -7,7 +7,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type buttons:KinectButton}">
-                    <Border x:Name="ButtonBorder" Background="#AB101010" BorderBrush="Gray" CornerRadius="25" BorderThickness="4" RenderTransformOrigin="0.5, 0.5" Margin="0, 10, 0, 0">
+                    <Border x:Name="ButtonBorder" Background="#AB101010" BorderBrush="Gray" CornerRadius="25" BorderThickness="4" RenderTransformOrigin="0.5, 0.5" Margin="0, 10, 0, 0" Width="150" Height="150" >
                         <Grid>
                             <Rectangle Opacity="0.5" RadiusX="23" RadiusY="23">
                                 <Rectangle.Fill>
@@ -27,6 +27,15 @@
                                 <Setter.Value>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
+                                    </TransformGroup>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsClicked" Value="False">
+                            <Setter TargetName="ButtonBorder" Property="RenderTransform">
+                                <Setter.Value>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
                                     </TransformGroup>
                                 </Setter.Value>
                             </Setter>
