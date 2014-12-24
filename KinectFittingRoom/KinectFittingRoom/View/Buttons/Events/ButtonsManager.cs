@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Media;
 
 namespace KinectFittingRoom.View.Buttons.Events
 {
@@ -61,6 +62,12 @@ namespace KinectFittingRoom.View.Buttons.Events
                 element.RaiseEvent(new HandCursorEventArgs(KinectInput.HandCursorEnterEvent, cursorPosition));
             }
             _lastElement = element;
+        }
+
+        public void RaiseScreenShotEvent(Visual element1, Visual element2, int width, int height)
+        {
+            if(element1 != null && element2 != null)
+                new ScreenShotEvent(element1, element2, width, height);
         }
         #endregion Methods
     }

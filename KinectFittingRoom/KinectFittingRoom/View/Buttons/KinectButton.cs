@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
 using KinectFittingRoom.View.Buttons.Events;
-using System.Media;
+using KinectFittingRoom.ViewModel;
 
 namespace KinectFittingRoom.View.Buttons
 {
@@ -25,17 +25,17 @@ namespace KinectFittingRoom.View.Buttons
         /// </summary>
         private int _clickTicks;
         /// <summary>
-        /// Sounds player
+        /// Number of elapsed ticks for _afterClickTimer
         /// </summary>
-        private SoundPlayer _player;
-        /// <summary>
-        /// Determines if sounds are played
-        /// </summary>
-        private static bool _soundsOn;
+        private int _afterClickTicks;
         /// <summary>
         /// Determines how much time elapsed since HandCursorEnterEvent occured
         /// </summary>
         private readonly DispatcherTimer _clickTimer;
+        /// <summary>
+        /// Determines how much time elapsed since HandCursorClickEvent occured
+        /// </summary>
+        private readonly DispatcherTimer _afterClickTimer;
         /// <summary>
         /// The last hand position
         /// </summary>
@@ -98,16 +98,6 @@ namespace KinectFittingRoom.View.Buttons
         }
         #endregion Event handlers
         #region Properties
-        public static bool SoundsOn
-        {
-            get { return _soundsOn; }
-            set
-            {
-                if (_soundsOn == value)
-                    return;
-                _soundsOn = value;
-            }
-        }
         /// <summary>
         /// Has Click event occured
         /// </summary>
@@ -138,20 +128,21 @@ namespace KinectFittingRoom.View.Buttons
         /// </summary>
         public KinectButton()
         {
-            SetValue(IsClickedProperty, false);
-
+            //SetValue(IsClickedProperty, false);
             _clickTimer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0, 0, 1) };
             _clickTicks = 0;
             _clickTimer.Tick += m_clickTimer_Tick;
+            _afterClickTimer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0, 0, 1) };
+            _afterClickTicks = 0;
+            _clickTimer.Tick += m_afterClickTimer_Tick;
 
             HandCursorEnter += KinectButton_HandCursorEnter;
             HandCursorMove += KinectButton_HandCursorMove;
             HandCursorLeave += KinectButton_HandCursorLeave;
             HandCursorClick += KinectButton_HandCursorClick;
-
-            _soundsOn = true;
-            _player = new SoundPlayer(Properties.Resources.ButtonClick);
         }
+
+        
         #endregion .ctor
         #region Methods
         /// <summary>
@@ -189,23 +180,36 @@ namespace KinectFittingRoom.View.Buttons
             RaiseEvent(new HandCursorEventArgs(HandCursorClickEvent, _lastHandPosition));
         }
         /// <summary>
+        /// Counts the number of timer ticks of m_afterClickTimer
+        /// </summary>
+        private void m_afterClickTimer_Tick(object sender, EventArgs e)
+        {
+            _afterClickTicks++;
+
+            if (_afterClickTicks >= 1)
+            {
+                SetValue(IsClickedProperty, false);
+                _afterClickTimer.Stop();
+                _afterClickTicks = 0;
+            }
+
+        }
+        /// <summary>
         /// Imitates the click event
         /// </summary>
         protected virtual void KinectButton_HandCursorClick(object sender, HandCursorEventArgs args)
         {
-            SetValue(IsClickedProperty, true);
             ((MainWindow)Application.Current.MainWindow).TimerLabel.Content = "Click";
-            if(SoundsOn)
-                _player.Play();
-            ResetTimer();
-
+            if (KinectViewModel.SoundsOn)
+                KinectViewModel.Player.Play();
+            SetValue(IsClickedProperty, true);
+            _afterClickTimer.Start();
         }
         /// <summary>
         /// Resets the timer
         /// </summary>
         private void ResetTimer()
         {
-            SetValue(IsClickedProperty, false);
             _clickTimer.Stop();
             _clickTicks = 0;
         }

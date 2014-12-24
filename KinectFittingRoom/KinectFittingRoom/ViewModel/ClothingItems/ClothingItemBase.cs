@@ -44,6 +44,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// <summary>
         /// Gets the proportion of image width to significant width of item
         /// </summary>
+        /// 
         public double ImageWidthToItemWidth
         {
             get
@@ -189,6 +190,13 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
             HatItem,
             SkirtItem,
             GlassesItem
+        }
+
+        public enum MaleFemaleType
+        {
+            Male,
+            Female,
+            Both
         }
     }
 }

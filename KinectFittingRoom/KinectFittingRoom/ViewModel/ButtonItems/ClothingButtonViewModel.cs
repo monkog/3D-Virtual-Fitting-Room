@@ -31,6 +31,10 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// Path to original image of item
         /// </summary>
         private string _pathToImage;
+        /// <summary>
+        /// Type of clothing item
+        /// </summary>
+        private ClothingItemBase.MaleFemaleType _type;
         #endregion Private Fields
         #region Public Properties
         /// <summary>
@@ -48,11 +52,18 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
             get { return _pathToImage; }
         }
         /// <summary>
-        /// Gets or sets category of item
+        /// Gets category of item
         /// </summary>
         public ClothingItemBase.ClothingType Category
         {
             get { return _category; }
+        }
+        /// <summary>
+        /// Gets type of item
+        /// </summary>
+        public ClothingItemBase.MaleFemaleType Type
+        {
+            get { return _type; }
         }
         /// <summary>
         /// Gets or sets proportion image width to significant width of item
@@ -126,9 +137,10 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// </summary>
         /// <param name="type">Type of clothing item</param>
         /// <param name="pathToImage">Path to original image of item</param>
-        public ClothingButtonViewModel(ClothingItemBase.ClothingType type, string pathToImage)
+        public ClothingButtonViewModel(ClothingItemBase.ClothingType category, ClothingItemBase.MaleFemaleType type, string pathToImage)
         {
-            _category = type;
+            _category = category;
+            _type = type;
             _pathToImage = pathToImage;
         }
         #endregion

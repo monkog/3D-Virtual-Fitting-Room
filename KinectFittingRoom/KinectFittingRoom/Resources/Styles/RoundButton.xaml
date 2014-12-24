@@ -7,7 +7,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type buttons:KinectButton}">
                         <Grid>
-                        <Ellipse x:Name="ButtonEllipse" Stroke="Black" StrokeThickness="3" Fill="GhostWhite" Opacity="50" Width="90" Height="90"/>
+                        <Ellipse x:Name="ButtonEllipse" Stroke="Black" StrokeThickness="3" Fill="GhostWhite" Opacity="50"/>
                         <ContentPresenter x:Name="ButtonImage" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                     <ControlTemplate.Triggers>
@@ -15,16 +15,7 @@
                             <Setter TargetName="ButtonEllipse" Property="RenderTransform">
                                 <Setter.Value>
                                     <TransformGroup>
-                                        <ScaleTransform ScaleX="0.95" ScaleY="0.95"/>
-                                    </TransformGroup>
-                                </Setter.Value>
-                            </Setter>
-                        </Trigger>
-                        <Trigger Property="IsClicked" Value="False">
-                            <Setter TargetName="ButtonEllipse" Property="RenderTransform">
-                                <Setter.Value>
-                                    <TransformGroup>
-                                        <ScaleTransform ScaleX="1.05" ScaleY="1.05"/>
+                                        <ScaleTransform ScaleX="0.8" ScaleY="0.8"/>
                                     </TransformGroup>
                                 </Setter.Value>
                             </Setter>

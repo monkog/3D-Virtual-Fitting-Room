@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems
 {
@@ -22,14 +23,12 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// All top menu buttons view
         /// </summary>
         private ObservableCollection<TopMenuButtonViewModel> _allButtons;
+
+        private Visibility _allTopButtonsVisibility;
         /// <summary>
         /// Change size buttons view
         /// </summary>
         private ObservableCollection<TopMenuButtonViewModel> _changeSizeButtons;
-        /// <summary>
-        /// Change category buttons view
-        /// </summary>
-        private ObservableCollection<TopMenuButtonViewModel> _maleFemaleCategory;
         #endregion Private Fields
         #region Public Properties
         /// <summary>
@@ -59,6 +58,17 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         {
             get { return _allButtons; }
         }
+        public Visibility AllTopButtonsVisibility
+        {
+            get { return _allTopButtonsVisibility; }
+            set
+            {
+                if (_allTopButtonsVisibility == value)
+                    return;
+                _allTopButtonsVisibility = value;
+                OnPropertyChanged("AllTopButtonsVisibility");
+            }
+        }
         /// <summary>
         /// Gets change size buttons.
         /// </summary>
@@ -69,26 +79,16 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         {
             get { return _changeSizeButtons; }
         }
-        /// <summary>
-        /// Gets change category buttons.
-        /// </summary>
-        /// <value>
-        /// The change category buttons collection.
-        /// </value>
-        public ObservableCollection<TopMenuButtonViewModel> MaleFemaleCategory
-        {
-            get { return _maleFemaleCategory; }
-        }
         #endregion Public Properties
         /// <summary>
         /// Private constructor of TopMenuManager. 
         /// </summary>
         private TopMenuManager()
         {
+            AllTopButtonsVisibility = Visibility.Collapsed;
             TopMenuButtons = new ObservableCollection<TopMenuButtonViewModel>();
             _allButtons = new ObservableCollection<TopMenuButtonViewModel>()
             {
-                new TopMenuButtonViewModel(TopMenuButtonViewModel.Functionality.showMenu) { Image = Properties.Resources.menu },
                 new TopMenuButtonViewModel(TopMenuButtonViewModel.Functionality.maleFemaleCategory) { Image = Properties.Resources.menu_menWomen },
                 new TopMenuButtonViewModel(TopMenuButtonViewModel.Functionality.changeSize) { Image = Properties.Resources.menu_arrows },
                 new TopMenuButtonViewModel(TopMenuButtonViewModel.Functionality.clearClothingSet) { Image = Properties.Resources.menu_clearSet },
@@ -101,12 +101,6 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
                 new TopMenuButtonViewModel(TopMenuButtonViewModel.Functionality.showMenu) { Image = Properties.Resources.menu },
                 new TopMenuButtonViewModel(TopMenuButtonViewModel.Functionality.makeBigger) { Image = Properties.Resources.vertical_arrows },
                 new TopMenuButtonViewModel(TopMenuButtonViewModel.Functionality.makeSmaller) { Image = Properties.Resources.vertical_arrows_smaller }
-            };
-            _maleFemaleCategory = new ObservableCollection<TopMenuButtonViewModel>()
-            {
-                new TopMenuButtonViewModel(TopMenuButtonViewModel.Functionality.showMenu) { Image = Properties.Resources.menu },
-                new TopMenuButtonViewModel(TopMenuButtonViewModel.Functionality.maleCategory) { Image = Properties.Resources.man },
-                new TopMenuButtonViewModel(TopMenuButtonViewModel.Functionality.femaleCategory) { Image = Properties.Resources.woman }
             };
         }
         /// <summary>

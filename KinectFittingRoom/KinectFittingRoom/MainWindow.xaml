@@ -33,7 +33,7 @@
 			   helpers:PropertiesObserver.ObservedHeight="{Binding KinectService.Height, Mode=OneWayToSource}"/>
         <!--Canvas containing button panels-->
         <Canvas Name="ButtonPanelsCanvas" Width="{Binding KinectService.Width}" Height="{Binding KinectService.Height}">
-            <Canvas Name="LeftPanel"
+            <Canvas x:Name="LeftPanel"
                     Width="180" 
                     Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Canvas}}
                     , Path=ActualHeight, Converter={StaticResource ReducedValueConverter}, ConverterParameter=40}" 
@@ -69,7 +69,7 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-            <Canvas Name="RightPanel"
+            <Canvas x:Name="RightPanel"
                     Width="180" 
                     Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Canvas}}
                     , Path=ActualHeight, Converter={StaticResource ReducedValueConverter}, ConverterParameter=40}" 
@@ -106,52 +106,69 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-            <!--Canvas containing top menu panel-->
-            <Canvas Name="TopPanel" 
-                    Canvas.Left="{Binding (Canvas.Right), ElementName=LeftPanel}"
-                    Canvas.Top="20"
-                    Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Canvas}}
-                    , Path=ActualWidth, Converter={StaticResource ReducedValueConverter}, ConverterParameter=40}" 
-                    Height="100"/>
-            <!--StackPanel containing all the buttons from top menu-->
-            <ItemsControl ItemsSource="{Binding TopMenuButtons, Source={x:Static local2:TopMenuManager.Instance }}"
-                          Width="768"
-                          Height="{Binding ActualHeight, ElementName=TopPanel}"
-                          Margin="{Binding Margin, ElementName=TopPanel}" Canvas.Left="205">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <buttons:KinectButton Width="90" Height="90" Margin="4" Style="{StaticResource RoundButton}">
-                            <Image Source="{Binding Image, Converter={StaticResource BitmapToImageSourceConverter}}" 
+            <!--Canvas with all top buttons-->
+            <Canvas x:Name="AllTopButtonsPanel" Canvas.Left="290" Canvas.Top="20" Width="500" Height="90" 
+                    Visibility="{Binding AllTopButtonsVisibility, Source={x:Static local2:TopMenuManager.Instance }}">
+                <!--StackPanel containing all the buttons from top menu-->
+                <ItemsControl ItemsSource="{Binding AllButtons, Source={x:Static local2:TopMenuManager.Instance }}"
+                          Width="{Binding Width, ElementName=AllTopButtonsPanel}"
+                          Height="{Binding Height, ElementName=AllTopButtonsPanel}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <buttons:KinectButton  Width="70" Height="70" Margin="5" Style="{StaticResource RoundButton}">
+                                <Image Source="{Binding Image, Converter={StaticResource BitmapToImageSourceConverter}}" 
                                        Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Width}"
 									   Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Height}"
                                        Canvas.Left="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=(Canvas.Left)}"
                                        Canvas.Top="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=(Canvas.Top)}"/>
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="HandCursorClick">
-                                    <i:InvokeCommandAction Command="{Binding TopMenuCommand}">
-                                        <i:InvokeCommandAction.CommandParameter>
-                                            <MultiBinding Converter="{StaticResource MultiValueConverter}">
-                                                <MultiBinding.Bindings>
-                                                    <Binding Path="TopButtonObject"/>
-                                                    <Binding Path="ActualWidth" ElementName="ImageArea"/>
-                                                    <Binding Path="ActualHeight" ElementName="ImageArea"/>
-                                                    <Binding ElementName="ImageArea"/>
-                                                    <Binding ElementName="ClothesArea"/>
-                                                    </MultiBinding.Bindings>
-                                            </MultiBinding>
-                                        </i:InvokeCommandAction.CommandParameter>
-                                    </i:InvokeCommandAction>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </buttons:KinectButton>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="HandCursorClick">
+                                        <i:InvokeCommandAction Command="{Binding TopMenuCommand}" CommandParameter="{Binding TopButtonObject}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </buttons:KinectButton>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Canvas>
+            <!--Canvas containing top menu panel-->
+            <Canvas x:Name="TopPanel" 
+                    Canvas.Left="200"
+                    Canvas.Top="20"
+                    Width="600"
+                    Height="90">
+                <!--StackPanel containing all the buttons from top menu-->
+                <ItemsControl ItemsSource="{Binding TopMenuButtons, Source={x:Static local2:TopMenuManager.Instance }}"
+                          Width="{Binding Width, ElementName=TopPanel}"
+                          Height="{Binding Height, ElementName=TopPanel}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <buttons:KinectButton  Width="70" Height="70" Margin="5" Style="{StaticResource RoundButton}">
+                                <Image Source="{Binding Image, Converter={StaticResource BitmapToImageSourceConverter}}" 
+                                       Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Width}"
+									   Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Height}"
+                                       Canvas.Left="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=(Canvas.Left)}"
+                                       Canvas.Top="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=(Canvas.Top)}"/>
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="HandCursorClick">
+                                        <i:InvokeCommandAction Command="{Binding TopMenuCommand}" CommandParameter="{Binding TopButtonObject}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </buttons:KinectButton>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Canvas>
         </Canvas>
         <!--Container for all models-->
         <Viewport3D RenderOptions.CachingHint="Cache" ClipToBounds="True" >

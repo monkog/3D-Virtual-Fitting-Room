@@ -1,6 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using KinectFittingRoom.ViewModel.ButtonItems;
+using System.Drawing;
+using System.Linq;
 
 namespace KinectFittingRoom.ViewModel.ClothingItems
 {
@@ -23,8 +25,42 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// The last added item to ChosenClothes collection
         /// </summary>
         private ClothingItemBase _lastAddedItem;
+        /// <summary>
+        /// The last chosen category
+        /// </summary>
+        private ClothingCategoryButtonViewModel _lastChosenCategory;
+        /// <summary>
+        /// Chosen type of clothes
+        /// </summary>
+        private ClothingItemBase.MaleFemaleType _chosenType;
         #endregion Private Fields
         #region Public Properties
+        /// <summary>
+        /// Gets or sets the chosen type of clothes
+        /// </summary>
+        public ClothingItemBase.MaleFemaleType ChosenType
+        {
+            get { return _chosenType; }
+            set
+            {
+                if (_chosenType == value)
+                    return;
+                _chosenType = value;
+            }
+        }
+        /// <summary>
+        /// Gets or sets last chosen category
+        /// </summary>
+        public ClothingCategoryButtonViewModel LastChosenCategory
+        {
+            get { return _lastChosenCategory; }
+            set
+            {
+                if (_lastChosenCategory == value)
+                    return;
+                _lastChosenCategory = value;
+            }
+        }
         /// <summary>
         /// Gets or sets the last added item to ChosenClothes collection
         /// </summary>
@@ -79,7 +115,21 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// </summary>
         private ClothingManager() 
         {
-            ChosenClothes = new Dictionary<ClothingItemBase.ClothingType,ClothingItemBase>();        
+            ChosenClothes = new Dictionary<ClothingItemBase.ClothingType,ClothingItemBase>();
+            _chosenType = ClothingItemBase.MaleFemaleType.Female;
+        }
+        /// <summary>
+        /// Scales images of clothes
+        /// </summary>
+        /// <param name="ratio">The ratio of scaling</param>
+        public void ScaleImage(double ratio)
+        {
+            ClothingItemBase lastItem = LastAddedItem;
+            lastItem.Image = new Bitmap(lastItem.Image, (int)lastItem.Image.Width, (int)(ratio * lastItem.Image.Height));
+
+            Dictionary<ClothingItemBase.ClothingType, ClothingItemBase> tmp = ChosenClothes;
+            tmp[tmp.FirstOrDefault(a => a.Value.PathToImage == lastItem.PathToImage).Key] = lastItem;
+            ChosenClothes = new Dictionary<ClothingItemBase.ClothingType, ClothingItemBase>(tmp);
         }
         /// <summary>
         /// Method with access to only instance of ClothingManager
