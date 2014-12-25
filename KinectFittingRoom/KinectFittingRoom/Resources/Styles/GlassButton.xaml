@@ -26,7 +26,16 @@
                             <Setter TargetName="ButtonBorder" Property="RenderTransform">
                                 <Setter.Value>
                                     <TransformGroup>
-                                        <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
+                                        <ScaleTransform ScaleX="0.8" ScaleY="0.8"/>
+                                    </TransformGroup>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsUnclicked" Value="True">
+                            <Setter TargetName="ButtonBorder" Property="RenderTransform">
+                                <Setter.Value>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="1.25" ScaleY="1.25"/>
                                     </TransformGroup>
                                 </Setter.Value>
                             </Setter>

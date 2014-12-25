@@ -7,10 +7,10 @@ using KinectFittingRoom.ViewModel.ClothingItems;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems
 {
-    public class SkirtButtonViewModel : ClothingButtonViewModel
+    class GlassesButtonViewModel : ClothingButtonViewModel
     {
         #region .ctor
-        public SkirtButtonViewModel(ClothingItemBase.ClothingType type, string pathToModel, string pathToTexture)
+        public GlassesButtonViewModel(ClothingItemBase.ClothingType type, string pathToModel, string pathToTexture)
             : base(type, pathToModel, pathToTexture)
         { }
         #endregion .ctor
@@ -36,7 +36,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
             }
             catch (Exception)
             {
-                tmpModels[clickedButton.Category] = new SkirtItem(TexturePath, 2) {Model = model};
+                tmpModels[clickedButton.Category] = new GlassesItem(TexturePath) { Model = model };
             }
             ClothingManager.Instance.ChosenClothesModels = new Dictionary<ClothingItemBase.ClothingType, ClothingItemBase>(tmpModels);
         }

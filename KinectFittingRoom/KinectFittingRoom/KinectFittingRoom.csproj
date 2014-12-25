@@ -107,6 +107,8 @@
     <Compile Include="Converters\ReducedValueConverter.cs" />
     <Compile Include="ViewModel\ButtonItems\ButtonViewModelBase.cs" />
     <Compile Include="ViewModel\ButtonItems\ClothingButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\GlassesButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\HatButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\ModelBase.cs" />
     <Compile Include="ViewModel\ButtonItems\SkirtButtonViewModel.cs" />
     <Compile Include="ViewModel\ClothingItems\ClothingItemBase.cs" />

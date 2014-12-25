@@ -121,15 +121,15 @@ namespace KinectFittingRoom.ViewModel
                 Image = Properties.Resources.hat_symbol,
                 Clothes = new List<ClothingButtonViewModel>
                 {
-                    new SkirtButtonViewModel(ClothingItemBase.ClothingType.HatItem, @".\Resources\Models\Hat.obj", @".\Resources\Models\hat_blue.png")  {
+                    new HatButtonViewModel(ClothingItemBase.ClothingType.HatItem, @".\Resources\Models\SantaHat.obj", @".\Resources\Models\hat_blue.png")  {
                         Image = Properties.Resources.small_hat_blue, 
                         ImageWidthToItemWidth = 2.07
                     },
-                    new SkirtButtonViewModel(ClothingItemBase.ClothingType.HatItem, @".\Resources\Models\Hat.obj", @".\Resources\Models\hat_brown.png") {
+                    new SkirtButtonViewModel(ClothingItemBase.ClothingType.HatItem, @".\Resources\Models\SantaHat.obj", @".\Resources\Models\hat_brown.png") {
                         Image = Properties.Resources.small_hat_brown, 
                         ImageWidthToItemWidth = 1.83
                     },
-                    new SkirtButtonViewModel(ClothingItemBase.ClothingType.HatItem, @".\Resources\Models\Hat.obj", @".\Resources\Models\hat_superman.png") {
+                    new SkirtButtonViewModel(ClothingItemBase.ClothingType.HatItem, @".\Resources\Models\SantaHat.obj", @".\Resources\Models\hat_superman.png") {
                         Image = Properties.Resources.small_hat_superman, 
                         ImageWidthToItemWidth = 1.24
                     }

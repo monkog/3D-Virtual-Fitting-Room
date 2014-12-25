@@ -136,19 +136,6 @@
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </h:HelixViewport3D>
-		<!--
-        <h:HelixViewport3D CameraRotationMode="Trackball">
-            <h:HelixViewport3D.Camera>
-                <PerspectiveCamera Position="0,-2,0" LookDirection="0,6,0" UpDirection="0,0,1" NearPlaneDistance="0.01" FarPlaneDistance="1000" FieldOfView="57"/>
-            </h:HelixViewport3D.Camera>
-            <h:SunLight/>
-            <ModelVisual3D Content="{Binding Cloth, Source={x:Static local:ClothingManager.Instance}}"/>
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <Grid Width="{Binding KinectService.Width}" Height="{Binding KinectService.Height}"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-        </h:HelixViewport3D>-->
         <!--Grid containing Skeleton parts for debugging-->
         <ItemsControl ItemsSource="{Binding KinectService.SkeletonManager.SkeletonParts}" 
                       Visibility="{Binding DebugModeOn, Converter={StaticResource BoolToVisibilityConverter}}">

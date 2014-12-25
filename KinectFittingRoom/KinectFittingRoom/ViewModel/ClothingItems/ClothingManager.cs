@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Media3D;
 using KinectFittingRoom.ViewModel.ButtonItems;
 using Microsoft.Kinect;
@@ -15,9 +16,8 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// </summary>
         private static ClothingManager _instance;
         /// <summary>
-        /// The chosen clothing collection
+        /// The chosen clothing models collection
         /// </summary>
-        private Dictionary<ClothingItemBase.ClothingType, GeometryModel3D> _chosenClothes;
         private Dictionary<ClothingItemBase.ClothingType, ClothingItemBase> _chosenClothesModels;
         /// <summary>
         /// The clothing collection
@@ -27,26 +27,14 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// Position of the spine joint
         /// </summary>
         private Vector3D _spinePosition;
-        private GeometryModel3D _cloth;
         #endregion Private Fields
         #region Public Properties
         /// <summary>
-        /// Gets or sets the chosen clothing collection.
+        /// Gets or sets the chosen clothing models collection.
         /// </summary>
         /// <value>
-        /// The chosen clothing collection.
+        /// The chosen clothing models collection.
         /// </value>
-        public Dictionary<ClothingItemBase.ClothingType, GeometryModel3D> ChosenClothes
-        {
-            get { return _chosenClothes; }
-            set
-            {
-                if (_chosenClothes == value)
-                    return;
-                _chosenClothes = value;
-                OnPropertyChanged("ChosenClothes");
-            }
-        }
         public Dictionary<ClothingItemBase.ClothingType, ClothingItemBase> ChosenClothesModels
         {
             get { return _chosenClothesModels; }
@@ -56,17 +44,6 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
                     return;
                 _chosenClothesModels = value;
                 OnPropertyChanged("ChosenClothesModels");
-            }
-        }
-        public GeometryModel3D Cloth
-        {
-            get { return _cloth; }
-            set
-            {
-                if (_cloth == value)
-                    return;
-                _cloth = value;
-                OnPropertyChanged("Cloth");
             }
         }
         /// <summary>
@@ -100,7 +77,6 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// </summary>
         private ClothingManager()
         {
-            ChosenClothes = new Dictionary<ClothingItemBase.ClothingType, GeometryModel3D>();
             ChosenClothesModels = new Dictionary<ClothingItemBase.ClothingType, ClothingItemBase>();
         }
         #endregion .ctor
@@ -148,13 +124,18 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
             var footLeft = KinectService.GetJointPoint(skeleton.Joints[JointType.FootLeft], sensor, width, height);
             var spine = KinectService.GetJointPoint(skeleton.Joints[JointType.Spine], sensor, width, height);
 
+            foreach (var model in ChosenClothesModels.Values)
+            {
+                //// Create the animations.
+                //DoubleAnimation frontAnimation, backAnimation;
+                //this.PrepareForRotation(out frontAnimation, out backAnimation);
+                //Point3DAnimation cameraZoomAnim = this.CreateCameraAnimation();
 
-            //double heightToWidth = Height / Width;
-            //double newWidth = (footLeft.Y - head.Y) * 0.18;
-            //Width = ImageWidthToItemWidth * newWidth;
-            //Height = heightToWidth * Width;
-            //Top = spine.Y + 20;
-            //Left = spine.X - Width / 2;
+                //// Start the animations.
+                //_frontRotation.BeginAnimation(AxisAngleRotation3D.AngleProperty, frontAnimation);
+                //_backRotation.BeginAnimation(AxisAngleRotation3D.AngleProperty, backAnimation);
+                //camera.BeginAnimation(PerspectiveCamera.PositionProperty, cameraZoomAnim);
+            }
         }
         #endregion Public Methods
     }
