@@ -17,6 +17,10 @@ namespace KinectFittingRoom.View.Buttons
         /// Number of seconds that Click event occures
         /// </summary>
         private const int ClickTimeout = 20;
+        /// <summary>
+        /// The unclick timeout
+        /// </summary>
+        private const int UnclickTimeout = 10;
         #endregion Constants
         #region Private Fields
         /// <summary>
@@ -177,7 +181,10 @@ namespace KinectFittingRoom.View.Buttons
         /// </summary>
         protected virtual void KinectButton_HandCursorLeave(object sender, HandCursorEventArgs args)
         {
-            ResetTimer(_clickTimer, _clickTicks, IsClickedProperty, false);
+            if ((bool)GetValue(IsUnclickedProperty) == false && (bool)GetValue(IsClickedProperty))
+                SetValue(IsUnclickedProperty, true);
+            ResetTimer(_clickTimer, ref _clickTicks, IsClickedProperty, false);
+            ResetTimer(_unclickTimer, ref _unclickTicks, IsUnclickedProperty, false);
         }
         /// <summary>
         /// Counts the number of timer ticks of _clickTimer
@@ -189,9 +196,7 @@ namespace KinectFittingRoom.View.Buttons
             if (_clickTicks <= ClickTimeout)
                 return;
 
-            ResetTimer(_clickTimer, _clickTicks, IsClickedProperty, false);
             RaiseEvent(new HandCursorEventArgs(HandCursorClickEvent, _lastHandPosition));
-            _unclickTimer.Start();
         }
         /// <summary>
         /// Counts the number of timer ticks of _unclickTimer
@@ -200,23 +205,24 @@ namespace KinectFittingRoom.View.Buttons
         {
             _unclickTicks++;
 
-            if (_unclickTicks <= ClickTimeout)
+            if (_unclickTicks <= UnclickTimeout)
                 return;
-            ResetTimer(_unclickTimer, _unclickTicks, IsUnclickedProperty, true);
-            SetValue(IsUnclickedProperty, false);
+            SetValue(IsClickedProperty, false);
+            SetValue(IsUnclickedProperty, true);
+            ResetTimer(_unclickTimer, ref _unclickTicks, IsUnclickedProperty, false);
         }
         /// <summary>
         /// Imitates the click event
         /// </summary>
         protected virtual void KinectButton_HandCursorClick(object sender, HandCursorEventArgs args)
         {
-            SetValue(IsClickedProperty, true);
-            SetValue(IsUnclickedProperty, false);
+            ResetTimer(_clickTimer, ref _clickTicks, IsClickedProperty, true);
+            _unclickTimer.Start();
         }
         /// <summary>
         /// Resets the timer
         /// </summary>
-        private void ResetTimer(DispatcherTimer timer, int timerCounter, DependencyProperty propertyToSet, bool propertyValue)
+        private void ResetTimer(DispatcherTimer timer, ref int timerCounter, DependencyProperty propertyToSet, bool propertyValue)
         {
             SetValue(propertyToSet, propertyValue);
             timer.Stop();

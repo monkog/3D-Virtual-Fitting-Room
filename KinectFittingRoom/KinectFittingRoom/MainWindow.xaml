@@ -38,7 +38,7 @@
         <!--Canvas containing both button panels-->
         <Canvas Name="ButtonPanelsCanvas" Width="{Binding KinectService.Width}" Height="{Binding KinectService.Height}">
             <Canvas Name="LeftPanel"
-                    Width="250" 
+                    Width="170" 
                     Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Canvas}}
                     , Path=ActualHeight, Converter={StaticResource ReducedValueConverter}, ConverterParameter=40}" 
                     Background="GhostWhite" 
@@ -58,7 +58,9 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <buttons:KinectButton Width="200" Height="200" Margin="5" Style="{StaticResource GlassButton}">
+                        <buttons:KinectButton Width="{Binding ElementName=LeftPanel, Path=Width, Converter={StaticResource ReducedValueConverter}, ConverterParameter=20}" 
+                                              Height="{Binding ElementName=LeftPanel, Path=Width, Converter={StaticResource ReducedValueConverter}, ConverterParameter=20}" 
+                                              Margin="5" Style="{StaticResource GlassButton}">
                             <Image Source="{Binding Image, Converter={StaticResource BitmapToImageSourceConverter}}" 
                                    Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Width}"
 								   Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Height}"
@@ -74,7 +76,7 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
             <Canvas Name="RightPanel"
-                    Width="250" 
+                    Width="170" 
                     Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Canvas}}
                     , Path=ActualHeight, Converter={StaticResource ReducedValueConverter}, ConverterParameter=40}" 
                     Background="GhostWhite" 
@@ -95,7 +97,9 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <buttons:KinectButton Width="200" Height="200" Margin="5" Style="{StaticResource GlassButton}">
+                        <buttons:KinectButton Width="{Binding ElementName=LeftPanel, Path=Width, Converter={StaticResource ReducedValueConverter}, ConverterParameter=20}" 
+                                              Height="{Binding ElementName=LeftPanel, Path=Width, Converter={StaticResource ReducedValueConverter}, ConverterParameter=20}" 
+                                              Margin="5" Style="{StaticResource GlassButton}">
                             <Image Source="{Binding Image, Converter={StaticResource BitmapToImageSourceConverter}}" 
                                        Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Width}"
 									   Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Height}" RenderTransformOrigin="0,0.01"
@@ -136,6 +140,10 @@
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </h:HelixViewport3D>
+        <!--Top menu-->
+        <Canvas>
+
+        </Canvas>
         <!--Grid containing Skeleton parts for debugging-->
         <ItemsControl ItemsSource="{Binding KinectService.SkeletonManager.SkeletonParts}" 
                       Visibility="{Binding DebugModeOn, Converter={StaticResource BoolToVisibilityConverter}}">
@@ -145,7 +153,8 @@
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>
-        <Canvas Background="Brown" Opacity="0.8" Width="100" Height="100" Visibility="{Binding DebugModeOn, Converter={StaticResource BoolToVisibilityConverter}}">
+        <!--Canvas used for displaying text used for debugging-->
+        <Canvas Background="Brown" Opacity="0.8" Width="200" Height="100" Visibility="{Binding DebugModeOn, Converter={StaticResource BoolToVisibilityConverter}}">
             <Label x:Name="TimerLabel" FontSize="30" x:FieldModifier="public" Width="900" Height="500" Margin="0,0,417,220" />
         </Canvas>
         <!--Grid used for viewing error messages-->
