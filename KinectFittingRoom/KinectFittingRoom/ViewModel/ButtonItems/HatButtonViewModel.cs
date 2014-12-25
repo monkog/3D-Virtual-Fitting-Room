@@ -4,13 +4,14 @@ using System.Linq;
 using System.Windows.Media.Media3D;
 using HelixToolkit.Wpf;
 using KinectFittingRoom.ViewModel.ClothingItems;
+using Microsoft.Kinect;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems
 {
-    public class SkirtButtonViewModel : ClothingButtonViewModel
+    public class HatButtonViewModel : ClothingButtonViewModel
     {
         #region .ctor
-        public SkirtButtonViewModel(ClothingItemBase.ClothingType type, string pathToModel, string pathToTexture)
+        public HatButtonViewModel(ClothingItemBase.ClothingType type, string pathToModel, string pathToTexture)
             : base(type, pathToModel, pathToTexture)
         { }
         #endregion .ctor
@@ -28,7 +29,8 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
             Model3DGroup group = Importer.Load(ModelPath);
             var modelGroup = (GeometryModel3D)group.Children.First();
             var model = new GeometryModel3D(modelGroup.Geometry, MaterialHelper.CreateImageMaterial(TexturePath));
-            model.Transform = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(1, 0, 0), 90));
+            //model.Transform = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(1, 0, 0), 90));
+            model.Transform = new ScaleTransform3D(0.2, 0.2, 0.2);
 
             try
             {
@@ -36,7 +38,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
             }
             catch (Exception)
             {
-                tmpModels[clickedButton.Category] = new SkirtItem(TexturePath, 2) {Model = model};
+                tmpModels[clickedButton.Category] = new HatItem(TexturePath, 2) { Model = model };
             }
             ClothingManager.Instance.ChosenClothesModels = new Dictionary<ClothingItemBase.ClothingType, ClothingItemBase>(tmpModels);
         }
