@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using KinectFittingRoom.ViewModel.ButtonItems;
+﻿using KinectFittingRoom.ViewModel.ButtonItems;
+using KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons;
 using KinectFittingRoom.ViewModel.ClothingItems;
-using System.Windows;
-using System.Drawing;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Media;
 
 namespace KinectFittingRoom.ViewModel
@@ -22,11 +21,11 @@ namespace KinectFittingRoom.ViewModel
         /// <summary>
         /// Button sound player
         /// </summary>
-        private static SoundPlayer _player;
+        private static SoundPlayer _buttonPlayer;
         /// <summary>
         /// Camera sound player
         /// </summary>
-        private static SoundPlayer _player2;
+        private static SoundPlayer _cameraPlayer;
         /// <summary>
         /// The clothing category collection
         /// </summary>
@@ -51,13 +50,13 @@ namespace KinectFittingRoom.ViewModel
                 _soundsOn = value;
             }
         }
-        public static SoundPlayer Player
+        public static SoundPlayer ButtonPlayer
         {
-            get { return _player; }
+            get { return _buttonPlayer; }
         }
-        public static SoundPlayer Player2
+        public static SoundPlayer CameraPlayer
         {
-            get { return _player2; }
+            get { return _cameraPlayer; }
         }
         /// <summary>
         /// Gets or sets the clothing categories collection.
@@ -113,8 +112,8 @@ namespace KinectFittingRoom.ViewModel
         public KinectViewModel(KinectService kinectService)
         {
             _soundsOn = true;
-            _player = new SoundPlayer(Properties.Resources.ButtonClick);
-            _player2 = new SoundPlayer(Properties.Resources.CameraClick);
+            _buttonPlayer = new SoundPlayer(Properties.Resources.ButtonClick);
+            _cameraPlayer = new SoundPlayer(Properties.Resources.CameraClick);
             InitializeClothingCategories();
             InitializeTopMenu();
             _kinectService = kinectService;
@@ -190,7 +189,7 @@ namespace KinectFittingRoom.ViewModel
 
         private void InitializeTopMenu()
         {
-            TopMenuManager.Instance.TopMenuButtons.Add(new TopMenuButtonViewModel(TopMenuButtonViewModel.Functionality.showMenu) { Image = Properties.Resources.menu });
+            TopMenuManager.Instance.ActualTopMenuButtons.Add(new MenuButton(TopMenuButtonViewModel.Functionality.showMenu, Properties.Resources.menu));
         }
         /// <summary>
         /// Cleanups this instance.

@@ -67,16 +67,6 @@ namespace KinectFittingRoom
             Canvas.SetTop(HandCursor, hand.Y - HandCursor.ActualHeight / 2.0);
             ButtonsManager.Instance.RaiseCursorEvents(element, hand);
         }
-
-        public void HandleScreenShotEvent()
-        {
-            int actualWidth = (int)ImageArea.ActualWidth;
-            int actualHeight = (int)ImageArea.ActualHeight;
-            var visual1 = ImageArea;
-            var visual2 = ClothesArea;
-
-            ButtonsManager.Instance.RaiseScreenShotEvent(visual1, visual2, actualWidth, actualHeight);
-        }
         #endregion Private Methods
     }
 }

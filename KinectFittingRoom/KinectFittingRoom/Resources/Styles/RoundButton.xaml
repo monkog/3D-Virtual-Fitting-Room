@@ -15,7 +15,7 @@
                             <Setter TargetName="ButtonEllipse" Property="RenderTransform">
                                 <Setter.Value>
                                     <TransformGroup>
-                                        <ScaleTransform ScaleX="0.8" ScaleY="0.8"/>
+                                        <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
                                     </TransformGroup>
                                 </Setter.Value>
                             </Setter>

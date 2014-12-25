@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
+using KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems
 {
@@ -18,12 +14,14 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// <summary>
         /// Actually displayed top menu buttons
         /// </summary>
-        private ObservableCollection<TopMenuButtonViewModel> _topMenuButtons;
+        private ObservableCollection<TopMenuButtonViewModel> _actualTopMenuButtons;
         /// <summary>
         /// All top menu buttons view
         /// </summary>
         private ObservableCollection<TopMenuButtonViewModel> _allButtons;
-
+        /// <summary>
+        /// Visibility of all top buttons
+        /// </summary>
         private Visibility _allTopButtonsVisibility;
         /// <summary>
         /// Change size buttons view
@@ -37,15 +35,15 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// <value>
         /// The actual buttons collection.
         /// </value>
-        public ObservableCollection<TopMenuButtonViewModel> TopMenuButtons
+        public ObservableCollection<TopMenuButtonViewModel> ActualTopMenuButtons
         {
-            get { return _topMenuButtons; }
+            get { return _actualTopMenuButtons; }
             set
             {
-                if (_topMenuButtons == value)
+                if (_actualTopMenuButtons == value)
                     return;
-                _topMenuButtons = value;
-                OnPropertyChanged("TopMenuButtons");
+                _actualTopMenuButtons = value;
+                OnPropertyChanged("ActualTopMenuButtons");
             }
         }
         /// <summary>
@@ -58,6 +56,12 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         {
             get { return _allButtons; }
         }
+        /// <summary>
+        /// Gets or sets the visibility of all top buttons
+        /// </summary>
+        /// <value>
+        /// The visibility
+        /// </value>
         public Visibility AllTopButtonsVisibility
         {
             get { return _allTopButtonsVisibility; }
@@ -85,22 +89,22 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// </summary>
         private TopMenuManager()
         {
-            AllTopButtonsVisibility = Visibility.Collapsed;
-            TopMenuButtons = new ObservableCollection<TopMenuButtonViewModel>();
+            _allTopButtonsVisibility = Visibility.Collapsed;
+            _actualTopMenuButtons = new ObservableCollection<TopMenuButtonViewModel>();
             _allButtons = new ObservableCollection<TopMenuButtonViewModel>()
             {
-                new TopMenuButtonViewModel(TopMenuButtonViewModel.Functionality.maleFemaleCategory) { Image = Properties.Resources.menu_menWomen },
-                new TopMenuButtonViewModel(TopMenuButtonViewModel.Functionality.changeSize) { Image = Properties.Resources.menu_arrows },
-                new TopMenuButtonViewModel(TopMenuButtonViewModel.Functionality.clearClothingSet) { Image = Properties.Resources.menu_clearSet },
-                new TopMenuButtonViewModel(TopMenuButtonViewModel.Functionality.takePicture) { Image = Properties.Resources.menu_camera },
-                new TopMenuButtonViewModel(TopMenuButtonViewModel.Functionality.turnOnOffSounds) { Image = Properties.Resources.menu_speaker },
-                new TopMenuButtonViewModel(TopMenuButtonViewModel.Functionality.exit) { Image = Properties.Resources.menu_doors }
+                new ChangeTypeButton(TopMenuButtonViewModel.Functionality.maleFemaleCategory,Properties.Resources.menu_menWomen),
+                new ChangeSizeButton(TopMenuButtonViewModel.Functionality.changeSize,Properties.Resources.menu_arrows),
+                new ClearSetButton(TopMenuButtonViewModel.Functionality.clearClothingSet,Properties.Resources.menu_clearSet),
+                new ScreenShotButton(TopMenuButtonViewModel.Functionality.takePicture, Properties.Resources.menu_camera),
+                new SoundsButton(TopMenuButtonViewModel.Functionality.turnOnOffSounds, Properties.Resources.menu_speaker),
+                new ExitButton(TopMenuButtonViewModel.Functionality.exit, Properties.Resources.menu_doors)
             };
             _changeSizeButtons = new ObservableCollection<TopMenuButtonViewModel>()
             {
-                new TopMenuButtonViewModel(TopMenuButtonViewModel.Functionality.showMenu) { Image = Properties.Resources.menu },
-                new TopMenuButtonViewModel(TopMenuButtonViewModel.Functionality.makeBigger) { Image = Properties.Resources.vertical_arrows },
-                new TopMenuButtonViewModel(TopMenuButtonViewModel.Functionality.makeSmaller) { Image = Properties.Resources.vertical_arrows_smaller }
+                new MenuButton(TopMenuButtonViewModel.Functionality.showMenu, Properties.Resources.menu),
+                new MakeBiggerButton(TopMenuButtonViewModel.Functionality.makeBigger, Properties.Resources.vertical_arrows),
+                new MakeSmallerButton(TopMenuButtonViewModel.Functionality.makeSmaller,Properties.Resources.vertical_arrows_smaller)
             };
         }
         /// <summary>
@@ -115,6 +119,5 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
                 return _instance;
             }
         }
-
     }
 }

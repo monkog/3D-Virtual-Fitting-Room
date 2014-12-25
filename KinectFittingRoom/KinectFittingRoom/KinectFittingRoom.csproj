@@ -106,8 +106,17 @@
     <Compile Include="ViewModel\ButtonItems\ButtonViewModelBase.cs" />
     <Compile Include="ViewModel\ButtonItems\ClothingButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\ModelBase.cs" />
-    <Compile Include="ViewModel\ButtonItems\TopMenuButtonViewModel.cs" />
-    <Compile Include="ViewModel\ButtonItems\TopMenuManager.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ChangeSizeButton.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ChangeTypeButton.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ClearSetButton.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ExitButton.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\MakeBiggerButton.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\MakeSmallerButton.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\MenuButton.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ScreenShotButton.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\SoundsButton.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\TopMenuButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\TopMenuManager.cs" />
     <Compile Include="ViewModel\ClothingItems\ClothingItemBase.cs" />
     <Compile Include="ViewModel\ClothingItems\ClothingManager.cs" />
     <Compile Include="ViewModel\ClothingItems\GlassesItem.cs" />
@@ -116,7 +125,6 @@
     <Compile Include="View\Buttons\Events\HandCursorEventArgs.cs" />
     <Compile Include="View\Buttons\Events\ButtonsManager.cs" />
     <Compile Include="View\Buttons\Events\KinectInput.cs" />
-    <Compile Include="View\Buttons\Events\ScreenShotEvent.cs" />
     <Compile Include="View\Buttons\KinectButton.cs" />
     <Compile Include="ViewModel\Debug\SkeletonManager.cs" />
     <Compile Include="ViewModel\ButtonItems\ClothingCategoryButtonViewModel.cs" />

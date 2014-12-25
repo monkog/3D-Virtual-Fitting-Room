@@ -2,10 +2,7 @@
 using KinectFittingRoom.ViewModel.Debug;
 #endif
 using Microsoft.Kinect;
-using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Windows;
 namespace KinectFittingRoom.ViewModel.ClothingItems
 {
     public abstract class ClothingItemBase : ViewModelBase

@@ -3,12 +3,7 @@ using KinectFittingRoom.ViewModel.Debug;
 #endif
 using KinectFittingRoom.ViewModel.ClothingItems;
 using Microsoft.Practices.Prism.Commands;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Drawing;
-using System.IO;
-using System.Windows;
 using System.Windows.Input;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems
