@@ -1,4 +1,8 @@
-﻿#if DEBUG
+﻿using System.Drawing;
+using System.Linq;
+using System.Windows.Media.Media3D;
+using HelixToolkit.Wpf;
+#if DEBUG
 using KinectFittingRoom.ViewModel.Debug;
 #endif
 using KinectFittingRoom.ViewModel.ClothingItems;
@@ -22,10 +26,6 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// Proportion image width to significant width of item
         /// </summary>
         private double _imageWidthToItemWidth;
-        /// <summary>
-        /// Path to original image of item
-        /// </summary>
-        private string _pathToImage;
         #endregion Private Fields
         #region Public Properties
         /// <summary>
@@ -36,14 +36,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
             get { return this; }
         }
         /// <summary>
-        /// Gets or sets path to original image of item
-        /// </summary>
-        public string PathToImage
-        {
-            get { return _pathToImage; }
-        }
-        /// <summary>
-        /// Gets or sets category of item
+        /// Gets category of item
         /// </summary>
         public ClothingItemBase.ClothingType Category
         {
@@ -62,6 +55,27 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
                 _imageWidthToItemWidth = value;
             }
         }
+        /// <summary>
+        /// Gets or sets the model importer.
+        /// </summary>
+        /// <value>
+        /// The model importer.
+        /// </value>
+        public ModelImporter Importer { get; set; }
+        /// <summary>
+        /// Gets or sets the model path.
+        /// </summary>
+        /// <value>
+        /// The model path.
+        /// </value>
+        public string ModelPath { get; set; }
+        /// <summary>
+        /// Gets or sets the texture path.
+        /// </summary>
+        /// <value>
+        /// The texture path.
+        /// </value>
+        public string TexturePath { get; set; }
         #endregion Public Properties
         #region Commands
         /// <summary>
@@ -82,48 +96,22 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// Executes when the Category button was hit.
         /// </summary>
         /// <param name="parameter">The parameter.</param>
-        public void CategoryExecuted(object parameter)
-        {
-            // TODO: Resolve the Clothing Manager via the IOC container?
-            // TODO: Change the clothing collection in Clothing Manager to the one corresponding to the chosen button
-            // TODO: Preload the collection at startup or load dynamically in another thread?
-
-            ClothingButtonViewModel clickedButton = (ClothingButtonViewModel)parameter;
-            ClothingItemBase clickedClothingItem;
-
-            if (ClothingManager.Instance.ChosenClothes.TryGetValue(clickedButton.Category, out clickedClothingItem))
-                if (clickedButton.PathToImage == clickedClothingItem.PathToImage)
-                    return;
-
-            Dictionary<ClothingItemBase.ClothingType, ClothingItemBase> tmp = ClothingManager.Instance.ChosenClothes;
-
-            switch (clickedButton.Category)
-            {
-                case ClothingItemBase.ClothingType.GlassesItem:
-                    clickedClothingItem = new GlassesItem(clickedButton.PathToImage);
-                    break;
-                case ClothingItemBase.ClothingType.HatItem:
-                    clickedClothingItem = new HatItem(clickedButton.PathToImage, clickedButton.ImageWidthToItemWidth);
-                    break;
-                case ClothingItemBase.ClothingType.SkirtItem:
-                    clickedClothingItem = new SkirtItem(clickedButton.PathToImage, clickedButton.ImageWidthToItemWidth);
-                    break;
-            }
-
-            tmp[clickedButton.Category] = clickedClothingItem;
-            ClothingManager.Instance.ChosenClothes = new Dictionary<ClothingItemBase.ClothingType, ClothingItemBase>(tmp);
-        }
+        public virtual void CategoryExecuted(object parameter)
+        { }
         #endregion Commands
         #region .ctor
         /// <summary>
         /// Initializes a new instance of the <see cref="ClothingButtonViewModel"/> class.
         /// </summary>
         /// <param name="type">Type of clothing item</param>
-        /// <param name="pathToImage">Path to original image of item</param>
-        public ClothingButtonViewModel(ClothingItemBase.ClothingType type, string pathToImage)
+        /// <param name="pathToModel">Path to the model</param>
+        /// <param name="pathToTexture">Path to the texture of the item</param>
+        public ClothingButtonViewModel(ClothingItemBase.ClothingType type, string pathToModel, string pathToTexture)
         {
             _category = type;
-            _pathToImage = pathToImage;
+            TexturePath = pathToTexture;
+            ModelPath = pathToModel;
+            Importer = new ModelImporter();
         }
         #endregion
     }

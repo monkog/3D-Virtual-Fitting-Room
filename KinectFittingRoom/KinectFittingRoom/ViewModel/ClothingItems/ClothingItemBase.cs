@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Linq;
+using System.Windows.Media.Media3D;
+using HelixToolkit.Wpf;
 using Microsoft.Kinect;
 using System.Drawing;
 namespace KinectFittingRoom.ViewModel.ClothingItems
@@ -11,13 +14,13 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// </summary>
         private double _imageWidthToItemWidth;
         /// <summary>
-        /// Path to original image of item
+        /// Path to the texture of item
         /// </summary>
-        private string _pathToImage;
+        private string _pathToTexture;
         /// <summary>
-        /// The image
+        /// The texture
         /// </summary>
-        private Bitmap _image;
+        private Bitmap _texture;
         /// <summary>
         /// The image width
         /// </summary>
@@ -30,6 +33,10 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// The Canvas.Left
         /// </summary>
         private double _left;
+        /// <summary>
+        /// The clothing model
+        /// </summary>
+        private GeometryModel3D _model;
         /// <summary>
         /// The Canvas.Top
         /// </summary>
@@ -53,25 +60,24 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         {
             get
             {
-                return _pathToImage;
+                return _pathToTexture;
             }
         }
-
         /// <summary>
         /// Gets or sets the image.
         /// </summary>
         /// <value>
         /// The height.
         /// </value>
-        public Bitmap Image
+        public Bitmap Texture
         {
-            get { return _image; }
+            get { return _texture; }
             set
             {
-                if (_image == value)
+                if (_texture == value)
                     return;
-                _image = value;
-                OnPropertyChanged("Image");
+                _texture = value;
+                OnPropertyChanged("Texture");
             }
         }
         /// <summary>
@@ -106,6 +112,23 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
                     return;
                 _left = value;
                 OnPropertyChanged("Left");
+            }
+        }
+        /// <summary>
+        /// Gets or sets the model.
+        /// </summary>
+        /// <value>
+        /// The model.
+        /// </value>
+        public GeometryModel3D Model
+        {
+            get { return _model; }
+            set
+            {
+                if (_model == value)
+                    return;
+                _model = value;
+                OnPropertyChanged("Model");
             }
         }
         /// <summary>
@@ -147,12 +170,12 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// <summary>
         /// Initializes a new instance of the <see cref="ClothingItemBase"/> class.
         /// </summary>
-        /// <param name="pathToImage">Path to original image of item</param>
+        /// <param name="pathToTexture">Path to original image of item</param>
         /// <param name="imageWidthToItemWidth">Proportion image width to significant width of item</param>
-        public ClothingItemBase(string pathToImage, double imageWidthToItemWidth)
+        protected ClothingItemBase(string pathToTexture, double imageWidthToItemWidth)
         {
-            Image = new Bitmap(Bitmap.FromFile(pathToImage));
-            _pathToImage = pathToImage;
+            Texture = new Bitmap(Bitmap.FromFile(pathToTexture));
+            _pathToTexture = pathToTexture;
             _imageWidthToItemWidth = imageWidthToItemWidth;
         }
         #endregion
@@ -199,11 +222,13 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// <param name="height">Kinect image height</param>
         public abstract void TrackSkeletonParts(Skeleton skeleton, KinectSensor sensor, double width, double height);
         #endregion Public Methods
+        #region Enums
         public enum ClothingType
         {
             HatItem,
             SkirtItem,
             GlassesItem
         }
+        #endregion Enums
     }
 }

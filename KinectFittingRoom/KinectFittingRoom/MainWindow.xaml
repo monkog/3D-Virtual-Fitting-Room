@@ -19,6 +19,11 @@
     <Window.Resources>
         <converters:ReducedValueConverter x:Key="ReducedValueConverter"/>
         <converters:BitmapToImageSourceConverter x:Key="BitmapToImageSourceConverter"/>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <converters:DebugConverter x:Key="DebugConverter"/>
+        <helpers:DataTemplate3D x:Key="ModelTemplate">
+            <ModelVisual3D Content="{Binding Model}"/>
+        </helpers:DataTemplate3D>
     </Window.Resources>
     <!--Main Grid. Keeps all of the UI elements.-->
     <Grid>
@@ -106,21 +111,6 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </Canvas>
-        <!--Temporary container for flat 2D clothing models-->
-        <ItemsControl ItemsSource="{Binding ChosenClothes.Values, Source={x:Static local:ClothingManager.Instance}}">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <Grid Width="{Binding KinectService.Width}" Height="{Binding KinectService.Height}"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Canvas>
-                    <Image Source="{Binding Image, Converter={StaticResource BitmapToImageSourceConverter}}" Height="{Binding Height}" Width="{Binding Width}" Canvas.Left="{Binding Left}" Canvas.Top="{Binding Top}"/>
-                    </Canvas>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
         <!--Hand Cursor canvas-->
         <Canvas Width="{Binding KinectService.Width}" Height="{Binding KinectService.Height}">
             <Canvas Name="HandCursor" Width="70" Height="70" Visibility="Collapsed">
@@ -133,30 +123,48 @@
                 <Image Source="/Resources/Images/Hand.png" Width="60" Height="60" Margin="5,5,5,5"/>
             </Canvas>
         </Canvas>
-		<!--3D control-->
+        <!--3D control-->
         <h:HelixViewport3D CameraRotationMode="Trackball">
             <h:HelixViewport3D.Camera>
                 <PerspectiveCamera Position="0,-2,0" LookDirection="0,6,0" UpDirection="0,0,1" NearPlaneDistance="0.01" FarPlaneDistance="1000" FieldOfView="57"/>
             </h:HelixViewport3D.Camera>
             <h:SunLight/>
-            <ModelVisual3D Content="{Binding Model, Source={x:Static local:ClothingManager.Instance}}"/>
+            <helpers:ItemsVisual3D ItemTemplate="{StaticResource ModelTemplate}" ItemsSource="{Binding Path=ChosenClothesModels.Values, Source={x:Static local:ClothingManager.Instance}}"/>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid Width="{Binding KinectService.Width}" Height="{Binding KinectService.Height}"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
         </h:HelixViewport3D>
+		<!--
+        <h:HelixViewport3D CameraRotationMode="Trackball">
+            <h:HelixViewport3D.Camera>
+                <PerspectiveCamera Position="0,-2,0" LookDirection="0,6,0" UpDirection="0,0,1" NearPlaneDistance="0.01" FarPlaneDistance="1000" FieldOfView="57"/>
+            </h:HelixViewport3D.Camera>
+            <h:SunLight/>
+            <ModelVisual3D Content="{Binding Cloth, Source={x:Static local:ClothingManager.Instance}}"/>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid Width="{Binding KinectService.Width}" Height="{Binding KinectService.Height}"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </h:HelixViewport3D>-->
         <!--Grid containing Skeleton parts for debugging-->
-        <ItemsControl ItemsSource="{Binding KinectService.SkeletonManager.SkeletonParts}">
+        <ItemsControl ItemsSource="{Binding KinectService.SkeletonManager.SkeletonParts}" 
+                      Visibility="{Binding DebugModeOn, Converter={StaticResource BoolToVisibilityConverter}}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <Grid Width="{Binding KinectService.Width}" Height="{Binding KinectService.Height}"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>
-        <Canvas Background="Brown" Opacity="0.8" Width="100" Height="100" Visibility="Visible">
+        <Canvas Background="Brown" Opacity="0.8" Width="100" Height="100" Visibility="{Binding DebugModeOn, Converter={StaticResource BoolToVisibilityConverter}}">
             <Label x:Name="TimerLabel" FontSize="30" x:FieldModifier="public" Width="900" Height="500" Margin="0,0,417,220" />
         </Canvas>
         <!--Grid used for viewing error messages-->
         <Grid Name="ErrorGrid" Opacity="0.7" Background="Black" Visibility="{Binding KinectService.ErrorGridVisibility}">
-            <TextBlock Name="ErrorGridText" FontSize="20" HorizontalAlignment="Center" Opacity="0.7" VerticalAlignment="Center" Foreground="White">
-                Proszę podłączyć Kinnect!
-            </TextBlock>
+            <TextBlock Text="{Binding KinectService.ErrorGridMessage}" 
+                       FontSize="20" HorizontalAlignment="Center" Opacity="0.7" VerticalAlignment="Center" Foreground="White"/>
         </Grid>
     </Grid>
 </Window>

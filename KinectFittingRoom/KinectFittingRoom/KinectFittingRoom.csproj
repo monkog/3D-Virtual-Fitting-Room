@@ -102,10 +102,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\BitmapToImageSourceConverter.cs" />
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\DebugConverter.cs" />
     <Compile Include="Converters\ReducedValueConverter.cs" />
     <Compile Include="ViewModel\ButtonItems\ButtonViewModelBase.cs" />
     <Compile Include="ViewModel\ButtonItems\ClothingButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\ModelBase.cs" />
+    <Compile Include="ViewModel\ButtonItems\SkirtButtonViewModel.cs" />
     <Compile Include="ViewModel\ClothingItems\ClothingItemBase.cs" />
     <Compile Include="ViewModel\ClothingItems\ClothingManager.cs" />
     <Compile Include="ViewModel\ClothingItems\GlassesItem.cs" />
@@ -123,6 +126,8 @@
     <Compile Include="ViewModel\KinectViewModel.cs" />
     <Compile Include="ViewModel\KinectViewModelLoader.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="View\Helpers\DataTemplate3D.cs" />
+    <Compile Include="View\Helpers\ItemsVisual3D.cs" />
     <Compile Include="View\Helpers\PropertiesObserver.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -136,10 +141,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Resources\Models\BirthdayHat.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Resources\Styles\GlassButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -177,6 +178,7 @@
   <ItemGroup>
     <None Include="Resources\Models\Hat.mtl" />
     <None Include="Resources\Models\Hat.obj" />
+    <None Include="Resources\Models\skirt.obj" />
     <None Include="Resources\tshirt.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -230,6 +232,9 @@
     <None Include="Resources\Models\sunglasses_rayban.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Models\skirt_denim.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
