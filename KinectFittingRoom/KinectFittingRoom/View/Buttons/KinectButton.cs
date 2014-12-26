@@ -136,10 +136,10 @@ namespace KinectFittingRoom.View.Buttons
 
             _clickTimer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0, 0, 1) };
             _clickTicks = 0;
-            _clickTimer.Tick += clickTimer_Tick;
+            _clickTimer.Tick += ClickTimer_Tick;
             _afterClickTimer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0, 0, 1) };
             _afterClickTicks = 0;
-            _afterClickTimer.Tick += afterClickTimer_Tick;
+            _afterClickTimer.Tick += AfterClickTimer_Tick;
 
             HandCursorEnter += KinectButton_HandCursorEnter;
             HandCursorMove += KinectButton_HandCursorMove;
@@ -174,7 +174,7 @@ namespace KinectFittingRoom.View.Buttons
         /// <summary>
         /// Counts the number of timer ticks of m_clickTimer
         /// </summary>
-        private void clickTimer_Tick(object sender, EventArgs e)
+        private void ClickTimer_Tick(object sender, EventArgs e)
         {
             _clickTicks++;
 
@@ -187,7 +187,7 @@ namespace KinectFittingRoom.View.Buttons
         /// <summary>
         /// Counts the number of timer ticks of m_afterClickTimer
         /// </summary>
-        private void afterClickTimer_Tick(object sender, EventArgs e)
+        private void AfterClickTimer_Tick(object sender, EventArgs e)
         {
             _afterClickTicks++;
 

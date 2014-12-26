@@ -96,7 +96,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\BitmapToImageSourceConverter.cs" />
-    <Compile Include="Converters\FixedPositionConverter.cs" />
+    <Compile Include="Converters\IncreasedValueConverter.cs" />
     <Compile Include="Converters\ReducedValueConverter.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

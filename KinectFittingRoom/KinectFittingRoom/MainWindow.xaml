@@ -5,7 +5,7 @@
         xmlns:buttons="clr-namespace:KinectFittingRoom.View.Buttons"
         xmlns:helpers="clr-namespace:KinectFittingRoom.View.Helpers"
         xmlns:local="clr-namespace:KinectFittingRoom.ViewModel.ClothingItems"
-        xmlns:localTopButtons="clr-namespace:KinectFittingRoom.ViewModel.ButtonItems"
+        xmlns:TopButtons="clr-namespace:KinectFittingRoom.ViewModel.ButtonItems"
         xmlns:d="http://schemas.microsoft.com/expressiredyon/blend/2008"        
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -19,7 +19,7 @@
     <Window.Resources>
         <converters:ReducedValueConverter x:Key="ReducedValueConverter"/>
         <converters:BitmapToImageSourceConverter x:Key="BitmapToImageSourceConverter"/>
-        <converters:FixedPositionConverter x:Key="FixedPositionConverter"/>
+        <converters:IncreasedValueConverter x:Key="IncreasedValueConverter"/>
     </Window.Resources>
     <!--Main Grid. Keeps all of the UI elements.-->
     <Grid>
@@ -108,7 +108,7 @@
             </ItemsControl>
             <!--StackPanel containing all the buttons from top menu-->
             <Canvas Name="AllTopButtonsPanel"
-                    Canvas.Left="{Binding ElementName=LeftPanel, Path=ActualWidth, Converter={StaticResource FixedPositionConverter}, ConverterParameter=20}"
+                    Canvas.Left="{Binding ElementName=LeftPanel, Path=ActualWidth, Converter={StaticResource IncreasedValueConverter}, ConverterParameter=20}"
                     Canvas.Top="20"
                     Width="80"
                     Height="80"
@@ -119,7 +119,7 @@
                     Height="{Binding Height, ElementName=AllTopButtonsPanel}" 
                     Canvas.Left="{Binding (Canvas.Left), ElementName=AllTopButtonsPanel}"
                     Canvas.Top="{Binding (Canvas.Top), ElementName=AllTopButtonsPanel}">
-                <buttons:KinectButton Width="70" Height="70" Margin="5,0,5,5" Style="{StaticResource RoundButton}"  DataContext="{Binding MenuButton, Source={x:Static localTopButtons:TopMenuManager.Instance}}">
+                <buttons:KinectButton Width="70" Height="70" Margin="5,0,5,5" Style="{StaticResource RoundButton}"  DataContext="{Binding MenuButton, Source={x:Static TopButtons:TopMenuManager.Instance}}">
                     <Image Source="{Binding Image, Converter={StaticResource BitmapToImageSourceConverter}}"
                            Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Width}"
                            Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Height}"
@@ -132,8 +132,8 @@
                     </i:Interaction.Triggers>
                 </buttons:KinectButton>
                 <buttons:KinectButton Width="70" Height="70" Margin="5,0,5,5" Style="{StaticResource RoundButton}" 
-                                      Visibility="{Binding CameraButtonVisibility, Source={x:Static localTopButtons:TopMenuManager.Instance}}" 
-                                      DataContext="{Binding CameraButton, Source={x:Static localTopButtons:TopMenuManager.Instance}}"
+                                      Visibility="{Binding CameraButtonVisibility, Source={x:Static TopButtons:TopMenuManager.Instance}}" 
+                                      DataContext="{Binding CameraButton, Source={x:Static TopButtons:TopMenuManager.Instance}}"
                                       HandCursorClick="ScreenShotEvent">
                     <Image Source="{Binding Image, Converter={StaticResource BitmapToImageSourceConverter}}"
                            Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Width}"
@@ -146,7 +146,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </buttons:KinectButton>
-                <ItemsControl ItemsSource="{Binding ActualTopMenuButtons, Source={x:Static localTopButtons:TopMenuManager.Instance}}">
+                <ItemsControl ItemsSource="{Binding ActualTopMenuButtons, Source={x:Static TopButtons:TopMenuManager.Instance}}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel Orientation="Horizontal"/>

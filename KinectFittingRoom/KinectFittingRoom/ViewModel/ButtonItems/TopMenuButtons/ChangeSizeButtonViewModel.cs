@@ -22,7 +22,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
         /// </summary>
         public override void ClickEventExecuted()
         {
-            TopMenuManager.Instance.CameraButtonVisibility = Visibility.Collapsed;
+            base.ClearMenu();
             TopMenuManager.Instance.ActualTopMenuButtons = TopMenuManager.Instance.ChangeSizeButtons;
         }
         #endregion

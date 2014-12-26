@@ -7,11 +7,11 @@ using System.Windows.Data;
 
 namespace KinectFittingRoom.Converters
 {
-    class FixedPositionConverter : IValueConverter
+    class IncreasedValueConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            int number = int.Parse(parameter as string);
+            double number = double.Parse(parameter as string);
             return (double.Parse(value.ToString()) + number);
         }
 
