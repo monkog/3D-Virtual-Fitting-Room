@@ -178,7 +178,6 @@ namespace KinectFittingRoom.View.Buttons
         private void m_clickTimer_Tick(object sender, EventArgs e)
         {
             _clickTicks++;
-            ((MainWindow)Application.Current.MainWindow).TimerLabel.Content = _clickTicks / 60 + ":" + _clickTicks % 60;
 
             if (_clickTicks <= ClickTimeout)
                 return;

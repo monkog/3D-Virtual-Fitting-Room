@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using KinectFittingRoom.View.Buttons.Events;
@@ -25,6 +26,7 @@ namespace KinectFittingRoom
         private void SubscribeForHandPositionChanges()
         {
             var dataContext = DataContext as KinectViewModel;
+            Debug.Assert(dataContext != null, "DataContext != null");
             dataContext.KinectService.Hand.PropertyChanged += Hand_PropertyChanged;
         }
         /// <summary>
@@ -39,6 +41,7 @@ namespace KinectFittingRoom
                 case "RightPosition":
                 case "LeftPosition":
                     var dataContext = DataContext as KinectViewModel;
+                    Debug.Assert(dataContext != null, "DataContext != null");
                     HandleHandMoved(dataContext.KinectService.Hand.LeftPosition, dataContext.KinectService.Hand.RightPosition);
                     break;
             }
@@ -62,6 +65,8 @@ namespace KinectFittingRoom
                     return;
             }
 
+#warning TODO
+            // TODO: Change that to MVVM
             HandCursor.Visibility = Visibility.Visible;
             Canvas.SetLeft(HandCursor, hand.X - HandCursor.ActualWidth / 2.0);
             Canvas.SetTop(HandCursor, hand.Y - HandCursor.ActualHeight / 2.0);

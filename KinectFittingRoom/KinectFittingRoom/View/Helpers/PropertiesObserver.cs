@@ -7,6 +7,7 @@ namespace KinectFittingRoom.View.Helpers
     /// </summary>
     public static class PropertiesObserver
     {
+#warning Add property for hand tracking
         #region Dependency Properties
         /// <summary>
         /// The observe property
