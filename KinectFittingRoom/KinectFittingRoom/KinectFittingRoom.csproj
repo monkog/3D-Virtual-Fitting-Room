@@ -96,7 +96,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\BitmapToImageSourceConverter.cs" />
-    <Compile Include="Converters\MultiValueConverter.cs" />
+    <Compile Include="Converters\FixedPositionConverter.cs" />
     <Compile Include="Converters\ReducedValueConverter.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -106,15 +106,15 @@
     <Compile Include="ViewModel\ButtonItems\ButtonViewModelBase.cs" />
     <Compile Include="ViewModel\ButtonItems\ClothingButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\ModelBase.cs" />
-    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ChangeSizeButton.cs" />
-    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ChangeTypeButton.cs" />
-    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ClearSetButton.cs" />
-    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ExitButton.cs" />
-    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\MakeBiggerButton.cs" />
-    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\MakeSmallerButton.cs" />
-    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\MenuButton.cs" />
-    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ScreenShotButton.cs" />
-    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\SoundsButton.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ChangeSizeButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ChangeTypeButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ClearSetButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ExitButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\MakeBiggerButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\MakeSmallerButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\MenuButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ScreenShotButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\SoundsButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\TopMenuButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\TopMenuManager.cs" />
     <Compile Include="ViewModel\ClothingItems\ClothingItemBase.cs" />

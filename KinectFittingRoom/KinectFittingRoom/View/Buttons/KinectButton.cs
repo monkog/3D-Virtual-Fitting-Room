@@ -1,13 +1,10 @@
-﻿using System;
+﻿using KinectFittingRoom.View.Buttons.Events;
+using KinectFittingRoom.ViewModel;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
-using KinectFittingRoom.View.Buttons.Events;
-using KinectFittingRoom.ViewModel;
-using System.Windows.Media.Imaging;
-using System.IO;
-using System.Windows.Media;
 
 namespace KinectFittingRoom.View.Buttons
 {
@@ -139,10 +136,10 @@ namespace KinectFittingRoom.View.Buttons
 
             _clickTimer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0, 0, 1) };
             _clickTicks = 0;
-            _clickTimer.Tick += m_clickTimer_Tick;
+            _clickTimer.Tick += clickTimer_Tick;
             _afterClickTimer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0, 0, 1) };
             _afterClickTicks = 0;
-            _afterClickTimer.Tick += m_afterClickTimer_Tick;
+            _afterClickTimer.Tick += afterClickTimer_Tick;
 
             HandCursorEnter += KinectButton_HandCursorEnter;
             HandCursorMove += KinectButton_HandCursorMove;
@@ -170,33 +167,34 @@ namespace KinectFittingRoom.View.Buttons
         /// </summary>
         protected virtual void KinectButton_HandCursorLeave(object sender, HandCursorEventArgs args)
         {
-            ResetTimer();
+            if (IsClicked)
+                SetValue(IsClickedProperty, false);
+            ResetTimer(_clickTimer);
         }
         /// <summary>
         /// Counts the number of timer ticks of m_clickTimer
         /// </summary>
-        private void m_clickTimer_Tick(object sender, EventArgs e)
+        private void clickTimer_Tick(object sender, EventArgs e)
         {
             _clickTicks++;
 
             if (_clickTicks <= ClickTimeout)
                 return;
 
-            ResetTimer();
+            ResetTimer(_clickTimer);
             RaiseEvent(new HandCursorEventArgs(HandCursorClickEvent, _lastHandPosition));
         }
         /// <summary>
         /// Counts the number of timer ticks of m_afterClickTimer
         /// </summary>
-        private void m_afterClickTimer_Tick(object sender, EventArgs e)
+        private void afterClickTimer_Tick(object sender, EventArgs e)
         {
             _afterClickTicks++;
 
             if (_afterClickTicks <= AfterClickTimeout)
                 return;
 
-            _afterClickTimer.Stop();
-            _afterClickTicks = 0;
+            ResetTimer(_afterClickTimer);
             SetValue(IsClickedProperty, false);
         }
         /// <summary>
@@ -205,42 +203,22 @@ namespace KinectFittingRoom.View.Buttons
         protected virtual void KinectButton_HandCursorClick(object sender, HandCursorEventArgs args)
         {
             SetValue(IsClickedProperty, true);
-            ((MainWindow)Application.Current.MainWindow).TimerLabel.Content = "Click";
 
-            if ((sender as KinectButton).DataContext is ViewModel.ButtonItems.TopMenuButtons.ScreenShotButton)
-                KinectButton_ScreenShotEvent();
-            else if (KinectViewModel.SoundsOn)
+            if (KinectViewModel.SoundsOn)
                 KinectViewModel.ButtonPlayer.Play();
 
             _afterClickTimer.Start();
         }
         /// <summary>
-        /// Makes a screen shot
-        /// </summary>
-        void KinectButton_ScreenShotEvent()
-        {
-            int actualWidth = (int)((MainWindow)Application.Current.MainWindow).ImageArea.ActualWidth;
-            int actualHeight = (int)((MainWindow)Application.Current.MainWindow).ImageArea.ActualHeight;
-            string filePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\photo.png";
-            RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap(actualWidth, actualHeight, 96, 96, PixelFormats.Pbgra32);
-            renderTargetBitmap.Render(((MainWindow)Application.Current.MainWindow).ImageArea);
-            renderTargetBitmap.Render(((MainWindow)Application.Current.MainWindow).ClothesArea);
-            PngBitmapEncoder pngImage = new PngBitmapEncoder();
-            pngImage.Frames.Add(BitmapFrame.Create(renderTargetBitmap));
-            using (Stream fileStream = File.Create(filePath))
-            {
-                pngImage.Save(fileStream);
-            }
-            if (KinectViewModel.SoundsOn)
-                KinectViewModel.CameraPlayer.Play();
-        }
-        /// <summary>
         /// Resets the timer
         /// </summary>
-        private void ResetTimer()
+        private void ResetTimer(DispatcherTimer timer)
         {
-            _clickTimer.Stop();
-            _clickTicks = 0;
+            timer.Stop();
+            if (timer == _clickTimer)
+                _clickTicks = 0;
+            else
+                _afterClickTicks = 0;
         }
         #endregion Methods
     }

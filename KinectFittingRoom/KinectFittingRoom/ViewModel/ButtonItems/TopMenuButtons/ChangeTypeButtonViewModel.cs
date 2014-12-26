@@ -4,20 +4,23 @@ using System.Windows;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
 {
-    class ChangeTypeButton : TopMenuButtonViewModel
+    class ChangeTypeButtonViewModel : TopMenuButtonViewModel
     {
+        #region .ctor
         /// <summary>
-        /// Initializes a new instance of the <see cref="ChangeTypeButton"/> class.
+        /// Initializes a new instance of the <see cref="ChangeTypeButtonViewModel"/> class.
         /// </summary>
         /// <param name="function">Functionality of button</param>
         /// <param name="image">Image of button</param>
-        public ChangeTypeButton(TopMenuButtonViewModel.Functionality function, Bitmap image)
+        public ChangeTypeButtonViewModel(Functionality function, Bitmap image)
             : base(function, image)
         { }
+        #endregion
+        #region Methods
         /// <summary>
         /// Changes type of displayed clothes
         /// </summary>
-        public override void DoTheFunctionality()
+        public override void ClickEventExecuted()
         {
             if (ClothingManager.Instance.ChosenType == ClothingItemBase.MaleFemaleType.Female)
                 ClothingManager.Instance.ChosenType = ClothingItemBase.MaleFemaleType.Male;
@@ -32,7 +35,8 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
                         ClothingManager.Instance.Clothing.Add(c);
             }
 
-            TopMenuManager.Instance.AllTopButtonsVisibility = Visibility.Collapsed;
+            base.ClearMenu();
         }
+        #endregion
     }
 }

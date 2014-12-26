@@ -13,19 +13,10 @@ namespace KinectFittingRoom.ViewModel
     public class KinectViewModel : ViewModelBase
     {
         #region Private Fields
-
         /// <summary>
         /// Determines if sounds are played
         /// </summary>
         private static bool _soundsOn;
-        /// <summary>
-        /// Button sound player
-        /// </summary>
-        private static SoundPlayer _buttonPlayer;
-        /// <summary>
-        /// Camera sound player
-        /// </summary>
-        private static SoundPlayer _cameraPlayer;
         /// <summary>
         /// The clothing category collection
         /// </summary>
@@ -52,11 +43,13 @@ namespace KinectFittingRoom.ViewModel
         }
         public static SoundPlayer ButtonPlayer
         {
-            get { return _buttonPlayer; }
+            get;
+            private set;
         }
         public static SoundPlayer CameraPlayer
         {
-            get { return _cameraPlayer; }
+            get;
+            private set;
         }
         /// <summary>
         /// Gets or sets the clothing categories collection.
@@ -111,10 +104,9 @@ namespace KinectFittingRoom.ViewModel
         public KinectViewModel(KinectService kinectService)
         {
             _soundsOn = true;
-            _buttonPlayer = new SoundPlayer(Properties.Resources.ButtonClick);
-            _cameraPlayer = new SoundPlayer(Properties.Resources.CameraClick);
+            ButtonPlayer = new SoundPlayer(Properties.Resources.ButtonClick);
+            CameraPlayer = new SoundPlayer(Properties.Resources.CameraClick);
             InitializeClothingCategories();
-            InitializeTopMenu();
             _kinectService = kinectService;
             _kinectService.Initialize();
         }
@@ -207,11 +199,6 @@ namespace KinectFittingRoom.ViewModel
                         }
                     }
             };
-        }
-
-        private void InitializeTopMenu()
-        {
-            TopMenuManager.Instance.ActualTopMenuButtons.Add(new MenuButton(TopMenuButtonViewModel.Functionality.showMenu, Properties.Resources.menu));
         }
         #endregion Private Methods
     }

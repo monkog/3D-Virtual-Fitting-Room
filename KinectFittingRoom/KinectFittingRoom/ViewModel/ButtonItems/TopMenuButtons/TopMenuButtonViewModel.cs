@@ -1,31 +1,23 @@
 ﻿using Microsoft.Practices.Prism.Commands;
 using System.Drawing;
+using System.Windows;
 using System.Windows.Input;
 
-namespace KinectFittingRoom.ViewModel.ButtonItems
+namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
 {
     public abstract class TopMenuButtonViewModel : ButtonViewModelBase
     {
-        #region Private Fields
-        /// <summary>
-        /// Type of button
-        /// </summary>
-        private Functionality _buttonType;
-        #endregion
         #region Public Properties
         /// <summary>
-        /// Gets or sets button object
+        /// Gets or sets type of button
         /// </summary>
-        public TopMenuButtonViewModel TopButtonObject
-        {
-            get { return this; }
-        }
-        /// <summary>
-        /// Gets type of button
-        /// </summary>
+        /// <value>
+        /// Type of button
+        /// </value>
         public Functionality Type
         {
-            get { return _buttonType; }
+            get;
+            private set;
         }
         #endregion
         #region .ctor
@@ -36,7 +28,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// <param name="image">Image of button</param>
         public TopMenuButtonViewModel(Functionality buttonType, Bitmap image)
         {
-            _buttonType = buttonType;
+            Type = buttonType;
             Image = image;
         }
         #endregion
@@ -53,38 +45,35 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// </value>
         public ICommand TopMenuCommand
         {
-            get { return _topMenuCommand ?? (_topMenuCommand = new DelegateCommand<object>(FunctionalityExecuted)); }
-        }
-        /// <summary>
-        /// Executes when button from top menu was hit.
-        /// </summary>
-        /// <param name="parameter">Command parameter</param>
-        public void FunctionalityExecuted(object parameter)
-        {
-            var clickedButton = (TopMenuButtonViewModel)parameter;
-            clickedButton.DoTheFunctionality();
+            get { return _topMenuCommand ?? (_topMenuCommand = new DelegateCommand(ClickEventExecuted)); }
         }
         #endregion Commands
         #region Methods
         /// <summary>
         /// Does functionality of buttons
         /// </summary>
-        public abstract void DoTheFunctionality();
+        public abstract void ClickEventExecuted();
+
+        public void ClearMenu()
+        {
+            TopMenuManager.Instance.ActualTopMenuButtons = null;
+            TopMenuManager.Instance.CameraButtonVisibility = Visibility.Collapsed;
+        }
         #endregion
         /// <summary>
         /// Enumeration of top buttons functionalities
         /// </summary>
         public enum Functionality
         {
-            changeSize,
-            clearClothingSet,
-            makeBigger,
-            makeSmaller,
-            maleFemaleCategory,
-            showMenu,
-            takePicture,
-            turnOnOffSounds,
-            exit
+            ChangeSize,
+            ClearClothingSet,
+            MakeBigger,
+            MakeSmaller,
+            MaleFemaleCategory,
+            ShowMenu,
+            TakePicture,
+            TurnOnOffSounds,
+            Exit
         }
     }
 }

@@ -5,23 +5,27 @@ using System.Windows;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
 {
-    class ClearSetButton : TopMenuButtonViewModel
+    class ClearSetButtonViewModel : TopMenuButtonViewModel
     {
+        #region .ctor
         /// <summary>
-        /// Initializes a new instance of the <see cref="ClearSetButton"/> class.
+        /// Initializes a new instance of the <see cref="ClearSetButtonViewModel"/> class.
         /// </summary>
         /// <param name="function">Functionality of button</param>
         /// <param name="image">Image of button</param>
-        public ClearSetButton(TopMenuButtonViewModel.Functionality function, Bitmap image)
+        public ClearSetButtonViewModel(Functionality function, Bitmap image)
             : base(function, image)
         { }
+        #endregion
+        #region Methods
         /// <summary>
         /// Clears chosen set
         /// </summary>
-        public override void DoTheFunctionality()
+        public override void ClickEventExecuted()
         {
             ClothingManager.Instance.ChosenClothes = new Dictionary<ClothingItemBase.ClothingType, ClothingItemBase>();
-            TopMenuManager.Instance.AllTopButtonsVisibility = Visibility.Collapsed;
+            base.ClearMenu();
         }
+        #endregion
     }
 }
