@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using KinectFittingRoom.ViewModel.ButtonItems;
+﻿using KinectFittingRoom.ViewModel.ButtonItems;
 using KinectFittingRoom.ViewModel.ClothingItems;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Media;
 
 namespace KinectFittingRoom.ViewModel
 {
@@ -25,6 +26,21 @@ namespace KinectFittingRoom.ViewModel
         private readonly KinectService _kinectService;
         #endregion Private Fields
         #region Public Properties
+        public static bool SoundsOn { get; set; }
+        /// <summary>
+        /// Gets the button player.
+        /// </summary>
+        /// <value>
+        /// The button player.
+        /// </value>
+        public static SoundPlayer ButtonPlayer { get; private set; }
+        /// <summary>
+        /// Gets the camera player.
+        /// </summary>
+        /// <value>
+        /// The camera player.
+        /// </value>
+        public static SoundPlayer CameraPlayer { get; private set; }
         /// <summary>
         /// Gets or sets the clothing categories collection.
         /// </summary>
@@ -93,6 +109,9 @@ namespace KinectFittingRoom.ViewModel
         /// <param name="kinectService">The kinect service.</param>
         public KinectViewModel(KinectService kinectService)
         {
+            SoundsOn = true;
+            ButtonPlayer = new SoundPlayer(Properties.Resources.ButtonClick);
+            CameraPlayer = new SoundPlayer(Properties.Resources.CameraClick);
             InitializeClothingCategories();
             _kinectService = kinectService;
             _kinectService.Initialize();
@@ -104,11 +123,12 @@ namespace KinectFittingRoom.ViewModel
         /// </summary>
         private void InitializeClothingCategories()
         {
-            ClothingCategories = new ObservableCollection<ClothingCategoryButtonViewModel>();
-
-            ClothingCategories.Add(CreateHatsClothingCategoryButton());
-            ClothingCategories.Add(CreateSkirtsClothingCategoryButton());
-            ClothingCategories.Add(CreateGlassesClothingCategoryButton());
+            ClothingCategories = new ObservableCollection<ClothingCategoryButtonViewModel>
+            {
+                CreateHatsClothingCategoryButton(),
+                CreateSkirtsClothingCategoryButton(),
+                CreateGlassesClothingCategoryButton()
+            };
         }
         /// <summary>
         /// Creates the hats clothing category button.
@@ -121,7 +141,7 @@ namespace KinectFittingRoom.ViewModel
                 Image = Properties.Resources.hat_symbol,
                 Clothes = new List<ClothingButtonViewModel>
                 {
-                    new HatButtonViewModel(ClothingItemBase.ClothingType.HatItem, @".\Resources\Models\SantaHat.obj", @".\Resources\Models\hat_blue.png")  {
+                    new HatButtonViewModel(ClothingItemBase.ClothingType.HatItem, ClothingItemBase.MaleFemaleType.Both, @".\Resources\Models\SantaHat.obj", @".\Resources\Models\hat_blue.png")  {
                         Image = Properties.Resources.small_hat_blue, 
                         ImageWidthToItemWidth = 2.07
                     },

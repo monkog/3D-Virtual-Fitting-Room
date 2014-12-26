@@ -4,6 +4,11 @@ using System.Windows;
 using System.Windows.Controls;
 using KinectFittingRoom.View.Buttons.Events;
 using KinectFittingRoom.ViewModel;
+using System;
+using System.Globalization;
+using System.IO;
+using System.Windows.Media.Imaging;
+using System.Windows.Media;
 
 namespace KinectFittingRoom
 {
@@ -73,5 +78,28 @@ namespace KinectFittingRoom
             ButtonsManager.Instance.RaiseCursorEvents(element, hand);
         }
         #endregion Private Methods
+        /// <summary>
+        /// Makes a screen shot
+        /// </summary>
+        private void ScreenShotEvent(object sender, HandCursorEventArgs args)
+        {
+            int actualWidth = (int)ImageArea.ActualWidth;
+            int actualHeight = (int)ImageArea.ActualHeight;
+            string fileName = DateTime.Now.ToString("yyyy.MM.dd-HH.mm", CultureInfo.InvariantCulture);
+            fileName += ".png";
+            string directoryPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Wirtualna Przymierzalnia");
+            Directory.CreateDirectory(directoryPath);
+            RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap(actualWidth, actualHeight, 96, 96, PixelFormats.Pbgra32);
+            renderTargetBitmap.Render(ImageArea);
+            renderTargetBitmap.Render(ClothesArea);
+            PngBitmapEncoder pngImage = new PngBitmapEncoder();
+            pngImage.Frames.Add(BitmapFrame.Create(renderTargetBitmap));
+            using (Stream fileStream = File.Create(directoryPath + "\\" + fileName))
+            {
+                pngImage.Save(fileStream);
+            }
+            if (KinectViewModel.SoundsOn)
+                KinectViewModel.CameraPlayer.Play();
+        }
     }
 }

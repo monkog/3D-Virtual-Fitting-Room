@@ -1,7 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
-using System.Windows.Media.Animation;
 using System.Windows.Media.Media3D;
 using KinectFittingRoom.ViewModel.ButtonItems;
 using Microsoft.Kinect;
@@ -24,11 +23,62 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// </summary>
         private ObservableCollection<ClothingButtonViewModel> _clothing;
         /// <summary>
+        /// The last added item to ChosenClothes collection
+        /// </summary>
+        private ClothingItemBase _lastAddedItem;
+        /// <summary>
+        /// The last chosen category
+        /// </summary>
+        private ClothingCategoryButtonViewModel _lastChosenCategory;
+        /// <summary>
+        /// Chosen type of clothes
+        /// </summary>
+        private ClothingItemBase.MaleFemaleType _chosenType;
+        /// <summary>
         /// Position of the spine joint
         /// </summary>
         private Vector3D _spinePosition;
         #endregion Private Fields
         #region Public Properties
+        /// <summary>
+        /// Gets or sets the chosen type of clothes
+        /// </summary>
+        public ClothingItemBase.MaleFemaleType ChosenType
+        {
+            get { return _chosenType; }
+            set
+            {
+                if (_chosenType == value)
+                    return;
+                _chosenType = value;
+            }
+        }
+        /// <summary>
+        /// Gets or sets last chosen category
+        /// </summary>
+        public ClothingCategoryButtonViewModel LastChosenCategory
+        {
+            get { return _lastChosenCategory; }
+            set
+            {
+                if (_lastChosenCategory == value)
+                    return;
+                _lastChosenCategory = value;
+            }
+        }
+        /// <summary>
+        /// Gets or sets the last added item to ChosenClothes collection
+        /// </summary>
+        public ClothingItemBase LastAddedItem
+        {
+            get { return _lastAddedItem; }
+            set
+            {
+                if (_lastAddedItem == value)
+                    return;
+                _lastAddedItem = value;
+            }
+        }
         /// <summary>
         /// Gets or sets the chosen clothing models collection.
         /// </summary>
@@ -77,10 +127,27 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// </summary>
         private ClothingManager()
         {
+            _chosenType = ClothingItemBase.MaleFemaleType.Female;
             ChosenClothesModels = new Dictionary<ClothingItemBase.ClothingType, ClothingItemBase>();
         }
         #endregion .ctor
         #region Protected Methods        
+
+        /// <summary>
+        /// Scales images of clothes
+        /// </summary>
+        /// <param name="ratio">The ratio of scaling</param>
+        public void ScaleImage(double ratio)
+        {
+#warning TODO
+            //ClothingItemBase lastItem = LastAddedItem;
+            //lastItem.PathToImage = new Bitmap(lastItem.Image, (int) lastItem.Image.Width, (int) (ratio*lastItem.Image.Height));
+
+            //Dictionary<ClothingItemBase.ClothingType, ClothingItemBase> tmp = ChosenClothes;
+            //tmp[tmp.FirstOrDefault(a => a.Value.PathToImage == lastItem.PathToImage).Key] = lastItem;
+            //ChosenClothesModels = new Dictionary<ClothingItemBase.ClothingType, ClothingItemBase>(tmp);
+        }
+
         /// <summary>
         /// Tracks the joints rotation.
         /// </summary>

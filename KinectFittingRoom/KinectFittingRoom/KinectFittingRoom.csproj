@@ -104,13 +104,30 @@
     <Compile Include="Converters\BitmapToImageSourceConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\DebugConverter.cs" />
+    <Compile Include="Converters\IncreasedValueConverter.cs" />
     <Compile Include="Converters\ReducedValueConverter.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\ButtonItems\ButtonViewModelBase.cs" />
     <Compile Include="ViewModel\ButtonItems\ClothingButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\GlassesButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\HatButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\ModelBase.cs" />
     <Compile Include="ViewModel\ButtonItems\SkirtButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ChangeSizeButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ChangeTypeButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ClearSetButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ExitButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\MakeBiggerButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\MakeSmallerButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\MenuButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ScreenShotButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\SoundsButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\TopMenuButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\TopMenuManager.cs" />
     <Compile Include="ViewModel\ClothingItems\ClothingItemBase.cs" />
     <Compile Include="ViewModel\ClothingItems\ClothingManager.cs" />
     <Compile Include="ViewModel\ClothingItems\GlassesItem.cs" />
@@ -147,15 +164,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\Styles\RoundButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -165,7 +181,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
-      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config">
@@ -237,6 +253,37 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Models\skirt_denim.bmp" />
+    <None Include="Resources\Menu\menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Menu\menu_arrows.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Menu\menu_camera.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Menu\menu_clearSet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Menu\menu_doors.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Menu\menu_menWomen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Menu\menu_speaker.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Menu\vertical_arrows.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Menu\vertical_arrows_smaller.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ButtonClick.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CameraClick.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

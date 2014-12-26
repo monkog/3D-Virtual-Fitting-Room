@@ -1,13 +1,9 @@
-﻿using System.Drawing;
-using System.Linq;
-using System.Windows.Media.Media3D;
 using HelixToolkit.Wpf;
 #if DEBUG
 using KinectFittingRoom.ViewModel.Debug;
 #endif
 using KinectFittingRoom.ViewModel.ClothingItems;
 using Microsoft.Practices.Prism.Commands;
-using System.Collections.Generic;
 using System.Windows.Input;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems
@@ -26,6 +22,10 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// Proportion image width to significant width of item
         /// </summary>
         private double _imageWidthToItemWidth;
+        /// <summary>
+        /// Type of clothing item
+        /// </summary>
+        private ClothingItemBase.MaleFemaleType _type;
         #endregion Private Fields
         #region Public Properties
         /// <summary>
@@ -41,6 +41,13 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         public ClothingItemBase.ClothingType Category
         {
             get { return _category; }
+        }
+        /// <summary>
+        /// Gets type of item
+        /// </summary>
+        public ClothingItemBase.MaleFemaleType Type
+        {
+            get { return _type; }
         }
         /// <summary>
         /// Gets or sets proportion image width to significant width of item
@@ -100,15 +107,18 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         { }
         #endregion Commands
         #region .ctor
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ClothingButtonViewModel"/> class.
         /// </summary>
-        /// <param name="type">Type of clothing item</param>
+        /// <param name="category">Clothing category</param>
+        /// <param name="type">Male or female type of clothing</param>
         /// <param name="pathToModel">Path to the model</param>
         /// <param name="pathToTexture">Path to the texture of the item</param>
-        public ClothingButtonViewModel(ClothingItemBase.ClothingType type, string pathToModel, string pathToTexture)
+        public ClothingButtonViewModel(ClothingItemBase.ClothingType category, ClothingItemBase.MaleFemaleType type, string pathToModel, string pathToTexture)
         {
-            _category = type;
+            _category = category;
+            _type = type;
             TexturePath = pathToTexture;
             ModelPath = pathToModel;
             Importer = new ModelImporter();

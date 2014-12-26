@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Linq;
 using System.Windows.Media.Media3D;
-using HelixToolkit.Wpf;
 using Microsoft.Kinect;
 using System.Drawing;
 namespace KinectFittingRoom.ViewModel.ClothingItems
@@ -54,9 +52,9 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
             }
         }
         /// <summary>
-        /// Gets the path to original image of item
+        /// Gets the path to texture of item
         /// </summary>
-        public string PathToImage
+        public string PathToTexture
         {
             get
             {
@@ -228,6 +226,13 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
             HatItem,
             SkirtItem,
             GlassesItem
+        }
+
+        public enum MaleFemaleType
+        {
+            Male,
+            Female,
+            Both
         }
         #endregion Enums
     }

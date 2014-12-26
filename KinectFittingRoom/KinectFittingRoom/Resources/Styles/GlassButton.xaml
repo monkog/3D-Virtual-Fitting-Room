@@ -31,15 +31,6 @@
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
-                        <Trigger Property="IsUnclicked" Value="True">
-                            <Setter TargetName="ButtonBorder" Property="RenderTransform">
-                                <Setter.Value>
-                                    <TransformGroup>
-                                        <ScaleTransform ScaleX="1.25" ScaleY="1.25"/>
-                                    </TransformGroup>
-                                </Setter.Value>
-                            </Setter>
-                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

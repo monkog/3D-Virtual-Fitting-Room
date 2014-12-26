@@ -5,12 +5,13 @@
         xmlns:buttons="clr-namespace:KinectFittingRoom.View.Buttons"
         xmlns:helpers="clr-namespace:KinectFittingRoom.View.Helpers"
         xmlns:local="clr-namespace:KinectFittingRoom.ViewModel.ClothingItems"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"        
+        xmlns:TopButtons="clr-namespace:KinectFittingRoom.ViewModel.ButtonItems"
+        xmlns:d="http://schemas.microsoft.com/expressiredyon/blend/2008"        
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:h="http://helix-toolkit.org/wpf"
         mc:Ignorable="d"
-        WindowState="Maximized"		
+        WindowState="Maximized"
 		WindowStyle="None"
         Title="Kinect Fitting Room"
         Height="768" Width="1366"
@@ -19,6 +20,7 @@
     <Window.Resources>
         <converters:ReducedValueConverter x:Key="ReducedValueConverter"/>
         <converters:BitmapToImageSourceConverter x:Key="BitmapToImageSourceConverter"/>
+        <converters:IncreasedValueConverter x:Key="IncreasedValueConverter"/>
         <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
         <converters:DebugConverter x:Key="DebugConverter"/>
         <helpers:DataTemplate3D x:Key="ModelTemplate">
@@ -31,11 +33,11 @@
             <ImageBrush ImageSource="Resources/curtains.jpg" Stretch="UniformToFill"/>
         </Grid.Background>
         <!--Image from the Kinect camera-->
-        <Image Source="{Binding KinectService.KinectCameraImage}"
+        <Image x:Name="ImageArea" Source="{Binding KinectService.KinectCameraImage}"
 			   helpers:PropertiesObserver.Observe="True"
 			   helpers:PropertiesObserver.ObservedWidth="{Binding KinectService.Width, Mode=OneWayToSource}"
 			   helpers:PropertiesObserver.ObservedHeight="{Binding KinectService.Height, Mode=OneWayToSource}"/>
-        <!--Canvas containing both button panels-->
+        <!--Canvas containing button panels-->
         <Canvas Name="ButtonPanelsCanvas" Width="{Binding KinectService.Width}" Height="{Binding KinectService.Height}">
             <Canvas Name="LeftPanel"
                     Width="170" 
@@ -102,7 +104,7 @@
                                               Margin="5" Style="{StaticResource GlassButton}">
                             <Image Source="{Binding Image, Converter={StaticResource BitmapToImageSourceConverter}}" 
                                        Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Width}"
-									   Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Height}" RenderTransformOrigin="0,0.01"
+									   Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Height}"
                                        Canvas.Left="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=(Canvas.Left)}"
                                        Canvas.Top="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=(Canvas.Top)}"/>
                             <i:Interaction.Triggers>
@@ -114,21 +116,73 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-        </Canvas>
-        <!--Hand Cursor canvas-->
-        <Canvas Width="{Binding KinectService.Width}" Height="{Binding KinectService.Height}">
-            <Canvas Name="HandCursor" Width="70" Height="70" Visibility="Collapsed">
-                <Ellipse Width="{Binding RelativeSource={RelativeSource AncestorType=Canvas}, Path=ActualWidth}" 
-                         Height="{Binding RelativeSource={RelativeSource AncestorType=Canvas}, Path=ActualHeight}" 
-                         Fill="GhostWhite"
-                         Opacity="0.5" 
-                         Stroke="Black" 
-                         StrokeThickness="2"/>
-                <Image Source="/Resources/Images/Hand.png" Width="60" Height="60" Margin="5,5,5,5"/>
-            </Canvas>
+            <!--StackPanel containing all the buttons from top menu-->
+            <Canvas Name="AllTopButtonsPanel"
+                    Canvas.Left="{Binding ElementName=LeftPanel, Path=ActualWidth, Converter={StaticResource IncreasedValueConverter}, ConverterParameter=20}"
+                    Canvas.Top="20"
+                    Width="80"
+                    Height="80"
+                    Background="Transparent"/>
+            <StackPanel
+                    Orientation="Horizontal"
+                    Width="600"
+                    Height="{Binding Height, ElementName=AllTopButtonsPanel}" 
+                    Canvas.Left="{Binding (Canvas.Left), ElementName=AllTopButtonsPanel}"
+                    Canvas.Top="{Binding (Canvas.Top), ElementName=AllTopButtonsPanel}">
+                <buttons:KinectButton Width="70" Height="70" Margin="5,0,5,5" Style="{StaticResource RoundButton}"  DataContext="{Binding MenuButton, Source={x:Static TopButtons:TopMenuManager.Instance}}">
+                    <Image Source="{Binding Image, Converter={StaticResource BitmapToImageSourceConverter}}"
+                           Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Width}"
+                           Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Height}"
+                           Canvas.Left="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=(Canvas.Left)}"
+                           Canvas.Top="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=(Canvas.Top)}"/>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="HandCursorClick">
+                            <i:InvokeCommandAction Command="{Binding TopMenuCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </buttons:KinectButton>
+                <buttons:KinectButton Width="70" Height="70" Margin="5,0,5,5" Style="{StaticResource RoundButton}" 
+                                      Visibility="{Binding CameraButtonVisibility, Source={x:Static TopButtons:TopMenuManager.Instance}}" 
+                                      DataContext="{Binding CameraButton, Source={x:Static TopButtons:TopMenuManager.Instance}}"
+                                      HandCursorClick="ScreenShotEvent">
+                    <Image Source="{Binding Image, Converter={StaticResource BitmapToImageSourceConverter}}"
+                           Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Width}"
+                           Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Height}"
+                           Canvas.Left="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=(Canvas.Left)}"
+                           Canvas.Top="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=(Canvas.Top)}"/>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="HandCursorClick">
+                            <i:InvokeCommandAction CommandName="ScreenShotEvent"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </buttons:KinectButton>
+                <ItemsControl ItemsSource="{Binding ActualTopMenuButtons, Source={x:Static TopButtons:TopMenuManager.Instance}}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <buttons:KinectButton  Width="70" Height="70" Margin="5,0,5,5" Style="{StaticResource RoundButton}">
+                                <Image Source="{Binding Image, Converter={StaticResource BitmapToImageSourceConverter}}" 
+                                       Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Width}"
+									   Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Height}"
+                                       Canvas.Left="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=(Canvas.Left)}"
+                                       Canvas.Top="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=(Canvas.Top)}"/>
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="HandCursorClick">
+                                        <i:InvokeCommandAction Command="{Binding TopMenuCommand}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </buttons:KinectButton>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
         </Canvas>
         <!--3D control-->
-        <h:HelixViewport3D CameraRotationMode="Trackball">
+        <h:HelixViewport3D CameraRotationMode="Trackball" Name="ClothesArea">
             <h:HelixViewport3D.Camera>
                 <PerspectiveCamera Position="0,-2,0" LookDirection="0,6,0" UpDirection="0,0,1" NearPlaneDistance="0.01" FarPlaneDistance="1000" FieldOfView="57"/>
             </h:HelixViewport3D.Camera>
@@ -140,9 +194,17 @@
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </h:HelixViewport3D>
-        <!--Top menu-->
-        <Canvas>
-
+        <!--Hand Cursor canvas-->
+        <Canvas Width="{Binding KinectService.Width}" Height="{Binding KinectService.Height}">
+            <Canvas Name="HandCursor" Width="70" Height="70" Visibility="Collapsed">
+                <Ellipse Width="{Binding RelativeSource={RelativeSource AncestorType=Canvas}, Path=ActualWidth}" 
+                         Height="{Binding RelativeSource={RelativeSource AncestorType=Canvas}, Path=ActualHeight}" 
+                         Fill="GhostWhite"
+                         Opacity="0.5" 
+                         Stroke="Black" 
+                         StrokeThickness="2"/>
+                <Image Source="/Resources/Images/Hand.png" Width="60" Height="60" Margin="5,5,5,5"/>
+            </Canvas>
         </Canvas>
         <!--Grid containing Skeleton parts for debugging-->
         <ItemsControl ItemsSource="{Binding KinectService.SkeletonManager.SkeletonParts}" 

@@ -4,15 +4,14 @@ using System.Linq;
 using System.Windows.Media.Media3D;
 using HelixToolkit.Wpf;
 using KinectFittingRoom.ViewModel.ClothingItems;
-using Microsoft.Kinect;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems
 {
     public class HatButtonViewModel : ClothingButtonViewModel
     {
         #region .ctor
-        public HatButtonViewModel(ClothingItemBase.ClothingType type, string pathToModel, string pathToTexture)
-            : base(type, pathToModel, pathToTexture)
+        public HatButtonViewModel(ClothingItemBase.ClothingType type, ClothingItemBase.MaleFemaleType maleFemaleType, string pathToModel, string pathToTexture)
+            : base(type, maleFemaleType, pathToModel, pathToTexture)
         { }
         #endregion .ctor
         #region Commands

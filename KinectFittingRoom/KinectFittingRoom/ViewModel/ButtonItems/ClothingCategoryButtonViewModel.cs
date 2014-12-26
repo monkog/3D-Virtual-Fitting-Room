@@ -53,9 +53,13 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// </summary>
         public void CategoryExecuted()
         {
-            if (ClothingManager.Instance.Clothing != null && ClothingManager.Instance.Clothing[0].Image == Clothes[0].Image)
+            if (ClothingManager.Instance.Clothing != null && ClothingManager.Instance.Clothing.Count !=0 && ClothingManager.Instance.Clothing[0].Category == Clothes[0].Category)
                 return;
-            ClothingManager.Instance.Clothing = new ObservableCollection<ClothingButtonViewModel>(Clothes);
+            ClothingManager.Instance.LastChosenCategory = this;
+            ClothingManager.Instance.Clothing = new ObservableCollection<ClothingButtonViewModel>();
+            foreach (var c in Clothes)
+                if (c.Type == ClothingManager.Instance.ChosenType || c.Type == ClothingItemBase.MaleFemaleType.Both)
+                    ClothingManager.Instance.Clothing.Add(c);
         }
         #endregion Commands
     }

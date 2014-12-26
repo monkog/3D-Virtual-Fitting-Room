@@ -11,7 +11,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
     {
         #region .ctor
         public GlassesButtonViewModel(ClothingItemBase.ClothingType type, string pathToModel, string pathToTexture)
-            : base(type, pathToModel, pathToTexture)
+            : base(type, ClothingItemBase.MaleFemaleType.Both, pathToModel, pathToTexture)
         { }
         #endregion .ctor
         #region Commands
