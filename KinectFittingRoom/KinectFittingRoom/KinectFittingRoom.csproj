@@ -135,7 +135,7 @@
     <Compile Include="ViewModel\ClothingItems\SkirtItem.cs" />
     <Compile Include="View\Buttons\Events\HandCursorEventArgs.cs" />
     <Compile Include="View\Buttons\Events\ButtonsManager.cs" />
-    <Compile Include="View\Buttons\Events\KinectInput.cs" />
+    <Compile Include="View\Buttons\Events\KinectEvents.cs" />
     <Compile Include="View\Buttons\KinectButton.cs" />
     <Compile Include="ViewModel\Debug\SkeletonManager.cs" />
     <Compile Include="ViewModel\ButtonItems\ClothingCategoryButtonViewModel.cs" />

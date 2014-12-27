@@ -29,13 +29,6 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         #endregion Private Fields
         #region Public Properties
         /// <summary>
-        /// Gets or sets button object
-        /// </summary>
-        public ClothingButtonViewModel ButtonObject
-        {
-            get { return this; }
-        }
-        /// <summary>
         /// Gets category of item
         /// </summary>
         public ClothingItemBase.ClothingType Category

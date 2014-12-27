@@ -21,8 +21,6 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// <param name="parameter">The parameter.</param>
         public override void CategoryExecuted(object parameter)
         {
-            ClothingButtonViewModel clickedButton = (ClothingButtonViewModel)parameter;
-
             Dictionary<ClothingItemBase.ClothingType, ClothingItemBase> tmpModels = ClothingManager.Instance.ChosenClothesModels;
 
             Model3DGroup group = Importer.Load(ModelPath);
@@ -33,11 +31,11 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
 
             try
             {
-                tmpModels[clickedButton.Category].Model = model;
+                tmpModels[Category].Model = model;
             }
             catch (Exception)
             {
-                tmpModels[clickedButton.Category] = new HatItem(TexturePath, 2) { Model = model };
+                tmpModels[Category] = new HatItem(TexturePath, 2) { Model = model };
             }
             ClothingManager.Instance.ChosenClothesModels = new Dictionary<ClothingItemBase.ClothingType, ClothingItemBase>(tmpModels);
         }

@@ -50,22 +50,22 @@ namespace KinectFittingRoom.View.Buttons
         /// Hand cursor enter event
         /// </summary>
         public static readonly RoutedEvent HandCursorEnterEvent
-            = KinectInput.HandCursorEnterEvent.AddOwner(typeof(KinectButton));
+            = KinectEvents.HandCursorEnterEvent.AddOwner(typeof(KinectButton));
         /// <summary>
         /// Hand cursor move event
         /// </summary>
         public static readonly RoutedEvent HandCursorMoveEvent
-            = KinectInput.HandCursorMoveEvent.AddOwner(typeof(KinectButton));
+            = KinectEvents.HandCursorMoveEvent.AddOwner(typeof(KinectButton));
         /// <summary>
         /// Hand cursor leave event
         /// </summary>
         public static readonly RoutedEvent HandCursorLeaveEvent
-            = KinectInput.HandCursorLeaveEvent.AddOwner(typeof(KinectButton));
+            = KinectEvents.HandCursorLeaveEvent.AddOwner(typeof(KinectButton));
         /// <summary>
         /// Hand cursor click event
         /// </summary>
         public static readonly RoutedEvent HandCursorClickEvent
-            = KinectInput.HandCursorClickEvent.AddOwner(typeof(KinectButton));
+            = KinectEvents.HandCursorClickEvent.AddOwner(typeof(KinectButton));
         #endregion Events
         #region Event handlers
         /// <summary>

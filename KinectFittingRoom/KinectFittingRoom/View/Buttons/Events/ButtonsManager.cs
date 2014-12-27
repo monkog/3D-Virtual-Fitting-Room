@@ -53,12 +53,12 @@ namespace KinectFittingRoom.View.Buttons.Events
         /// <param name="cursorPosition">Cursor position.</param>
         public void RaiseCursorEvents(IInputElement element, Point cursorPosition)
         {
-            element.RaiseEvent(new HandCursorEventArgs(KinectInput.HandCursorMoveEvent, cursorPosition));
+            element.RaiseEvent(new HandCursorEventArgs(KinectEvents.HandCursorMoveEvent, cursorPosition));
             if (element != _lastElement)
             {
                 if (_lastElement != null)
-                    _lastElement.RaiseEvent(new HandCursorEventArgs(KinectInput.HandCursorLeaveEvent, cursorPosition));
-                element.RaiseEvent(new HandCursorEventArgs(KinectInput.HandCursorEnterEvent, cursorPosition));
+                    _lastElement.RaiseEvent(new HandCursorEventArgs(KinectEvents.HandCursorLeaveEvent, cursorPosition));
+                element.RaiseEvent(new HandCursorEventArgs(KinectEvents.HandCursorEnterEvent, cursorPosition));
             }
             _lastElement = element;
         }
