@@ -1,6 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
+using System.Windows.Media;
 using System.Windows.Media.Media3D;
 using KinectFittingRoom.ViewModel.ButtonItems;
 using Microsoft.Kinect;
@@ -23,62 +24,45 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// </summary>
         private ObservableCollection<ClothingButtonViewModel> _clothing;
         /// <summary>
-        /// The last added item to ChosenClothes collection
-        /// </summary>
-        private ClothingItemBase _lastAddedItem;
-        /// <summary>
-        /// The last chosen category
-        /// </summary>
-        private ClothingCategoryButtonViewModel _lastChosenCategory;
-        /// <summary>
-        /// Chosen type of clothes
-        /// </summary>
-        private ClothingItemBase.MaleFemaleType _chosenType;
-        /// <summary>
         /// Position of the spine joint
         /// </summary>
         private Vector3D _spinePosition;
+        /// <summary>
+        /// The rotation angle
+        /// </summary>
+        private double _angle;
         #endregion Private Fields
         #region Public Properties
         /// <summary>
-        /// Gets or sets the chosen type of clothes
+        /// Gets or sets the rotation angle.
         /// </summary>
-        public ClothingItemBase.MaleFemaleType ChosenType
+        /// <value>
+        /// The rotation angle.
+        /// </value>
+        public double Angle
         {
-            get { return _chosenType; }
+            get { return _angle; }
             set
             {
-                if (_chosenType == value)
+                if (_angle == value)
                     return;
-                _chosenType = value;
+                _angle = value;
+                OnPropertyChanged("Angle");
             }
         }
+
+        /// <summary>
+        /// Gets or sets the chosen type of clothes
+        /// </summary>
+        public ClothingItemBase.MaleFemaleType ChosenType { get; set; }
         /// <summary>
         /// Gets or sets last chosen category
         /// </summary>
-        public ClothingCategoryButtonViewModel LastChosenCategory
-        {
-            get { return _lastChosenCategory; }
-            set
-            {
-                if (_lastChosenCategory == value)
-                    return;
-                _lastChosenCategory = value;
-            }
-        }
+        public ClothingCategoryButtonViewModel LastChosenCategory { get; set; }
         /// <summary>
         /// Gets or sets the last added item to ChosenClothes collection
         /// </summary>
-        public ClothingItemBase LastAddedItem
-        {
-            get { return _lastAddedItem; }
-            set
-            {
-                if (_lastAddedItem == value)
-                    return;
-                _lastAddedItem = value;
-            }
-        }
+        public ClothingItemBase LastAddedItem { get; set; }
         /// <summary>
         /// Gets or sets the chosen clothing models collection.
         /// </summary>
@@ -127,11 +111,11 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// </summary>
         private ClothingManager()
         {
-            _chosenType = ClothingItemBase.MaleFemaleType.Female;
+            ChosenType = ClothingItemBase.MaleFemaleType.Female;
             ChosenClothesModels = new Dictionary<ClothingItemBase.ClothingType, ClothingItemBase>();
         }
         #endregion .ctor
-        #region Protected Methods        
+        #region Protected Methods
 
         /// <summary>
         /// Scales images of clothes
@@ -164,7 +148,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
             var rightHip = sensor.CoordinateMapper.MapSkeletonPointToDepthPoint(joint1.Position, sensor.DepthStream.Format);
             var leftHip = sensor.CoordinateMapper.MapSkeletonPointToDepthPoint(joint2.Position, sensor.DepthStream.Format);
 
-            return (Math.Atan(((double)rightHip.Depth - leftHip.Depth) / ((double)leftHip.X - rightHip.X)) * 180.0 / Math.PI);
+            return -(Math.Atan(((double)rightHip.Depth - leftHip.Depth) / ((double)leftHip.X - rightHip.X)) * 180.0 / Math.PI);
         }
         #endregion Protected Methods
         #region Public Methods
@@ -185,7 +169,16 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// <param name="height">The height.</param>
         public void UpdateItemPosition(Skeleton skeleton, KinectSensor sensor, double width, double height)
         {
-            double rotationAngle = TrackJointsRotation(sensor, skeleton.Joints[JointType.HipRight], skeleton.Joints[JointType.HipLeft]);
+            Angle = TrackJointsRotation(sensor, skeleton.Joints[JointType.HipRight], skeleton.Joints[JointType.HipLeft]);
+
+            foreach (var model in ChosenClothesModels.Values)
+            {
+                var transform = new Transform3DGroup();
+
+                transform.Children.Add(new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(1, 0, 0), 90)));
+                transform.Children.Add(new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 0, 1), Angle)));
+                model.Model.Transform = transform;
+            }
 
             var head = KinectService.GetJointPoint(skeleton.Joints[JointType.Head], sensor, width, height);
             var footLeft = KinectService.GetJointPoint(skeleton.Joints[JointType.FootLeft], sensor, width, height);

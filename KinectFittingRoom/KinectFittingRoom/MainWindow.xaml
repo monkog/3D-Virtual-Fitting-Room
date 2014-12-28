@@ -119,10 +119,7 @@
             <!--StackPanel containing all the buttons from top menu-->
             <Canvas Name="AllTopButtonsPanel"
                     Canvas.Left="{Binding ElementName=LeftPanel, Path=ActualWidth, Converter={StaticResource IncreasedValueConverter}, ConverterParameter=20}"
-                    Canvas.Top="20"
-                    Width="80"
-                    Height="80"
-                    Background="Transparent"/>
+                    Canvas.Top="20" Width="80" Height="80" Background="Transparent"/>
             <StackPanel
                     Orientation="Horizontal"
                     Width="600"

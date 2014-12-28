@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 using Microsoft.Kinect;
 
 namespace KinectFittingRoom.ViewModel
@@ -69,7 +70,7 @@ namespace KinectFittingRoom.ViewModel
             get { return _kinectSensor; }
             set
             {
-                if (_kinectSensor != value)
+                //if (_kinectSensor != value)
                 {
                     if (_kinectSensor != null)
                     {
@@ -321,6 +322,9 @@ namespace KinectFittingRoom.ViewModel
             switch (e.Status)
             {
                 case KinectStatus.Initializing:
+                    ErrorGridVisibility = Visibility.Visible;
+                    ErrorGridMessage = "Inicjalizacja Kinecta...";
+                    break;
                 case KinectStatus.Connected:
                     if (Kinect == null)
                         Kinect = e.Sensor;
@@ -334,9 +338,13 @@ namespace KinectFittingRoom.ViewModel
                         if (Kinect == null)
                         {
                             ErrorGridVisibility = Visibility.Visible;
-                            ErrorGridMessage = "Proszę podłączyć Kinect";
+                            ErrorGridMessage = "Podłącz Kinect do komputera.";
                         }
                     }
+                    break;
+                case KinectStatus.NotPowered:
+                    ErrorGridVisibility = Visibility.Visible;
+                    ErrorGridMessage = "Podłącz kabel zasilający do gniazdka.";
                     break;
                 default:
                     ErrorGridVisibility = Visibility.Visible;
