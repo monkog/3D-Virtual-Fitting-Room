@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using KinectFittingRoom.View.Buttons.Events;
+using KinectFittingRoom.View.Helpers;
 using KinectFittingRoom.ViewModel;
 using System;
 using System.Globalization;
@@ -34,22 +35,6 @@ namespace KinectFittingRoom
             var dataContext = DataContext as KinectViewModel;
             Debug.Assert(dataContext != null, "DataContext != null");
             dataContext.KinectService.Hand.PropertyChanged += KinectService_PropertyChanged;
-            ClothingManager.Instance.PropertyChanged += ClothingManager_PropertyChanged;
-        }
-        /// <summary>
-        /// Handles the PropertyChanged event of the ClothingManager.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="PropertyChangedEventArgs"/> instance containing the event data.</param>
-        private void ClothingManager_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            switch (e.PropertyName)
-            {
-                case "ChosenClothesModels":
-                    if (((ClothingManager)sender).ChosenClothesModels.Count == 0)
-                        ClothesArea.Children.Clear();
-                    break;
-            }
         }
         /// <summary>
         /// Handles the PropertyChanged event of the Hand.

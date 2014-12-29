@@ -45,6 +45,7 @@ namespace KinectFittingRoom.View.Helpers
             set { SetValue(ItemsSourceProperty, value); }
         }
 
+        #region Private Methods
         /// <summary>
         /// Handles changes in the ItemsSource property.
         /// </summary>
@@ -53,8 +54,12 @@ namespace KinectFittingRoom.View.Helpers
         /// </param>
         private void ItemsSourceChanged(DependencyPropertyChangedEventArgs e)
         {
-            foreach (var model in (from object item in ItemsSource select ItemTemplate.CreateItem(item)).Where(model => model != null))
+            Children.Clear();
+
+            foreach (var model in (from object item in ItemsSource
+                                   select ItemTemplate.CreateItem(item)).Where(model => model != null))
                 Children.Add(model);
         }
+        #endregion Private Methods
     }
 }

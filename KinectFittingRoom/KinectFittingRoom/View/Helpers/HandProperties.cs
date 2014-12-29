@@ -2,7 +2,7 @@
 
 namespace KinectFittingRoom.View.Helpers
 {
-    public static class AttachedProperties
+    public static class HandProperties
     {
         /// <summary>
         /// The left hand property
