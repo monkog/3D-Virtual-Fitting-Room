@@ -1,6 +1,5 @@
 ﻿using KinectFittingRoom.ViewModel.ClothingItems;
 using System.Drawing;
-using System.Windows;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
 {
@@ -10,10 +9,9 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
         /// <summary>
         /// Initializes a new instance of the <see cref="ChangeTypeButtonViewModel"/> class.
         /// </summary>
-        /// <param name="function">Functionality of button</param>
         /// <param name="image">Image of button</param>
-        public ChangeTypeButtonViewModel(Functionality function, Bitmap image)
-            : base(function, image)
+        public ChangeTypeButtonViewModel(Bitmap image)
+            : base(image)
         { }
         #endregion
         #region Methods

@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:converters="clr-namespace:KinectFittingRoom.Converters"
         xmlns:buttons="clr-namespace:KinectFittingRoom.View.Buttons"
+        xmlns:canvases="clr-namespace:KinectFittingRoom.View.Canvases"
         xmlns:helpers="clr-namespace:KinectFittingRoom.View.Helpers"
         xmlns:local="clr-namespace:KinectFittingRoom.ViewModel.ClothingItems"
         xmlns:TopButtons="clr-namespace:KinectFittingRoom.ViewModel.ButtonItems"
@@ -14,6 +15,7 @@
 		WindowStyle="None"
         Title="Kinect Fitting Room"
         Height="768" Width="1366"
+        Cursor="None"
         DataContext="{Binding KinectViewModel, Source={StaticResource KinectViewModelLoader}}">
     <!--Resources used in MainWindow-->
     <Window.Resources>
@@ -41,18 +43,19 @@
                     Opacity="0.5" 
                     Margin="20"/>
             <!--StackPanel containing all the buttons with clothing categories-->
-            <ItemsControl ItemsSource="{Binding ClothingCategories}" 
+            <canvases:ScrollableCanvas x:Name="LeftSCanvas"
+                          ItemsSource="{Binding ClothingCategories}" 
                           Width="{Binding ActualWidth, ElementName=LeftPanel}"
                           Height="{Binding ActualHeight, ElementName=LeftPanel}" 
                           Canvas.Left="{Binding (Canvas.Left), ElementName=LeftPanel}" 
                           Canvas.Top="{Binding (Canvas.Top), ElementName=LeftPanel}" 
                           Margin="{Binding Margin, ElementName=LeftPanel}">
-                <ItemsControl.ItemsPanel>
+                <canvases:ScrollableCanvas.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel/>
                     </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
+                </canvases:ScrollableCanvas.ItemsPanel>
+                <canvases:ScrollableCanvas.ItemTemplate>
                     <DataTemplate>
                         <buttons:KinectButton Width="150" Height="150" Margin="5" Style="{StaticResource GlassButton}">
                             <Image Source="{Binding Image, Converter={StaticResource BitmapToImageSourceConverter}}" 
@@ -67,8 +70,8 @@
                             </i:Interaction.Triggers>
                         </buttons:KinectButton>
                     </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                </canvases:ScrollableCanvas.ItemTemplate>
+            </canvases:ScrollableCanvas>
             <Canvas x:Name="RightPanel"
                     Width="180" 
                     Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Canvas}}

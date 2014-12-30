@@ -41,6 +41,9 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Kinect, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Practices.Prism.Composition, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -108,10 +111,14 @@
     <Compile Include="ViewModel\ButtonItems\ModelBase.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ChangeSizeButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ChangeTypeButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ClearItemsButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ClearLastItemButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ClearSetButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ExitButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\MakeBiggerButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\MakeSmallerButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\MakeThinnerButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\MakeWiderButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\MenuButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ScreenShotButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\SoundsButtonViewModel.cs" />
@@ -134,6 +141,8 @@
     <Compile Include="ViewModel\KinectViewModel.cs" />
     <Compile Include="ViewModel\KinectViewModelLoader.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="View\Canvases\CanvasesManager.cs" />
+    <Compile Include="View\Canvases\ScrollableCanvas.cs" />
     <Compile Include="View\Helpers\PropertiesObserver.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -187,7 +196,6 @@
   <ItemGroup>
     <None Include="Resources\Models\Hat.mtl" />
     <None Include="Resources\Models\Hat.obj" />
-    <None Include="Resources\tshirt.ico" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\Hand.png" />
@@ -273,6 +281,22 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\CameraClick.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\watermark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Menu\menu_clear.png" />
+    <Resource Include="Resources\Menu\menu_clearOne.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Menu\horizontal_arrows.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Menu\horizontal_arrows_thinner.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

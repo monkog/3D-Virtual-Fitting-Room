@@ -1,5 +1,4 @@
 ﻿using System.Drawing;
-using System.Windows;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
 {
@@ -9,10 +8,9 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
         /// <summary>
         /// Initializes a new instance of the <see cref="SoundsButtonViewModel"/> class.
         /// </summary>
-        /// <param name="function">Functionality of button</param>
         /// <param name="image">Image of button</param>
-        public SoundsButtonViewModel(Functionality function, Bitmap image)
-            : base(function, image)
+        public SoundsButtonViewModel(Bitmap image)
+            : base(image)
         { }
         #endregion
         #region Methods

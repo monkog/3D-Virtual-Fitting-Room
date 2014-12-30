@@ -9,10 +9,9 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
         /// <summary>
         /// Initializes a new instance of the <see cref="ExitButtonViewModel"/> class.
         /// </summary>
-        /// <param name="function">Functionality of button</param>
         /// <param name="image">Image of button</param>
-        public ExitButtonViewModel(Functionality function, Bitmap image)
-            : base(function, image)
+        public ExitButtonViewModel(Bitmap image)
+            : base(image)
         { }
         #endregion
         #region Methods

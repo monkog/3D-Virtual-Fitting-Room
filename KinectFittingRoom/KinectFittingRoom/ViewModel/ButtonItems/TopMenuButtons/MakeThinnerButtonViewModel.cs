@@ -2,24 +2,26 @@
 
 namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
 {
-    public class ScreenShotButtonViewModel : TopMenuButtonViewModel
+    class MakeThinnerButtonViewModel : TopMenuButtonViewModel
     {
+         #region Consts
+        private const double _minusFactor = 0.95;
+        #endregion
         #region .ctor
         /// <summary>
-        /// Initializes a new instance of the <see cref="ScreenShotButtonViewModel"/> class.
+        /// Initializes a new instance of the <see cref="MakeThinnerButtonViewModel"/> class.
         /// </summary>
         /// <param name="image">Image of button</param>
-        public ScreenShotButtonViewModel(Bitmap image)
+        public MakeThinnerButtonViewModel(Bitmap image)
             : base(image)
         { }
         #endregion
         #region Methods
         /// <summary>
-        /// Hides all top buttons
+        /// Makes last added item thinner
         /// </summary>
         public override void ClickEventExecuted()
         {
-            base.ClearMenu();
         }
         #endregion
     }

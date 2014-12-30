@@ -92,14 +92,32 @@ namespace KinectFittingRoom
             RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap(actualWidth, actualHeight, 96, 96, PixelFormats.Pbgra32);
             renderTargetBitmap.Render(ImageArea);
             renderTargetBitmap.Render(ClothesArea);
+            renderTargetBitmap.Render(CreateWatermarkLayer(actualWidth, actualHeight));
             PngBitmapEncoder pngImage = new PngBitmapEncoder();
             pngImage.Frames.Add(BitmapFrame.Create(renderTargetBitmap));
+
             using (Stream fileStream = File.Create(directoryPath + "\\" + fileName))
             {
                 pngImage.Save(fileStream);
             }
             if (KinectViewModel.SoundsOn)
                 KinectViewModel.CameraPlayer.Play();
+        }
+
+        private Visual CreateWatermarkLayer(int width, int height)
+        {
+            int margin = 10;
+            DrawingVisual visualWatermark = new DrawingVisual();
+            BitmapImage image = new BitmapImage(new Uri(@"pack://application:,,,/Resources/watermark.png"));
+            Point imageLocation = new Point(width - (image.Width + margin), height - (image.Height + margin));
+
+            using (var drawingContext = visualWatermark.RenderOpen())
+            {
+                drawingContext.DrawRectangle(null, null, new Rect(0, 0, width, height));
+                drawingContext.DrawImage(image, new Rect(imageLocation.X, imageLocation.Y, image.Width, image.Height));
+            }
+
+            return visualWatermark;
         }
     }
 }

@@ -12,10 +12,9 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
         /// <summary>
         /// Initializes a new instance of the <see cref="MakeBiggerButtonViewModel"/> class.
         /// </summary>
-        /// <param name="function">Functionality of button</param>
         /// <param name="image">Image of button</param>
-        public MakeBiggerButtonViewModel(Functionality function, Bitmap image)
-            : base(function, image)
+        public MakeBiggerButtonViewModel(Bitmap image)
+            : base(image)
         { }
         #endregion
         #region Methods

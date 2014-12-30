@@ -1,7 +1,6 @@
 ﻿using KinectFittingRoom.ViewModel.ClothingItems;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Windows;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
 {
@@ -11,10 +10,9 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
         /// <summary>
         /// Initializes a new instance of the <see cref="ClearSetButtonViewModel"/> class.
         /// </summary>
-        /// <param name="function">Functionality of button</param>
         /// <param name="image">Image of button</param>
-        public ClearSetButtonViewModel(Functionality function, Bitmap image)
-            : base(function, image)
+        public ClearSetButtonViewModel(Bitmap image)
+            : base(image)
         { }
         #endregion
         #region Methods

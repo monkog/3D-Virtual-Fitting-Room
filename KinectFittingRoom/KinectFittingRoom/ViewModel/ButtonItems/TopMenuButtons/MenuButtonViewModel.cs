@@ -9,10 +9,9 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
         /// <summary>
         /// Initializes a new instance of the <see cref="MenuButtonViewModel"/> class.
         /// </summary>
-        /// <param name="function">Functionality of button</param>
         /// <param name="image">Image of button</param>
-        public MenuButtonViewModel(Functionality function, Bitmap image)
-            : base(function, image)
+        public MenuButtonViewModel(Bitmap image)
+            : base(image)
         { }
         #endregion
         #region Methods
