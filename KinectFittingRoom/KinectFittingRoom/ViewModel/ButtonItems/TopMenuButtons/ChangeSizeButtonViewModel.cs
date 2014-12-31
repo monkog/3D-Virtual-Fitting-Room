@@ -1,6 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.Drawing;
-using System.Windows;
+﻿using System.Drawing;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
 {
@@ -22,7 +20,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
         /// </summary>
         public override void ClickEventExecuted()
         {
-            base.ClearMenu();
+            ClearMenu();
             TopMenuManager.Instance.ActualTopMenuButtons = TopMenuManager.Instance.ChangeSizeButtons;
         }
         #endregion

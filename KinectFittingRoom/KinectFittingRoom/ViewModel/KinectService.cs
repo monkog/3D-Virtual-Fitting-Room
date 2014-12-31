@@ -55,6 +55,10 @@ namespace KinectFittingRoom.ViewModel
         /// The image height
         /// </summary>
         private double _imageHeight;
+        /// <summary>
+        /// The error grid message
+        /// </summary>
+        private string _errorGridMessage;
         #endregion Private Fields
         #region Public Properties
         /// <summary>
@@ -184,6 +188,23 @@ namespace KinectFittingRoom.ViewModel
                 OnPropertyChanged("ErrorGridVisibility");
             }
         }
+        /// <summary>
+        /// Gets or sets the error grid message.
+        /// </summary>
+        /// <value>
+        /// The error grid message.
+        /// </value>
+        public string ErrorGridMessage
+        {
+            get { return _errorGridMessage; }
+            set
+            {
+                if (_errorGridMessage == value)
+                    return;
+                _errorGridMessage = value;
+                OnPropertyChanged("ErrorGridMessage");
+            }
+        }
         #endregion
         #region Private Methods
         /// <summary>
@@ -212,11 +233,11 @@ namespace KinectFittingRoom.ViewModel
                 {
                     sensor.Start();
                 }
-                catch (Exception exc)
+                catch (Exception)
                 {
-#warning TODO
-                    // TODO: Handle IOException when Kinect is being used by another process
-                    MessageBox.Show(exc.Message);
+                    ErrorGridVisibility = Visibility.Visible;
+                    ErrorGridMessage = "Kinect jest uzywany przez inny proces."
+                        + " Upewnij się, że wszystkie programy używajace Kinecta zostały wyłączone.";
                 }
             }
         }
@@ -245,10 +266,12 @@ namespace KinectFittingRoom.ViewModel
                 if (frame == null || frame.SkeletonArrayLength == 0)
                     return;
                 frame.CopySkeletonDataTo(_skeletons);
+
                 var skeleton = GetPrimarySkeleton(_skeletons);
+                if(skeleton== null)
+                    return;
                 Hand.UpdateHandCursor(skeleton, Kinect, Width, Height);
-                foreach (var c in ClothingItems.ClothingManager.Instance.ChosenClothes)
-                    c.Value.UpdateItemPosition(skeleton, Kinect, Width, Height);
+                ClothingItems.ClothingManager.Instance.UpdateItemPosition(skeleton, Kinect, Width, Height);
 #if DEBUG
                 Brush brush = Brushes.Coral;
                 SkeletonManager.DrawSkeleton(_skeletons, brush, _kinectSensor, Width, Height);
@@ -283,7 +306,10 @@ namespace KinectFittingRoom.ViewModel
             KinectSensor.KinectSensors.StatusChanged += KinectSensor_StatusChanged;
             Kinect = KinectSensor.KinectSensors.FirstOrDefault(x => x.Status == KinectStatus.Connected);
             if (Kinect == null)
+            {
                 ErrorGridVisibility = Visibility.Visible;
+                ErrorGridMessage = "Proszę podłączyć Kinect";
+            }
         }
         /// <summary>
         /// Updates KinectSensor
@@ -306,13 +332,16 @@ namespace KinectFittingRoom.ViewModel
                         Kinect = null;
                         Kinect = KinectSensor.KinectSensors.FirstOrDefault(x => x.Status == KinectStatus.Connected);
                         if (Kinect == null)
+                        {
                             ErrorGridVisibility = Visibility.Visible;
+                            ErrorGridMessage = "Proszę podłączyć Kinect";
+                        }
                     }
                     break;
                 default:
-#warning TODO
-                    //TODO: Notify about error
-                    throw new NotImplementedException();
+                    ErrorGridVisibility = Visibility.Visible;
+                    ErrorGridMessage = "Kinect nie może być uruchomiony. Poczekaj chwilę lub uruchom program ponownie.";
+                    break;
             }
         }
         #endregion Private Methods
@@ -328,7 +357,6 @@ namespace KinectFittingRoom.ViewModel
 #endif
             ErrorGridVisibility = Visibility.Hidden;
             DiscoverKinectSensors();
-
         }
         /// <summary>
         /// Looks for the closest skeleton

@@ -1,5 +1,4 @@
 ﻿using KinectFittingRoom.ViewModel.ButtonItems;
-using KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons;
 using KinectFittingRoom.ViewModel.ClothingItems;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,10 +13,6 @@ namespace KinectFittingRoom.ViewModel
     {
         #region Private Fields
         /// <summary>
-        /// Determines if sounds are played
-        /// </summary>
-        private static bool _soundsOn;
-        /// <summary>
         /// The clothing category collection
         /// </summary>
         private ObservableCollection<ClothingCategoryButtonViewModel> _clothingCategory;
@@ -31,26 +26,21 @@ namespace KinectFittingRoom.ViewModel
         private readonly KinectService _kinectService;
         #endregion Private Fields
         #region Public Properties
-        public static bool SoundsOn
-        {
-            get { return _soundsOn; }
-            set
-            {
-                if (_soundsOn == value)
-                    return;
-                _soundsOn = value;
-            }
-        }
-        public static SoundPlayer ButtonPlayer
-        {
-            get;
-            private set;
-        }
-        public static SoundPlayer CameraPlayer
-        {
-            get;
-            private set;
-        }
+        public static bool SoundsOn { get; set; }
+        /// <summary>
+        /// Gets the button player.
+        /// </summary>
+        /// <value>
+        /// The button player.
+        /// </value>
+        public static SoundPlayer ButtonPlayer { get; private set; }
+        /// <summary>
+        /// Gets the camera player.
+        /// </summary>
+        /// <value>
+        /// The camera player.
+        /// </value>
+        public static SoundPlayer CameraPlayer { get; private set; }
         /// <summary>
         /// Gets or sets the clothing categories collection.
         /// </summary>
@@ -95,6 +85,22 @@ namespace KinectFittingRoom.ViewModel
         {
             get { return _kinectService; }
         }
+        /// <summary>
+        /// Gets a value indicating whether [debug mode on].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [debug mode on]; otherwise, <c>false</c>.
+        /// </value>
+        public bool DebugModeOn
+        {
+            get
+            {
+#if DEBUG
+                return true;
+#endif
+                return false;
+            }
+        }
         #endregion Public Properties
         #region .ctor
         /// <summary>
@@ -103,7 +109,7 @@ namespace KinectFittingRoom.ViewModel
         /// <param name="kinectService">The kinect service.</param>
         public KinectViewModel(KinectService kinectService)
         {
-            _soundsOn = true;
+            SoundsOn = true;
             ButtonPlayer = new SoundPlayer(Properties.Resources.ButtonClick);
             CameraPlayer = new SoundPlayer(Properties.Resources.CameraClick);
             InitializeClothingCategories();
@@ -117,11 +123,12 @@ namespace KinectFittingRoom.ViewModel
         /// </summary>
         private void InitializeClothingCategories()
         {
-            ClothingCategories = new ObservableCollection<ClothingCategoryButtonViewModel>();
-
-            ClothingCategories.Add(CreateHatsClothingCategoryButton());
-            ClothingCategories.Add(CreateSkirtsClothingCategoryButton());
-            ClothingCategories.Add(CreateGlassesClothingCategoryButton());
+            ClothingCategories = new ObservableCollection<ClothingCategoryButtonViewModel>
+            {
+                CreateHatsClothingCategoryButton(),
+                CreateSkirtsClothingCategoryButton(),
+                CreateGlassesClothingCategoryButton()
+            };
         }
         /// <summary>
         /// Creates the hats clothing category button.
@@ -134,15 +141,15 @@ namespace KinectFittingRoom.ViewModel
                 Image = Properties.Resources.hat_symbol,
                 Clothes = new List<ClothingButtonViewModel>
                 {
-                    new ClothingButtonViewModel(ClothingItemBase.ClothingType.HatItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\hat_blue.png")  {
+                    new HatButtonViewModel(ClothingItemBase.ClothingType.HatItem, ClothingItemBase.MaleFemaleType.Both, @".\Resources\Models\SantaHat.obj", @".\Resources\Models\hat_blue.png")  {
                         Image = Properties.Resources.small_hat_blue, 
                         ImageWidthToItemWidth = 2.07
                     },
-                    new ClothingButtonViewModel(ClothingItemBase.ClothingType.HatItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\hat_brown.png") {
+                    new SkirtButtonViewModel(ClothingItemBase.ClothingType.HatItem, @".\Resources\Models\SantaHat.obj", @".\Resources\Models\hat_brown.png") {
                         Image = Properties.Resources.small_hat_brown, 
                         ImageWidthToItemWidth = 1.83
                     },
-                    new ClothingButtonViewModel(ClothingItemBase.ClothingType.HatItem, ClothingItemBase.MaleFemaleType.Male, @".\Resources\Models\hat_superman.png") {
+                    new SkirtButtonViewModel(ClothingItemBase.ClothingType.HatItem, @".\Resources\Models\SantaHat.obj", @".\Resources\Models\hat_superman.png") {
                         Image = Properties.Resources.small_hat_superman, 
                         ImageWidthToItemWidth = 1.24
                     }
@@ -159,18 +166,20 @@ namespace KinectFittingRoom.ViewModel
             {
                 Image = Properties.Resources.skirt_symbol,
                 Clothes = new List<ClothingButtonViewModel>
-                    {
-                        new ClothingButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\skirt_jeans.png")
-                        {
-                            Image = Properties.Resources.small_skirt_jeans, 
-                            ImageWidthToItemWidth = 2.21
-                        },
-                        new ClothingButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\skirt_maroon.png")
-                        {
-                            Image = Properties.Resources.small_skirt_maroon, 
-                            ImageWidthToItemWidth = 2.0
-                        }
+                {
+                    new SkirtButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\skirt.obj", @".\Resources\Models\skirt_denim.bmp") {
+                        Image = Properties.Resources.small_skirt_jeans, 
+                        ImageWidthToItemWidth = 2.21
+                    },
+                    new SkirtButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\skirt.obj", @".\Resources\Models\skirt_maroon.png") {
+                        Image = Properties.Resources.small_skirt_maroon, 
+                        ImageWidthToItemWidth = 2.0
+                    },
+                    new SkirtButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\skirt.obj", @".\Resources\Models\skirt_jeans.png") {
+                        Image = Properties.Resources.small_skirt_jeans, 
+                        ImageWidthToItemWidth = 2.0
                     }
+                }
             };
         }
         /// <summary>
@@ -185,16 +194,16 @@ namespace KinectFittingRoom.ViewModel
                 Clothes =
                     new List<ClothingButtonViewModel>
                     {
-                        new ClothingButtonViewModel(ClothingItemBase.ClothingType.GlassesItem, ClothingItemBase.MaleFemaleType.Both, @".\Resources\Models\glasses_black.png") {
+                        new SkirtButtonViewModel(ClothingItemBase.ClothingType.GlassesItem, @".\Resources\Models\skirt.obj", @".\Resources\Models\glasses_black.png") {
                             Image = Properties.Resources.small_glasses_black, 
                         },
-                        new ClothingButtonViewModel(ClothingItemBase.ClothingType.GlassesItem, ClothingItemBase.MaleFemaleType.Both, @".\Resources\Models\glasses_blue.png") {
+                        new SkirtButtonViewModel(ClothingItemBase.ClothingType.GlassesItem, @".\Resources\Models\skirt.obj", @".\Resources\Models\glasses_blue.png") {
                             Image = Properties.Resources.small_glasses_blue, 
                         },
-                        new ClothingButtonViewModel(ClothingItemBase.ClothingType.GlassesItem, ClothingItemBase.MaleFemaleType.Both, @".\Resources\Models\sunglasses_rayban.png") {
+                        new SkirtButtonViewModel(ClothingItemBase.ClothingType.GlassesItem, @".\Resources\Models\skirt.obj", @".\Resources\Models\sunglasses_rayban.png") {
                             Image = Properties.Resources.small_sunglasses_rayban, 
                         },
-                        new ClothingButtonViewModel(ClothingItemBase.ClothingType.GlassesItem, ClothingItemBase.MaleFemaleType.Both, @".\Resources\Models\sunglasses_aviator.png") {
+                        new SkirtButtonViewModel(ClothingItemBase.ClothingType.GlassesItem, @".\Resources\Models\skirt.obj", @".\Resources\Models\sunglasses_aviator.png") {
                             Image = Properties.Resources.small_sunglasses_aviator, 
                         }
                     }

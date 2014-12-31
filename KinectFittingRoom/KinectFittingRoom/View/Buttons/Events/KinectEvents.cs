@@ -9,7 +9,7 @@ namespace KinectFittingRoom.View.Buttons.Events
     /// <summary>
     /// Handles the Kinect input
     /// </summary>
-    public static class KinectInput
+    public static class KinectEvents
     {
         #region  Events
         /// <summary>
@@ -17,25 +17,31 @@ namespace KinectFittingRoom.View.Buttons.Events
         /// </summary>
         public static readonly RoutedEvent HandCursorEnterEvent
             = EventManager.RegisterRoutedEvent("HandCursorEnter", RoutingStrategy.Bubble
-            , typeof(HandCursorEventHandler), typeof(KinectInput));
+            , typeof(HandCursorEventHandler), typeof(KinectEvents));
         /// <summary>
         /// Hand cursor move event
         /// </summary>
         public static readonly RoutedEvent HandCursorMoveEvent
             = EventManager.RegisterRoutedEvent("HandCursorMove", RoutingStrategy.Bubble
-            , typeof(HandCursorEventHandler), typeof(KinectInput));
+            , typeof(HandCursorEventHandler), typeof(KinectEvents));
         /// <summary>
         /// Hand cursor leave event
         /// </summary>
         public static readonly RoutedEvent HandCursorLeaveEvent
             = EventManager.RegisterRoutedEvent("HandCursorLeave", RoutingStrategy.Bubble
-            , typeof(HandCursorEventHandler), typeof(KinectInput));
+            , typeof(HandCursorEventHandler), typeof(KinectEvents));
         /// <summary>
         /// Hand cursor click event
         /// </summary>
         public static readonly RoutedEvent HandCursorClickEvent
             = EventManager.RegisterRoutedEvent("HandCursorClick", RoutingStrategy.Bubble
-            , typeof(HandCursorEventHandler), typeof(KinectInput));
+            , typeof(HandCursorEventHandler), typeof(KinectEvents));
+        /// <summary>
+        /// The clear3D items event
+        /// </summary>
+        public static readonly RoutedEvent Clear3DItemsEvent
+            = EventManager.RegisterRoutedEvent("Clear3DItems", RoutingStrategy.Direct
+            , typeof(RoutedEventHandler), typeof(KinectEvents));
         #endregion Events
         #region Methods
         /// <summary>
@@ -109,6 +115,24 @@ namespace KinectFittingRoom.View.Buttons.Events
         public static void RemoveHandCursorClickHandler(DependencyObject dependencyObject, HandCursorEventHandler handler)
         {
             ((UIElement)dependencyObject).RemoveHandler(HandCursorClickEvent, handler);
+        }
+        /// <summary>
+        /// Adds the clear3D items handler.
+        /// </summary>
+        /// <param name="dependencyObject">The dependency object.</param>
+        /// <param name="handler">The handler.</param>
+        public static void AddClear3DItemsHandler(DependencyObject dependencyObject, RoutedEventHandler handler)
+        {
+            ((UIElement)dependencyObject).AddHandler(Clear3DItemsEvent, handler);
+        }
+        /// <summary>
+        /// Removes the clear3D items handler.
+        /// </summary>
+        /// <param name="dependencyObject">The dependency object.</param>
+        /// <param name="handler">The handler.</param>
+        public static void RemoveClear3DItemsHandler(DependencyObject dependencyObject, RoutedEventHandler handler)
+        {
+            ((UIElement)dependencyObject).RemoveHandler(Clear3DItemsEvent, handler);
         }
         #endregion Methods
     }

@@ -1,5 +1,4 @@
 ﻿using System.Drawing;
-using System.Windows;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
 {
@@ -22,7 +21,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
         public override void ClickEventExecuted()
         {
             KinectViewModel.SoundsOn = !KinectViewModel.SoundsOn;
-            base.ClearMenu();
+            ClearMenu();
         }
         #endregion
     }

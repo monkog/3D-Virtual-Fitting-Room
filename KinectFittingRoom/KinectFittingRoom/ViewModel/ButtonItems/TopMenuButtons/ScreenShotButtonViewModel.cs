@@ -1,7 +1,4 @@
 ﻿using System.Drawing;
-using System.Windows;
-using KinectFittingRoom.View.Buttons;
-using System;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
 {
@@ -23,7 +20,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
         /// </summary>
         public override void ClickEventExecuted()
         {
-            base.ClearMenu();
+            ClearMenu();
         }
         #endregion
     }
