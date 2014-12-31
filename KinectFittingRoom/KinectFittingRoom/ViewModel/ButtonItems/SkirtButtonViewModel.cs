@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Media.Media3D;
 using HelixToolkit.Wpf;
@@ -22,20 +21,15 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         public override void CategoryExecuted(object parameter)
         {
             Dictionary<ClothingItemBase.ClothingType, ClothingItemBase> tmpModels = ClothingManager.Instance.ChosenClothesModels;
-
+            
             Model3DGroup group = Importer.Load(ModelPath);
             var modelGroup = (GeometryModel3D)group.Children.First();
             var model = new GeometryModel3D(modelGroup.Geometry, MaterialHelper.CreateImageMaterial(TexturePath));
             model.Transform = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(1, 0, 0), 90));
 
-            try
-            {
-                tmpModels[Category].Model = model;
-            }
-            catch (Exception)
-            {
-                tmpModels[Category] = new SkirtItem(TexturePath, 2) {Model = model};
-            }
+            SkirtItem skirt = new SkirtItem(TexturePath, ImageWidthToItemWidth, model);
+            tmpModels[Category] = skirt;
+
             ClothingManager.Instance.ChosenClothesModels = new Dictionary<ClothingItemBase.ClothingType, ClothingItemBase>(tmpModels);
         }
         #endregion Commands

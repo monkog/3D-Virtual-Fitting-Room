@@ -1,4 +1,5 @@
-﻿using Microsoft.Kinect;
+﻿using System.Windows.Media.Media3D;
+using Microsoft.Kinect;
 
 namespace KinectFittingRoom.ViewModel.ClothingItems
 {
@@ -9,7 +10,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// </summary>
         /// <param name="pathToImage">Path to original image of item</param>
         public GlassesItem(string pathToImage)
-            : base(pathToImage, 1.0)
+            : base(pathToImage, 1.0, new GeometryModel3D())
         {
         }
 

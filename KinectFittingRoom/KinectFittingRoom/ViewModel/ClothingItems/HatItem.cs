@@ -1,4 +1,5 @@
-﻿using Microsoft.Kinect;
+﻿using System.Windows.Media.Media3D;
+using Microsoft.Kinect;
 
 namespace KinectFittingRoom.ViewModel.ClothingItems
 {
@@ -10,7 +11,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// <param name="pathToImage">Path to original image of item</param>
         /// <param name="imageWidthToItemWidth">Proportion image width to significant width of item</param>
         public HatItem(string pathToImage, double imageWidthToItemWidth)
-            : base(pathToImage, imageWidthToItemWidth)
+            : base(pathToImage, imageWidthToItemWidth, new GeometryModel3D())
         {
         }
 
