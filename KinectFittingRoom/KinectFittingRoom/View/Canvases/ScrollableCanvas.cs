@@ -99,7 +99,6 @@ namespace KinectFittingRoom.View.Canvases
                 var c = Items[Items.Count - 1];
 
                 _isMoved = !_isMoved;
-                // if((Items[0] as KinectFittingRoom.View.Buttons.KinectButton).
             }
         }
 

@@ -95,7 +95,7 @@ namespace KinectFittingRoom
             renderTargetBitmap.Render(CreateWatermarkLayer(actualWidth, actualHeight));
             PngBitmapEncoder pngImage = new PngBitmapEncoder();
             pngImage.Frames.Add(BitmapFrame.Create(renderTargetBitmap));
-
+            
             using (Stream fileStream = File.Create(directoryPath + "\\" + fileName))
             {
                 pngImage.Save(fileStream);

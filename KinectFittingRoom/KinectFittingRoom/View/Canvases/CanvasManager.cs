@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace KinectFittingRoom.View.Canvases.Events
 {
-    public sealed class CanvasesManager
+    public sealed class CanvasManager
     {
         #region Private Fields
         /// <summary>
         /// Only instance of CanvasesManager
         /// </summary>
-        private static CanvasesManager _instance;
+        private static CanvasManager _instance;
         #endregion Private Fields
         #region Public Properties
         #endregion
@@ -24,12 +24,12 @@ namespace KinectFittingRoom.View.Canvases.Events
         /// <summary>
         /// Method with access to only instance of CanvasesManager
         /// </summary>
-        public static CanvasesManager Instance
+        public static CanvasManager Instance
         {
             get
             {
                 if (_instance == null)
-                    _instance = new CanvasesManager();
+                    _instance = new CanvasManager();
                 return _instance;
             }
         }
