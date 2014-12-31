@@ -118,6 +118,26 @@ namespace KinectFittingRoom.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap horizontal_arrows {
+            get {
+                object obj = ResourceManager.GetObject("horizontal_arrows", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap horizontal_arrows_thinner {
+            get {
+                object obj = ResourceManager.GetObject("horizontal_arrows_thinner", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap menu {
             get {
                 object obj = ResourceManager.GetObject("menu", resourceCulture);
@@ -141,6 +161,26 @@ namespace KinectFittingRoom.Properties {
         internal static System.Drawing.Bitmap menu_camera {
             get {
                 object obj = ResourceManager.GetObject("menu_camera", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap menu_clear {
+            get {
+                object obj = ResourceManager.GetObject("menu_clear", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap menu_clearOne {
+            get {
+                object obj = ResourceManager.GetObject("menu_clearOne", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -286,16 +326,6 @@ namespace KinectFittingRoom.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
-        /// </summary>
-        internal static System.Drawing.Icon tshirt {
-            get {
-                object obj = ResourceManager.GetObject("tshirt", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap vertical_arrows {
@@ -311,6 +341,16 @@ namespace KinectFittingRoom.Properties {
         internal static System.Drawing.Bitmap vertical_arrows_smaller {
             get {
                 object obj = ResourceManager.GetObject("vertical_arrows_smaller", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap watermark {
+            get {
+                object obj = ResourceManager.GetObject("watermark", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

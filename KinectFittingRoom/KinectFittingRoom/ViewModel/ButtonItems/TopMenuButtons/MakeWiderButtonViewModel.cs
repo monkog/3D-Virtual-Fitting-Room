@@ -2,25 +2,26 @@
 
 namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
 {
-    class SoundsButtonViewModel : TopMenuButtonViewModel
+    class MakeWiderButtonViewModel : TopMenuButtonViewModel
     {
+        #region Consts
+        private const double _plusFactor = 1.05;
+        #endregion
         #region .ctor
         /// <summary>
-        /// Initializes a new instance of the <see cref="SoundsButtonViewModel"/> class.
+        /// Initializes a new instance of the <see cref="MakeWiderButtonViewModel"/> class.
         /// </summary>
         /// <param name="image">Image of button</param>
-        public SoundsButtonViewModel(Bitmap image)
+        public MakeWiderButtonViewModel(Bitmap image)
             : base(image)
         { }
         #endregion
         #region Methods
         /// <summary>
-        /// Turns off/on sounds in application
+        /// Makes last added item wider
         /// </summary>
         public override void ClickEventExecuted()
         {
-            KinectViewModel.SoundsOn = !KinectViewModel.SoundsOn;
-            ClearMenu();
         }
         #endregion
     }

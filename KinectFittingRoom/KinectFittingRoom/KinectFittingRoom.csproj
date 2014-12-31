@@ -41,6 +41,9 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="HelixToolkit">
       <HintPath>..\packages\HelixToolkit.2014.2.452\lib\portable-net4+sl4+wp71+win8\HelixToolkit.dll</HintPath>
@@ -119,10 +122,14 @@
     <Compile Include="ViewModel\ButtonItems\SkirtButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ChangeSizeButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ChangeTypeButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ClearItemsButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ClearLastItemButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ClearSetButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ExitButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\MakeBiggerButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\MakeSmallerButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\MakeThinnerButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\MakeWiderButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\MenuButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ScreenShotButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\SoundsButtonViewModel.cs" />
@@ -146,6 +153,8 @@
     <Compile Include="ViewModel\KinectViewModelLoader.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\Helpers\HandProperties.cs" />
+    <Compile Include="View\Canvases\CanvasManager.cs" />
+    <Compile Include="View\Canvases\ScrollableCanvas.cs" />
     <Compile Include="View\Helpers\DataTemplate3D.cs" />
     <Compile Include="View\Helpers\ItemsVisual3D.cs" />
     <Compile Include="View\Helpers\SizeObserver.cs" />
@@ -285,6 +294,22 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\CameraClick.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\watermark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Menu\menu_clear.png" />
+    <Resource Include="Resources\Menu\menu_clearOne.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Menu\horizontal_arrows.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Menu\horizontal_arrows_thinner.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

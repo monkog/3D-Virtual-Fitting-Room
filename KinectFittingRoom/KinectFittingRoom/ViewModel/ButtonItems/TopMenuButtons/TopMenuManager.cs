@@ -24,6 +24,10 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// </summary>
         private ObservableCollection<TopMenuButtonViewModel> _changeSizeButtons;
         /// <summary>
+        /// Clear buttons view
+        /// </summary>
+        private ObservableCollection<TopMenuButtonViewModel> _clearButtons;
+        /// <summary>
         /// Visibility of camera button
         /// </summary>
         private Visibility _cameraButtonVisibility;
@@ -96,6 +100,16 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         {
             get { return _changeSizeButtons; }
         }
+        /// <summary>
+        /// Gets clear buttons.
+        /// </summary>
+        /// <value>
+        /// The clear buttons collection.
+        /// </value>
+        public ObservableCollection<TopMenuButtonViewModel> ClearButtons
+        {
+            get { return _clearButtons; }
+        }
         #endregion Public Properties
         #region .ctor
         /// <summary>
@@ -105,19 +119,26 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         {
             _allButtons = new ObservableCollection<TopMenuButtonViewModel>()
             {
-                new ChangeTypeButtonViewModel(TopMenuButtonViewModel.Functionality.MaleFemaleCategory, Properties.Resources.menu_menWomen),
-                new ChangeSizeButtonViewModel(TopMenuButtonViewModel.Functionality.ChangeSize, Properties.Resources.menu_arrows),
-                new ClearSetButtonViewModel(TopMenuButtonViewModel.Functionality.ClearClothingSet, Properties.Resources.menu_clearSet),
-                new SoundsButtonViewModel(TopMenuButtonViewModel.Functionality.TurnOnOffSounds, Properties.Resources.menu_speaker),
-                new ExitButtonViewModel(TopMenuButtonViewModel.Functionality.Exit, Properties.Resources.menu_doors)
+                new ChangeTypeButtonViewModel(Properties.Resources.menu_menWomen),
+                new ChangeSizeButtonViewModel(Properties.Resources.menu_arrows),
+                new ClearItemsButtonViewModel(Properties.Resources.menu_clear),
+                new SoundsButtonViewModel(Properties.Resources.menu_speaker),
+                new ExitButtonViewModel(Properties.Resources.menu_doors)
             };
             _changeSizeButtons = new ObservableCollection<TopMenuButtonViewModel>()
             {
-                new MakeBiggerButtonViewModel(TopMenuButtonViewModel.Functionality.MakeBigger, Properties.Resources.vertical_arrows),
-                new MakeSmallerButtonViewModel(TopMenuButtonViewModel.Functionality.MakeSmaller, Properties.Resources.vertical_arrows_smaller)
+                new MakeBiggerButtonViewModel(Properties.Resources.vertical_arrows),
+                new MakeSmallerButtonViewModel(Properties.Resources.vertical_arrows_smaller),
+                new MakeThinnerButtonViewModel(Properties.Resources.horizontal_arrows_thinner),
+                new MakeWiderButtonViewModel(Properties.Resources.horizontal_arrows)
             };
-            MenuButton = new MenuButtonViewModel(TopMenuButtonViewModel.Functionality.ShowMenu, Properties.Resources.menu);
-            CameraButton = new ScreenShotButtonViewModel(TopMenuButtonViewModel.Functionality.TakePicture, Properties.Resources.menu_camera);
+            _clearButtons = new ObservableCollection<TopMenuButtonViewModel>()
+            {
+                new ClearLastItemButtonViewModel(Properties.Resources.menu_clearOne),
+                new ClearSetButtonViewModel(Properties.Resources.menu_clearSet)
+            };
+            MenuButton = new MenuButtonViewModel(Properties.Resources.menu);
+            CameraButton = new ScreenShotButtonViewModel(Properties.Resources.menu_camera);
             CameraButtonVisibility = Visibility.Hidden;
         }
         #endregion
