@@ -19,7 +19,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
         /// </summary>
         public override void ClickEventExecuted()
         {
-            base.ClearMenu();
+            ClearMenu();
             TopMenuManager.Instance.ActualTopMenuButtons = TopMenuManager.Instance.ChangeSizeButtons;
         }
         #endregion

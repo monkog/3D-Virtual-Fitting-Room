@@ -51,13 +51,8 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// <summary>
         /// Executes when the Category button was hit.
         /// </summary>
-        /// <param name="parameter">The parameter.</param>
         public void CategoryExecuted()
         {
-            // TODO: Resolve the Clothing Manager via the IOC container?
-            // TODO: Change the clothing collection in Clothing Manager to the one corresponding to the chosen button
-            // TODO: Preload the collection at startup or load dynamically in another thread?
-
             if (ClothingManager.Instance.Clothing != null && ClothingManager.Instance.Clothing.Count !=0 && ClothingManager.Instance.Clothing[0].Category == Clothes[0].Category)
                 return;
             ClothingManager.Instance.LastChosenCategory = this;

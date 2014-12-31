@@ -20,7 +20,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
         public override void ClickEventExecuted()
         {
             KinectViewModel.SoundsOn = !KinectViewModel.SoundsOn;
-            base.ClearMenu();
+            ClearMenu();
         }
         #endregion
     }

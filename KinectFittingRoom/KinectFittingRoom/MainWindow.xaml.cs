@@ -9,6 +9,7 @@ using System.Globalization;
 using System.IO;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
+using KinectFittingRoom.ViewModel.ClothingItems;
 
 namespace KinectFittingRoom
 {
@@ -32,14 +33,30 @@ namespace KinectFittingRoom
         {
             var dataContext = DataContext as KinectViewModel;
             Debug.Assert(dataContext != null, "DataContext != null");
-            dataContext.KinectService.Hand.PropertyChanged += Hand_PropertyChanged;
+            dataContext.KinectService.Hand.PropertyChanged += KinectService_PropertyChanged;
+            ClothingManager.Instance.PropertyChanged += ClothingManager_PropertyChanged;
         }
         /// <summary>
-        /// Handles the PropertyChanged event of the Hand control.
+        /// Handles the PropertyChanged event of the ClothingManager.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="PropertyChangedEventArgs"/> instance containing the event data.</param>
-        void Hand_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void ClothingManager_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case "ChosenClothesModels":
+                    if (((ClothingManager)sender).ChosenClothesModels.Count == 0)
+                        ClothesArea.Children.Clear();
+                    break;
+            }
+        }
+        /// <summary>
+        /// Handles the PropertyChanged event of the Hand.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="PropertyChangedEventArgs"/> instance containing the event data.</param>
+        private void KinectService_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             switch (e.PropertyName)
             {

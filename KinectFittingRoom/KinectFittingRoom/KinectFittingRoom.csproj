@@ -45,6 +45,12 @@
     <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HelixToolkit">
+      <HintPath>..\packages\HelixToolkit.2014.2.452\lib\portable-net4+sl4+wp71+win8\HelixToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="HelixToolkit.Wpf">
+      <HintPath>..\packages\HelixToolkit.Wpf.2014.2.452\lib\net45\HelixToolkit.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Kinect, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Practices.Prism.Composition, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -99,6 +105,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\BitmapToImageSourceConverter.cs" />
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\DebugConverter.cs" />
     <Compile Include="Converters\IncreasedValueConverter.cs" />
     <Compile Include="Converters\ReducedValueConverter.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -108,7 +116,10 @@
     </Compile>
     <Compile Include="ViewModel\ButtonItems\ButtonViewModelBase.cs" />
     <Compile Include="ViewModel\ButtonItems\ClothingButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\GlassesButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\HatButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\ModelBase.cs" />
+    <Compile Include="ViewModel\ButtonItems\SkirtButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ChangeSizeButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ChangeTypeButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ClearItemsButtonViewModel.cs" />
@@ -131,7 +142,7 @@
     <Compile Include="ViewModel\ClothingItems\SkirtItem.cs" />
     <Compile Include="View\Buttons\Events\HandCursorEventArgs.cs" />
     <Compile Include="View\Buttons\Events\ButtonsManager.cs" />
-    <Compile Include="View\Buttons\Events\KinectInput.cs" />
+    <Compile Include="View\Buttons\Events\KinectEvents.cs" />
     <Compile Include="View\Buttons\KinectButton.cs" />
     <Compile Include="ViewModel\Debug\SkeletonManager.cs" />
     <Compile Include="ViewModel\ButtonItems\ClothingCategoryButtonViewModel.cs" />
@@ -143,6 +154,8 @@
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\Canvases\CanvasManager.cs" />
     <Compile Include="View\Canvases\ScrollableCanvas.cs" />
+    <Compile Include="View\Helpers\DataTemplate3D.cs" />
+    <Compile Include="View\Helpers\ItemsVisual3D.cs" />
     <Compile Include="View\Helpers\PropertiesObserver.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -156,10 +169,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Resources\Models\BirthdayHat.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Resources\Styles\GlassButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -196,6 +205,8 @@
   <ItemGroup>
     <None Include="Resources\Models\Hat.mtl" />
     <None Include="Resources\Models\Hat.obj" />
+    <None Include="Resources\Models\skirt.obj" />
+    <None Include="Resources\tshirt.ico" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\Hand.png" />
@@ -250,6 +261,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Models\skirt_denim.bmp" />
     <None Include="Resources\Menu\menu.png" />
   </ItemGroup>
   <ItemGroup>
