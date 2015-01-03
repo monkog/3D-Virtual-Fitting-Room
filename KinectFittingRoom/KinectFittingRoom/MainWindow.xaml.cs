@@ -138,7 +138,7 @@ namespace KinectFittingRoom
                 drawingContext.DrawRectangle(null, null, new Rect(0, 0, width, height));
                 drawingContext.DrawImage(image, new Rect(imageLocation.X, imageLocation.Y, image.Width, image.Height));
             }
-            visualWatermark.Opacity = 0.5;
+            visualWatermark.Opacity = 0.4;
             return visualWatermark;
         }
     }

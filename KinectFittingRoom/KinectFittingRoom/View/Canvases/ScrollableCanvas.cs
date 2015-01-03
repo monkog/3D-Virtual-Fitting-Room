@@ -14,7 +14,7 @@ namespace KinectFittingRoom.View.Canvases
     /// <summary>
     /// ItemsControl class that responds to Kincect events
     /// </summary>
-    public class ScrollableCanvas : ItemsControl
+    public class ScrollableCanvas : Canvas
     {
         #region Constants
         /// <summary>
@@ -24,7 +24,7 @@ namespace KinectFittingRoom.View.Canvases
         /// <summary>
         /// Number of seconds of animation
         /// </summary>
-        private const int _timeOfAnimation = 3;
+        private const int _timeOfAnimation = 10;
         #endregion
         #region Fields
         /// <summary>
@@ -60,7 +60,7 @@ namespace KinectFittingRoom.View.Canvases
         /// <summary>
         /// Hand cursor enter event
         /// </summary>
-        public static readonly RoutedEvent CanvasInsideMoveEvent
+        public static readonly RoutedEvent HandCursorEnterEvent
             = KinectEvents.HandCursorEnterEvent.AddOwner(typeof(ScrollableCanvas));
         /// <summary>
         /// Hand cursor move event
@@ -72,10 +72,10 @@ namespace KinectFittingRoom.View.Canvases
         /// <summary>
         /// Hand cursor enter event handler
         /// </summary>
-        public event HandCursorEventHandler CanvasInsideMove
+        public event HandCursorEventHandler HandCursorEnter
         {
-            add { AddHandler(CanvasInsideMoveEvent, value); }
-            remove { RemoveHandler(CanvasInsideMoveEvent, value); }
+            add { AddHandler(HandCursorEnterEvent, value); }
+            remove { RemoveHandler(HandCursorEnterEvent, value); }
         }
         /// <summary>
         /// Hand cursor move event handler
@@ -95,7 +95,7 @@ namespace KinectFittingRoom.View.Canvases
             _lastButtonPositionY = 0;
             _firstButtonPositionY = 0;
             _isMoved = false;
-            CanvasInsideMove += ScrollableCanvas_CanvasInsideMove;
+            HandCursorEnter += ScrollableCanvas_HandCursorEnter;
             HandCursorMove += ScrollableCanvas_HandCursorMove;
         }
         #endregion
@@ -111,14 +111,14 @@ namespace KinectFittingRoom.View.Canvases
             if (args.Y > _canvasMinHeight && args.Y < _canvasMaxHeight)
                 return;
 
-            RaiseEvent(new HandCursorEventArgs(CanvasInsideMoveEvent, _lastHandPosition));
+            RaiseEvent(new HandCursorEventArgs(HandCursorEnterEvent, _lastHandPosition));
         }
         /// <summary>
         /// Scroll all buttons in ItemsControl
         /// </summary>
-        private void ScrollableCanvas_CanvasInsideMove(object sender, HandCursorEventArgs args)
+        private void ScrollableCanvas_HandCursorEnter(object sender, HandCursorEventArgs args)
         {
-            StackPanel stackPanel = (Name == "LeftScrollableCanvas") ? FindChild<StackPanel>(Application.Current.MainWindow, "LeftStackPanel") : FindChild<StackPanel>(Application.Current.MainWindow, "RightStackPanel");
+            StackPanel stackPanel = (Name == "LeftPanel") ? FindChild<StackPanel>(Application.Current.MainWindow, "LeftStackPanel") : FindChild<StackPanel>(Application.Current.MainWindow, "RightStackPanel");
 
             if (_firstButtonPositionY == 0)
                 _firstButtonPositionY = stackPanel.Children[0].TransformToAncestor(Application.Current.MainWindow).Transform(new Point(0, 0)).Y;
@@ -161,7 +161,7 @@ namespace KinectFittingRoom.View.Canvases
             TranslateTransform translation = new TranslateTransform();
             DoubleAnimation animation = new DoubleAnimation()
             {
-                Duration = TimeSpan.FromSeconds(_timeOfAnimation),
+                Duration = TimeSpan.FromMilliseconds(_timeOfAnimation),
                 From = moveUp ? startPoint + _distance : startPoint,
                 To = moveUp ? startPoint : startPoint + _distance
             };

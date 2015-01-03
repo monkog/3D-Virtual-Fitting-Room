@@ -41,7 +41,7 @@
 			   helpers:PropertiesObserver.ObservedHeight="{Binding KinectService.Height, Mode=OneWayToSource}"/>
         <!--Canvas containing button panels-->
         <Canvas Name="ButtonPanelsCanvas" Width="{Binding KinectService.Width}" Height="{Binding KinectService.Height}">
-            <Canvas Name="LeftPanel"
+            <canvases:ScrollableCanvas x:Name="LeftPanel"
                     Width="170" 
                     Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Canvas}}
                     , Path=ActualHeight, Converter={StaticResource ReducedValueConverter}, ConverterParameter=40}" 
@@ -49,20 +49,19 @@
                     Opacity="0.5" 
                     Margin="20"/>
             <!--StackPanel containing all the buttons with clothing categories-->
-            <canvases:ScrollableCanvas ItemsSource="{Binding ClothingCategories}" 
+            <ItemsControl ItemsSource="{Binding ClothingCategories}" 
                                        ClipToBounds="True"
-                                       x:Name="LeftScrollableCanvas"
                                        Width="{Binding ActualWidth, ElementName=LeftPanel}"
                                        Height="{Binding ActualHeight, ElementName=LeftPanel}" 
                                        Canvas.Left="{Binding (Canvas.Left), ElementName=LeftPanel}"
                                        Canvas.Top="{Binding (Canvas.Top), ElementName=LeftPanel}"
                                        Margin="{Binding Margin, ElementName=LeftPanel}">
-                <canvases:ScrollableCanvas.ItemsPanel>
+                <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel x:Name="LeftStackPanel"/>
                     </ItemsPanelTemplate>
-                </canvases:ScrollableCanvas.ItemsPanel>
-                <canvases:ScrollableCanvas.ItemTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <buttons:KinectButton Width="{Binding ElementName=LeftPanel, Path=Width, Converter={StaticResource ReducedValueConverter}, ConverterParameter=20}" 
                                               Height="{Binding ElementName=LeftPanel, Path=Width, Converter={StaticResource ReducedValueConverter}, ConverterParameter=20}" 
@@ -79,9 +78,9 @@
                             </i:Interaction.Triggers>
                         </buttons:KinectButton>
                     </DataTemplate>
-                </canvases:ScrollableCanvas.ItemTemplate>
-            </canvases:ScrollableCanvas>
-            <Canvas x:Name="RightPanel"
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <canvases:ScrollableCanvas x:Name="RightPanel"
                     Width="170"
                     Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Canvas}}
                     , Path=ActualHeight, Converter={StaticResource ReducedValueConverter}, ConverterParameter=40}" 
@@ -90,20 +89,19 @@
 					Canvas.Right="0"
                     Margin="20"/>
             <!--StackPanel containing all the buttons with clothes-->
-            <canvases:ScrollableCanvas ItemsSource="{Binding Clothing, Source={x:Static local:ClothingManager.Instance}}"
-                                       x:Name="RightScrollableCanvas"
+            <ItemsControl  ItemsSource="{Binding Clothing, Source={x:Static local:ClothingManager.Instance}}"
                                        ClipToBounds="True"
                                        Width="{Binding ActualWidth, ElementName=RightPanel}"
                                        Height="{Binding ActualHeight, ElementName=RightPanel}" 
                                        Canvas.Right="{Binding (Canvas.Right), ElementName=RightPanel}" 
                                        Canvas.Top="{Binding (Canvas.Top), ElementName=RightPanel}" 
                                        Margin="{Binding Margin, ElementName=RightPanel}">
-                <canvases:ScrollableCanvas.ItemsPanel>
+                <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel x:Name="RightStackPanel"/>
                     </ItemsPanelTemplate>
-                </canvases:ScrollableCanvas.ItemsPanel>
-                <canvases:ScrollableCanvas.ItemTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <buttons:KinectButton Width="{Binding ElementName=LeftPanel, Path=Width, Converter={StaticResource ReducedValueConverter}, ConverterParameter=20}" 
                                               Height="{Binding ElementName=LeftPanel, Path=Width, Converter={StaticResource ReducedValueConverter}, ConverterParameter=20}" 
@@ -120,8 +118,8 @@
                             </i:Interaction.Triggers>
                         </buttons:KinectButton>
                     </DataTemplate>
-                </canvases:ScrollableCanvas.ItemTemplate>
-            </canvases:ScrollableCanvas>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
             <!--StackPanel containing all the buttons from top menu-->
             <Canvas Name="AllTopButtonsPanel"
                     Canvas.Left="{Binding ElementName=LeftPanel, Path=ActualWidth, Converter={StaticResource IncreasedValueConverter}, ConverterParameter=20}"
