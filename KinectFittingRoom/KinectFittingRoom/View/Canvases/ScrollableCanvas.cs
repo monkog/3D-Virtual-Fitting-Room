@@ -130,20 +130,20 @@ namespace KinectFittingRoom.View.Canvases
                 if (args.Y > _canvasMaxHeight)
                 {
                     _isMoved = !_isMoved;
-                    while (_isMoved && _firstButtonPositionY + _startAnimationPoint < _canvasMaxHeight)
+                    while (_isMoved && _lastButtonPositionY + _startAnimationPoint > _canvasMinHeight)
                     {
-                        _startAnimationPoint += _distance;
-                        MoveButtons(stackPanel, _startAnimationPoint, false);
+                        _startAnimationPoint -= _distance;
+                        MoveButtons(stackPanel, _startAnimationPoint, true);
                         _isMoved = !_isMoved;
                     }
                 }
                 else if (args.Y < _canvasMinHeight)
                 {
                     _isMoved = !_isMoved;
-                    while (_isMoved && _lastButtonPositionY + _startAnimationPoint > _canvasMinHeight)
+                    while (_isMoved && _firstButtonPositionY + _startAnimationPoint < _canvasMaxHeight)
                     {
-                        _startAnimationPoint -= _distance;
-                        MoveButtons(stackPanel, _startAnimationPoint, true);
+                        _startAnimationPoint += _distance;
+                        MoveButtons(stackPanel, _startAnimationPoint, false);
                         _isMoved = !_isMoved;
                     }
                 }
