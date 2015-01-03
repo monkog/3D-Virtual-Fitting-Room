@@ -7,35 +7,66 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 
 namespace KinectFittingRoom.View.Canvases
 {
+    /// <summary>
+    /// ItemsControl class that responds to Kincect events
+    /// </summary>
     public class ScrollableCanvas : ItemsControl
     {
+        #region Constants
+        /// <summary>
+        /// Translation of controls in panels
+        /// </summary>
+        private const int _distance = 20;
+        /// <summary>
+        /// Number of seconds of animation
+        /// </summary>
+        private const int _timeOfAnimation = 3;
+        #endregion
+        #region Fields
         /// <summary>
         /// The last hand position
         /// </summary>
         private Point _lastHandPosition;
-        private bool _downMove;
+        /// <summary>
+        /// Position of last button in panel
+        /// </summary>
+        double _lastButtonPositionY;
+        /// <summary>
+        /// Position of first button in panel
+        /// </summary>
+        double _firstButtonPositionY;
+        /// <summary>
+        /// Start point of animation
+        /// </summary>
+        double _startAnimationPoint;
+        /// <summary>
+        /// Defines if buttons are moving
+        /// </summary>
         private bool _isMoved;
+        /// <summary>
+        /// Top boundary to start scroll up
+        /// </summary>
         private double _canvasMinHeight;
+        /// <summary>
+        /// Bottom boundary to start scroll down
+        /// </summary>
         private double _canvasMaxHeight;
+        #endregion
         #region Events
         /// <summary>
         /// Hand cursor enter event
         /// </summary>
         public static readonly RoutedEvent CanvasInsideMoveEvent
-            = KinectInput.HandCursorEnterEvent.AddOwner(typeof(ScrollableCanvas));
+            = KinectEvents.HandCursorEnterEvent.AddOwner(typeof(ScrollableCanvas));
         /// <summary>
         /// Hand cursor move event
         /// </summary>
         public static readonly RoutedEvent HandCursorMoveEvent
-            = KinectInput.HandCursorMoveEvent.AddOwner(typeof(ScrollableCanvas));
-        /// <summary>
-        /// Hand cursor leave event
-        /// </summary>
-        public static readonly RoutedEvent HandCursorLeaveEvent
-            = KinectInput.HandCursorLeaveEvent.AddOwner(typeof(ScrollableCanvas));
+            = KinectEvents.HandCursorMoveEvent.AddOwner(typeof(ScrollableCanvas));
         #endregion
         #region Event handlers
         /// <summary>
@@ -54,105 +85,128 @@ namespace KinectFittingRoom.View.Canvases
             add { AddHandler(HandCursorMoveEvent, value); }
             remove { RemoveHandler(HandCursorMoveEvent, value); }
         }
-        /// <summary>
-        /// Hand cursor leave event handler
-        /// </summary>
-        public event HandCursorEventHandler HandCursorLeave
-        {
-            add { AddHandler(HandCursorLeaveEvent, value); }
-            remove { RemoveHandler(HandCursorLeaveEvent, value); }
-        }
         #endregion Event handlers
-
-
+        #region .ctor
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ScrollableCanvas"/> class.
+        /// </summary>
         public ScrollableCanvas()
         {
+            _lastButtonPositionY = 0;
+            _firstButtonPositionY = 0;
+            _isMoved = false;
             CanvasInsideMove += ScrollableCanvas_CanvasInsideMove;
             HandCursorMove += ScrollableCanvas_HandCursorMove;
-            HandCursorLeave += ScrollableCanvas_HandCursorLeave;
         }
-
+        #endregion
+        #region Methods
+        /// <summary>
+        /// Handles HandCursorMove event
+        /// </summary>
         private void ScrollableCanvas_HandCursorMove(object sender, HandCursorEventArgs args)
         {
-            _canvasMinHeight = this.ActualHeight * 0.2;
-            _canvasMaxHeight = this.ActualHeight * 0.8;
-            _lastHandPosition = new Point(args.X, args.Y);
-
-            if (_lastHandPosition.Y > _canvasMinHeight && _lastHandPosition.Y < _canvasMaxHeight)
+            Point canvas = TransformToAncestor(Application.Current.MainWindow).Transform(new Point(0, 0));
+            _canvasMinHeight = ActualHeight * 0.3 + canvas.Y;
+            _canvasMaxHeight = ActualHeight * 0.5;
+            if (args.Y > _canvasMinHeight && args.Y < _canvasMaxHeight)
                 return;
 
-            _isMoved = true;
-            _downMove = (_lastHandPosition.Y <= _canvasMinHeight) ? false : true;
             RaiseEvent(new HandCursorEventArgs(CanvasInsideMoveEvent, _lastHandPosition));
         }
-
-        private void ScrollableCanvas_HandCursorLeave(object sender, HandCursorEventArgs args)
-        {
-            _isMoved = false;
-        }
-
+        /// <summary>
+        /// Scroll all buttons in ItemsControl
+        /// </summary>
         private void ScrollableCanvas_CanvasInsideMove(object sender, HandCursorEventArgs args)
         {
-            while (_isMoved)
-            {
-                var d = this.Margin;
-                var c = Items[Items.Count - 1];
+            StackPanel stackPanel = (Name == "LeftScrollableCanvas") ? FindChild<StackPanel>(Application.Current.MainWindow, "LeftStackPanel") : FindChild<StackPanel>(Application.Current.MainWindow, "RightStackPanel");
 
-                _isMoved = !_isMoved;
+            if (_firstButtonPositionY == 0)
+                _firstButtonPositionY = stackPanel.Children[0].TransformToAncestor(Application.Current.MainWindow).Transform(new Point(0, 0)).Y;
+            if (_lastButtonPositionY == 0)
+                _lastButtonPositionY = stackPanel.Children[stackPanel.Children.Count - 1].TransformToAncestor(Application.Current.MainWindow).Transform(new Point(0, 0)).Y;
+
+            if (args.Y != 0)
+            {
+                if (args.Y > _canvasMaxHeight)
+                {
+                    _isMoved = !_isMoved;
+                    while (_isMoved && _firstButtonPositionY + _startAnimationPoint < _canvasMaxHeight)
+                    {
+                        _startAnimationPoint += _distance;
+                        MoveButtons(stackPanel, _startAnimationPoint, false);
+                        _isMoved = !_isMoved;
+                    }
+                }
+                else if (args.Y < _canvasMinHeight)
+                {
+                    _isMoved = !_isMoved;
+                    while (_isMoved && _lastButtonPositionY + _startAnimationPoint > _canvasMinHeight)
+                    {
+                        _startAnimationPoint -= _distance;
+                        MoveButtons(stackPanel, _startAnimationPoint, true);
+                        _isMoved = !_isMoved;
+                    }
+                }
             }
         }
-
-        public static T FindChild<T>(DependencyObject parent, string childName) where T : DependencyObject
+        /// <summary>
+        /// Moves buttons in panels
+        /// </summary>
+        /// <param name="stackpanel"></param>
+        /// <param name="startPoint"></param>
+        /// <param name="moveUp"></param>
+        public void MoveButtons(StackPanel stackpanel, double startPoint, bool moveUp)
         {
-            // Confirm parent and childName are valid. 
-            if (parent == null)
+            Button button;
+            TranslateTransform translation = new TranslateTransform();
+            DoubleAnimation animation = new DoubleAnimation()
             {
-                return null;
+                Duration = TimeSpan.FromSeconds(_timeOfAnimation),
+                From = moveUp ? startPoint + _distance : startPoint,
+                To = moveUp ? startPoint : startPoint + _distance
+            };
+            foreach (var control in stackpanel.Children)
+            {
+                button = FindChild<Button>(control as ContentPresenter, "");
+                if (button != null)
+                    button.RenderTransform = translation;
             }
+            translation.BeginAnimation(TranslateTransform.YProperty, animation);
+        }
+        /// <summary>
+        /// Find child control in Visual Tree Helper of parent control
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="parent">Parent control</param>
+        /// <param name="childName">Name of child control</param>
+        /// <returns>Found child control</returns>
+        public T FindChild<T>(DependencyObject parent, string childName) where T : DependencyObject
+        {
+            if (parent == null)
+                return null;
 
-            T foundChild = null;
-
-            var childrenCount = VisualTreeHelper.GetChildrenCount(parent);
-            for (var i = 0; i < childrenCount; i++)
+            int childrenCount = VisualTreeHelper.GetChildrenCount(parent);
+            for (int i = 0; i < childrenCount; i++)
             {
                 var child = VisualTreeHelper.GetChild(parent, i);
-                // If the child is not of the request child type child
-                var childType = child as T;
+                T childType = child as T;
                 if (childType == null)
                 {
-                    // recursively drill down the tree
-                    foundChild = FindChild<T>(child, childName);
-
-                    // If the child is found, break so we do not overwrite the found child. 
+                    T foundChild = FindChild<T>(child, childName);
                     if (foundChild != null)
-                    {
-                        break;
-                    }
+                        return foundChild;
                 }
-                else if (!String.IsNullOrEmpty(childName))
+                else if (!string.IsNullOrEmpty(childName))
                 {
                     var frameworkElement = child as FrameworkElement;
-                    // If the child's name is set for search
                     if (frameworkElement != null && frameworkElement.Name == childName)
-                    {
-                        // if the child's name is of the request name
-                        foundChild = (T)child;
-                        break;
-                    }
-
-                    // Need this in case the element we want is nested
-                    // in another element of the same type
-                    foundChild = FindChild<T>(child, childName);
+                        return (T)child;
                 }
                 else
-                {
-                    // child element found.
-                    foundChild = (T)child;
-                    break;
-                }
+                    return (T)child;
             }
-
-            return foundChild;
+            return null;
         }
+        #endregion
     }
 }

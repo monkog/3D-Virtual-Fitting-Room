@@ -49,16 +49,17 @@
                     Opacity="0.5" 
                     Margin="20"/>
             <!--StackPanel containing all the buttons with clothing categories-->
-            <canvases:ScrollableCanvas x:Name="LeftSCanvas"
-                          ItemsSource="{Binding ClothingCategories}" 
-                          Width="{Binding ActualWidth, ElementName=LeftPanel}"
-                          Height="{Binding ActualHeight, ElementName=LeftPanel}" 
-                          Canvas.Left="{Binding (Canvas.Left), ElementName=LeftPanel}" 
-                          Canvas.Top="{Binding (Canvas.Top), ElementName=LeftPanel}" 
-                          Margin="{Binding Margin, ElementName=LeftPanel}">
+            <canvases:ScrollableCanvas ItemsSource="{Binding ClothingCategories}" 
+                                       ClipToBounds="True"
+                                       x:Name="LeftScrollableCanvas"
+                                       Width="{Binding ActualWidth, ElementName=LeftPanel}"
+                                       Height="{Binding ActualHeight, ElementName=LeftPanel}" 
+                                       Canvas.Left="{Binding (Canvas.Left), ElementName=LeftPanel}"
+                                       Canvas.Top="{Binding (Canvas.Top), ElementName=LeftPanel}"
+                                       Margin="{Binding Margin, ElementName=LeftPanel}">
                 <canvases:ScrollableCanvas.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel/>
+                        <StackPanel x:Name="LeftStackPanel"/>
                     </ItemsPanelTemplate>
                 </canvases:ScrollableCanvas.ItemsPanel>
                 <canvases:ScrollableCanvas.ItemTemplate>
@@ -89,27 +90,29 @@
 					Canvas.Right="0"
                     Margin="20"/>
             <!--StackPanel containing all the buttons with clothes-->
-            <ItemsControl ItemsSource="{Binding Clothing, Source={x:Static local:ClothingManager.Instance}}"
-                          Width="{Binding ActualWidth, ElementName=RightPanel}"
-                          Height="{Binding ActualHeight, ElementName=RightPanel}" 
-                          Canvas.Right="{Binding (Canvas.Right), ElementName=RightPanel}" 
-                          Canvas.Top="{Binding (Canvas.Top), ElementName=RightPanel}" 
-                          Margin="{Binding Margin, ElementName=RightPanel}">
-                <ItemsControl.ItemsPanel>
+            <canvases:ScrollableCanvas ItemsSource="{Binding Clothing, Source={x:Static local:ClothingManager.Instance}}"
+                                       x:Name="RightScrollableCanvas"
+                                       ClipToBounds="True"
+                                       Width="{Binding ActualWidth, ElementName=RightPanel}"
+                                       Height="{Binding ActualHeight, ElementName=RightPanel}" 
+                                       Canvas.Right="{Binding (Canvas.Right), ElementName=RightPanel}" 
+                                       Canvas.Top="{Binding (Canvas.Top), ElementName=RightPanel}" 
+                                       Margin="{Binding Margin, ElementName=RightPanel}">
+                <canvases:ScrollableCanvas.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel/>
+                        <StackPanel x:Name="RightStackPanel"/>
                     </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
+                </canvases:ScrollableCanvas.ItemsPanel>
+                <canvases:ScrollableCanvas.ItemTemplate>
                     <DataTemplate>
                         <buttons:KinectButton Width="{Binding ElementName=LeftPanel, Path=Width, Converter={StaticResource ReducedValueConverter}, ConverterParameter=20}" 
                                               Height="{Binding ElementName=LeftPanel, Path=Width, Converter={StaticResource ReducedValueConverter}, ConverterParameter=20}" 
                                               Margin="5" Style="{StaticResource GlassButton}">
-                            <Image Source="{Binding Image, Converter={StaticResource BitmapToImageSourceConverter}}" 
-                                       Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Width}"
-									   Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Height}"
-                                       Canvas.Left="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=(Canvas.Left)}"
-                                       Canvas.Top="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=(Canvas.Top)}"/>
+                            <Image Source="{Binding Image, Converter={StaticResource BitmapToImageSourceConverter}}"
+                                   Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Width}"
+                                   Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Height}"
+                                   Canvas.Left="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=(Canvas.Left)}"
+                                   Canvas.Top="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=(Canvas.Top)}"/>
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="HandCursorClick">
                                     <i:InvokeCommandAction Command="{Binding ClothCommand}"/>
@@ -117,8 +120,8 @@
                             </i:Interaction.Triggers>
                         </buttons:KinectButton>
                     </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                </canvases:ScrollableCanvas.ItemTemplate>
+            </canvases:ScrollableCanvas>
             <!--StackPanel containing all the buttons from top menu-->
             <Canvas Name="AllTopButtonsPanel"
                     Canvas.Left="{Binding ElementName=LeftPanel, Path=ActualWidth, Converter={StaticResource IncreasedValueConverter}, ConverterParameter=20}"

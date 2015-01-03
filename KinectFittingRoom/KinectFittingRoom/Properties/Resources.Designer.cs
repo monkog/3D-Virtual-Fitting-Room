@@ -9,6 +9,9 @@
 //------------------------------------------------------------------------------
 
 namespace KinectFittingRoom.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -221,6 +224,26 @@ namespace KinectFittingRoom.Properties {
         internal static System.Drawing.Bitmap menu_speaker {
             get {
                 object obj = ResourceManager.GetObject("menu_speaker", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] skirt {
+            get {
+                object obj = ResourceManager.GetObject("skirt", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap skirt_denim {
+            get {
+                object obj = ResourceManager.GetObject("skirt_denim", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
