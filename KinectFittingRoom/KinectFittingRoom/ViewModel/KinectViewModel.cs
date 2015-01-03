@@ -141,18 +141,12 @@ namespace KinectFittingRoom.ViewModel
                 Image = Properties.Resources.hat_symbol,
                 Clothes = new List<ClothingButtonViewModel>
                 {
-                    new HatButtonViewModel(ClothingItemBase.ClothingType.HatItem, ClothingItemBase.MaleFemaleType.Both, @".\Resources\Models\SantaHat.obj", @".\Resources\Models\hat_blue.png")  {
-                        Image = Properties.Resources.small_hat_blue, 
-                        ImageWidthToItemWidth = 2.07
-                    },
-                    new SkirtButtonViewModel(ClothingItemBase.ClothingType.HatItem, @".\Resources\Models\SantaHat.obj", @".\Resources\Models\hat_brown.png") {
-                        Image = Properties.Resources.small_hat_brown, 
-                        ImageWidthToItemWidth = 1.83
-                    },
-                    new SkirtButtonViewModel(ClothingItemBase.ClothingType.HatItem, @".\Resources\Models\SantaHat.obj", @".\Resources\Models\hat_superman.png") {
-                        Image = Properties.Resources.small_hat_superman, 
-                        ImageWidthToItemWidth = 1.24
-                    }
+                    new HatButtonViewModel(ClothingItemBase.ClothingType.HatItem, ClothingItemBase.MaleFemaleType.Both
+                        , @".\Resources\Models\Hats\cowboy_hat.obj")  { Image = Properties.Resources.small_hat_blue }
+                        , new HatButtonViewModel(ClothingItemBase.ClothingType.HatItem, ClothingItemBase.MaleFemaleType.Both
+                        , @".\Resources\Models\Hats\fedora_hat.obj") { Image = Properties.Resources.small_hat_brown }
+                        , new HatButtonViewModel(ClothingItemBase.ClothingType.HatItem, ClothingItemBase.MaleFemaleType.Both
+                        , @".\Resources\Models\Hats\fedora_hat.obj") { Image = Properties.Resources.small_hat_superman }
                 }
             };
         }
@@ -167,18 +161,12 @@ namespace KinectFittingRoom.ViewModel
                 Image = Properties.Resources.skirt_symbol,
                 Clothes = new List<ClothingButtonViewModel>
                 {
-                    new SkirtButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\skirt.obj", @".\Resources\Models\skirt_denim.bmp") {
-                        Image = Properties.Resources.small_skirt_jeans, 
-                        ImageWidthToItemWidth = 2.21
-                    },
-                    new SkirtButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\skirt.obj", @".\Resources\Models\skirt_maroon.png") {
-                        Image = Properties.Resources.small_skirt_maroon, 
-                        ImageWidthToItemWidth = 2.0
-                    },
-                    new SkirtButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\skirt.obj", @".\Resources\Models\skirt_jeans.png") {
-                        Image = Properties.Resources.small_skirt_jeans, 
-                        ImageWidthToItemWidth = 2.0
-                    }
+                    new SkirtButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\Skirts\long_skirt.obj") 
+                    { Image = Properties.Resources.small_skirt_jeans }
+                    , new SkirtButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\Skirts\short_skirt.obj") 
+                    { Image = Properties.Resources.small_skirt_maroon }
+                    , new SkirtButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\Skirts\short_skirt.obj") 
+                    { Image = Properties.Resources.small_skirt_jeans }
                 }
             };
         }
@@ -194,18 +182,14 @@ namespace KinectFittingRoom.ViewModel
                 Clothes =
                     new List<ClothingButtonViewModel>
                     {
-                        new SkirtButtonViewModel(ClothingItemBase.ClothingType.GlassesItem, @".\Resources\Models\skirt.obj", @".\Resources\Models\glasses_black.png") {
-                            Image = Properties.Resources.small_glasses_black, 
-                        },
-                        new SkirtButtonViewModel(ClothingItemBase.ClothingType.GlassesItem, @".\Resources\Models\skirt.obj", @".\Resources\Models\glasses_blue.png") {
-                            Image = Properties.Resources.small_glasses_blue, 
-                        },
-                        new SkirtButtonViewModel(ClothingItemBase.ClothingType.GlassesItem, @".\Resources\Models\skirt.obj", @".\Resources\Models\sunglasses_rayban.png") {
-                            Image = Properties.Resources.small_sunglasses_rayban, 
-                        },
-                        new SkirtButtonViewModel(ClothingItemBase.ClothingType.GlassesItem, @".\Resources\Models\skirt.obj", @".\Resources\Models\sunglasses_aviator.png") {
-                            Image = Properties.Resources.small_sunglasses_aviator, 
-                        }
+                        new SkirtButtonViewModel(ClothingItemBase.ClothingType.GlassesItem, @".\Resources\Models\skirt.obj")
+                        { Image = Properties.Resources.small_glasses_black }
+                        , new SkirtButtonViewModel(ClothingItemBase.ClothingType.GlassesItem, @".\Resources\Models\skirt.obj")
+                        { Image = Properties.Resources.small_glasses_blue }
+                        , new SkirtButtonViewModel(ClothingItemBase.ClothingType.GlassesItem, @".\Resources\Models\skirt.obj")
+                        { Image = Properties.Resources.small_sunglasses_rayban }
+                        , new SkirtButtonViewModel(ClothingItemBase.ClothingType.GlassesItem, @".\Resources\Models\skirt.obj")
+                        { Image = Properties.Resources.small_sunglasses_aviator }
                     }
             };
         }

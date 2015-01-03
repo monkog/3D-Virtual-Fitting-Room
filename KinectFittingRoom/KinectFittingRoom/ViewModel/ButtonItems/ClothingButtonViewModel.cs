@@ -1,7 +1,6 @@
+using System;
+using System.Collections.Generic;
 using HelixToolkit.Wpf;
-#if DEBUG
-using KinectFittingRoom.ViewModel.Debug;
-#endif
 using KinectFittingRoom.ViewModel.ClothingItems;
 using Microsoft.Practices.Prism.Commands;
 using System.Windows.Input;
@@ -11,17 +10,13 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
     /// <summary>
     /// View model for the Clothing buttons
     /// </summary>
-    public class ClothingButtonViewModel : ButtonViewModelBase
+    public abstract class ClothingButtonViewModel : ButtonViewModelBase
     {
         #region Private Fields
         /// <summary>
         /// Category of item
         /// </summary>
         private ClothingItemBase.ClothingType _category;
-        /// <summary>
-        /// Proportion image width to significant width of item
-        /// </summary>
-        private double _imageWidthToItemWidth;
         /// <summary>
         /// Type of clothing item
         /// </summary>
@@ -43,19 +38,6 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
             get { return _type; }
         }
         /// <summary>
-        /// Gets or sets proportion image width to significant width of item
-        /// </summary>
-        public double ImageWidthToItemWidth
-        {
-            get { return _imageWidthToItemWidth; }
-            set
-            {
-                if (_imageWidthToItemWidth == value)
-                    return;
-                _imageWidthToItemWidth = value;
-            }
-        }
-        /// <summary>
         /// Gets or sets the model importer.
         /// </summary>
         /// <value>
@@ -69,13 +51,6 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// The model path.
         /// </value>
         public string ModelPath { get; set; }
-        /// <summary>
-        /// Gets or sets the texture path.
-        /// </summary>
-        /// <value>
-        /// The texture path.
-        /// </value>
-        public string TexturePath { get; set; }
         #endregion Public Properties
         #region Commands
         /// <summary>
@@ -96,27 +71,36 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// Executes when the Category button was hit.
         /// </summary>
         /// <param name="parameter">The parameter.</param>
-        public virtual void CategoryExecuted(object parameter)
-        { }
+        public abstract void CategoryExecuted(object parameter);
         #endregion Commands
         #region .ctor
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ClothingButtonViewModel"/> class.
         /// </summary>
         /// <param name="category">Clothing category</param>
         /// <param name="type">Male or female type of clothing</param>
         /// <param name="pathToModel">Path to the model</param>
-        /// <param name="pathToTexture">Path to the texture of the item</param>
-        public ClothingButtonViewModel(ClothingItemBase.ClothingType category, ClothingItemBase.MaleFemaleType type, string pathToModel, string pathToTexture)
+        protected ClothingButtonViewModel(ClothingItemBase.ClothingType category, ClothingItemBase.MaleFemaleType type, string pathToModel)
         {
             _category = category;
             _type = type;
-            TexturePath = pathToTexture;
             ModelPath = pathToModel;
             Importer = new ModelImporter();
         }
         #endregion
+        #region Protected Methods
+        /// <summary>
+        /// Adds the clothing item.
+        /// </summary>
+        /// <typeparam name="T">Type of the item</typeparam>
+        protected void AddClothingItem<T>()
+        {
+            Dictionary<ClothingItemBase.ClothingType, ClothingItemBase> tmpModels = ClothingManager.Instance.ChosenClothesModels;
+
+            tmpModels[Category] = (ClothingItemBase)Activator.CreateInstance(typeof(T), Importer.Load(ModelPath));
+            ClothingManager.Instance.ChosenClothesModels = new Dictionary<ClothingItemBase.ClothingType, ClothingItemBase>(tmpModels);
+        }
+        #endregion Protected Methods
     }
 }
 

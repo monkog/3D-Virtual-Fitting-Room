@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media.Media3D;
@@ -25,7 +24,7 @@ namespace KinectFittingRoom.View.Helpers
         /// Gets or sets the <see cref="DataTemplate3D" /> used to display each item.
         /// </summary>
         /// <value>
-        ///     The item template.
+        /// The item template.
         /// </value>
         public DataTemplate3D ItemTemplate
         {

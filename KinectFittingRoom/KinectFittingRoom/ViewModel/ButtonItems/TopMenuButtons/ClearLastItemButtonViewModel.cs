@@ -22,10 +22,13 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
         /// </summary>
         public override void ClickEventExecuted()
         {
-            Dictionary<ClothingItemBase.ClothingType, ClothingItemBase> tmp = ClothingManager.Instance.ChosenClothes;
-            tmp.Remove(tmp.FirstOrDefault(a => a.Value.PathToImage == ClothingManager.Instance.LastAddedItem.PathToImage).Key);
-            ClothingManager.Instance.ChosenClothes = new Dictionary<ClothingItemBase.ClothingType, ClothingItemBase>(tmp);
-            base.ClearMenu();
+            if (ClothingManager.Instance.ChosenClothesModels.Count == 0)
+                return;
+
+            Dictionary<ClothingItemBase.ClothingType, ClothingItemBase> tmp = ClothingManager.Instance.ChosenClothesModels;
+            tmp.Remove(tmp.Last().Key);
+            ClothingManager.Instance.ChosenClothesModels = new Dictionary<ClothingItemBase.ClothingType, ClothingItemBase>(tmp);
+            ClearMenu();
         }
         #endregion
     }

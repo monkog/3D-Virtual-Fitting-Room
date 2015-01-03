@@ -1,11 +1,12 @@
 ﻿using System.Drawing;
+using KinectFittingRoom.ViewModel.ClothingItems;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
 {
     class MakeThinnerButtonViewModel : TopMenuButtonViewModel
     {
-         #region Consts
-        private const double _minusFactor = 0.95;
+        #region Consts
+        private const double MinusFactor = -0.1;
         #endregion
         #region .ctor
         /// <summary>
@@ -22,6 +23,8 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
         /// </summary>
         public override void ClickEventExecuted()
         {
+            if (ClothingManager.Instance.ChosenClothesModels.Count != 0)
+                ClothingManager.Instance.ScaleImageWidth(MinusFactor);
         }
         #endregion
     }

@@ -2,14 +2,14 @@
 
 namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
 {
-    public class ScreenShotButtonViewModel : TopMenuButtonViewModel
+    public class ScreenshotButtonViewModel : TopMenuButtonViewModel
     {
         #region .ctor
         /// <summary>
-        /// Initializes a new instance of the <see cref="ScreenShotButtonViewModel"/> class.
+        /// Initializes a new instance of the <see cref="ScreenshotButtonViewModel"/> class.
         /// </summary>
         /// <param name="image">Image of button</param>
-        public ScreenShotButtonViewModel(Bitmap image)
+        public ScreenshotButtonViewModel(Bitmap image)
             : base(image)
         { }
         #endregion

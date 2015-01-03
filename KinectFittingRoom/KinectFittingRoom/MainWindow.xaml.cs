@@ -3,14 +3,12 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using KinectFittingRoom.View.Buttons.Events;
-using KinectFittingRoom.View.Helpers;
 using KinectFittingRoom.ViewModel;
 using System;
 using System.Globalization;
 using System.IO;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
-using KinectFittingRoom.ViewModel.ClothingItems;
 
 namespace KinectFittingRoom
 {
@@ -81,13 +79,13 @@ namespace KinectFittingRoom
         }
         #endregion Private Methods
         /// <summary>
-        /// Makes a screen shot
+        /// Makes a screenshot
         /// </summary>
-        private void ScreenShotEvent(object sender, HandCursorEventArgs args)
+        private void ScreenshotEvent(object sender, HandCursorEventArgs args)
         {
             int actualWidth = (int)ImageArea.ActualWidth;
             int actualHeight = (int)ImageArea.ActualHeight;
-            string fileName = DateTime.Now.ToString("yyyy.MM.dd-HH.mm", CultureInfo.InvariantCulture);
+            string fileName = DateTime.Now.ToString("yyyy.MM.dd-HH.mm.ss", CultureInfo.InvariantCulture);
             fileName += ".png";
             string directoryPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Wirtualna Przymierzalnia");
             Directory.CreateDirectory(directoryPath);
@@ -105,7 +103,12 @@ namespace KinectFittingRoom
             if (KinectViewModel.SoundsOn)
                 KinectViewModel.CameraPlayer.Play();
         }
-
+        /// <summary>
+        /// Creates the watermark layer.
+        /// </summary>
+        /// <param name="width">The width.</param>
+        /// <param name="height">The height.</param>
+        /// <returns></returns>
         private Visual CreateWatermarkLayer(int width, int height)
         {
             int margin = 10;

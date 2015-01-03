@@ -6,7 +6,6 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Threading;
 using Microsoft.Kinect;
 
 namespace KinectFittingRoom.ViewModel
@@ -269,7 +268,7 @@ namespace KinectFittingRoom.ViewModel
                 frame.CopySkeletonDataTo(_skeletons);
 
                 var skeleton = GetPrimarySkeleton(_skeletons);
-                if(skeleton== null)
+                if (skeleton == null)
                     return;
                 Hand.UpdateHandCursor(skeleton, Kinect, Width, Height);
                 ClothingItems.ClothingManager.Instance.UpdateItemPosition(skeleton, Kinect, Width, Height);
@@ -396,6 +395,17 @@ namespace KinectFittingRoom.ViewModel
 
             return new Point(point.X * (width / sensor.DepthStream.FrameWidth)
                 , point.Y * (height / sensor.DepthStream.FrameHeight));
+        }
+        /// <summary>
+        /// Maps the joint point to 3D space.
+        /// </summary>
+        /// <param name="joint">The joint coordiates in the screen resolution space.</param>
+        /// <param name="width">Half of the Kinect image width</param>
+        /// <param name="height">Half of the Kinect image height</param>
+        /// <returns>Mapped joint point in 3D space</returns>
+        public static Point MapJointPointTo3DSpace(Point joint, double width, double height)
+        {
+            return new Point((joint.X - width) / width, -(joint.Y - height) / height);
         }
         /// <summary>
         /// Cleanups this instance.

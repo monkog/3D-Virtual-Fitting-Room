@@ -24,7 +24,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
         public override void ClickEventExecuted()
         {
             if (ClothingManager.Instance.ChosenClothesModels.Count != 0)
-                ClothingManager.Instance.ScaleImage(PlusFactor);
+                ClothingManager.Instance.ScaleImageHeight(PlusFactor);
         }
         #endregion
     }

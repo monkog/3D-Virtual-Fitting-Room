@@ -131,7 +131,7 @@
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\MakeThinnerButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\MakeWiderButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\MenuButtonViewModel.cs" />
-    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ScreenShotButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ScreenshotButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\SoundsButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\TopMenuButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\TopMenuManager.cs" />
@@ -143,6 +143,7 @@
     <Compile Include="View\Buttons\Events\HandCursorEventArgs.cs" />
     <Compile Include="View\Buttons\Events\ButtonsManager.cs" />
     <Compile Include="View\Buttons\Events\KinectEvents.cs" />
+    <Compile Include="View\Buttons\Events\KinectInput.cs" />
     <Compile Include="View\Buttons\KinectButton.cs" />
     <Compile Include="ViewModel\Debug\SkeletonManager.cs" />
     <Compile Include="ViewModel\ButtonItems\ClothingCategoryButtonViewModel.cs" />
@@ -204,9 +205,8 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Models\Hat.mtl" />
-    <None Include="Resources\Models\Hat.obj" />
-    <None Include="Resources\Models\skirt.obj" />
+    <None Include="Resources\Models\Skirts\long_skirt.obj" />
+    <None Include="Resources\Models\Skirts\short_skirt.obj" />
     <None Include="Resources\tshirt.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -219,14 +219,6 @@
     <SplashScreen Include="Resources\splash_screen_image.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Models\skirt_jeans.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\Models\skirt_maroon.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Images\hat_symbol.png" />
     <Resource Include="Resources\Images\skirt_symbol.png" />
   </ItemGroup>
@@ -234,35 +226,9 @@
     <Resource Include="Resources\Images\glasses_symbol.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Models\hat_blue.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\Models\hat_brown.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\Models\hat_superman.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\curtains.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Models\glasses_black.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\Models\glasses_blue.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\Models\sunglasses_aviator.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\Models\sunglasses_rayban.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Models\skirt_denim.bmp" />
     <None Include="Resources\Menu\menu.png" />
   </ItemGroup>
   <ItemGroup>
@@ -310,6 +276,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Menu\horizontal_arrows_thinner.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\Models\Hats\" />
+    <Folder Include="Resources\Textures\Hats\" />
+    <Folder Include="Resources\Textures\Skirts\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

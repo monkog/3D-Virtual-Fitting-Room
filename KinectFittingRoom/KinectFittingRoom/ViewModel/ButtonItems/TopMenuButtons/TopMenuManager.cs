@@ -71,7 +71,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// <summary>
         /// Gets or sets camera button
         /// </summary>
-        public ScreenShotButtonViewModel CameraButton
+        public ScreenshotButtonViewModel CameraButton
         {
             get;
             private set;
@@ -138,7 +138,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
                 new ClearSetButtonViewModel(Properties.Resources.menu_clearSet)
             };
             MenuButton = new MenuButtonViewModel(Properties.Resources.menu);
-            CameraButton = new ScreenShotButtonViewModel(Properties.Resources.menu_camera);
+            CameraButton = new ScreenshotButtonViewModel(Properties.Resources.menu_camera);
             CameraButtonVisibility = Visibility.Hidden;
         }
         #endregion

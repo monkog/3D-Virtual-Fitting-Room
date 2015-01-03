@@ -1,9 +1,6 @@
-using System;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Media;
-using System.Windows.Media.Media3D;
 using KinectFittingRoom.ViewModel.ButtonItems;
 using Microsoft.Kinect;
 
@@ -24,10 +21,6 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// The clothing collection
         /// </summary>
         private ObservableCollection<ClothingButtonViewModel> _clothing;
-        /// <summary>
-        /// Position of the spine joint
-        /// </summary>
-        private Vector3D _spinePosition;
         #endregion Private Fields
         #region Public Properties
         /// <summary>
@@ -91,18 +84,24 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         }
         #endregion .ctor
         #region Protected Methods
-
         /// <summary>
-        /// Scales images of clothes
+        /// Scales height of clothes
         /// </summary>
         /// <param name="ratio">The ratio of scaling</param>
-        public void ScaleImage(double ratio)
+        public void ScaleImageHeight(double ratio)
         {
-            if (ChosenClothesModels.Count == 0)
-                return;
-
             Dictionary<ClothingItemBase.ClothingType, ClothingItemBase> tmp = ChosenClothesModels;
             tmp.Last().Value.HeightScale += ratio;
+            ChosenClothesModels = new Dictionary<ClothingItemBase.ClothingType, ClothingItemBase>(tmp);
+        }
+        /// <summary>
+        /// Scales width of clothes
+        /// </summary>
+        /// <param name="ratio">The ratio of scaling</param>
+        public void ScaleImageWidth(double ratio)
+        {
+            Dictionary<ClothingItemBase.ClothingType, ClothingItemBase> tmp = ChosenClothesModels;
+            tmp.Last().Value.WidthScale += ratio;
             ChosenClothesModels = new Dictionary<ClothingItemBase.ClothingType, ClothingItemBase>(tmp);
         }
         #endregion Protected Methods
