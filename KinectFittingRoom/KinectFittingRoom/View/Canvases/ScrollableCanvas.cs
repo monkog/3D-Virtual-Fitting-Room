@@ -31,7 +31,7 @@ namespace KinectFittingRoom.View.Canvases
         /// <summary>
         /// Position of LeftPanel
         /// </summary>
-        Point canvas;
+        Point _leftPanelPosition;
         /// <summary>
         /// Determines how much time elapsed since hand position over canvas checked
         /// </summary>
@@ -128,14 +128,14 @@ namespace KinectFittingRoom.View.Canvases
 
             _enterTimer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0, 0, 1) };
             _enterTimerTicks = 0;
-            _enterTimer.Tick += _enterTimer_Tick;
+            _enterTimer.Tick += EnterTimer_Tick;
         }
         #endregion
         #region Methods
         /// <summary>
         /// Counts the number of timer ticks of_enterTimer
         /// </summary>
-        private void _enterTimer_Tick(object sender, EventArgs e)
+        private void EnterTimer_Tick(object sender, EventArgs e)
         {
             _enterTimerTicks++;
 
@@ -150,7 +150,7 @@ namespace KinectFittingRoom.View.Canvases
         /// <summary>
         /// Handles HandCursorMove event
         /// </summary>
-        void ScrollableCanvas_HandCursorMove(object sender, HandCursorEventArgs args)
+        private void ScrollableCanvas_HandCursorMove(object sender, HandCursorEventArgs args)
         {
             if (_isHandOverCanvas)
                 _handPosition = new Point(args.X, args.Y);
@@ -158,7 +158,7 @@ namespace KinectFittingRoom.View.Canvases
         /// <summary>
         /// Handles HandCursorLeave event
         /// </summary>
-        void ScrollableCanvas_HandCursorLeave(object sender, HandCursorEventArgs args)
+        private void ScrollableCanvas_HandCursorLeave(object sender, HandCursorEventArgs args)
         {
             _isHandOverCanvas = false;
         }
@@ -167,28 +167,29 @@ namespace KinectFittingRoom.View.Canvases
         /// </summary>
         private void ScrollableCanvas_HandCursorEnter(object sender, HandCursorEventArgs args)
         {
-            if(!_isHandOverCanvas)
-                _handPosition = new Point(args.X,args.Y);
+            if (!_isHandOverCanvas)
+                _handPosition = new Point(args.X, args.Y);
             _isHandOverCanvas = true;
             _isMoved = true;
 
-            if (canvas.X == 0 && canvas.Y == 0)
-                canvas = TransformToAncestor(Application.Current.MainWindow).Transform(new Point(0, 0));
-            _canvasMinHeight = ActualHeight * 0.2 + canvas.Y;
-            _canvasMaxHeight = ActualHeight * 0.4 + canvas.Y;
+            StackPanel stackPanel = (Name == "LeftScrollableCanvas") ? FindChild<StackPanel>(Application.Current.MainWindow, "LeftStackPanel") : FindChild<StackPanel>(Application.Current.MainWindow, "RightStackPanel");
+
+            if (stackPanel.Children.Count == 0)
+                return;
+
+            if (_firstButtonPositionY == 0)
+                _firstButtonPositionY = stackPanel.Children[0].TransformToAncestor(Application.Current.MainWindow).Transform(new Point(0, 0)).Y;
+            if (_lastButtonPositionY == 0)
+                _lastButtonPositionY = stackPanel.Children[stackPanel.Children.Count - 1].TransformToAncestor(Application.Current.MainWindow).Transform(new Point(0, 0)).Y;
+
+            if (_leftPanelPosition.X == 0 && _leftPanelPosition.Y == 0)
+                _leftPanelPosition = TransformToAncestor(Application.Current.MainWindow).Transform(new Point(0, 0));
+            _canvasMinHeight = ActualHeight * 0.2 + _leftPanelPosition.Y;
+            _canvasMaxHeight = ActualHeight * 0.4 + _leftPanelPosition.Y;
 
             if (_handPosition.Y > _canvasMinHeight && _handPosition.Y < _canvasMaxHeight)
                 return;
 
-            StackPanel stackPanel = (Name == "LeftScrollableCanvas") ? FindChild<StackPanel>(Application.Current.MainWindow, "LeftStackPanel") : FindChild<StackPanel>(Application.Current.MainWindow, "RightStackPanel");
-
-            if (stackPanel.Children.Count != 0)
-            {
-                if (_firstButtonPositionY == 0)
-                    _firstButtonPositionY = stackPanel.Children[0].TransformToAncestor(Application.Current.MainWindow).Transform(new Point(0, 0)).Y;
-                if (_lastButtonPositionY == 0)
-                    _lastButtonPositionY = stackPanel.Children[stackPanel.Children.Count - 1].TransformToAncestor(Application.Current.MainWindow).Transform(new Point(0, 0)).Y;
-            }
             if (_handPosition.Y > _canvasMaxHeight)
             {
                 while (_isMoved && _lastButtonPositionY + _startAnimationPoint > _canvasMaxHeight)
@@ -216,7 +217,7 @@ namespace KinectFittingRoom.View.Canvases
         /// <param name="stackpanel"></param>
         /// <param name="startPoint"></param>
         /// <param name="moveUp"></param>
-        public void MoveButtons(StackPanel stackpanel, double startPoint, bool moveUp)
+        private void MoveButtons(StackPanel stackpanel, double startPoint, bool moveUp)
         {
             Button button;
             TranslateTransform translation = new TranslateTransform();
@@ -241,7 +242,7 @@ namespace KinectFittingRoom.View.Canvases
         /// <param name="parent">Parent control</param>
         /// <param name="childName">Name of child control</param>
         /// <returns>Found child control</returns>
-        public T FindChild<T>(DependencyObject parent, string childName) where T : DependencyObject
+        private T FindChild<T>(DependencyObject parent, string childName) where T : DependencyObject
         {
             if (parent == null)
                 return null;
