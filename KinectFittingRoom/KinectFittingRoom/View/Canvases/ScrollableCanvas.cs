@@ -11,7 +11,7 @@ namespace KinectFittingRoom.View.Canvases
     /// <summary>
     /// ItemsControl class that responds to Kincect events
     /// </summary>
-    public class ScrollableCanvas : Canvas
+    public class ScrollableCanvas : ItemsControl
     {
         #region Constants
         /// <summary>
@@ -180,7 +180,7 @@ namespace KinectFittingRoom.View.Canvases
             if (_handPosition.Y > _canvasMinHeight && _handPosition.Y < _canvasMaxHeight)
                 return;
 
-            StackPanel stackPanel = (Name == "LeftPanel") ? FindChild<StackPanel>(Application.Current.MainWindow, "LeftStackPanel") : FindChild<StackPanel>(Application.Current.MainWindow, "RightStackPanel");
+            StackPanel stackPanel = (Name == "LeftScrollableCanvas") ? FindChild<StackPanel>(Application.Current.MainWindow, "LeftStackPanel") : FindChild<StackPanel>(Application.Current.MainWindow, "RightStackPanel");
 
             if (stackPanel.Children.Count != 0)
             {
