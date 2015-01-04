@@ -153,6 +153,7 @@
     <Compile Include="ViewModel\KinectViewModel.cs" />
     <Compile Include="ViewModel\KinectViewModelLoader.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="View\Buttons\KinectSizeButton.cs" />
     <Compile Include="View\Helpers\HandProperties.cs" />
     <Compile Include="View\Canvases\CanvasManager.cs" />
     <Compile Include="View\Canvases\ScrollableCanvas.cs" />
@@ -205,6 +206,7 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Models\simple_skirt.obj" />
     <None Include="Resources\Models\Skirts\long_skirt.obj" />
     <None Include="Resources\Models\Skirts\short_skirt.obj" />
     <None Include="Resources\tshirt.ico" />

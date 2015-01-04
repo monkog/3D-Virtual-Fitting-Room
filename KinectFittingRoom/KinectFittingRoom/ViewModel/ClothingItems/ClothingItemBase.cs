@@ -83,7 +83,6 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
                 if (_widthScale == value)
                     return;
                 _widthScale = value;
-                SetBaseTransformation();
             }
         }
         /// <summary>
@@ -149,7 +148,10 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// <param name="height">Kinect image height</param>
         public void UpdateItemPosition(Skeleton skeleton, KinectSensor sensor, double width, double height)
         {
-            if (skeleton == null) return;
+            if (skeleton == null || skeleton.Joints[LeftJointToTrackAngle].TrackingState == JointTrackingState.NotTracked
+                || skeleton.Joints[RightJointToTrackAngle].TrackingState == JointTrackingState.NotTracked
+                || skeleton.Joints[JointToTrackPosition].TrackingState == JointTrackingState.NotTracked) 
+                return;
 
             TrackSkeletonParts(skeleton, sensor, width, height);
         }

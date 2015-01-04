@@ -25,22 +25,6 @@ namespace KinectFittingRoom.View.Buttons
         #endregion Constants
         #region Private Fields
         /// <summary>
-        /// Number of elapsed ticks for _clickTimer
-        /// </summary>
-        private int _clickTicks;
-        /// <summary>
-        /// Number of elapsed ticks for _afterClickTimer
-        /// </summary>
-        private int _afterClickTicks;
-        /// <summary>
-        /// Determines how much time elapsed since HandCursorEnterEvent occured
-        /// </summary>
-        private readonly DispatcherTimer _clickTimer;
-        /// <summary>
-        /// Determines how much time elapsed since HandCursorClickEvent occured
-        /// </summary>
-        private readonly DispatcherTimer _afterClickTimer;
-        /// <summary>
         /// The last hand position
         /// </summary>
         private Point _lastHandPosition;
@@ -118,6 +102,22 @@ namespace KinectFittingRoom.View.Buttons
             get { return (ICommand)GetValue(CommandProperty); }
             set { SetValue(CommandProperty, value); }
         }
+        /// <summary>
+        /// Number of elapsed ticks for _clickTimer
+        /// </summary>
+        protected int ClickTicks { get; set; }
+        /// <summary>
+        /// Number of elapsed ticks for _afterClickTimer
+        /// </summary>
+        protected int AfterClickTicks { get; set; }
+        /// <summary>
+        /// Determines how much time elapsed since HandCursorEnterEvent occured
+        /// </summary>
+        protected DispatcherTimer ClickTimer { get; set; }
+        /// <summary>
+        /// Determines how much time elapsed since HandCursorClickEvent occured
+        /// </summary>
+        protected DispatcherTimer AfterClickTimer { get; set; }
         #endregion Properties
         #region Dependency Properties
         /// <summary>
@@ -134,12 +134,12 @@ namespace KinectFittingRoom.View.Buttons
         {
             SetValue(IsClickedProperty, false);
 
-            _clickTimer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0, 0, 1) };
-            _clickTicks = 0;
-            _clickTimer.Tick += ClickTimer_Tick;
-            _afterClickTimer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0, 0, 1) };
-            _afterClickTicks = 0;
-            _afterClickTimer.Tick += AfterClickTimer_Tick;
+            ClickTimer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0, 0, 1) };
+            ClickTicks = 0;
+            ClickTimer.Tick += ClickTimer_Tick;
+            AfterClickTimer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0, 0, 1) };
+            AfterClickTicks = 0;
+            AfterClickTimer.Tick += AfterClickTimer_Tick;
 
             HandCursorEnter += KinectButton_HandCursorEnter;
             HandCursorMove += KinectButton_HandCursorMove;
@@ -153,7 +153,7 @@ namespace KinectFittingRoom.View.Buttons
         /// </summary>
         protected void KinectButton_HandCursorEnter(object sender, HandCursorEventArgs args)
         {
-            _clickTimer.Start();
+            ClickTimer.Start();
         }
         /// <summary>
         /// Handles HandCursorMove event
@@ -169,19 +169,19 @@ namespace KinectFittingRoom.View.Buttons
         {
             if (IsClicked)
                 SetValue(IsClickedProperty, false);
-            ResetTimer(_clickTimer);
+            ResetTimer(ClickTimer);
         }
         /// <summary>
         /// Counts the number of timer ticks of_clickTimer
         /// </summary>
         private void ClickTimer_Tick(object sender, EventArgs e)
         {
-            _clickTicks++;
+            ClickTicks++;
 
-            if (_clickTicks <= ClickTimeout)
+            if (ClickTicks <= ClickTimeout)
                 return;
 
-            ResetTimer(_clickTimer);
+            ResetTimer(ClickTimer);
             RaiseEvent(new HandCursorEventArgs(HandCursorClickEvent, _lastHandPosition));
         }
         /// <summary>
@@ -189,12 +189,12 @@ namespace KinectFittingRoom.View.Buttons
         /// </summary>
         private void AfterClickTimer_Tick(object sender, EventArgs e)
         {
-            _afterClickTicks++;
+            AfterClickTicks++;
 
-            if (_afterClickTicks <= AfterClickTimeout)
+            if (AfterClickTicks <= AfterClickTimeout)
                 return;
 
-            ResetTimer(_afterClickTimer);
+            ResetTimer(AfterClickTimer);
             SetValue(IsClickedProperty, false);
         }
         /// <summary>
@@ -207,18 +207,18 @@ namespace KinectFittingRoom.View.Buttons
             if (KinectViewModel.SoundsOn)
                 KinectViewModel.ButtonPlayer.Play();
 
-            _afterClickTimer.Start();
+            AfterClickTimer.Start();
         }
         /// <summary>
         /// Resets the timer
         /// </summary>
-        private void ResetTimer(DispatcherTimer timer)
+        protected virtual void ResetTimer(DispatcherTimer timer)
         {
             timer.Stop();
-            if (timer == _clickTimer)
-                _clickTicks = 0;
+            if (timer == ClickTimer)
+                ClickTicks = 0;
             else
-                _afterClickTicks = 0;
+                AfterClickTicks = 0;
         }
         #endregion Methods
     }

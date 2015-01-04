@@ -408,6 +408,16 @@ namespace KinectFittingRoom.ViewModel
             return new Point((joint.X - width) / width, -(joint.Y - height) / height);
         }
         /// <summary>
+        /// Calculates the distance between joints.
+        /// </summary>
+        /// <param name="joint1">The 1st joint.</param>
+        /// <param name="joint2">The 2nd joint.</param>
+        /// <returns></returns>
+        public static Point CalculateDistanceBetweenJoints(Point joint1, Point joint2)
+        {
+            return new Point(Math.Abs(joint1.X - joint2.X), Math.Abs(joint1.Y - joint2.Y));
+        }
+        /// <summary>
         /// Cleanups this instance.
         /// </summary>
         public void Cleanup()
