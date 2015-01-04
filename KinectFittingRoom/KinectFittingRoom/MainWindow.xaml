@@ -231,6 +231,10 @@
         <Canvas Background="Brown" Opacity="0.8" Width="200" Height="100" Visibility="{Binding DebugModeOn, Converter={StaticResource BoolToVisibilityConverter}}">
             <Label x:Name="TimerLabel" FontSize="30" x:FieldModifier="public" Width="900" Height="500" Margin="0,0,417,220" />
         </Canvas>
+        <!--Grid used for taking screenshots-->
+        <Grid Name="ScreenshotGrid" Opacity="0.7" Background="Black" Visibility="Collapsed">
+            <TextBlock Name="ScreenshotText" FontSize="40" HorizontalAlignment="Center" Opacity="0.7" VerticalAlignment="Center" Foreground="White"/>
+        </Grid>
         <!--Grid used for viewing error messages-->
         <Grid Name="ErrorGrid" Opacity="0.7" Background="Black" Visibility="{Binding KinectService.ErrorGridVisibility}">
             <TextBlock Text="{Binding KinectService.ErrorGridMessage}" 

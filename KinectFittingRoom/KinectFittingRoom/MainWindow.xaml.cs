@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 using KinectFittingRoom.View.Buttons.Events;
 using KinectFittingRoom.ViewModel;
 using System;
@@ -17,11 +18,30 @@ namespace KinectFittingRoom
     /// </summary>
     public partial class MainWindow
     {
+        #region Constants
+        /// <summary>
+        /// The timespan
+        /// </summary>
+        private const int Timespan = 3;
+        #endregion Constants
+        #region Private Members
+        /// <summary>
+        /// The screenshot timer
+        /// </summary>
+        private readonly DispatcherTimer _screenshotTimer;
+        /// <summary>
+        /// The number of _screenshotTimer ticks
+        /// </summary>
+        private int _ticks;
+        #endregion Private Members
         #region .ctor
         public MainWindow()
         {
             InitializeComponent();
             SubscribeForHandPositionChanges();
+
+            _screenshotTimer = new DispatcherTimer() { Interval = new TimeSpan(0, 0, 0, 1) };
+            _screenshotTimer.Tick += ScreenshotTimer_Tick;
         }
         #endregion .ctor
         #region Private Methods
@@ -52,6 +72,27 @@ namespace KinectFittingRoom
             }
         }
         /// <summary>
+        /// Handles the Tick event of the _screenshotTimer control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void ScreenshotTimer_Tick(object sender, EventArgs e)
+        {
+            _ticks++;
+            if (_ticks < Timespan)
+                ScreenshotText.Text = (Timespan - _ticks) + "...";
+            else
+                ScreenshotText.Text = "uśmiech :)";
+
+            if (_ticks > Timespan)
+            {
+                _screenshotTimer.Stop();
+                _ticks = 0;
+                ScreenshotGrid.Visibility = Visibility.Collapsed;
+                MakeScreenshot();
+            }
+        }
+        /// <summary>
         /// Handles the hand moved event.
         /// </summary>
         /// <param name="leftHand">The left hand position.</param>
@@ -77,25 +118,35 @@ namespace KinectFittingRoom
             Canvas.SetTop(HandCursor, hand.Y - HandCursor.ActualHeight / 2.0);
             ButtonsManager.Instance.RaiseCursorEvents(element, hand);
         }
-        #endregion Private Methods
         /// <summary>
         /// Makes a screenshot
         /// </summary>
         private void ScreenshotEvent(object sender, HandCursorEventArgs args)
         {
+            ScreenshotGrid.Visibility = Visibility.Visible;
+            ScreenshotText.Text = "3...";
+            _screenshotTimer.Start();
+        }
+        /// <summary>
+        /// Makes the screenshot.
+        /// </summary>
+        private void MakeScreenshot()
+        {
             int actualWidth = (int)ImageArea.ActualWidth;
             int actualHeight = (int)ImageArea.ActualHeight;
             string fileName = DateTime.Now.ToString("yyyy.MM.dd-HH.mm.ss", CultureInfo.InvariantCulture);
             fileName += ".png";
-            string directoryPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Wirtualna Przymierzalnia");
+            string directoryPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                "Wirtualna Przymierzalnia");
             Directory.CreateDirectory(directoryPath);
-            RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap(actualWidth, actualHeight, 96, 96, PixelFormats.Pbgra32);
+            RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap(actualWidth, actualHeight, 96, 96,
+                PixelFormats.Pbgra32);
             renderTargetBitmap.Render(ImageArea);
             renderTargetBitmap.Render(ClothesArea);
             renderTargetBitmap.Render(CreateWatermarkLayer(actualWidth, actualHeight));
             PngBitmapEncoder pngImage = new PngBitmapEncoder();
             pngImage.Frames.Add(BitmapFrame.Create(renderTargetBitmap));
-            
+
             using (Stream fileStream = File.Create(directoryPath + "\\" + fileName))
             {
                 pngImage.Save(fileStream);
@@ -124,5 +175,6 @@ namespace KinectFittingRoom
             visualWatermark.Opacity = 0.4;
             return visualWatermark;
         }
+        #endregion Private Methods
     }
 }
