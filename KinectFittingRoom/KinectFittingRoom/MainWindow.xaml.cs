@@ -104,11 +104,11 @@ namespace KinectFittingRoom
                 KinectViewModel.CameraPlayer.Play();
         }
         /// <summary>
-        /// Creates the watermark layer.
+        /// Create watermark on screenshot
         /// </summary>
-        /// <param name="width">The width.</param>
-        /// <param name="height">The height.</param>
-        /// <returns></returns>
+        /// <param name="width">Width of ImageArea</param>
+        /// <param name="height">Height of ImageArea</param>
+        /// <returns>Visual with watermark</returns>
         private Visual CreateWatermarkLayer(int width, int height)
         {
             int margin = 10;
@@ -121,7 +121,7 @@ namespace KinectFittingRoom
                 drawingContext.DrawRectangle(null, null, new Rect(0, 0, width, height));
                 drawingContext.DrawImage(image, new Rect(imageLocation.X, imageLocation.Y, image.Width, image.Height));
             }
-
+            visualWatermark.Opacity = 0.4;
             return visualWatermark;
         }
     }
