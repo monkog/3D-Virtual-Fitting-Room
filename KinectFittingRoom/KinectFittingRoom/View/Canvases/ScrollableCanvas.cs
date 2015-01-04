@@ -1,13 +1,10 @@
 ﻿using KinectFittingRoom.View.Buttons.Events;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Threading;
 
 namespace KinectFittingRoom.View.Canvases
 {
@@ -18,19 +15,39 @@ namespace KinectFittingRoom.View.Canvases
     {
         #region Constants
         /// <summary>
+        /// Number of seconds to check position of Hand
+        /// </summary>
+        private const int EnterTimeout = 4;
+        /// <summary>
         /// Translation of controls in panels
         /// </summary>
-        private const int _distance = 20;
+        private const int Distance = 10;
         /// <summary>
         /// Number of seconds of animation
         /// </summary>
-        private const int _timeOfAnimation = 10;
+        private const int TimeOfAnimation = 10;
         #endregion
         #region Fields
         /// <summary>
-        /// The last hand position
+        /// Position of LeftPanel
         /// </summary>
-        private Point _lastHandPosition;
+        Point canvas;
+        /// <summary>
+        /// Determines how much time elapsed since hand position over canvas checked
+        /// </summary>
+        private readonly DispatcherTimer _enterTimer;
+        /// <summary>
+        /// Number of elapsed ticks for _enterTimer
+        /// </summary>
+        private int _enterTimerTicks;
+        /// <summary>
+        /// Determines if hand is over canvas
+        /// </summary>
+        private bool _isHandOverCanvas;
+        /// <summary>
+        /// Actual hand position
+        /// </summary>
+        private Point _handPosition;
         /// <summary>
         /// Position of last button in panel
         /// </summary>
@@ -63,6 +80,11 @@ namespace KinectFittingRoom.View.Canvases
         public static readonly RoutedEvent HandCursorEnterEvent
             = KinectEvents.HandCursorEnterEvent.AddOwner(typeof(ScrollableCanvas));
         /// <summary>
+        /// Hand cursor leave event
+        /// </summary>
+        public static readonly RoutedEvent HandCursorLeaveEvent
+            = KinectEvents.HandCursorLeaveEvent.AddOwner(typeof(ScrollableCanvas));
+        /// <summary>
         /// Hand cursor move event
         /// </summary>
         public static readonly RoutedEvent HandCursorMoveEvent
@@ -78,12 +100,20 @@ namespace KinectFittingRoom.View.Canvases
             remove { RemoveHandler(HandCursorEnterEvent, value); }
         }
         /// <summary>
+        /// Hand cursor leave event handler
+        /// </summary>
+        public event HandCursorEventHandler HandCursorLeave
+        {
+            add { AddHandler(HandCursorLeaveEvent, value); }
+            remove { RemoveHandler(HandCursorLeaveEvent, value); }
+        }
+        /// <summary>
         /// Hand cursor move event handler
         /// </summary>
         public event HandCursorEventHandler HandCursorMove
         {
-            add { AddHandler(HandCursorMoveEvent, value); }
-            remove { RemoveHandler(HandCursorMoveEvent, value); }
+            add { AddHandler(HandCursorLeaveEvent, value); }
+            remove { RemoveHandler(HandCursorLeaveEvent, value); }
         }
         #endregion Event handlers
         #region .ctor
@@ -92,62 +122,93 @@ namespace KinectFittingRoom.View.Canvases
         /// </summary>
         public ScrollableCanvas()
         {
-            _lastButtonPositionY = 0;
-            _firstButtonPositionY = 0;
-            _isMoved = false;
             HandCursorEnter += ScrollableCanvas_HandCursorEnter;
+            HandCursorLeave += ScrollableCanvas_HandCursorLeave;
             HandCursorMove += ScrollableCanvas_HandCursorMove;
+
+            _enterTimer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0, 0, 1) };
+            _enterTimerTicks = 0;
+            _enterTimer.Tick += _enterTimer_Tick;
         }
         #endregion
         #region Methods
         /// <summary>
-        /// Handles HandCursorMove event
+        /// Counts the number of timer ticks of_enterTimer
         /// </summary>
-        private void ScrollableCanvas_HandCursorMove(object sender, HandCursorEventArgs args)
+        private void _enterTimer_Tick(object sender, EventArgs e)
         {
-            Point canvas = TransformToAncestor(Application.Current.MainWindow).Transform(new Point(0, 0));
-            _canvasMinHeight = ActualHeight * 0.3 + canvas.Y;
-            _canvasMaxHeight = ActualHeight * 0.5;
-            if (args.Y > _canvasMinHeight && args.Y < _canvasMaxHeight)
+            _enterTimerTicks++;
+
+            if (_enterTimerTicks < EnterTimeout)
                 return;
 
-            RaiseEvent(new HandCursorEventArgs(HandCursorEnterEvent, _lastHandPosition));
+            _enterTimer.Stop();
+            _enterTimerTicks = 0;
+            if (_isHandOverCanvas)
+                RaiseEvent(new HandCursorEventArgs(HandCursorEnterEvent, _handPosition));
         }
         /// <summary>
-        /// Scroll all buttons in ItemsControl
+        /// Handles HandCursorMove event
+        /// </summary>
+        void ScrollableCanvas_HandCursorMove(object sender, HandCursorEventArgs args)
+        {
+            if (_isHandOverCanvas)
+                _handPosition = new Point(args.X, args.Y);
+        }
+        /// <summary>
+        /// Handles HandCursorLeave event
+        /// </summary>
+        void ScrollableCanvas_HandCursorLeave(object sender, HandCursorEventArgs args)
+        {
+            _isHandOverCanvas = false;
+        }
+        /// <summary>
+        /// Handles HandCursorEnter event
         /// </summary>
         private void ScrollableCanvas_HandCursorEnter(object sender, HandCursorEventArgs args)
         {
+            if(!_isHandOverCanvas)
+                _handPosition = new Point(args.X,args.Y);
+            _isHandOverCanvas = true;
+            _isMoved = true;
+
+            if (canvas.X == 0 && canvas.Y == 0)
+                canvas = TransformToAncestor(Application.Current.MainWindow).Transform(new Point(0, 0));
+            _canvasMinHeight = ActualHeight * 0.2 + canvas.Y;
+            _canvasMaxHeight = ActualHeight * 0.4 + canvas.Y;
+
+            if (_handPosition.Y > _canvasMinHeight && _handPosition.Y < _canvasMaxHeight)
+                return;
+
             StackPanel stackPanel = (Name == "LeftPanel") ? FindChild<StackPanel>(Application.Current.MainWindow, "LeftStackPanel") : FindChild<StackPanel>(Application.Current.MainWindow, "RightStackPanel");
 
-            if (_firstButtonPositionY == 0)
-                _firstButtonPositionY = stackPanel.Children[0].TransformToAncestor(Application.Current.MainWindow).Transform(new Point(0, 0)).Y;
-            if (_lastButtonPositionY == 0)
-                _lastButtonPositionY = stackPanel.Children[stackPanel.Children.Count - 1].TransformToAncestor(Application.Current.MainWindow).Transform(new Point(0, 0)).Y;
-
-            if (args.Y != 0)
+            if (stackPanel.Children.Count != 0)
             {
-                if (args.Y > _canvasMaxHeight)
+                if (_firstButtonPositionY == 0)
+                    _firstButtonPositionY = stackPanel.Children[0].TransformToAncestor(Application.Current.MainWindow).Transform(new Point(0, 0)).Y;
+                if (_lastButtonPositionY == 0)
+                    _lastButtonPositionY = stackPanel.Children[stackPanel.Children.Count - 1].TransformToAncestor(Application.Current.MainWindow).Transform(new Point(0, 0)).Y;
+            }
+            if (_handPosition.Y > _canvasMaxHeight)
+            {
+                while (_isMoved && _lastButtonPositionY + _startAnimationPoint > _canvasMaxHeight)
                 {
+                    _startAnimationPoint -= Distance;
+                    MoveButtons(stackPanel, _startAnimationPoint, true);
                     _isMoved = !_isMoved;
-                    while (_isMoved && _lastButtonPositionY + _startAnimationPoint > _canvasMinHeight)
-                    {
-                        _startAnimationPoint -= _distance;
-                        MoveButtons(stackPanel, _startAnimationPoint, true);
-                        _isMoved = !_isMoved;
-                    }
-                }
-                else if (args.Y < _canvasMinHeight)
-                {
-                    _isMoved = !_isMoved;
-                    while (_isMoved && _firstButtonPositionY + _startAnimationPoint < _canvasMaxHeight)
-                    {
-                        _startAnimationPoint += _distance;
-                        MoveButtons(stackPanel, _startAnimationPoint, false);
-                        _isMoved = !_isMoved;
-                    }
                 }
             }
+            else if (_handPosition.Y < _canvasMinHeight)
+            {
+                while (_isMoved && _firstButtonPositionY + _startAnimationPoint < _firstButtonPositionY)
+                {
+                    _startAnimationPoint += Distance;
+                    MoveButtons(stackPanel, _startAnimationPoint, false);
+                    _isMoved = !_isMoved;
+                }
+            }
+            if (_isHandOverCanvas)
+                _enterTimer.Start();
         }
         /// <summary>
         /// Moves buttons in panels
@@ -161,9 +222,9 @@ namespace KinectFittingRoom.View.Canvases
             TranslateTransform translation = new TranslateTransform();
             DoubleAnimation animation = new DoubleAnimation()
             {
-                Duration = TimeSpan.FromMilliseconds(_timeOfAnimation),
-                From = moveUp ? startPoint + _distance : startPoint,
-                To = moveUp ? startPoint : startPoint + _distance
+                Duration = TimeSpan.FromMilliseconds(TimeOfAnimation),
+                From = moveUp ? startPoint + Distance : startPoint,
+                To = moveUp ? startPoint : startPoint + Distance
             };
             foreach (var control in stackpanel.Children)
             {
