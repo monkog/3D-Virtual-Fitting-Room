@@ -83,6 +83,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
                 if (_widthScale == value)
                     return;
                 _widthScale = value;
+                SetBaseTransformation();
             }
         }
         /// <summary>
@@ -115,7 +116,8 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         protected ClothingItemBase(Model3DGroup model)
         {
             Model = model;
-            HeightScale = WidthScale = 1;
+            _heightScale = _widthScale = 1;
+            SetBaseTransformation();
         }
         #endregion
         #region Protected Methods
