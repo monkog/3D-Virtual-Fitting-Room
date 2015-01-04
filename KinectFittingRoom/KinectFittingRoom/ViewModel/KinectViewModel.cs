@@ -127,6 +127,7 @@ namespace KinectFittingRoom.ViewModel
             {
                 CreateHatsClothingCategoryButton(),
                 CreateSkirtsClothingCategoryButton(),
+                CreateDressesClothingCategoryButton(),
                 CreateGlassesClothingCategoryButton()
             };
         }
@@ -167,6 +168,22 @@ namespace KinectFittingRoom.ViewModel
                     { Image = Properties.Resources.small_skirt_maroon }
                     , new SkirtButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\Skirts\short_skirt.obj") 
                     { Image = Properties.Resources.small_skirt_jeans }
+                }
+            };
+        }
+        /// <summary>
+        /// Creates the dresses clothing category button.
+        /// </summary>
+        /// <returns>Dresses clothing category button</returns>
+        private ClothingCategoryButtonViewModel CreateDressesClothingCategoryButton()
+        {
+            return new ClothingCategoryButtonViewModel
+            {
+                Image = Properties.Resources.skirt_symbol,
+                Clothes = new List<ClothingButtonViewModel>
+                {
+                    new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\white_dress.obj") 
+                    { Image = Properties.Resources.white_dress }
                 }
             };
         }

@@ -195,7 +195,8 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         {
             HatItem,
             SkirtItem,
-            GlassesItem
+            GlassesItem,
+            DressItem
         }
 
         public enum MaleFemaleType

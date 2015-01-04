@@ -116,6 +116,7 @@
     </Compile>
     <Compile Include="ViewModel\ButtonItems\ButtonViewModelBase.cs" />
     <Compile Include="ViewModel\ButtonItems\ClothingButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\DressButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\GlassesButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\HatButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\ModelBase.cs" />
@@ -137,6 +138,7 @@
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\TopMenuManager.cs" />
     <Compile Include="ViewModel\ClothingItems\ClothingItemBase.cs" />
     <Compile Include="ViewModel\ClothingItems\ClothingManager.cs" />
+    <Compile Include="ViewModel\ClothingItems\DressItem.cs" />
     <Compile Include="ViewModel\ClothingItems\GlassesItem.cs" />
     <Compile Include="ViewModel\ClothingItems\HatItem.cs" />
     <Compile Include="ViewModel\ClothingItems\SkirtItem.cs" />
@@ -205,6 +207,7 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Models\Dresses\white_dress.obj" />
     <None Include="Resources\Models\simple_skirt.obj" />
     <None Include="Resources\Models\Skirts\long_skirt.obj" />
     <None Include="Resources\Models\Skirts\short_skirt.obj" />
@@ -282,6 +285,9 @@
     <Folder Include="Resources\Models\Hats\" />
     <Folder Include="Resources\Textures\Hats\" />
     <Folder Include="Resources\Textures\Skirts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Textures\Dresses\white_dress.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
