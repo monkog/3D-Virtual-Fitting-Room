@@ -191,7 +191,9 @@
                            Name="ClothesArea" 
                            ShowCoordinateSystem="{Binding DebugModeOn}" 
                            ShowViewCube="{Binding DebugModeOn}"
-                           ShowFrameRate="{Binding DebugModeOn}">
+                           ShowFrameRate="{Binding DebugModeOn}"
+                           IsHitTestVisible="False"
+                           ClipToBounds="False">
             <h:HelixViewport3D.Camera>
                 <OrthographicCamera Position="0, 0, 10"  LookDirection="0, 0, -40" UpDirection="0,1,0"/>
             </h:HelixViewport3D.Camera>

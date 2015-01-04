@@ -170,9 +170,9 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
                 KinectService.GetJointPoint(skeleton.Joints[JointToTrackPosition], sensor, width, height), width / 2, height / 2);
 
             var transform = new Transform3DGroup();
-            transform.Children.Add(new TranslateTransform3D(joint.X, joint.Y, 0));
             transform.Children.Add(BaseTransformation);
             transform.Children.Add(new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 1, 0), Angle)));
+            transform.Children.Add(new TranslateTransform3D(joint.X, joint.Y, 0));
             Model.Transform = transform;
         }
         #endregion Public Methods
