@@ -24,6 +24,7 @@
         <converters:BitmapToImageSourceConverter x:Key="BitmapToImageSourceConverter"/>
         <converters:IncreasedValueConverter x:Key="IncreasedValueConverter"/>
         <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <converters:ValueToVisibilityConverter x:Key="ValueToVisibilityConverter"/>
         <converters:DebugConverter x:Key="DebugConverter"/>
         <helpers:DataTemplate3D x:Key="ModelTemplate">
             <ModelVisual3D Content="{Binding Model}"/>
@@ -142,7 +143,7 @@
                     Height="{Binding Height, ElementName=AllTopButtonsPanel}" 
                     Canvas.Left="{Binding (Canvas.Left), ElementName=AllTopButtonsPanel}"
                     Canvas.Top="{Binding (Canvas.Top), ElementName=AllTopButtonsPanel}"
-                    Visibility="{Binding KinectService.TopPanelVisibility}">
+                    Visibility="{Binding KinectService.KinectCameraImage, Converter={StaticResource ValueToVisibilityConverter}}">
                 <buttons:KinectButton Width="70" Height="70" Margin="5,0,5,5" Style="{StaticResource RoundButton}"  DataContext="{Binding MenuButton, Source={x:Static topButtons:TopMenuManager.Instance}}">
                     <Image Source="{Binding Image, Converter={StaticResource BitmapToImageSourceConverter}}"
                            Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Width}"

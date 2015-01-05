@@ -30,7 +30,7 @@ namespace KinectFittingRoom.View.Buttons
             if (KinectViewModel.SoundsOn)
                 KinectViewModel.ButtonPlayer.Play();
 
-            _afterClickTimer.Start();
+            AfterClickTimer.Start();
         }
         /// <summary>
         /// Resets the timer
@@ -38,12 +38,13 @@ namespace KinectFittingRoom.View.Buttons
         protected override void ResetTimer(DispatcherTimer timer)
         {
             timer.Stop();
-            if (timer == _clickTimer)
-                _clickTicks = 0;
+            if (timer == ClickTimer)
+                ClickTicks = 0;
             else
             {
-                _afterClickTicks = 0;
-                _clickTimer.Start();
+                AfterClickTicks = 0;
+                if (HandIsOverButton)
+                    ClickTimer.Start();
             }
         }
         #endregion Protected Methods

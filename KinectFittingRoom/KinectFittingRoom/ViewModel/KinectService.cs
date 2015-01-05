@@ -205,23 +205,6 @@ namespace KinectFittingRoom.ViewModel
                 OnPropertyChanged("ErrorGridMessage");
             }
         }
-        /// <summary>
-        /// Gets or sets visibility of TopMenuPanel
-        /// </summary>
-        public Visibility TopPanelVisibility
-        {
-            get
-            {
-                if (_kinectCameraImage == null)
-                    return Visibility.Collapsed;
-                else
-                    return Visibility.Visible;
-            }
-            set
-            {
-                OnPropertyChanged("TopPanelVisibility");
-            }
-        }
         #endregion
         #region Private Methods
         /// <summary>
@@ -314,7 +297,6 @@ namespace KinectFittingRoom.ViewModel
 
                 KinectCameraImage.WritePixels(_cameraSourceBounds, pixels, _colorStride, 0);
                 OnPropertyChanged("KinectCameraImage");
-                OnPropertyChanged("TopPanelVisibility");
             }
         }
         /// <summary>
