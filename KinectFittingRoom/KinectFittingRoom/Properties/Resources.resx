@@ -208,10 +208,10 @@
   <data name="horizontal_arrows_thinner" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\menu\horizontal_arrows_thinner.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="skirt" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\models\skirt.obj;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="white_dress" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Textures\Dresses\white_dress.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="skirt_denim" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\models\skirt_denim.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="dress_symbol" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\dress_symbol.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

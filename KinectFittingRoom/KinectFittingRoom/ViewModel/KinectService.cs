@@ -69,7 +69,7 @@ namespace KinectFittingRoom.ViewModel
             get { return _kinectSensor; }
             set
             {
-                if (_kinectSensor != value)
+                //if (_kinectSensor != value)
                 {
                     if (_kinectSensor != null)
                     {
@@ -322,6 +322,9 @@ namespace KinectFittingRoom.ViewModel
             switch (e.Status)
             {
                 case KinectStatus.Initializing:
+                    ErrorGridVisibility = Visibility.Visible;
+                    ErrorGridMessage = "Inicjalizacja Kinecta...";
+                    break;
                 case KinectStatus.Connected:
                     if (Kinect == null)
                         Kinect = e.Sensor;
@@ -335,9 +338,13 @@ namespace KinectFittingRoom.ViewModel
                         if (Kinect == null)
                         {
                             ErrorGridVisibility = Visibility.Visible;
-                            ErrorGridMessage = "Proszę podłączyć Kinect";
+                            ErrorGridMessage = "Podłącz Kinect do komputera.";
                         }
                     }
+                    break;
+                case KinectStatus.NotPowered:
+                    ErrorGridVisibility = Visibility.Visible;
+                    ErrorGridMessage = "Podłącz kabel zasilający do gniazdka.";
                     break;
                 default:
                     ErrorGridVisibility = Visibility.Visible;
@@ -389,6 +396,27 @@ namespace KinectFittingRoom.ViewModel
 
             return new Point(point.X * (width / sensor.DepthStream.FrameWidth)
                 , point.Y * (height / sensor.DepthStream.FrameHeight));
+        }
+        /// <summary>
+        /// Maps the joint point to 3D space.
+        /// </summary>
+        /// <param name="joint">The joint coordiates in the screen resolution space.</param>
+        /// <param name="width">Half of the Kinect image width</param>
+        /// <param name="height">Half of the Kinect image height</param>
+        /// <returns>Mapped joint point in 3D space</returns>
+        public static Point MapJointPointTo3DSpace(Point joint, double width, double height)
+        {
+            return new Point((joint.X - width) / width, -(joint.Y - height) / height);
+        }
+        /// <summary>
+        /// Calculates the distance between joints.
+        /// </summary>
+        /// <param name="joint1">The 1st joint.</param>
+        /// <param name="joint2">The 2nd joint.</param>
+        /// <returns></returns>
+        public static Point CalculateDistanceBetweenJoints(Point joint1, Point joint2)
+        {
+            return new Point(Math.Abs(joint1.X - joint2.X), Math.Abs(joint1.Y - joint2.Y));
         }
         /// <summary>
         /// Cleanups this instance.

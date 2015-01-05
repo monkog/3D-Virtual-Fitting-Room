@@ -6,7 +6,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
     class MakeBiggerButtonViewModel : TopMenuButtonViewModel
     {
         #region Consts
-        private const double _plusFactor = 1.05;
+        private const double PlusFactor = 0.1;
         #endregion
         #region .ctor
         /// <summary>
@@ -24,7 +24,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
         public override void ClickEventExecuted()
         {
             if (ClothingManager.Instance.ChosenClothesModels.Count != 0)
-                ClothingManager.Instance.ScaleImage(_plusFactor);
+                ClothingManager.Instance.ScaleImageHeight(PlusFactor);
         }
         #endregion
     }

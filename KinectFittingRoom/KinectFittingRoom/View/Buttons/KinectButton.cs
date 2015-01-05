@@ -29,14 +29,6 @@ namespace KinectFittingRoom.View.Buttons
         /// </summary>
         private bool _handIsOverButton;
         /// <summary>
-        /// Determines how much time elapsed since HandCursorClickEvent occured
-        /// </summary>
-        private readonly DispatcherTimer _afterClickTimer;
-        /// <summary>
-        /// Determines how much time elapsed since HandCursorEnterEvent occured
-        /// </summary>
-        private readonly DispatcherTimer _clickTimer;
-        /// <summary>
         /// The last hand position
         /// </summary>
         private Point _lastHandPosition;
@@ -106,36 +98,6 @@ namespace KinectFittingRoom.View.Buttons
             get { return _handIsOverButton; }
         }
         /// <summary>
-        /// Number of elapsed ticks for _clickTimer
-        /// </summary>
-        public int ClickTicks
-        {
-            get;
-            set;
-        }
-        /// <summary>
-        /// Number of elapsed ticks for _afterClickTimer
-        /// </summary>
-        public int AfterClickTicks
-        {
-            get;
-            set;
-        }
-        /// <summary>
-        /// Get information about time elapsed since HandCursorEnterEvent occured
-        /// </summary>
-        public DispatcherTimer ClickTimer
-        {
-            get { return _clickTimer; }
-        }
-        /// <summary>
-        /// Get information about time elapsed since HandCursorClickEvent occured
-        /// </summary>
-        public DispatcherTimer AfterClickTimer
-        {
-            get { return _afterClickTimer; }
-        }
-        /// <summary>
         /// Has Click event occured
         /// </summary>
         public bool IsClicked
@@ -151,6 +113,22 @@ namespace KinectFittingRoom.View.Buttons
             get { return (ICommand)GetValue(CommandProperty); }
             set { SetValue(CommandProperty, value); }
         }
+        /// <summary>
+        /// Number of elapsed ticks for _clickTimer
+        /// </summary>
+        protected int ClickTicks { get; set; }
+        /// <summary>
+        /// Number of elapsed ticks for _afterClickTimer
+        /// </summary>
+        protected int AfterClickTicks { get; set; }
+        /// <summary>
+        /// Determines how much time elapsed since HandCursorEnterEvent occured
+        /// </summary>
+        protected DispatcherTimer ClickTimer { get; private set; }
+        /// <summary>
+        /// Determines how much time elapsed since HandCursorClickEvent occured
+        /// </summary>
+        protected DispatcherTimer AfterClickTimer { get; private set; }
         #endregion Properties
         #region Dependency Properties
         /// <summary>
@@ -167,10 +145,10 @@ namespace KinectFittingRoom.View.Buttons
         {
             SetValue(IsClickedProperty, false);
             _handIsOverButton = false;
-            _clickTimer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0, 0, 1) };
+            ClickTimer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0, 0, 1) };
             ClickTicks = 0;
             ClickTimer.Tick += ClickTimer_Tick;
-            _afterClickTimer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0, 0, 1) };
+            AfterClickTimer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0, 0, 1) };
             AfterClickTicks = 0;
             AfterClickTimer.Tick += AfterClickTimer_Tick;
 

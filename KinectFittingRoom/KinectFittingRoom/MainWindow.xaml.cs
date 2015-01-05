@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 using KinectFittingRoom.View.Buttons.Events;
 using KinectFittingRoom.ViewModel;
 using System;
@@ -9,7 +10,6 @@ using System.Globalization;
 using System.IO;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
-using KinectFittingRoom.ViewModel.ClothingItems;
 
 namespace KinectFittingRoom
 {
@@ -34,22 +34,6 @@ namespace KinectFittingRoom
             var dataContext = DataContext as KinectViewModel;
             Debug.Assert(dataContext != null, "DataContext != null");
             dataContext.KinectService.Hand.PropertyChanged += KinectService_PropertyChanged;
-            ClothingManager.Instance.PropertyChanged += ClothingManager_PropertyChanged;
-        }
-        /// <summary>
-        /// Handles the PropertyChanged event of the ClothingManager.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="PropertyChangedEventArgs"/> instance containing the event data.</param>
-        private void ClothingManager_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            switch (e.PropertyName)
-            {
-                case "ChosenClothesModels":
-                    if (((ClothingManager)sender).ChosenClothesModels.Count == 0)
-                        ClothesArea.Children.Clear();
-                    break;
-            }
         }
         /// <summary>
         /// Handles the PropertyChanged event of the Hand.
@@ -95,68 +79,5 @@ namespace KinectFittingRoom
             ButtonsManager.Instance.RaiseCursorEvents(element, hand);
         }
         #endregion Private Methods
-        /// <summary>
-        /// Makes a screen shot
-        /// </summary>
-        private void ScreenShotEvent(object sender, HandCursorEventArgs args)
-        {
-            int actualWidth = (int)ImageArea.ActualWidth;
-            int actualHeight = (int)ImageArea.ActualHeight;
-            string fileName = DateTime.Now.ToString("yyyy.MM.dd-HH.mm", CultureInfo.InvariantCulture);
-            fileName += ".png";
-            string directoryPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Wirtualna Przymierzalnia");
-            Directory.CreateDirectory(directoryPath);
-            RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap(actualWidth, actualHeight, 96, 96, PixelFormats.Pbgra32);
-            renderTargetBitmap.Render(ImageArea);
-            renderTargetBitmap.Render(ClothesArea);
-            renderTargetBitmap.Render(CreateWatermarkLayer(actualWidth, actualHeight));
-            PngBitmapEncoder pngImage = new PngBitmapEncoder();
-            pngImage.Frames.Add(BitmapFrame.Create(renderTargetBitmap));
-
-            using (Stream fileStream = File.Create(directoryPath + "\\" + fileName))
-            {
-                CropTransparentPixels(pngImage).Save(fileStream);
-            }
-            if (KinectViewModel.SoundsOn)
-                KinectViewModel.CameraPlayer.Play();
-        }
-        /// <summary>
-        /// Create watermark on screen shot
-        /// </summary>
-        /// <param name="width">Width of ImageArea</param>
-        /// <param name="height">Height of ImageArea</param>
-        /// <returns>Visual with watermark</returns>
-        private Visual CreateWatermarkLayer(int width, int height)
-        {
-            int margin = 10;
-            DrawingVisual visualWatermark = new DrawingVisual();
-            BitmapImage image = new BitmapImage(new Uri(@"pack://application:,,,/Resources/watermark.png"));
-            Point imageLocation = new Point(width - (image.Width + margin), height - (image.Height + margin));
-
-            using (var drawingContext = visualWatermark.RenderOpen())
-            {
-                drawingContext.DrawRectangle(null, null, new Rect(0, 0, width, height));
-                drawingContext.DrawImage(image, new Rect(imageLocation.X, imageLocation.Y, image.Width, image.Height));
-            }
-            visualWatermark.Opacity = 0.4;
-            return visualWatermark;
-        }
-
-        private PngBitmapEncoder CropTransparentPixels(PngBitmapEncoder pngImage)
-        {
-            int pixelsCount = 0;
-            BitmapSource bitmapSource = pngImage.Frames[0];
-            var pixel = new byte[4];
-            for (int i = 0; i < bitmapSource.Width; i++)
-            {
-                bitmapSource.CopyPixels(new Int32Rect(i, 0, 1, 1), pixel, 4, 0);
-                if(pixel[0]==0)
-                    pixelsCount++;
-            }
-
-            PngBitmapEncoder croppedImage = new PngBitmapEncoder();
-            croppedImage.Frames.Add(BitmapFrame.Create(new CroppedBitmap(bitmapSource, new Int32Rect(pixelsCount + 1, 0, (int)bitmapSource.Width - pixelsCount-1, (int)bitmapSource.Height))));
-            return croppedImage;
-        }
     }
 }

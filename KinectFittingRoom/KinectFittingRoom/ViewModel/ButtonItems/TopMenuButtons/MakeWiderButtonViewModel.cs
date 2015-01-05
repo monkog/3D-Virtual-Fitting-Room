@@ -1,11 +1,12 @@
 ﻿using System.Drawing;
+using KinectFittingRoom.ViewModel.ClothingItems;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
 {
     class MakeWiderButtonViewModel : TopMenuButtonViewModel
     {
         #region Consts
-        private const double _plusFactor = 1.05;
+        private const double PlusFactor = 0.1;
         #endregion
         #region .ctor
         /// <summary>
@@ -22,6 +23,8 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
         /// </summary>
         public override void ClickEventExecuted()
         {
+            if (ClothingManager.Instance.ChosenClothesModels.Count != 0)
+                ClothingManager.Instance.ScaleImageWidth(PlusFactor);
         }
         #endregion
     }

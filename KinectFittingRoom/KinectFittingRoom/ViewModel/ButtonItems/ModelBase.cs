@@ -18,7 +18,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
             Visual3DModel = Application.Current.Resources[resourceKey] as Model3DGroup;
         }
         #endregion .ctor
-        #region Public Methods        
+        #region Public Methods
         /// <summary>
         /// Moves the model.
         /// </summary>

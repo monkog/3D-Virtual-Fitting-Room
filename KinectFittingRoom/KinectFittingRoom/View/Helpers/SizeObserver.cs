@@ -5,7 +5,7 @@ namespace KinectFittingRoom.View.Helpers
     /// <summary>
     /// Enables binding to the readonly properties
     /// </summary>
-    public static class PropertiesObserver
+    public static class SizeObserver
     {
 #warning Add property for hand tracking
         #region Dependency Properties
@@ -13,17 +13,17 @@ namespace KinectFittingRoom.View.Helpers
         /// The observe property
         /// </summary>
         public static readonly DependencyProperty ObserveProperty = DependencyProperty.RegisterAttached(
-            "Observe", typeof(bool), typeof(PropertiesObserver), new FrameworkPropertyMetadata(OnObserveChanged));
+            "Observe", typeof(bool), typeof(SizeObserver), new FrameworkPropertyMetadata(OnObserveChanged));
         /// <summary>
         /// The observed width property
         /// </summary>
         public static readonly DependencyProperty ObservedWidthProperty = DependencyProperty.RegisterAttached(
-            "ObservedWidth", typeof(double), typeof(PropertiesObserver));
+            "ObservedWidth", typeof(double), typeof(SizeObserver));
         /// <summary>
         /// The observed height property
         /// </summary>
         public static readonly DependencyProperty ObservedHeightProperty = DependencyProperty.RegisterAttached(
-            "ObservedHeight", typeof(double), typeof(PropertiesObserver));
+            "ObservedHeight", typeof(double), typeof(SizeObserver));
         #endregion Dependency Properties
         #region Public Static Methods
         /// <summary>

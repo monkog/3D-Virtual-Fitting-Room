@@ -1,124 +1,47 @@
 ﻿using System;
 using System.Windows.Media.Media3D;
 using Microsoft.Kinect;
-using System.Drawing;
+
 namespace KinectFittingRoom.ViewModel.ClothingItems
 {
     public abstract class ClothingItemBase : ViewModelBase
     {
         #region Private Fields
         /// <summary>
-        /// Proportion image width to significant width of item
-        /// </summary>
-        private double _imageWidthToItemWidth;
-        /// <summary>
-        /// Path to the texture of item
-        /// </summary>
-        private string _pathToTexture;
-        /// <summary>
-        /// The texture
-        /// </summary>
-        private Bitmap _texture;
-        /// <summary>
-        /// The image width
-        /// </summary>
-        private double _imageWidth;
-        /// <summary>
-        /// The image height
-        /// </summary>
-        private double _imageHeight;
-        /// <summary>
-        /// The Canvas.Left
-        /// </summary>
-        private double _left;
-        /// <summary>
         /// The clothing model
         /// </summary>
-        private GeometryModel3D _model;
+        private Model3DGroup _model;
         /// <summary>
-        /// The Canvas.Top
+        /// the height scale
         /// </summary>
-        private double _top;
+        private double _heightScale;
+        /// <summary>
+        /// The width scale
+        /// </summary>
+        private double _widthScale;
         #endregion Private Fields
         #region Public Properties
         /// <summary>
-        /// Gets the proportion of image width to significant width of item
-        /// </summary>
-        public double ImageWidthToItemWidth
-        {
-            get
-            {
-                return _imageWidthToItemWidth;
-            }
-        }
-        /// <summary>
-        /// Gets the path to texture of item
-        /// </summary>
-        public string PathToTexture
-        {
-            get
-            {
-                return _pathToTexture;
-            }
-        }
-        /// <summary>
-        /// Gets or sets the image.
+        /// Gets or sets the rotation angle.
         /// </summary>
         /// <value>
-        /// The height.
+        /// The rotation angle.
         /// </value>
-        public Bitmap Texture
-        {
-            get { return _texture; }
-            set
-            {
-                if (_texture == value)
-                    return;
-                _texture = value;
-                OnPropertyChanged("Texture");
-            }
-        }
+        public double Angle { get; set; }
         /// <summary>
-        /// Gets or sets the height.
+        /// Gets the base transformation for all other transformations.
         /// </summary>
         /// <value>
-        /// The height.
+        /// The base transformation.
         /// </value>
-        public double Height
-        {
-            get { return _imageHeight; }
-            set
-            {
-                if (_imageHeight == value)
-                    return;
-                _imageHeight = value;
-                OnPropertyChanged("Height");
-            }
-        }
-        /// <summary>
-        /// Gets or sets the Canvas.Left.
-        /// </summary>
-        /// <value>
-        /// The Canvas.Left.
-        /// </value>
-        public double Left
-        {
-            get { return _left; }
-            set
-            {
-                if (_left == value)
-                    return;
-                _left = value;
-                OnPropertyChanged("Left");
-            }
-        }
+        public Transform3D BaseTransformation { get; protected set; }
         /// <summary>
         /// Gets or sets the model.
         /// </summary>
         /// <value>
         /// The model.
         /// </value>
-        public GeometryModel3D Model
+        public Model3DGroup Model
         {
             get { return _model; }
             set
@@ -130,51 +53,71 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
             }
         }
         /// <summary>
-        /// Gets or sets the Canvas.Top.
+        /// Gets or sets the height scale.
         /// </summary>
         /// <value>
-        /// The Canvas.Top.
+        /// The height scale.
         /// </value>
-        public double Top
+        public double HeightScale
         {
-            get { return _top; }
+            get { return _heightScale; }
             set
             {
-                if (_top == value)
+                if (_heightScale == value)
                     return;
-                _top = value;
-                OnPropertyChanged("Top");
+                _heightScale = value;
+                SetBaseTransformation();
             }
         }
         /// <summary>
-        /// Gets or sets the width.
+        /// Gets or sets the width scale.
         /// </summary>
         /// <value>
-        /// The width.
+        /// The width scale.
         /// </value>
-        public double Width
+        public double WidthScale
         {
-            get { return _imageWidth; }
+            get { return _widthScale; }
             set
             {
-                if (_imageWidth == value)
+                if (_widthScale == value)
                     return;
-                _imageWidth = value;
-                OnPropertyChanged("Width");
+                _widthScale = value;
+                SetBaseTransformation();
             }
         }
+        /// <summary>
+        /// Gets or sets the joint to track position.
+        /// </summary>
+        /// <value>
+        /// The joint to track position.
+        /// </value>
+        public JointType JointToTrackPosition { get; protected set; }
+        /// <summary>
+        /// Gets or sets the left joint to track angle.
+        /// </summary>
+        /// <value>
+        /// The left joint to track angle.
+        /// </value>
+        public JointType LeftJointToTrackAngle { get; protected set; }
+        /// <summary>
+        /// Gets or sets the right joint to track angle.
+        /// </summary>
+        /// <value>
+        /// The right joint to track angle.
+        /// </value>
+        public JointType RightJointToTrackAngle { get; protected set; }
         #endregion Public Properties
         #region .ctor
         /// <summary>
         /// Initializes a new instance of the <see cref="ClothingItemBase"/> class.
         /// </summary>
-        /// <param name="pathToTexture">Path to original image of item</param>
-        /// <param name="imageWidthToItemWidth">Proportion image width to significant width of item</param>
-        protected ClothingItemBase(string pathToTexture, double imageWidthToItemWidth)
+        /// <param name="model">3D model</param>
+        protected ClothingItemBase(Model3DGroup model)
         {
-            Texture = new Bitmap(Bitmap.FromFile(pathToTexture));
-            _pathToTexture = pathToTexture;
-            _imageWidthToItemWidth = imageWidthToItemWidth;
+            Model = model;
+            _heightScale = _widthScale = 1;
+            SetBaseTransformation();
         }
         #endregion
         #region Protected Methods
@@ -194,7 +137,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
             var rightHip = sensor.CoordinateMapper.MapSkeletonPointToDepthPoint(joint1.Position, sensor.DepthStream.Format);
             var leftHip = sensor.CoordinateMapper.MapSkeletonPointToDepthPoint(joint2.Position, sensor.DepthStream.Format);
 
-            return (Math.Atan(((double)rightHip.Depth - leftHip.Depth) / ((double)leftHip.X - rightHip.X)) * 180.0 / Math.PI);
+            return -(Math.Atan(((double)rightHip.Depth - leftHip.Depth) / ((double)leftHip.X - rightHip.X)) * 180.0 / Math.PI);
         }
         #endregion Protected Methods
         #region Public Methods
@@ -207,7 +150,10 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// <param name="height">Kinect image height</param>
         public void UpdateItemPosition(Skeleton skeleton, KinectSensor sensor, double width, double height)
         {
-            if (skeleton == null) return;
+            if (skeleton == null || skeleton.Joints[LeftJointToTrackAngle].TrackingState == JointTrackingState.NotTracked
+                || skeleton.Joints[RightJointToTrackAngle].TrackingState == JointTrackingState.NotTracked
+                || skeleton.Joints[JointToTrackPosition].TrackingState == JointTrackingState.NotTracked) 
+                return;
 
             TrackSkeletonParts(skeleton, sensor, width, height);
         }
@@ -218,14 +164,39 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// <param name="sensor">Kinect sensor</param>
         /// <param name="width">Kinect image width</param>
         /// <param name="height">Kinect image height</param>
-        public abstract void TrackSkeletonParts(Skeleton skeleton, KinectSensor sensor, double width, double height);
+        public void TrackSkeletonParts(Skeleton skeleton, KinectSensor sensor, double width, double height)
+        {
+            Angle = TrackJointsRotation(sensor, skeleton.Joints[LeftJointToTrackAngle], skeleton.Joints[RightJointToTrackAngle]);
+
+            var joint = KinectService.MapJointPointTo3DSpace(
+                KinectService.GetJointPoint(skeleton.Joints[JointToTrackPosition], sensor, width, height), width / 2, height / 2);
+
+            var transform = new Transform3DGroup();
+            transform.Children.Add(BaseTransformation);
+            transform.Children.Add(new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 1, 0), Angle)));
+            transform.Children.Add(new TranslateTransform3D(joint.X, joint.Y, 0));
+            Model.Transform = transform;
+        }
         #endregion Public Methods
+        #region Private Methods
+        /// <summary>
+        /// Sets the base transformation.
+        /// </summary>
+        private void SetBaseTransformation()
+        {
+            Transform3DGroup transform = new Transform3DGroup();
+            transform.Children.Add(new ScaleTransform3D(_widthScale, 1, _widthScale));
+            transform.Children.Add(new ScaleTransform3D(1, _heightScale, 1));
+            BaseTransformation = transform;
+        }
+        #endregion Private Methods
         #region Enums
         public enum ClothingType
         {
             HatItem,
             SkirtItem,
-            GlassesItem
+            GlassesItem,
+            DressItem
         }
 
         public enum MaleFemaleType

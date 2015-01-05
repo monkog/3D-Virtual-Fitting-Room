@@ -81,6 +81,16 @@ namespace KinectFittingRoom.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap dress_symbol {
+            get {
+                object obj = ResourceManager.GetObject("dress_symbol", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap glasses_symbol {
             get {
                 object obj = ResourceManager.GetObject("glasses_symbol", resourceCulture);
@@ -229,26 +239,6 @@ namespace KinectFittingRoom.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] skirt {
-            get {
-                object obj = ResourceManager.GetObject("skirt", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap skirt_denim {
-            get {
-                object obj = ResourceManager.GetObject("skirt_denim", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap skirt_symbol {
@@ -374,6 +364,16 @@ namespace KinectFittingRoom.Properties {
         internal static System.Drawing.Bitmap watermark {
             get {
                 object obj = ResourceManager.GetObject("watermark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap white_dress {
+            get {
+                object obj = ResourceManager.GetObject("white_dress", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

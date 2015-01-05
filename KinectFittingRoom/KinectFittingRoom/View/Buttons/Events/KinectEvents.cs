@@ -3,10 +3,6 @@
 namespace KinectFittingRoom.View.Buttons.Events
 {
     /// <summary>
-    /// HandCursor event handler type declaration
-    /// </summary>
-    public delegate void HandCursorEventHandler(object sender, HandCursorEventArgs args);
-    /// <summary>
     /// Handles the Kinect input
     /// </summary>
     public static class KinectEvents
