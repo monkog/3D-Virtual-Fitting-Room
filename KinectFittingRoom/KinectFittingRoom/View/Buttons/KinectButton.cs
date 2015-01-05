@@ -27,19 +27,19 @@ namespace KinectFittingRoom.View.Buttons
         /// <summary>
         /// Number of elapsed ticks for _clickTimer
         /// </summary>
-        private int _clickTicks;
+        protected int _clickTicks;
         /// <summary>
         /// Number of elapsed ticks for _afterClickTimer
         /// </summary>
-        private int _afterClickTicks;
+        protected int _afterClickTicks;
         /// <summary>
         /// Determines how much time elapsed since HandCursorEnterEvent occured
         /// </summary>
-        private readonly DispatcherTimer _clickTimer;
+        protected readonly DispatcherTimer _clickTimer;
         /// <summary>
         /// Determines how much time elapsed since HandCursorClickEvent occured
         /// </summary>
-        private readonly DispatcherTimer _afterClickTimer;
+        protected readonly DispatcherTimer _afterClickTimer;
         /// <summary>
         /// The last hand position
         /// </summary>
@@ -133,7 +133,6 @@ namespace KinectFittingRoom.View.Buttons
         public KinectButton()
         {
             SetValue(IsClickedProperty, false);
-
             _clickTimer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0, 0, 1) };
             _clickTicks = 0;
             _clickTimer.Tick += ClickTimer_Tick;
@@ -165,7 +164,7 @@ namespace KinectFittingRoom.View.Buttons
         /// <summary>
         /// Handles HandCursorLeave event
         /// </summary>
-        protected virtual void KinectButton_HandCursorLeave(object sender, HandCursorEventArgs args)
+        protected void KinectButton_HandCursorLeave(object sender, HandCursorEventArgs args)
         {
             if (IsClicked)
                 SetValue(IsClickedProperty, false);
@@ -212,7 +211,7 @@ namespace KinectFittingRoom.View.Buttons
         /// <summary>
         /// Resets the timer
         /// </summary>
-        private void ResetTimer(DispatcherTimer timer)
+        protected virtual void ResetTimer(DispatcherTimer timer)
         {
             timer.Stop();
             if (timer == _clickTimer)

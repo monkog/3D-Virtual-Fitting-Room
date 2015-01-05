@@ -129,12 +129,20 @@
                     Width="80"
                     Height="80"
                     Background="Transparent"/>
+            <Canvas Name="SizeButtonsPanel"
+                    Canvas.Left="{Binding ElementName=AllTopButtonsPanel, Path=(Canvas.Left), Converter={StaticResource IncreasedValueConverter}, ConverterParameter=80}"
+                    Canvas.Top="20"
+                    Width="400"
+                    Height="80"
+                    Background="Transparent"
+                    Visibility="{Binding SizeButtonsVisibility, Source={x:Static topButtons:TopMenuManager.Instance}}"/>
             <StackPanel
                     Orientation="Horizontal"
                     Width="600"
                     Height="{Binding Height, ElementName=AllTopButtonsPanel}" 
                     Canvas.Left="{Binding (Canvas.Left), ElementName=AllTopButtonsPanel}"
-                    Canvas.Top="{Binding (Canvas.Top), ElementName=AllTopButtonsPanel}">
+                    Canvas.Top="{Binding (Canvas.Top), ElementName=AllTopButtonsPanel}"
+                    Visibility="{Binding KinectService.TopPanelVisibility}">
                 <buttons:KinectButton Width="70" Height="70" Margin="5,0,5,5" Style="{StaticResource RoundButton}"  DataContext="{Binding MenuButton, Source={x:Static topButtons:TopMenuManager.Instance}}">
                     <Image Source="{Binding Image, Converter={StaticResource BitmapToImageSourceConverter}}"
                            Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Width}"
@@ -147,6 +155,30 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </buttons:KinectButton>
+                <ItemsControl ItemsSource="{Binding ChangeSizeButtons, Source={x:Static topButtons:TopMenuManager.Instance}}"
+                              Visibility="{Binding SizeButtonsVisibility, Source={x:Static topButtons:TopMenuManager.Instance}}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <buttons:KinectSizeButton  Width="70" Height="70" Margin="5,0,5,5" Style="{StaticResource RoundButton}">
+                                <Image Source="{Binding Image, Converter={StaticResource BitmapToImageSourceConverter}}" 
+                                       Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Width}"
+									   Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Height}"
+                                       Canvas.Left="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=(Canvas.Left)}"
+                                       Canvas.Top="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=(Canvas.Top)}"/>
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="HandCursorClick">
+                                        <i:InvokeCommandAction Command="{Binding TopMenuCommand}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </buttons:KinectSizeButton>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
                 <buttons:KinectButton Width="70" Height="70" Margin="5,0,5,5" Style="{StaticResource RoundButton}" 
                                       Visibility="{Binding CameraButtonVisibility, Source={x:Static topButtons:TopMenuManager.Instance}}" 
                                       DataContext="{Binding CameraButton, Source={x:Static topButtons:TopMenuManager.Instance}}"
@@ -186,6 +218,7 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </StackPanel>
+            
         </Canvas>
         <!--3D control-->
         <h:HelixViewport3D CameraRotationMode="Trackball" Name="ClothesArea">

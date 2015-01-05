@@ -205,6 +205,23 @@ namespace KinectFittingRoom.ViewModel
                 OnPropertyChanged("ErrorGridMessage");
             }
         }
+        /// <summary>
+        /// Gets or sets visibility of TopMenuPanel
+        /// </summary>
+        public Visibility TopPanelVisibility
+        {
+            get
+            {
+                if (_kinectCameraImage == null)
+                    return Visibility.Collapsed;
+                else
+                    return Visibility.Visible;
+            }
+            set
+            {
+                OnPropertyChanged("TopPanelVisibility");
+            }
+        }
         #endregion
         #region Private Methods
         /// <summary>
@@ -229,6 +246,7 @@ namespace KinectFittingRoom.ViewModel
                 sensor.SkeletonStream.Enable();
                 _skeletons = new Skeleton[sensor.SkeletonStream.FrameSkeletonArrayLength];
                 sensor.SkeletonFrameReady += KinectSensor_SkeletonFrameReady;
+
                 try
                 {
                     sensor.Start();
@@ -268,7 +286,7 @@ namespace KinectFittingRoom.ViewModel
                 frame.CopySkeletonDataTo(_skeletons);
 
                 var skeleton = GetPrimarySkeleton(_skeletons);
-                if(skeleton== null)
+                if (skeleton == null)
                     return;
                 Hand.UpdateHandCursor(skeleton, Kinect, Width, Height);
                 ClothingItems.ClothingManager.Instance.UpdateItemPosition(skeleton, Kinect, Width, Height);
@@ -296,6 +314,7 @@ namespace KinectFittingRoom.ViewModel
 
                 KinectCameraImage.WritePixels(_cameraSourceBounds, pixels, _colorStride, 0);
                 OnPropertyChanged("KinectCameraImage");
+                OnPropertyChanged("TopPanelVisibility");
             }
         }
         /// <summary>

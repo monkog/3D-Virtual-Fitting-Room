@@ -31,6 +31,10 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// Visibility of camera button
         /// </summary>
         private Visibility _cameraButtonVisibility;
+        /// <summary>
+        /// Visibility of size buttons
+        /// </summary>
+        private Visibility _sizeButtonsVisibility;
         #endregion Private Fields
         #region Public Properties
         /// <summary>
@@ -91,6 +95,20 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
             }
         }
         /// <summary>
+        /// Gets or sets the visibility of camera button
+        /// </summary>
+        public Visibility SizeButtonsVisibility
+        {
+            get { return _sizeButtonsVisibility; }
+            set
+            {
+                if (_sizeButtonsVisibility == value)
+                    return;
+                _sizeButtonsVisibility = value;
+                OnPropertyChanged("SizeButtonsVisibility");
+            }
+        }
+        /// <summary>
         /// Gets change size buttons.
         /// </summary>
         /// <value>
@@ -139,7 +157,8 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
             };
             MenuButton = new MenuButtonViewModel(Properties.Resources.menu);
             CameraButton = new ScreenShotButtonViewModel(Properties.Resources.menu_camera);
-            CameraButtonVisibility = Visibility.Hidden;
+            CameraButtonVisibility = Visibility.Collapsed;
+            SizeButtonsVisibility = Visibility.Collapsed;
         }
         #endregion
         /// <summary>

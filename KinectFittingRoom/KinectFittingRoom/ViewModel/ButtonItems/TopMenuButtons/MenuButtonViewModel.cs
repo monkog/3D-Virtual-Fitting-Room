@@ -26,6 +26,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
             {
                 TopMenuManager.Instance.ActualTopMenuButtons = TopMenuManager.Instance.AllButtons;
                 TopMenuManager.Instance.CameraButtonVisibility = Visibility.Visible;
+                TopMenuManager.Instance.SizeButtonsVisibility = Visibility.Collapsed;
             }
 
         }

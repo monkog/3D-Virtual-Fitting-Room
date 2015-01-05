@@ -112,10 +112,10 @@ namespace KinectFittingRoom
             renderTargetBitmap.Render(CreateWatermarkLayer(actualWidth, actualHeight));
             PngBitmapEncoder pngImage = new PngBitmapEncoder();
             pngImage.Frames.Add(BitmapFrame.Create(renderTargetBitmap));
-            
+
             using (Stream fileStream = File.Create(directoryPath + "\\" + fileName))
             {
-                pngImage.Save(fileStream);
+                CropTransparentPixels(pngImage).Save(fileStream);
             }
             if (KinectViewModel.SoundsOn)
                 KinectViewModel.CameraPlayer.Play();
@@ -140,6 +140,23 @@ namespace KinectFittingRoom
             }
             visualWatermark.Opacity = 0.4;
             return visualWatermark;
+        }
+
+        private PngBitmapEncoder CropTransparentPixels(PngBitmapEncoder pngImage)
+        {
+            int pixelsCount = 0;
+            BitmapSource bitmapSource = pngImage.Frames[0];
+            var pixel = new byte[4];
+            for (int i = 0; i < bitmapSource.Width; i++)
+            {
+                bitmapSource.CopyPixels(new Int32Rect(i, 0, 1, 1), pixel, 4, 0);
+                if(pixel[0]==0)
+                    pixelsCount++;
+            }
+
+            PngBitmapEncoder croppedImage = new PngBitmapEncoder();
+            croppedImage.Frames.Add(BitmapFrame.Create(new CroppedBitmap(bitmapSource, new Int32Rect(pixelsCount + 1, 0, (int)bitmapSource.Width - pixelsCount-1, (int)bitmapSource.Height))));
+            return croppedImage;
         }
     }
 }
