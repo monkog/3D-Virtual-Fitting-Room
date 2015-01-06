@@ -221,14 +221,15 @@
             </StackPanel>
         </Canvas>
         <!--3D control-->
-        <h:HelixViewport3D CameraRotationMode="Turntable"
-                           ModelUpDirection="0, 1, 0" 
-                           Name="ClothesArea" 
-                           ShowCoordinateSystem="{Binding DebugModeOn}" 
-                           ShowViewCube="{Binding DebugModeOn}"
-                           ShowFrameRate="{Binding DebugModeOn}"
-                           IsHitTestVisible="False"
-                           ClipToBounds="False">
+        <helpers:HelixViewport3DEx CameraRotationMode="Turntable"
+                                   ModelUpDirection="0, 1, 0" 
+                                   x:Name="ClothesArea"
+                                   ShowCoordinateSystem="{Binding DebugModeOn}" 
+                                   ShowViewCube="{Binding DebugModeOn}"
+                                   ShowFrameRate="{Binding DebugModeOn}"
+                                   IsHitTestVisible="False"
+                                   ClipToBounds="False" 
+                                   TransformMatrix="{Binding Path=TransformationMatrix, Source={x:Static local:ClothingManager.Instance}, Mode=OneWayToSource}">
             <h:HelixViewport3D.Camera>
                 <OrthographicCamera Position="0, 0, 10"  LookDirection="0, 0, -40" UpDirection="0,1,0"/>
             </h:HelixViewport3D.Camera>
@@ -240,7 +241,7 @@
                     <Grid Width="{Binding KinectService.Width}" Height="{Binding KinectService.Height}"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
-        </h:HelixViewport3D>
+        </helpers:HelixViewport3DEx>
         <!--Hand Cursor canvas-->
         <Canvas Width="{Binding KinectService.Width}" Height="{Binding KinectService.Height}">
             <Canvas Name="HandCursor" Width="70" Height="70" Visibility="Collapsed">

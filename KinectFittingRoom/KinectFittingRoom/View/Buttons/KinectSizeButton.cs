@@ -1,6 +1,5 @@
 ﻿using KinectFittingRoom.View.Buttons.Events;
 using KinectFittingRoom.ViewModel;
-using System.Windows;
 using System.Windows.Threading;
 
 namespace KinectFittingRoom.View.Buttons

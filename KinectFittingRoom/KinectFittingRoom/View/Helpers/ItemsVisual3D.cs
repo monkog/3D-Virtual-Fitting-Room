@@ -7,19 +7,20 @@ namespace KinectFittingRoom.View.Helpers
 {
     public class ItemsVisual3D : ModelVisual3D
     {
+        #region Dependency Properties
         /// <summary>
         /// Item template property
         /// </summary>
         public static readonly DependencyProperty ItemTemplateProperty = DependencyProperty.Register(
             "ItemTemplate", typeof(DataTemplate3D), typeof(ItemsVisual3D), new PropertyMetadata(null));
-
         /// <summary>
         /// The items source property
         /// </summary>
         public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register(
             "ItemsSource", typeof(IEnumerable), typeof(ItemsVisual3D)
             , new PropertyMetadata(null, (s, e) => ((ItemsVisual3D)s).ItemsSourceChanged(e)));
-
+        #endregion Dependency Properties
+        #region Public Properties
         /// <summary>
         /// Gets or sets the <see cref="DataTemplate3D" /> used to display each item.
         /// </summary>
@@ -31,7 +32,6 @@ namespace KinectFittingRoom.View.Helpers
             get { return (DataTemplate3D)GetValue(ItemTemplateProperty); }
             set { SetValue(ItemTemplateProperty, value); }
         }
-
         /// <summary>
         /// Gets or sets a collection used to generate the content of the <see cref="ItemsVisual3D" />.
         /// </summary>
@@ -43,7 +43,7 @@ namespace KinectFittingRoom.View.Helpers
             get { return (IEnumerable)GetValue(ItemsSourceProperty); }
             set { SetValue(ItemsSourceProperty, value); }
         }
-
+        #endregion Public Properties
         #region Private Methods
         /// <summary>
         /// Handles changes in the ItemsSource property.

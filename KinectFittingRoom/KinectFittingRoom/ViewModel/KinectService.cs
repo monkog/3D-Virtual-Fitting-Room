@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.Media3D;
 using Microsoft.Kinect;
 
 namespace KinectFittingRoom.ViewModel
@@ -390,12 +391,12 @@ namespace KinectFittingRoom.ViewModel
         /// <param name="width">Width of the canvas.</param>
         /// <param name="height">Height of the canvas.</param>
         /// <returns>Mapped point</returns>
-        public static Point GetJointPoint(Joint joint, KinectSensor sensor, double width, double height)
+        public static Point3D GetJointPoint(Joint joint, KinectSensor sensor, double width, double height)
         {
             var point = sensor.CoordinateMapper.MapSkeletonPointToDepthPoint(joint.Position, sensor.DepthStream.Format);
 
-            return new Point(point.X * (width / sensor.DepthStream.FrameWidth)
-                , point.Y * (height / sensor.DepthStream.FrameHeight));
+            return new Point3D(point.X * (width / sensor.DepthStream.FrameWidth)
+                , point.Y * (height / sensor.DepthStream.FrameHeight), point.Depth);
         }
         /// <summary>
         /// Maps the joint point to 3D space.

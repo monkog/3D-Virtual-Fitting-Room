@@ -163,6 +163,7 @@
     <Compile Include="View\Helpers\DataTemplate3D.cs" />
     <Compile Include="View\Helpers\ItemsVisual3D.cs" />
     <Compile Include="View\Helpers\SizeObserver.cs" />
+    <Compile Include="View\Helpers\ViewportHelper.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

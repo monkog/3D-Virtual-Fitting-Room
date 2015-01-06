@@ -152,7 +152,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         {
             if (skeleton == null || skeleton.Joints[LeftJointToTrackAngle].TrackingState == JointTrackingState.NotTracked
                 || skeleton.Joints[RightJointToTrackAngle].TrackingState == JointTrackingState.NotTracked
-                || skeleton.Joints[JointToTrackPosition].TrackingState == JointTrackingState.NotTracked) 
+                || skeleton.Joints[JointToTrackPosition].TrackingState == JointTrackingState.NotTracked)
                 return;
 
             TrackSkeletonParts(skeleton, sensor, width, height);
@@ -168,13 +168,15 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         {
             Angle = TrackJointsRotation(sensor, skeleton.Joints[LeftJointToTrackAngle], skeleton.Joints[RightJointToTrackAngle]);
 
-            var joint = KinectService.MapJointPointTo3DSpace(
-                KinectService.GetJointPoint(skeleton.Joints[JointToTrackPosition], sensor, width, height), width / 2, height / 2);
+            var joint = KinectService.GetJointPoint(skeleton.Joints[JointToTrackPosition], sensor, width, height);
+            joint = new Point3D(joint.X + 200, joint.Y, joint.Z);
+            
+            var position3D = ClothingManager.Instance.TransformationMatrix.Transform(new Point3D(joint.X, joint.Y, joint.Z));
 
             var transform = new Transform3DGroup();
             transform.Children.Add(BaseTransformation);
             transform.Children.Add(new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 1, 0), Angle)));
-            transform.Children.Add(new TranslateTransform3D(joint.X, joint.Y, 0));
+            transform.Children.Add(new TranslateTransform3D(position3D.X, position3D.Y, 0));
             Model.Transform = transform;
         }
         #endregion Public Methods
