@@ -158,7 +158,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
             TrackSkeletonParts(skeleton, sensor, width, height);
         }
         /// <summary>
-        ///Set position for part of set
+        /// Set position for part of set
         /// </summary>
         /// <param name="skeleton">Recognised skeleton</param>
         /// <param name="sensor">Kinect sensor</param>
