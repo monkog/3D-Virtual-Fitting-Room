@@ -68,7 +68,10 @@ namespace KinectFittingRoom
                 element = ButtonPanelsCanvas.InputHitTest(rightHand);
                 hand = rightHand;
                 if (!(element is UIElement))
+                {
+                    ButtonsManager.Instance.RaiseCursorLeaveEvent(leftHand);
                     return;
+                }
             }
 
 #warning TODO

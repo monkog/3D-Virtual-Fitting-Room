@@ -16,9 +16,6 @@ namespace KinectFittingRoom.View.Buttons
         /// </summary>
         protected override void KinectButton_HandCursorClick(object sender, HandCursorEventArgs args)
         {
-            if ((Application.Current.MainWindow as MainWindow).HandCursor.Visibility == Visibility.Collapsed)
-                return;
-
             SetValue(IsClickedProperty, true);
 
             if (KinectViewModel.SoundsOn)

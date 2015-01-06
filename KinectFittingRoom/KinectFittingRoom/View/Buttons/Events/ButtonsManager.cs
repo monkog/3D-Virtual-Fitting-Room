@@ -62,6 +62,16 @@ namespace KinectFittingRoom.View.Buttons.Events
             }
             _lastElement = element;
         }
+        /// <summary>
+        /// Raises the cursor leave event.
+        /// </summary>
+        /// <param name="cursorPosition">The cursor position.</param>
+        public void RaiseCursorLeaveEvent(Point cursorPosition)
+        {
+            if (_lastElement == null) return;
+            _lastElement.RaiseEvent(new HandCursorEventArgs(KinectEvents.HandCursorLeaveEvent, cursorPosition));
+            _lastElement = null;
+        }
         #endregion Methods
     }
 }
