@@ -37,7 +37,7 @@ namespace KinectFittingRoom.ViewModel
         /// <summary>
         /// User's Hand
         /// </summary>
-        private Hand _hand;
+        private HandTracking _hand;
 #if DEBUG
         /// <summary>
         /// The skeleton manager
@@ -108,7 +108,7 @@ namespace KinectFittingRoom.ViewModel
         /// <value>
         /// The hand.
         /// </value>z
-        public Hand Hand
+        public HandTracking Hand
         {
             get { return _hand; }
             set
@@ -360,7 +360,7 @@ namespace KinectFittingRoom.ViewModel
         /// </summary>
         public void Initialize()
         {
-            Hand = new Hand();
+            Hand = new HandTracking();
 #if DEBUG
             SkeletonManager = new SkeletonManager();
 #endif

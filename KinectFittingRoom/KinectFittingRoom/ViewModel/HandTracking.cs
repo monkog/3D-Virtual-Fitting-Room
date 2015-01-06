@@ -3,7 +3,7 @@ using Microsoft.Kinect;
 
 namespace KinectFittingRoom.ViewModel
 {
-    public class Hand : ViewModelBase
+    public class HandTracking : ViewModelBase
     {
         #region Private Fields
         /// <summary>

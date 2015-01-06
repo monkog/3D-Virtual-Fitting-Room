@@ -13,7 +13,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         public DressItem(Model3DGroup model)
             : base(model)
         {
-            JointToTrackPosition = JointType.ShoulderCenter;
+            JointToTrackPosition = JointType.HipLeft;
             LeftJointToTrackAngle = JointType.ShoulderLeft;
             RightJointToTrackAngle = JointType.ShoulderRight;
         }

@@ -176,7 +176,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
             var transform = new Transform3DGroup();
             transform.Children.Add(BaseTransformation);
             transform.Children.Add(new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 1, 0), Angle)));
-            transform.Children.Add(new TranslateTransform3D(position3D.X, position3D.Y, 0));
+            transform.Children.Add(new TranslateTransform3D(position3D.X, position3D.Y, position3D.Z));
             Model.Transform = transform;
         }
         #endregion Public Methods

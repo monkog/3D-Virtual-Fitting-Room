@@ -251,7 +251,7 @@
                          Opacity="0.5" 
                          Stroke="Black" 
                          StrokeThickness="2"/>
-                <Image Source="/Resources/Images/Hand.png" Width="60" Height="60" Margin="5,5,5,5"/>
+                <Image Source="/Resources/Icons/Hand.png" Width="60" Height="60" Margin="5,5,5,5"/>
             </Canvas>
         </Canvas>
         <!--Grid containing Skeleton parts for debugging-->
