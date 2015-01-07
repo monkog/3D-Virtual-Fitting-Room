@@ -1,6 +1,5 @@
 ﻿using KinectFittingRoom.View.Buttons.Events;
 using KinectFittingRoom.ViewModel;
-using System.Windows;
 using System.Windows.Threading;
 
 namespace KinectFittingRoom.View.Buttons
@@ -16,9 +15,6 @@ namespace KinectFittingRoom.View.Buttons
         /// </summary>
         protected override void KinectButton_HandCursorClick(object sender, HandCursorEventArgs args)
         {
-            if ((Application.Current.MainWindow as MainWindow).HandCursor.Visibility == Visibility.Collapsed)
-                return;
-
             SetValue(IsClickedProperty, true);
 
             if (KinectViewModel.SoundsOn)

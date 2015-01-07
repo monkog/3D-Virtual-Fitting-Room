@@ -1,4 +1,5 @@
-﻿#if DEBUG
+﻿using System.Windows;
+#if DEBUG
 using Microsoft.Kinect;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -158,7 +159,10 @@ namespace KinectFittingRoom.ViewModel.Debug
             var figure = new Polyline { StrokeThickness = 8, Stroke = brush };
 
             foreach (var joint in joints)
-                figure.Points.Add(KinectService.GetJointPoint(skeleton.Joints[joint], sensor, width, height));
+            {
+                var jointPoint = KinectService.GetJointPoint(skeleton.Joints[joint], sensor, width, height);
+                figure.Points.Add(new Point(jointPoint.X, jointPoint.Y));
+            }
 
             return figure;
         }

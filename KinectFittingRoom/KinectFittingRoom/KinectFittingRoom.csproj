@@ -42,7 +42,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>icon.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="HelixToolkit">
@@ -110,7 +111,7 @@
     <Compile Include="Converters\IncreasedValueConverter.cs" />
     <Compile Include="Converters\ReducedValueConverter.cs" />
     <Compile Include="Converters\ValueToVisibilityConverter.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
+    <Compile Include="Properties\Resources1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -163,6 +164,7 @@
     <Compile Include="View\Helpers\DataTemplate3D.cs" />
     <Compile Include="View\Helpers\ItemsVisual3D.cs" />
     <Compile Include="View\Helpers\SizeObserver.cs" />
+    <Compile Include="View\Helpers\ViewportHelper.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -196,7 +198,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config">
@@ -209,57 +211,23 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Models\Dresses\white_dress.mtl" />
     <None Include="Resources\Models\Dresses\white_dress.obj" />
-    <None Include="Resources\Models\simple_skirt.obj" />
+    <None Include="Resources\Models\Hats\cowboy_hat.mtl" />
+    <None Include="Resources\Models\Hats\cowboy_hat.obj" />
+    <None Include="Resources\Models\Hats\fedora_hat.mtl" />
+    <None Include="Resources\Models\Hats\fedora_hat.obj" />
     <None Include="Resources\Models\Skirts\long_skirt.obj" />
+    <None Include="Resources\Models\Skirts\short_skirt.mtl" />
     <None Include="Resources\Models\Skirts\short_skirt.obj" />
-    <None Include="Resources\tshirt.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\Hand.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Images\Hat.png" />
+    <None Include="Resources\Models\Skirts\simple_skirt.mtl" />
+    <None Include="Resources\Models\Skirts\simple_skirt.obj" />
   </ItemGroup>
   <ItemGroup>
     <SplashScreen Include="Resources\splash_screen_image.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\hat_symbol.png" />
-    <Resource Include="Resources\Images\skirt_symbol.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\glasses_symbol.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\curtains.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Menu\menu.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Menu\menu_arrows.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Menu\menu_camera.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Menu\menu_clearSet.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Menu\menu_doors.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Menu\menu_menWomen.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Menu\menu_speaker.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Menu\vertical_arrows.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Menu\vertical_arrows_smaller.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ButtonClick.wav" />
@@ -271,28 +239,88 @@
     <Resource Include="Resources\watermark.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Menu\menu_clear.png" />
-    <Resource Include="Resources\Menu\menu_clearOne.png" />
+    <Resource Include="Resources\Icons\hand.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="icon.ico" />
+    <None Include="Resources\Icons\Categories\dress_symbol.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Menu\horizontal_arrows.png" />
+    <None Include="Resources\Icons\Categories\glasses_symbol.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Menu\horizontal_arrows_thinner.png" />
+    <None Include="Resources\Icons\Categories\hat_symbol.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\Models\Hats\" />
-    <Folder Include="Resources\Textures\Hats\" />
-    <Folder Include="Resources\Textures\Skirts\" />
+    <None Include="Resources\Icons\Categories\skirt_symbol.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Textures\Dresses\white_dress.png" />
+    <None Include="Resources\Icons\Menu\horizontal_arrows.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\dress_symbol.png" />
+    <None Include="Resources\Icons\Menu\horizontal_arrows_thinner.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Menu\menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Menu\menu_arrows.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Menu\menu_camera.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Menu\menu_clear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Menu\menu_clearOne.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Menu\menu_clearSet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Menu\menu_doors.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Menu\menu_menWomen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Menu\menu_speaker.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Menu\vertical_arrows.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Menu\vertical_arrows_smaller.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\Bags\briefcase.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\Dresses\dotted_dress.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\Dresses\flowery_dress.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\Dresses\red_dress.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\Dresses\violet_dress.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\Dresses\white_dress.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\Skirts\short_skirt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\Skirts\simple_skirt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\Skirts\long_skirt.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

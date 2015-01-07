@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Media.Media3D;
 using KinectFittingRoom.ViewModel.ButtonItems;
 using Microsoft.Kinect;
 
@@ -21,6 +22,10 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// The clothing collection
         /// </summary>
         private ObservableCollection<ClothingButtonViewModel> _clothing;
+        /// <summary>
+        /// The transformation matrix for transforming joint points to Viewport space
+        /// </summary>
+        private Matrix3D _transformationMatrix;
         #endregion Private Fields
         #region Public Properties
         /// <summary>
@@ -71,6 +76,23 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         public static ClothingManager Instance
         {
             get { return _instance ?? (_instance = new ClothingManager()); }
+        }
+        /// <summary>
+        /// Gets or sets the transformation matrix.
+        /// </summary>
+        /// <value>
+        /// The transformation matrix.
+        /// </value>
+        public Matrix3D TransformationMatrix
+        {
+            get { return _transformationMatrix; }
+            set
+            {
+                if (_transformationMatrix == value)
+                    return;
+                _transformationMatrix = value;
+                OnPropertyChanged("TransformationMatrix");
+            }
         }
         #endregion Public Properties
         #region .ctor
