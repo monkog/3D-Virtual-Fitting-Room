@@ -157,7 +157,7 @@
     <Compile Include="ViewModel\KinectViewModel.cs" />
     <Compile Include="ViewModel\KinectViewModelLoader.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
-    <Compile Include="View\Buttons\KinectScreenShotButtun.cs" />
+    <Compile Include="View\Buttons\KinectScreenShotButton.cs" />
     <Compile Include="View\Buttons\KinectSizeButton.cs" />
     <Compile Include="View\Helpers\HandProperties.cs" />
     <Compile Include="View\Canvases\ScrollableCanvas.cs" />
@@ -209,19 +209,158 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Resources\Models\Dresses\dress_dark.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Dresses\dress_dark.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Dresses\dress_orange_black.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Dresses\dress_orange_black.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Dresses\dress_red.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Dresses\dress_red.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Hats\sombrero.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Hats\sombrero.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Skirts\long_skirt.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Skirts\long_skirt_bikes.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Skirts\long_skirt_bikes.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Skirts\long_skirt_indian.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Skirts\long_skirt_indian.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Skirts\short_skirt_checked.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Skirts\short_skirt_checked.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Skirts\short_skirt_denim.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Skirts\short_skirt_denim.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Skirts\short_skirt_green_stripes.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Skirts\short_skirt_green_stripes.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Skirts\short_skirt_red.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Skirts\short_skirt_red.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Skirts\simple_skirt_blue.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Skirts\simple_skirt_blue.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Models\Dresses\white_dress.mtl" />
-    <None Include="Resources\Models\Dresses\white_dress.obj" />
-    <None Include="Resources\Models\Hats\cowboy_hat.mtl" />
-    <None Include="Resources\Models\Hats\cowboy_hat.obj" />
-    <None Include="Resources\Models\Hats\fedora_hat.mtl" />
-    <None Include="Resources\Models\Hats\fedora_hat.obj" />
-    <None Include="Resources\Models\Skirts\long_skirt.obj" />
-    <None Include="Resources\Models\Skirts\short_skirt.mtl" />
-    <None Include="Resources\Models\Skirts\short_skirt.obj" />
-    <None Include="Resources\Models\Skirts\simple_skirt.mtl" />
-    <None Include="Resources\Models\Skirts\simple_skirt.obj" />
+    <None Include="Resources\Models\Dresses\white_dress.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Dresses\white_dress.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Hats\cowboy_hat.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Hats\cowboy_hat.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Hats\cowboy_hat_gray.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Hats\cowboy_hat_gray.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Hats\cowboy_hat_straw.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Hats\cowboy_hat_straw.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Hats\fedora_brown_hat.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Hats\fedora_brown_hat.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Hats\fedora_darkgreen_hat.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Hats\fedora_darkgreen_hat.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Hats\fedora_hat.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Hats\fedora_hat.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Skirts\big_skirt_green.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Skirts\big_skirt_green.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Skirts\big_skirt_red.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Skirts\big_skirt_red.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Skirts\big_skirt_waves.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Skirts\big_skirt_waves.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Skirts\long_skirt.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Skirts\long_skirt_violet.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Skirts\long_skirt_violet.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Skirts\short_skirt.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Skirts\short_skirt.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Skirts\simple_skirt.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Skirts\simple_skirt.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <SplashScreen Include="Resources\splash_screen_image.png" />
@@ -321,6 +460,96 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Images\Skirts\long_skirt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\Categories\briefcase_symbol.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Skirts\breezy_skirt_red.png" />
+    <Resource Include="Resources\Images\Skirts\breezy_skirt_waves.png" />
+    <Resource Include="Resources\Images\Skirts\breezy_skirt_winter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Hats\cowboy_hat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Skirts\long_skirt_bikes.png" />
+    <Resource Include="Resources\Images\Skirts\long_skirt_indian.png" />
+    <Resource Include="Resources\Images\Skirts\short_skirt_checked.png" />
+    <Resource Include="Resources\Images\Skirts\short_skirt_denim.png" />
+    <Resource Include="Resources\Images\Skirts\short_skirt_green.png" />
+    <Resource Include="Resources\Images\Skirts\short_skirt_red.png" />
+    <Resource Include="Resources\Images\Skirts\simple_skirt_violet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Hats\cowboy_dark.png" />
+    <Resource Include="Resources\Images\Hats\cowboy_straw.png" />
+    <Resource Include="Resources\Images\Hats\fedora_hat_black.png" />
+    <Resource Include="Resources\Images\Hats\fedora_hat_brown.png" />
+    <Resource Include="Resources\Images\Hats\fedora_hat_darkgreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Dresses\dress_brownblack.png" />
+    <Resource Include="Resources\Images\Dresses\dress_dark.png" />
+    <Resource Include="Resources\Images\Dresses\dress_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Skirts\long_skirt_violet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Hats\sombrero.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Skirts\simple_skirt_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Materials\long_skirt_bikes.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Materials\cowboy_hat_straw.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Materials\dress_orange_black.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Materials\fedora_darkgreen_hat.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Materials\dress_dark.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Materials\big_skirt_red.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Materials\short_skirt_green_stripes.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Materials\long_skirt_indian.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Materials\short_skirt_red.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Materials\dress_red.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Materials\short_skirt_checked.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Materials\sombrero.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Materials\big_skirt_waves.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Materials\big_skirt_green.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Materials\short_skirt_denim.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

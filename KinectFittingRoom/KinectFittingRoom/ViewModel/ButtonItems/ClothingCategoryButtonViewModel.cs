@@ -10,6 +10,10 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
     {
         #region Private Fields
         /// <summary>
+        /// Type of category
+        /// </summary>
+        private ClothingItemBase.MaleFemaleType _type;
+        /// <summary>
         /// List of clothes in current category
         /// </summary>
         private List<ClothingButtonViewModel> _clothes;
@@ -32,6 +36,13 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
                 OnPropertyChanged("Clothes");
             }
         }
+        /// <summary>
+        /// Gets type of category
+        /// </summary>
+        public ClothingItemBase.MaleFemaleType Type
+        {
+            get { return _type; }
+        }
         #endregion Public Properties
         #region Commands
         /// <summary>
@@ -53,7 +64,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// </summary>
         public void CategoryExecuted()
         {
-            if (ClothingManager.Instance.Clothing != null && ClothingManager.Instance.Clothing.Count !=0 && ClothingManager.Instance.Clothing[0].Category == Clothes[0].Category)
+            if (ClothingManager.Instance.Clothing != null && ClothingManager.Instance.Clothing.Count != 0 && ClothingManager.Instance.Clothing[0].Category == Clothes[0].Category)
                 return;
             ClothingManager.Instance.LastChosenCategory = this;
             ClothingManager.Instance.Clothing = new ObservableCollection<ClothingButtonViewModel>();
@@ -62,5 +73,15 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
                     ClothingManager.Instance.Clothing.Add(c);
         }
         #endregion Commands
+        #region .ctor
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ClothingCategoryButtonViewModel"/> class.
+        /// </summary>
+        /// <param name="type">Male or female type of category</param>
+        public ClothingCategoryButtonViewModel(ClothingItemBase.MaleFemaleType type)
+        {
+            _type = type;
+        }
+        #endregion
     }
 }

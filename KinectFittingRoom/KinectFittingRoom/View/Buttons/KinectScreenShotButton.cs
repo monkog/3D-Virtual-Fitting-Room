@@ -1,6 +1,7 @@
 ﻿using KinectFittingRoom.View.Buttons.Events;
 using KinectFittingRoom.ViewModel;
 using System;
+using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Windows;
@@ -13,7 +14,7 @@ namespace KinectFittingRoom.View.Buttons
     /// <summary>
     /// Screen shot button class that responds to Kincect events
     /// </summary>
-    class KinectScreenShotButtun : KinectButton
+    class KinectScreenShotButton : KinectButton
     {
         #region Constants
         /// <summary>
@@ -33,9 +34,10 @@ namespace KinectFittingRoom.View.Buttons
         #endregion Private Fields
         #region .ctor
         /// <summary>
-        /// Initializes a new instance of the <see cref="KinectScreenShotButtun"/> class.
+        /// Initializes a new instance of the <see cref="KinectScreenShotButton"/> class.
         /// </summary>
-        public KinectScreenShotButtun():base()
+        public KinectScreenShotButton()
+            : base()
         {
             _screenshotTimer = new DispatcherTimer() { Interval = new TimeSpan(0, 0, 0, 1) };
             _screenshotTimer.Tick += ScreenshotTimer_Tick;

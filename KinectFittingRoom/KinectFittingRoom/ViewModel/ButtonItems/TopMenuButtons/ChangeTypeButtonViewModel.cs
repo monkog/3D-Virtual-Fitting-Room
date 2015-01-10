@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using KinectFittingRoom.ViewModel.ClothingItems;
 using System.Drawing;
+using System.Collections.ObjectModel;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
 {
@@ -23,6 +24,8 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
         {
             ClothingManager.Instance.ChosenType = ClothingManager.Instance.ChosenType == ClothingItemBase.MaleFemaleType.Female
                 ? ClothingItemBase.MaleFemaleType.Male : ClothingItemBase.MaleFemaleType.Female;
+
+            ClothingManager.Instance.UpdateActualCategories();
 
             if (ClothingManager.Instance.Clothing != null)
             {

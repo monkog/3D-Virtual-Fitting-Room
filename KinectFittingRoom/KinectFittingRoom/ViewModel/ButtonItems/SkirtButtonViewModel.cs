@@ -1,4 +1,5 @@
 ﻿using KinectFittingRoom.ViewModel.ClothingItems;
+using System.Collections.Generic;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems
 {
@@ -21,6 +22,10 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// <param name="parameter">The parameter.</param>
         public override void CategoryExecuted(object parameter)
         {
+            Dictionary<ClothingItemBase.ClothingType, ClothingItemBase> tmp = ClothingManager.Instance.ChosenClothesModels;
+            if (tmp.ContainsKey(ClothingItemBase.ClothingType.DressItem))
+                tmp.Remove(ClothingItemBase.ClothingType.DressItem);
+            ClothingManager.Instance.ChosenClothesModels = new Dictionary<ClothingItemBase.ClothingType, ClothingItemBase>(tmp);
             AddClothingItem<SkirtItem>();
         }
         #endregion Commands

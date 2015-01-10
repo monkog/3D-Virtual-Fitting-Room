@@ -177,10 +177,8 @@ namespace KinectFittingRoom.View.Canvases
             if (stackPanel.Children.Count == 0)
                 return;
 
-            if (_firstButtonPositionY == 0)
-                _firstButtonPositionY = stackPanel.Children[0].TransformToAncestor(Application.Current.MainWindow).Transform(new Point(0, 0)).Y;
-            if (_lastButtonPositionY == 0)
-                _lastButtonPositionY = stackPanel.Children[stackPanel.Children.Count - 1].TransformToAncestor(Application.Current.MainWindow).Transform(new Point(0, 0)).Y;
+            _firstButtonPositionY = stackPanel.Children[0].TransformToAncestor(Application.Current.MainWindow).Transform(new Point(0, 0)).Y;
+            _lastButtonPositionY = stackPanel.Children[stackPanel.Children.Count - 1].TransformToAncestor(Application.Current.MainWindow).Transform(new Point(0, 0)).Y;
 
             if (_leftPanelPosition.X == 0 && _leftPanelPosition.Y == 0)
                 _leftPanelPosition = TransformToAncestor(Application.Current.MainWindow).Transform(new Point(0, 0));

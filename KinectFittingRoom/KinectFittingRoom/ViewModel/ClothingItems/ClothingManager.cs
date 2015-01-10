@@ -10,6 +10,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
     public sealed class ClothingManager : ViewModelBase
     {
         #region Private Fields
+        private ObservableCollection<ClothingCategoryButtonViewModel> _actualClothingCategories;
         /// <summary>
         /// Only instance of ClothingManager
         /// </summary>
@@ -28,6 +29,27 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         private Matrix3D _transformationMatrix;
         #endregion Private Fields
         #region Public Properties
+        /// <summary>
+        /// Gets or sets the clothing categories collection.
+        /// </summary>
+        /// <value>
+        /// The clothing categories collection.
+        /// </value>
+        public ObservableCollection<ClothingCategoryButtonViewModel> ClothingCategories { get; set; }
+        /// <summary>
+        /// Gets or sets the actually displayed collection of categories
+        /// </summary>
+        public ObservableCollection<ClothingCategoryButtonViewModel> ActualClothingCategories
+        {
+            get { return _actualClothingCategories; }
+            set
+            {
+                if (_actualClothingCategories == value)
+                    return;
+                _actualClothingCategories = value;
+                OnPropertyChanged("ActualClothingCategories");
+            }
+        }
         /// <summary>
         /// Gets or sets the chosen type of clothes
         /// </summary>
@@ -139,6 +161,19 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         {
             foreach (var model in ChosenClothesModels.Values)
                 model.UpdateItemPosition(skeleton, sensor, width, height);
+        }
+        /// <summary>
+        /// Updates actually displayed clothing categories
+        /// </summary>
+        public void UpdateActualCategories()
+        {
+            if (ActualClothingCategories == null)
+                _actualClothingCategories = new ObservableCollection<ClothingCategoryButtonViewModel>();
+
+            ActualClothingCategories.Clear();
+            foreach (var category in ClothingCategories)
+                if (category.Type == ClothingItemBase.MaleFemaleType.Both || category.Type == ChosenType)
+                    ActualClothingCategories.Add(category);
         }
         #endregion Public Methods
     }

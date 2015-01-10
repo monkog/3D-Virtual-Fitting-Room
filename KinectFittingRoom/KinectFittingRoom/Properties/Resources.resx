@@ -118,130 +118,304 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="ButtonClick" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ButtonClick.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="big_skirt_green" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\skirts\big_skirt_green.mtl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="CameraClick" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CameraClick.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="big_skirt_green1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\skirts\big_skirt_green.obj;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="watermark" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\watermark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="big_skirt_red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\skirts\big_skirt_red.mtl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="big_skirt_red1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\skirts\big_skirt_red.obj;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="big_skirt_waves" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\skirts\big_skirt_waves.mtl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="big_skirt_waves1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\skirts\big_skirt_waves.obj;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="breezy_skirt_red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\skirts\breezy_skirt_red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="breezy_skirt_waves" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\skirts\breezy_skirt_waves.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="breezy_skirt_winter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\skirts\breezy_skirt_winter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="briefcase" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Images\Bags\briefcase.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\resources\images\bags\briefcase.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="briefcase_symbol" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icons\categories\briefcase_symbol.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ButtonClick" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\buttonclick.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CameraClick" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\cameraclick.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="cowboy_dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\hats\cowboy_dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="cowboy_hat" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Models\Hats\cowboy_hat.mtl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\resources\images\hats\cowboy_hat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="cowboy_hat1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Models\Hats\cowboy_hat.obj;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\resources\models\hats\cowboy_hat.mtl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="dotted_dress" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Images\Dresses\dotted_dress.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="cowboy_hat2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\hats\cowboy_hat.obj;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="cowboy_hat_gray" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\hats\cowboy_hat_gray.mtl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="cowboy_hat_gray1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\hats\cowboy_hat_gray.obj;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="cowboy_hat_straw" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\hats\cowboy_hat_straw.mtl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="cowboy_hat_straw1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\hats\cowboy_hat_straw.obj;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="cowboy_straw" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\hats\cowboy_straw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dress_brownblack" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\dresses\dress_brownblack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dress_dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\dresses\dress_dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dress_dark1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\dresses\dress_dark.mtl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="dress_dark2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\dresses\dress_dark.obj;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="dress_orange_black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\dresses\dress_orange_black.mtl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="dress_orange_black1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\dresses\dress_orange_black.obj;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="dress_red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\dresses\dress_red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dress_red1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\dresses\dress_red.mtl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="dress_red2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\dresses\dress_red.obj;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="dress_symbol" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\Categories\dress_symbol.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\resources\icons\categories\dress_symbol.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fedora_brown_hat" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\hats\fedora_brown_hat.mtl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="fedora_brown_hat1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\hats\fedora_brown_hat.obj;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="fedora_darkgreen_hat" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\hats\fedora_darkgreen_hat.mtl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="fedora_darkgreen_hat1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\hats\fedora_darkgreen_hat.obj;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="fedora_hat" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Models\Hats\fedora_hat.mtl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\resources\models\hats\fedora_hat.mtl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="fedora_hat1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Models\Hats\fedora_hat.obj;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\resources\models\hats\fedora_hat.obj;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="flowery_dress" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Images\Dresses\flowery_dress.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="fedora_hat_black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\hats\fedora_hat_black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fedora_hat_brown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\hats\fedora_hat_brown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fedora_hat_darkgreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\hats\fedora_hat_darkgreen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="glasses_symbol" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\Categories\glasses_symbol.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\resources\icons\categories\glasses_symbol.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="hand" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\hand.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\resources\icons\hand.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="hat_symbol" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\Categories\hat_symbol.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\resources\icons\categories\hat_symbol.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="horizontal_arrows" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\Menu\horizontal_arrows.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\resources\icons\menu\horizontal_arrows.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="horizontal_arrows_thinner" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\Menu\horizontal_arrows_thinner.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\resources\icons\menu\horizontal_arrows_thinner.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\resources\icons\icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="long_skirt" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Models\Skirts\long_skirt.obj;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="menu" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\Menu\menu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="menu_arrows" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\Menu\menu_arrows.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="menu_camera" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\Menu\menu_camera.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="menu_clear" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\Menu\menu_clear.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="menu_clearOne" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\Menu\menu_clearOne.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="menu_clearSet" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\Menu\menu_clearSet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="menu_doors" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\Menu\menu_doors.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="menu_menWomen" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\Menu\menu_menWomen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="menu_speaker" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\Menu\menu_speaker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="red_dress" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Images\Dresses\red_dress.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="short_skirt" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Models\Skirts\short_skirt.mtl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="short_skirt1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Models\Skirts\short_skirt.obj;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="simple_skirt" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Models\Skirts\simple_skirt.mtl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="simple_skirt1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Models\Skirts\simple_skirt.obj;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="skirt_symbol" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\Categories\skirt_symbol.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="vertical_arrows" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\Menu\vertical_arrows.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="vertical_arrows_smaller" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\Menu\vertical_arrows_smaller.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="violet_dress" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Images\Dresses\violet_dress.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="white_dress" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Models\Dresses\white_dress.mtl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="white_dress1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Models\Dresses\white_dress.obj;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="white_dress2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Images\Dresses\white_dress.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="short_skirt2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Images\Skirts\short_skirt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="simple_skirt2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Images\Skirts\simple_skirt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\resources\images\skirts\long_skirt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="long_skirt1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Images\Skirts\long_skirt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\resources\models\skirts\long_skirt.obj;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="long_skirt_bikes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\skirts\long_skirt_bikes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="long_skirt_bikes1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\skirts\long_skirt_bikes.mtl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="long_skirt_bikes2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\skirts\long_skirt_bikes.obj;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="long_skirt_indian" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\skirts\long_skirt_indian.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="long_skirt_indian1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\skirts\long_skirt_indian.mtl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="long_skirt_indian2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\skirts\long_skirt_indian.obj;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="long_skirt_violet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\skirts\long_skirt_violet.mtl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="long_skirt_violet1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\skirts\long_skirt_violet.obj;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="menu" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icons\menu\menu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="menu_arrows" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icons\menu\menu_arrows.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="menu_camera" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icons\menu\menu_camera.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="menu_clear" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icons\menu\menu_clear.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="menu_clearOne" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icons\menu\menu_clearone.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="menu_clearSet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icons\menu\menu_clearset.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="menu_doors" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icons\menu\menu_doors.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="menu_menWomen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icons\menu\menu_menwomen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="menu_speaker" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icons\menu\menu_speaker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="short_skirt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\skirts\short_skirt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="short_skirt1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\skirts\short_skirt.mtl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="short_skirt2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\skirts\short_skirt.obj;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="short_skirt_checked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\skirts\short_skirt_checked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="short_skirt_checked1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\skirts\short_skirt_checked.mtl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="short_skirt_checked2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\skirts\short_skirt_checked.obj;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="short_skirt_denim" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\skirts\short_skirt_denim.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="short_skirt_denim1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\skirts\short_skirt_denim.mtl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="short_skirt_denim2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\skirts\short_skirt_denim.obj;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="short_skirt_green" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\skirts\short_skirt_green.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="short_skirt_green_stripes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\skirts\short_skirt_green_stripes.mtl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="short_skirt_green_stripes1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\skirts\short_skirt_green_stripes.obj;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="short_skirt_red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\skirts\short_skirt_red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="short_skirt_red1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\skirts\short_skirt_red.mtl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="short_skirt_red2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\skirts\short_skirt_red.obj;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="simple_skirt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\skirts\simple_skirt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="simple_skirt1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\skirts\simple_skirt.mtl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="simple_skirt2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\skirts\simple_skirt.obj;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="skirt_symbol" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icons\categories\skirt_symbol.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="vertical_arrows" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icons\menu\vertical_arrows.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="vertical_arrows_smaller" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icons\menu\vertical_arrows_smaller.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="white_dress" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\dresses\white_dress.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="white_dress1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\dresses\white_dress.mtl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="white_dress2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\dresses\white_dress.obj;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="long_skirt_violet2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\skirts\long_skirt_violet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dotted_dress" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\dresses\dotted_dress.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="red_dress" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\dresses\red_dress.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="violet_dress" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\dresses\violet_dress.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sombrero" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\hats\sombrero.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sombrero1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\hats\sombrero.mtl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="sombrero2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\hats\sombrero.obj;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="simple_skirt_blue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\skirts\simple_skirt_blue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="simple_skirt_blue1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\skirts\simple_skirt_blue.mtl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="simple_skirt_blue2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\models\skirts\simple_skirt_blue.obj;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

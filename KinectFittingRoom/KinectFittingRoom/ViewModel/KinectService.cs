@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Media.Media3D;
 using Microsoft.Kinect;
+using KinectFittingRoom.ViewModel.ClothingItems;
 
 namespace KinectFittingRoom.ViewModel
 {
@@ -26,6 +27,10 @@ namespace KinectFittingRoom.ViewModel
         /// WritableBitmap that source from Kinect camera is written to
         /// </summary>
         private WriteableBitmap _kinectCameraImage;
+        /// <summary>
+        /// The position of camera
+        /// </summary>
+        private Point3D _cameraPosition;
         /// <summary>
         /// Bounds of camera source
         /// </summary>
@@ -100,6 +105,20 @@ namespace KinectFittingRoom.ViewModel
                     return;
                 _kinectCameraImage = value;
                 OnPropertyChanged("KinectCameraImage");
+            }
+        }
+        /// <summary>
+        /// Gets or sets the position of camera
+        /// </summary>
+        public Point3D CameraPosition
+        {
+            get { return _cameraPosition; }
+            set
+            {
+                if (_cameraPosition == value)
+                    return;
+                _cameraPosition = value;
+                OnPropertyChanged("CameraPosition");
             }
         }
         /// <summary>
@@ -273,7 +292,11 @@ namespace KinectFittingRoom.ViewModel
                 if (skeleton == null)
                     return;
                 Hand.UpdateHandCursor(skeleton, Kinect, Width, Height);
-                ClothingItems.ClothingManager.Instance.UpdateItemPosition(skeleton, Kinect, Width, Height);
+
+                var joint = GetJointPoint(skeleton.Joints[JointType.Head], Kinect, Width, Height);
+                CameraPosition= ClothingManager.Instance.TransformationMatrix.Transform(new Point3D(0,0, joint.Z));
+
+                ClothingManager.Instance.UpdateItemPosition(skeleton, Kinect, Width, Height);
 #if DEBUG
                 Brush brush = Brushes.Coral;
                 SkeletonManager.DrawSkeleton(_skeletons, brush, _kinectSensor, Width, Height);

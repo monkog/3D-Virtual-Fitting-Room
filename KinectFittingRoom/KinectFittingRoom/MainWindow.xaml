@@ -51,7 +51,7 @@
                     Margin="20"/>
             <!--StackPanel containing all the buttons with clothing categories-->
             <canvases:ScrollableCanvas x:Name="LeftScrollableCanvas"
-                                       ItemsSource="{Binding ClothingCategories}" 
+                                       ItemsSource="{Binding ActualClothingCategories, Source={x:Static local:ClothingManager.Instance}}" 
                                        ClipToBounds="True"
                                        Width="{Binding ActualWidth, ElementName=LeftPanel}"
                                        Height="{Binding ActualHeight, ElementName=LeftPanel}" 
@@ -181,7 +181,7 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-                <buttons:KinectScreenShotButtun Width="70" Height="70" Margin="5,0,5,5" Style="{StaticResource RoundButton}" 
+                <buttons:KinectScreenShotButton Width="70" Height="70" Margin="5,0,5,5" Style="{StaticResource RoundButton}" 
                                       Visibility="{Binding CameraButtonVisibility, Source={x:Static topButtons:TopMenuManager.Instance}}" 
                                       DataContext="{Binding CameraButton, Source={x:Static topButtons:TopMenuManager.Instance}}">
                     <Image Source="{Binding Image, Converter={StaticResource BitmapToImageSourceConverter}}"
@@ -194,7 +194,7 @@
                             <i:InvokeCommandAction Command="{Binding TopMenuCommand}" />
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
-                </buttons:KinectScreenShotButtun>
+                </buttons:KinectScreenShotButton>
                 <ItemsControl ItemsSource="{Binding ActualTopMenuButtons, Source={x:Static topButtons:TopMenuManager.Instance}}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -231,7 +231,7 @@
                                    ClipToBounds="False" 
                                    TransformMatrix="{Binding Path=TransformationMatrix, Source={x:Static local:ClothingManager.Instance}, Mode=OneWayToSource}">
             <h:HelixViewport3D.Camera>
-                <OrthographicCamera Position="0, 0, 10"  LookDirection="0, 0, -40" UpDirection="0,1,0"/>
+                <OrthographicCamera Position="{Binding KinectService.CameraPosition}"  LookDirection="0, 0, -40" UpDirection="0, 1, 0"/>
             </h:HelixViewport3D.Camera>
             <h:DefaultLights/>
             <helpers:ItemsVisual3D ItemTemplate="{StaticResource ModelTemplate}" 
@@ -265,7 +265,7 @@
         </ItemsControl>
         <!--Canvas used for displaying text used for debugging-->
         <Canvas Background="Brown" Opacity="0.8" Width="200" Height="100" Visibility="{Binding DebugModeOn, Converter={StaticResource BoolToVisibilityConverter}}">
-            <Label x:Name="TimerLabel" FontSize="30" x:FieldModifier="public" Width="900" Height="500" Margin="0,0,417,220" />
+            <Label x:Name="TimerLabel" FontSize="30" x:FieldModifier="public" Width="900" Height="500" Margin="0,0,417,220" Content="{Binding KinectService.CameraPosition}"/>
         </Canvas>
         <!--Grid used for taking screenshots-->
         <Grid Name="ScreenshotGrid" Opacity="0.7" Background="Black" Visibility="Collapsed">
