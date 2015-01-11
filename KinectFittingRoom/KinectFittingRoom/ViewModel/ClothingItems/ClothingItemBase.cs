@@ -169,7 +169,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
             Angle = TrackJointsRotation(sensor, skeleton.Joints[LeftJointToTrackAngle], skeleton.Joints[RightJointToTrackAngle]);
 
             var joint = KinectService.GetJointPoint(skeleton.Joints[JointToTrackPosition], sensor, width, height);
-            joint = new Point3D(joint.X + 200, joint.Y, joint.Z);
+            joint = new Point3D(joint.X+171, joint.Y, joint.Z);
             
             var position3D = ClothingManager.Instance.TransformationMatrix.Transform(new Point3D(joint.X, joint.Y, joint.Z));
 

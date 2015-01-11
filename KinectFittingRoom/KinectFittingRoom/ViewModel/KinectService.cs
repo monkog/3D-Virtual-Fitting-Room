@@ -14,6 +14,8 @@ namespace KinectFittingRoom.ViewModel
 {
     public class KinectService : ViewModelBase, IKinectService
     {
+        private Point3D lastjoint;
+        private double _cameraWidth;
         #region Private Fields
         /// <summary>
         /// Captured skeletons
@@ -30,7 +32,7 @@ namespace KinectFittingRoom.ViewModel
         /// <summary>
         /// The position of camera
         /// </summary>
-        private Point3D _cameraPosition;
+		private Point3D _cameraPosition;
         /// <summary>
         /// Bounds of camera source
         /// </summary>
@@ -119,6 +121,17 @@ namespace KinectFittingRoom.ViewModel
                     return;
                 _cameraPosition = value;
                 OnPropertyChanged("CameraPosition");
+            }
+        }
+        public double CameraWidth
+        {
+            get { return _cameraWidth; }
+            set
+            {
+                if (_cameraWidth == value)
+                    return;
+                _cameraWidth = value;
+                OnPropertyChanged("CameraWidth");
             }
         }
         /// <summary>
@@ -292,10 +305,21 @@ namespace KinectFittingRoom.ViewModel
                 if (skeleton == null)
                     return;
                 Hand.UpdateHandCursor(skeleton, Kinect, Width, Height);
+                var joint = GetJointPoint(skeleton.Joints[JointType.HipCenter], Kinect, Width, Height);
+                if(lastjoint.Z==0)
+                    lastjoint=joint;
+                if (joint.Z > lastjoint.Z + 40)
+                {
+                    CameraWidth += 0.1;
+                    lastjoint = joint;
+                }
+                else if (joint.Z < lastjoint.Z - 40)
+                {
+                    CameraWidth -= 0.1;
+                    lastjoint = joint;
+                }
 
-                var joint = GetJointPoint(skeleton.Joints[JointType.Head], Kinect, Width, Height);
-                CameraPosition= ClothingManager.Instance.TransformationMatrix.Transform(new Point3D(0,0, joint.Z));
-
+               // CameraPosition= ClothingManager.Instance.TransformationMatrix.Transform(new Point3D(joint.X,joint.Y,joint.Z));
                 ClothingManager.Instance.UpdateItemPosition(skeleton, Kinect, Width, Height);
 #if DEBUG
                 Brush brush = Brushes.Coral;
@@ -389,6 +413,7 @@ namespace KinectFittingRoom.ViewModel
 #endif
             ErrorGridVisibility = Visibility.Hidden;
             DiscoverKinectSensors();
+            CameraWidth = 2;
         }
         /// <summary>
         /// Looks for the closest skeleton
