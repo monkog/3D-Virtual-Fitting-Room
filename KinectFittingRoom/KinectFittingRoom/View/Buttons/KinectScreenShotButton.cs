@@ -12,9 +12,9 @@ using System.Windows.Threading;
 namespace KinectFittingRoom.View.Buttons
 {
     /// <summary>
-    /// Screen shot button class that responds to Kincect events
+    /// Screenshot button class that responds to Kincect events
     /// </summary>
-    class KinectScreenShotButton : KinectButton
+    class KinectScreenshotButton : KinectButton
     {
         #region Constants
         /// <summary>
@@ -34,9 +34,9 @@ namespace KinectFittingRoom.View.Buttons
         #endregion Private Fields
         #region .ctor
         /// <summary>
-        /// Initializes a new instance of the <see cref="KinectScreenShotButton"/> class.
+        /// Initializes a new instance of the <see cref="KinectScreenshotButton"/> class.
         /// </summary>
-        public KinectScreenShotButton()
+        public KinectScreenshotButton()
             : base()
         {
             _screenshotTimer = new DispatcherTimer() { Interval = new TimeSpan(0, 0, 0, 1) };
@@ -66,7 +66,7 @@ namespace KinectFittingRoom.View.Buttons
             }
         }
         /// <summary>
-        /// Imitates the click event for KinectScreenShotButtun
+        /// Imitates the click event for KinectScreenshotButtun
         /// </summary>
         protected override void KinectButton_HandCursorClick(object sender, HandCursorEventArgs args)
         {
