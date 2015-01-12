@@ -225,6 +225,7 @@
                                    ModelUpDirection="0, 1, 0" 
                                    x:Name="ClothesArea"
                                    ShowCoordinateSystem="False" 
+                                   Visibility="{Binding KinectService.ClothesAreaVisibility}"
                                    ShowViewCube="{Binding DebugModeOn}"
                                    ShowFrameRate="{Binding DebugModeOn}"
                                    ShowCameraInfo="{Binding DebugModeOn}"
@@ -232,7 +233,7 @@
                                    ClipToBounds="False" 
                                    TransformMatrix="{Binding Path=TransformationMatrix, Source={x:Static local:ClothingManager.Instance}, Mode=OneWayToSource}">
             <h:HelixViewport3D.Camera>
-                <OrthographicCamera Position="30, 0, 10"  LookDirection="0, 0, -10" UpDirection="0,1,0" Width="{Binding KinectService.CameraWidth}" />
+                <OrthographicCamera Position="0, 0, 10"  LookDirection="0, 0, -10" UpDirection="0,1,0" Width="{Binding KinectService.CameraWidth}"/>
             </h:HelixViewport3D.Camera>
             <h:DefaultLights/>
             <helpers:ItemsVisual3D ItemTemplate="{StaticResource ModelTemplate}" 
@@ -266,7 +267,7 @@
         </ItemsControl>
         <!--Canvas used for displaying text used for debugging-->
         <Canvas Background="Brown" Opacity="0.8" Width="200" Height="100" Visibility="{Binding DebugModeOn, Converter={StaticResource BoolToVisibilityConverter}}">
-            <Label x:Name="TimerLabel" FontSize="30" x:FieldModifier="public" Width="900" Height="500" Margin="0,0,417,220" Content="{Binding KinectService.CameraWidth}"/>
+            <Label x:Name="TimerLabel" FontSize="30" x:FieldModifier="public" Width="900" Height="500" Margin="0,0,417,220"/>
         </Canvas>
         <!--Grid used for taking screenshots-->
         <Grid Name="ScreenshotGrid" Opacity="0.7" Background="Black" Visibility="Collapsed">
@@ -275,7 +276,7 @@
         <!--Grid used for viewing error messages-->
         <Grid Name="ErrorGrid" Opacity="0.7" Background="Black" Visibility="{Binding KinectService.ErrorGridVisibility}">
             <TextBlock Text="{Binding KinectService.ErrorGridMessage}" 
-                       FontSize="20" HorizontalAlignment="Center" Opacity="0.7" VerticalAlignment="Center" Foreground="White"/>
+                       FontSize="20" TextAlignment="Center" Opacity="0.7" VerticalAlignment="Center" Foreground="White"/>
         </Grid>
     </Grid>
 </Window>

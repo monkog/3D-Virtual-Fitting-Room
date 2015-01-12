@@ -30,6 +30,10 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         #endregion Private Fields
         #region Public Properties
         /// <summary>
+        /// Gets or sets difference between screen width and camera image width
+        /// </summary>
+        public double EmptySpace { get; set; }
+        /// <summary>
         /// Gets or sets the clothing categories collection.
         /// </summary>
         /// <value>

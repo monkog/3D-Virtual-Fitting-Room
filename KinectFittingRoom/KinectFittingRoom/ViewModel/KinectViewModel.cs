@@ -161,10 +161,6 @@ namespace KinectFittingRoom.ViewModel
                     { Image = Properties.Resources.short_skirt_green }
                     ,new SkirtButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\Skirts\short_skirt_red.obj") 
                     { Image = Properties.Resources.short_skirt_red }
-                    , new SkirtButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\Skirts\simple_skirt.obj") 
-                    { Image = Properties.Resources.simple_skirt }
-                    , new SkirtButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\Skirts\simple_skirt_blue.obj") 
-                    { Image = Properties.Resources.simple_skirt_blue }
                     , new SkirtButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\Skirts\long_skirt.obj") 
                     { Image = Properties.Resources.long_skirt }
                     , new SkirtButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\Skirts\long_skirt_bikes.obj") 

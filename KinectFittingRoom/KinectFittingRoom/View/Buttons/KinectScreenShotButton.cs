@@ -85,23 +85,25 @@ namespace KinectFittingRoom.View.Buttons
         {
             int actualWidth = (int)(Application.Current.MainWindow as MainWindow).ImageArea.ActualWidth;
             int actualHeight = (int)(Application.Current.MainWindow as MainWindow).ImageArea.ActualHeight;
-            string fileName = DateTime.Now.ToString("yyyy.MM.dd-HH.mm.ss", CultureInfo.InvariantCulture);
-            fileName += ".png";
+            int emptySpace = (int)(0.5 * (SystemParameters.PrimaryScreenWidth - actualWidth));
+
+            string fileName = DateTime.Now.ToString("yyyy.MM.dd-HH.mm.ss", CultureInfo.InvariantCulture) + ".png";
             string directoryPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
                 "Wirtualna Przymierzalnia");
             Directory.CreateDirectory(directoryPath);
-            RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap(actualWidth, actualHeight, 96, 96,
+
+            RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap(actualWidth + emptySpace, actualHeight, 96, 96,
                 PixelFormats.Pbgra32);
             renderTargetBitmap.Render((Application.Current.MainWindow as MainWindow).ImageArea);
             renderTargetBitmap.Render((Application.Current.MainWindow as MainWindow).ClothesArea);
-            renderTargetBitmap.Render(CreateWatermarkLayer(actualWidth, actualHeight));
+            renderTargetBitmap.Render(CreateWatermarkLayer(actualWidth + emptySpace, actualHeight));
             PngBitmapEncoder pngImage = new PngBitmapEncoder();
-            pngImage.Frames.Add(BitmapFrame.Create(renderTargetBitmap));
-
+            pngImage.Frames.Add(BitmapFrame.Create(new CroppedBitmap(renderTargetBitmap, new Int32Rect(emptySpace, 0, actualWidth, actualHeight))));
             using (Stream fileStream = File.Create(directoryPath + "\\" + fileName))
             {
-                CropTransparentPixels(pngImage).Save(fileStream);
+                pngImage.Save(fileStream);
             }
+
             if (KinectViewModel.SoundsOn)
                 KinectViewModel.CameraPlayer.Play();
         }
@@ -125,27 +127,6 @@ namespace KinectFittingRoom.View.Buttons
             }
             visualWatermark.Opacity = 0.4;
             return visualWatermark;
-        }
-        /// <summary>
-        /// Crops the transparent pixels of image from ImageArea
-        /// </summary>
-        /// <param name="pngImage">Image from ImageArea</param>
-        /// <returns>Cropped image</returns>
-        private PngBitmapEncoder CropTransparentPixels(PngBitmapEncoder pngImage)
-        {
-            int pixelsCount = 0;
-            BitmapSource bitmapSource = pngImage.Frames[0];
-            var pixel = new byte[4];
-            for (int i = 0; i < bitmapSource.Width; i++)
-            {
-                bitmapSource.CopyPixels(new Int32Rect(i, 0, 1, 1), pixel, 4, 0);
-                if (pixel[0] == 0)
-                    pixelsCount++;
-            }
-
-            PngBitmapEncoder croppedImage = new PngBitmapEncoder();
-            croppedImage.Frames.Add(BitmapFrame.Create(new CroppedBitmap(bitmapSource, new Int32Rect(pixelsCount + 1, 0, (int)bitmapSource.Width - pixelsCount - 1, (int)bitmapSource.Height))));
-            return croppedImage;
         }
         #endregion Methods
     }

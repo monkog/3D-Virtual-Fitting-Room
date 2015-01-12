@@ -6,7 +6,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
     class MakeThinnerButtonViewModel : TopMenuButtonViewModel
     {
         #region Consts
-        private const double MinusFactor = -0.1;
+        private const double MinusFactor = -0.05;
         #endregion
         #region .ctor
         /// <summary>

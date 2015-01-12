@@ -1,10 +1,10 @@
 # Blender MTL File: 'None'
 # Material Count: 1
 
-newmtl acmat_0
-Ns 96.078431
+newmtl Material.001
+Ns 92.156863
 Ka 0.000000 0.000000 0.000000
-Kd 0.001825 0.036023 0.048576
+Kd 0.002635 0.093775 0.130113
 Ks 0.065217 0.065217 0.065217
 Ni 1.000000
 d 1.000000

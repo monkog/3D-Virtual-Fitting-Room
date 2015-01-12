@@ -6,6 +6,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
 {
     public abstract class ClothingItemBase : ViewModelBase
     {
+        protected const int ModelSizeRatio = 1000;
         #region Private Fields
         /// <summary>
         /// The clothing model
@@ -14,11 +15,11 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// <summary>
         /// the height scale
         /// </summary>
-        private double _heightScale;
+        protected double _heightScale;
         /// <summary>
         /// The width scale
         /// </summary>
-        private double _widthScale;
+        protected double _widthScale;
         #endregion Private Fields
         #region Public Properties
         /// <summary>
@@ -116,8 +117,6 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         protected ClothingItemBase(Model3DGroup model)
         {
             Model = model;
-            _heightScale = _widthScale = 1;
-            SetBaseTransformation();
         }
         #endregion
         #region Protected Methods
@@ -169,9 +168,15 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
             Angle = TrackJointsRotation(sensor, skeleton.Joints[LeftJointToTrackAngle], skeleton.Joints[RightJointToTrackAngle]);
 
             var joint = KinectService.GetJointPoint(skeleton.Joints[JointToTrackPosition], sensor, width, height);
-            joint = new Point3D(joint.X+171, joint.Y, joint.Z);
-            
+            joint = new Point3D(joint.X + ClothingManager.Instance.EmptySpace * 0.5, joint.Y, joint.Z);
+
             var position3D = ClothingManager.Instance.TransformationMatrix.Transform(new Point3D(joint.X, joint.Y, joint.Z));
+
+            if (_heightScale == 0)
+            {
+                GetBasicWidth(skeleton, sensor, width, height);
+                SetBaseTransformation();
+            }
 
             var transform = new Transform3DGroup();
             transform.Children.Add(BaseTransformation);
@@ -179,6 +184,14 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
             transform.Children.Add(new TranslateTransform3D(position3D.X, position3D.Y, position3D.Z));
             Model.Transform = transform;
         }
+        /// <summary>
+        /// Fit width of model to width of body
+        /// </summary>
+        /// <param name="skeleton">The skeleton</param>
+        /// <param name="sensor">Kinect sensor</param>
+        /// <param name="width">Kinect image width</param>
+        /// <param name="height">Kinect image heigh</param>
+        public abstract void GetBasicWidth(Skeleton skeleton, KinectSensor sensor, double width, double height);
         #endregion Public Methods
         #region Private Methods
         /// <summary>

@@ -110,7 +110,7 @@
     <Compile Include="Converters\IncreasedValueConverter.cs" />
     <Compile Include="Converters\ReducedValueConverter.cs" />
     <Compile Include="Converters\ValueToVisibilityConverter.cs" />
-    <Compile Include="Properties\Resources1.Designer.cs">
+    <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -197,7 +197,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
-      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config">
@@ -269,12 +269,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Resources\Models\Skirts\short_skirt_red.obj">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\Models\Skirts\simple_skirt_blue.mtl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\Models\Skirts\simple_skirt_blue.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -354,12 +348,6 @@
     <None Include="Resources\Models\Skirts\short_skirt.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Models\Skirts\simple_skirt.mtl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\Models\Skirts\simple_skirt.obj">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <SplashScreen Include="Resources\splash_screen_image.png" />
@@ -431,9 +419,6 @@
     <None Include="Resources\Icons\Menu\vertical_arrows_smaller.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Icons\icon.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Images\Bags\briefcase.png" />
   </ItemGroup>
   <ItemGroup>
@@ -453,9 +438,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Images\Skirts\short_skirt.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Images\Skirts\simple_skirt.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Images\Skirts\long_skirt.png" />
@@ -496,9 +478,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\Hats\sombrero.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\Skirts\simple_skirt_blue.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Materials\long_skirt_bikes.jpg">

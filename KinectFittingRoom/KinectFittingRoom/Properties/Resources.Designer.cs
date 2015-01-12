@@ -529,16 +529,6 @@ namespace KinectFittingRoom.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
-        /// </summary>
-        internal static System.Drawing.Icon icon {
-            get {
-                object obj = ResourceManager.GetObject("icon", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap long_skirt {
@@ -894,66 +884,6 @@ namespace KinectFittingRoom.Properties {
         internal static byte[] short_skirt2 {
             get {
                 object obj = ResourceManager.GetObject("short_skirt2", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap simple_skirt {
-            get {
-                object obj = ResourceManager.GetObject("simple_skirt", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap simple_skirt_blue {
-            get {
-                object obj = ResourceManager.GetObject("simple_skirt_blue", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] simple_skirt_blue1 {
-            get {
-                object obj = ResourceManager.GetObject("simple_skirt_blue1", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] simple_skirt_blue2 {
-            get {
-                object obj = ResourceManager.GetObject("simple_skirt_blue2", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] simple_skirt1 {
-            get {
-                object obj = ResourceManager.GetObject("simple_skirt1", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] simple_skirt2 {
-            get {
-                object obj = ResourceManager.GetObject("simple_skirt2", resourceCulture);
                 return ((byte[])(obj));
             }
         }

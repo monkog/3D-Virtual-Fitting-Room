@@ -6,7 +6,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
     class MakeWiderButtonViewModel : TopMenuButtonViewModel
     {
         #region Consts
-        private const double PlusFactor = 0.1;
+        private const double PlusFactor = 0.05;
         #endregion
         #region .ctor
         /// <summary>

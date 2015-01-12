@@ -256,9 +256,6 @@
   <data name="horizontal_arrows_thinner" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\icons\menu\horizontal_arrows_thinner.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\icons\icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="long_skirt" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\images\skirts\long_skirt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -361,15 +358,6 @@
   <data name="short_skirt_red2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\models\skirts\short_skirt_red.obj;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="simple_skirt" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\images\skirts\simple_skirt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="simple_skirt1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\models\skirts\simple_skirt.mtl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="simple_skirt2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\models\skirts\simple_skirt.obj;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="skirt_symbol" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\icons\categories\skirt_symbol.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -408,14 +396,5 @@
   </data>
   <data name="sombrero2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\models\hats\sombrero.obj;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="simple_skirt_blue" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\images\skirts\simple_skirt_blue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="simple_skirt_blue1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\models\skirts\simple_skirt_blue.mtl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="simple_skirt_blue2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\models\skirts\simple_skirt_blue.obj;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>
