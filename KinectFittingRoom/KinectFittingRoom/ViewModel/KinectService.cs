@@ -14,6 +14,12 @@ namespace KinectFittingRoom.ViewModel
 {
     public class KinectService : ViewModelBase, IKinectService
     {
+        #region Constants
+        /// <summary>
+        /// Base width of orthographic camera
+        /// </summary>
+        private const int BaseCameraWidth = 1;
+        #endregion Constants
         #region Private Fields
         /// <summary>
         /// Captured skeletons
@@ -445,7 +451,7 @@ namespace KinectFittingRoom.ViewModel
             ErrorGridVisibility = Visibility.Hidden;
             ClothesAreaVisibility = Visibility.Visible;
             DiscoverKinectSensors();
-            CameraWidth = 1;
+            CameraWidth = BaseCameraWidth;
         }
         /// <summary>
         /// Looks for the closest skeleton

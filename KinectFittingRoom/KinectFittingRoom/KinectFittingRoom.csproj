@@ -133,6 +133,8 @@
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\MakeThinnerButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\MakeWiderButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\MenuButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ScaleMinusButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ScalePlusButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ScreenshotButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\SoundsButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\TopMenuButtonViewModel.cs" />
@@ -226,10 +228,52 @@
     <None Include="Resources\Models\Dresses\dress_red.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Models\Hats\sombrero.mtl">
+    <None Include="Resources\Models\Glasses\glass_blue.mtl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Models\Hats\sombrero.obj">
+    <None Include="Resources\Models\Glasses\glass_blue.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Glasses\glass_maroon.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Glasses\glass_maroon.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Glasses\glass_red.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Glasses\glass_red.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Glasses\glass_sea.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Glasses\glass_sea.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Glasses\glass_yellow.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Glasses\glass_yellow.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Glasses\sunglass_green.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Glasses\sunglass_green.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Glasses\sunglass_orange.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Glasses\sunglass_orange.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Glasses\sunglass_violet.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Glasses\sunglass_violet.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Resources\Models\Skirts\long_skirt.mtl">
@@ -477,9 +521,6 @@
     <Resource Include="Resources\Images\Skirts\long_skirt_violet.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\Hats\sombrero.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Materials\long_skirt_bikes.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -513,9 +554,6 @@
     <None Include="Resources\Materials\short_skirt_checked.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Materials\sombrero.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Resources\Materials\big_skirt_waves.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -530,6 +568,20 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\Menu\arrows_bigger.png" />
+    <Resource Include="Resources\Icons\Menu\arrows_smaller.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Glasses\glass_blue.png" />
+    <Resource Include="Resources\Images\Glasses\glass_maroon.png" />
+    <Resource Include="Resources\Images\Glasses\glass_red.png" />
+    <Resource Include="Resources\Images\Glasses\glass_sea.png" />
+    <Resource Include="Resources\Images\Glasses\glass_yellow.png" />
+    <Resource Include="Resources\Images\Glasses\sunglass_green.png" />
+    <Resource Include="Resources\Images\Glasses\sunglass_orange.png" />
+    <Resource Include="Resources\Images\Glasses\sunglass_violet.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

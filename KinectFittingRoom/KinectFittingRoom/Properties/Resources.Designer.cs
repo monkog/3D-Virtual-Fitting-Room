@@ -61,6 +61,26 @@ namespace KinectFittingRoom.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap arrows_bigger {
+            get {
+                object obj = ResourceManager.GetObject("arrows_bigger", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap arrows_smaller {
+            get {
+                object obj = ResourceManager.GetObject("arrows_smaller", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] big_skirt_green {
@@ -475,6 +495,56 @@ namespace KinectFittingRoom.Properties {
             get {
                 object obj = ResourceManager.GetObject("fedora_hat1", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap glass_blue {
+            get {
+                object obj = ResourceManager.GetObject("glass_blue", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap glass_maroon {
+            get {
+                object obj = ResourceManager.GetObject("glass_maroon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap glass_red {
+            get {
+                object obj = ResourceManager.GetObject("glass_red", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap glass_sea {
+            get {
+                object obj = ResourceManager.GetObject("glass_sea", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap glass_yellow {
+            get {
+                object obj = ResourceManager.GetObject("glass_yellow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -901,30 +971,30 @@ namespace KinectFittingRoom.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap sombrero {
+        internal static System.Drawing.Bitmap sunglass_green {
             get {
-                object obj = ResourceManager.GetObject("sombrero", resourceCulture);
+                object obj = ResourceManager.GetObject("sunglass_green", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static byte[] sombrero1 {
+        internal static System.Drawing.Bitmap sunglass_orange {
             get {
-                object obj = ResourceManager.GetObject("sombrero1", resourceCulture);
-                return ((byte[])(obj));
+                object obj = ResourceManager.GetObject("sunglass_orange", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static byte[] sombrero2 {
+        internal static System.Drawing.Bitmap sunglass_violet {
             get {
-                object obj = ResourceManager.GetObject("sombrero2", resourceCulture);
-                return ((byte[])(obj));
+                object obj = ResourceManager.GetObject("sunglass_violet", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

@@ -29,7 +29,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
             var leftShoulder = KinectService.GetJointPoint(skeleton.Joints[JointType.ShoulderLeft], sensor, width, height); ;
             var rightShoulder = KinectService.GetJointPoint(skeleton.Joints[JointType.ShoulderRight], sensor, width, height);
             var t = Model.Children[0].Bounds.SizeX * ModelSizeRatio;
-            _heightScale = _widthScale = (rightShoulder.X - leftShoulder.X) * (RegularProportionShoulderWidthToHead / t);
+            HeightScale = WidthScale = (rightShoulder.X - leftShoulder.X) * (RegularProportionShoulderWidthToHead / t);
         }
     }
 }

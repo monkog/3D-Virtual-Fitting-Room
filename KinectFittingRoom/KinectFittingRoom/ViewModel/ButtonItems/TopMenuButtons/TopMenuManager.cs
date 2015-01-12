@@ -148,7 +148,9 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
                 new MakeBiggerButtonViewModel(Properties.Resources.vertical_arrows),
                 new MakeSmallerButtonViewModel(Properties.Resources.vertical_arrows_smaller),
                 new MakeThinnerButtonViewModel(Properties.Resources.horizontal_arrows_thinner),
-                new MakeWiderButtonViewModel(Properties.Resources.horizontal_arrows)
+                new MakeWiderButtonViewModel(Properties.Resources.horizontal_arrows),
+                new ScalePlusButtonViewModel(Properties.Resources.arrows_bigger),
+                new ScaleMinusButtonViewModel(Properties.Resources.arrows_smaller)
             };
             _clearButtons = new ObservableCollection<TopMenuButtonViewModel>()
             {

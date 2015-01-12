@@ -388,13 +388,34 @@
   <data name="violet_dress" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\images\dresses\violet_dress.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="sombrero" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\images\hats\sombrero.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="arrows_bigger" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icons\menu\arrows_bigger.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="sombrero1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\models\hats\sombrero.mtl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="arrows_smaller" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icons\menu\arrows_smaller.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="sombrero2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\models\hats\sombrero.obj;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="glass_blue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\glasses\glass_blue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="glass_maroon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\glasses\glass_maroon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="glass_red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\glasses\glass_red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="glass_sea" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\glasses\glass_sea.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="glass_yellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\glasses\glass_yellow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sunglass_green" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\glasses\sunglass_green.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sunglass_orange" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\glasses\sunglass_orange.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sunglass_violet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\glasses\sunglass_violet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

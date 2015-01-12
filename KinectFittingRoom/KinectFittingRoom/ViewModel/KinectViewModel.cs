@@ -107,8 +107,8 @@ namespace KinectFittingRoom.ViewModel
                 CreateHatsClothingCategoryButton(),
                 CreateSkirtsClothingCategoryButton(),
                 CreateDressesClothingCategoryButton(),
-                CreateBagsClothingCategoryButton()
-                //CreateGlassesClothingCategoryButton()
+                CreateBagsClothingCategoryButton(),
+                CreateGlassesClothingCategoryButton()
             };
             ClothingManager.Instance.UpdateActualCategories();
         }
@@ -118,7 +118,7 @@ namespace KinectFittingRoom.ViewModel
         /// <returns>Hats clothing category button</returns>
         private ClothingCategoryButtonViewModel CreateHatsClothingCategoryButton()
         {
-            return new ClothingCategoryButtonViewModel(ClothingItemBase.MaleFemaleType.Both)
+            return new ClothingCategoryButtonViewModel(ClothingItemBase.MaleFemaleType.Male)
             {
                 Image = Properties.Resources.hat_symbol,
                 Clothes = new List<ClothingButtonViewModel>
@@ -135,8 +135,6 @@ namespace KinectFittingRoom.ViewModel
                         , @".\Resources\Models\Hats\fedora_brown_hat.obj") { Image = Properties.Resources.fedora_hat_brown }
                         , new HatButtonViewModel(ClothingItemBase.ClothingType.HatItem, ClothingItemBase.MaleFemaleType.Male
                         , @".\Resources\Models\Hats\fedora_darkgreen_hat.obj") { Image = Properties.Resources.fedora_hat_darkgreen }
-                        , new HatButtonViewModel(ClothingItemBase.ClothingType.HatItem, ClothingItemBase.MaleFemaleType.Both
-                        , @".\Resources\Models\Hats\sombrero.obj") { Image = Properties.Resources.sombrero }
                 }
             };
         }
@@ -218,12 +216,22 @@ namespace KinectFittingRoom.ViewModel
                 Clothes =
                     new List<ClothingButtonViewModel>
                     {
-                        new SkirtButtonViewModel(ClothingItemBase.ClothingType.GlassesItem, @".\Resources\Models\Dresses\white_dress.obj")
-                        { Image = Properties.Resources.briefcase }
-                        , new SkirtButtonViewModel(ClothingItemBase.ClothingType.GlassesItem, @".\Resources\Models\Dresses\white_dress.obj")
-                        { Image = Properties.Resources.briefcase }
-                        , new SkirtButtonViewModel(ClothingItemBase.ClothingType.GlassesItem, @".\Resources\Models\Dresses\white_dress.obj")
-                        { Image = Properties.Resources.briefcase }
+                        new GlassesButtonViewModel(ClothingItemBase.ClothingType.GlassesItem, @".\Resources\Models\Glasses\glass_sea.obj")
+                        { Image = Properties.Resources.glass_sea }
+                        , new GlassesButtonViewModel(ClothingItemBase.ClothingType.GlassesItem, @".\Resources\Models\Glasses\glass_maroon.obj")
+                        { Image = Properties.Resources.glass_maroon }
+                        , new GlassesButtonViewModel(ClothingItemBase.ClothingType.GlassesItem, @".\Resources\Models\Glasses\glass_yellow.obj")
+                        { Image = Properties.Resources.glass_yellow }
+                        , new GlassesButtonViewModel(ClothingItemBase.ClothingType.GlassesItem, @".\Resources\Models\Glasses\glass_blue.obj")
+                        { Image = Properties.Resources.glass_blue }
+                        , new GlassesButtonViewModel(ClothingItemBase.ClothingType.GlassesItem, @".\Resources\Models\Glasses\glass_red.obj")
+                        { Image = Properties.Resources.glass_red }
+                        , new GlassesButtonViewModel(ClothingItemBase.ClothingType.GlassesItem, @".\Resources\Models\Glasses\sunglass_green.obj")
+                        { Image = Properties.Resources.sunglass_green }
+                        , new GlassesButtonViewModel(ClothingItemBase.ClothingType.GlassesItem, @".\Resources\Models\Glasses\sunglass_orange.obj")
+                        { Image = Properties.Resources.sunglass_orange }
+                        , new GlassesButtonViewModel(ClothingItemBase.ClothingType.GlassesItem, @".\Resources\Models\Glasses\sunglass_violet.obj")
+                        { Image = Properties.Resources.sunglass_violet }
                     }
             };
         }

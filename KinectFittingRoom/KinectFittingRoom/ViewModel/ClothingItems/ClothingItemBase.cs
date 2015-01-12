@@ -15,11 +15,11 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// <summary>
         /// the height scale
         /// </summary>
-        protected double _heightScale;
+        private double _heightScale;
         /// <summary>
         /// The width scale
         /// </summary>
-        protected double _widthScale;
+        private double _widthScale;
         #endregion Private Fields
         #region Public Properties
         /// <summary>
@@ -173,10 +173,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
             var position3D = ClothingManager.Instance.TransformationMatrix.Transform(new Point3D(joint.X, joint.Y, joint.Z));
 
             if (_heightScale == 0)
-            {
                 GetBasicWidth(skeleton, sensor, width, height);
-                SetBaseTransformation();
-            }
 
             var transform = new Transform3DGroup();
             transform.Children.Add(BaseTransformation);

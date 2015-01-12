@@ -31,7 +31,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
             var head = KinectService.GetJointPoint(skeleton.Joints[JointType.Head], sensor, width, height); ;
             var footRight = KinectService.GetJointPoint(skeleton.Joints[JointType.FootRight], sensor, width, height);
             var t = Model.Children[0].Bounds.SizeX * ModelSizeRatio;
-            _heightScale = _widthScale = (footRight.Y - head.Y) * (RegularProportionHipWidthToHeight / t);
+            HeightScale = WidthScale = (footRight.Y - head.Y) * (RegularProportionHipWidthToHeight / t);
         }
     }
 }
