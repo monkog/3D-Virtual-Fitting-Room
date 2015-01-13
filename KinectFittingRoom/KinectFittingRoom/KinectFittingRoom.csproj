@@ -210,10 +210,22 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Resources\Models\Dresses\dress_blue.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Dresses\dress_blue.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\Models\Dresses\dress_dark.mtl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Resources\Models\Dresses\dress_dark.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Dresses\dress_orange.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Dresses\dress_orange.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Resources\Models\Dresses\dress_orange_black.mtl">
@@ -222,10 +234,22 @@
     <None Include="Resources\Models\Dresses\dress_orange_black.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Resources\Models\Dresses\dress_pink.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Dresses\dress_pink.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\Models\Dresses\dress_red.mtl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Resources\Models\Dresses\dress_red.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Dresses\dress_violet.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Dresses\dress_violet.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Resources\Models\Glasses\glass_blue.mtl">
@@ -317,12 +341,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Models\Dresses\white_dress.mtl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\Models\Dresses\white_dress.obj">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Resources\Models\Hats\cowboy_hat.mtl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -466,21 +484,6 @@
     <None Include="Resources\Images\Bags\briefcase.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Images\Dresses\dotted_dress.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Images\Dresses\flowery_dress.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Images\Dresses\red_dress.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Images\Dresses\violet_dress.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Images\Dresses\white_dress.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Images\Skirts\short_skirt.png" />
   </ItemGroup>
   <ItemGroup>
@@ -582,6 +585,26 @@
     <Resource Include="Resources\Images\Glasses\sunglass_green.png" />
     <Resource Include="Resources\Images\Glasses\sunglass_orange.png" />
     <Resource Include="Resources\Images\Glasses\sunglass_violet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Dresses\dress_blue.png" />
+    <Resource Include="Resources\Images\Dresses\dress_orange.png" />
+    <Resource Include="Resources\Images\Dresses\dress_pink.png" />
+    <Resource Include="Resources\Images\Dresses\dress_violet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Materials\dress_blue.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Materials\dress_orange.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Materials\dress_pink.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Materials\dress_violet.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

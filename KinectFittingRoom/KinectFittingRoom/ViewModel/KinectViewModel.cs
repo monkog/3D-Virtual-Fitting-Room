@@ -187,20 +187,20 @@ namespace KinectFittingRoom.ViewModel
                 Image = Properties.Resources.dress_symbol,
                 Clothes = new List<ClothingButtonViewModel>
                 {
-                    new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\white_dress.obj") 
-                    { Image = Properties.Resources.white_dress }
-                    , new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\dress_dark.obj") 
+                    new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\dress_dark.obj") 
                     { Image = Properties.Resources.dress_dark }
                     , new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\dress_orange_black.obj") 
                     { Image = Properties.Resources.dress_brownblack }
                     , new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\dress_red.obj") 
                     { Image = Properties.Resources.dress_red }
-                    , new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\white_dress.obj") 
-                    { Image = Properties.Resources.dotted_dress }
-                    , new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\white_dress.obj") 
-                    { Image = Properties.Resources.violet_dress }
-                    , new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\white_dress.obj") 
-                    { Image = Properties.Resources.red_dress }
+                    , new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\dress_violet.obj") 
+                    { Image = Properties.Resources.dress_violet }
+                    , new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\dress_pink.obj") 
+                    { Image = Properties.Resources.dress_pink }
+                    , new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\dress_orange.obj") 
+                    { Image = Properties.Resources.dress_orange }
+                    , new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\dress_blue.obj") 
+                    { Image = Properties.Resources.dress_blue }
                 }
             };
         }
