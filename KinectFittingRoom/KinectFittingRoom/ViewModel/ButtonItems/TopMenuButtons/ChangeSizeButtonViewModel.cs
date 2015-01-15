@@ -21,7 +21,8 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
         public override void ClickEventExecuted()
         {
             ClearMenu();
-            TopMenuManager.Instance.SizeButtonsVisibility = Visibility.Visible;
+            TopMenuManager.Instance.ChangeSizePositionButtons = TopMenuManager.Instance.ChangeSizeButtons;
+            TopMenuManager.Instance.SizePositionButtonsVisibility = Visibility.Visible;
         }
         #endregion
     }

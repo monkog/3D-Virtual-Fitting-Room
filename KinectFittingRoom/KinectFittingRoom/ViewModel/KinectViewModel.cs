@@ -107,8 +107,8 @@ namespace KinectFittingRoom.ViewModel
                 CreateHatsClothingCategoryButton(),
                 CreateSkirtsClothingCategoryButton(),
                 CreateDressesClothingCategoryButton(),
-                CreateBagsClothingCategoryButton(),
-                CreateGlassesClothingCategoryButton()
+                CreateGlassesClothingCategoryButton(),
+                CreateTiesClothingCategoryButton()
             };
             ClothingManager.Instance.UpdateActualCategories();
         }
@@ -236,19 +236,29 @@ namespace KinectFittingRoom.ViewModel
             };
         }
         /// <summary>
-        /// Creates the bags clothing category button.
+        /// Creates the ties clothing category button.
         /// </summary>
-        /// <returns>Bags clothing category button</returns>
-        private ClothingCategoryButtonViewModel CreateBagsClothingCategoryButton()
+        /// <returns>Ties clothing category button</returns>
+        private ClothingCategoryButtonViewModel CreateTiesClothingCategoryButton()
         {
             return new ClothingCategoryButtonViewModel(ClothingItemBase.MaleFemaleType.Male)
             {
-                Image = Properties.Resources.briefcase_symbol,
+                Image = Properties.Resources.tie_symbol,
                 Clothes =
                     new List<ClothingButtonViewModel>
                     {
-                        new SkirtButtonViewModel(ClothingItemBase.ClothingType.GlassesItem, @".\Resources\Models\Dresses\white_dress.obj")
-                        { Image = Properties.Resources.briefcase }
+                        new TieButtonViewModel(ClothingItemBase.ClothingType.TieItem, @".\Resources\Models\Ties\tie_beige.obj")
+                        { Image = Properties.Resources.tie_beige }
+                        , new TieButtonViewModel(ClothingItemBase.ClothingType.TieItem, @".\Resources\Models\Ties\tie_blue.obj")
+                        { Image = Properties.Resources.tie_blue }
+                        , new TieButtonViewModel(ClothingItemBase.ClothingType.TieItem, @".\Resources\Models\Ties\tie_color.obj")
+                        { Image = Properties.Resources.tie_color }
+                        , new TieButtonViewModel(ClothingItemBase.ClothingType.TieItem, @".\Resources\Models\Ties\tie_green.obj")
+                        { Image = Properties.Resources.tie_green }
+                        , new TieButtonViewModel(ClothingItemBase.ClothingType.TieItem, @".\Resources\Models\Ties\tie_gray.obj")
+                        { Image = Properties.Resources.tie_gray }
+                        , new TieButtonViewModel(ClothingItemBase.ClothingType.TieItem, @".\Resources\Models\Ties\tie_stripes.obj")
+                        { Image = Properties.Resources.tie_stripes }
                     }
             };
         }

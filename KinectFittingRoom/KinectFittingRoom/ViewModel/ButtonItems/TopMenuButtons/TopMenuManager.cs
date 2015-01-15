@@ -24,6 +24,14 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// </summary>
         private ObservableCollection<TopMenuButtonViewModel> _changeSizeButtons;
         /// <summary>
+        /// Change position buttons view
+        /// </summary>
+        private ObservableCollection<TopMenuButtonViewModel> _changePositionButtons;
+        /// <summary>
+        /// Change position buttons view
+        /// </summary>
+        private ObservableCollection<TopMenuButtonViewModel> _changeSizePositionButtons;
+        /// <summary>
         /// Clear buttons view
         /// </summary>
         private ObservableCollection<TopMenuButtonViewModel> _clearButtons;
@@ -32,9 +40,9 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// </summary>
         private Visibility _cameraButtonVisibility;
         /// <summary>
-        /// Visibility of size buttons
+        /// Visibility of size and position buttons
         /// </summary>
-        private Visibility _sizeButtonsVisibility;
+        private Visibility _sizePositionButtonsVisibility;
         #endregion Private Fields
         #region Public Properties
         /// <summary>
@@ -95,17 +103,17 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
             }
         }
         /// <summary>
-        /// Gets or sets the visibility of camera button
+        /// Gets or sets the visibility of size and position button
         /// </summary>
-        public Visibility SizeButtonsVisibility
+        public Visibility SizePositionButtonsVisibility
         {
-            get { return _sizeButtonsVisibility; }
+            get { return _sizePositionButtonsVisibility; }
             set
             {
-                if (_sizeButtonsVisibility == value)
+                if (_sizePositionButtonsVisibility == value)
                     return;
-                _sizeButtonsVisibility = value;
-                OnPropertyChanged("SizeButtonsVisibility");
+                _sizePositionButtonsVisibility = value;
+                OnPropertyChanged("SizePositionButtonsVisibility");
             }
         }
         /// <summary>
@@ -117,6 +125,33 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         public ObservableCollection<TopMenuButtonViewModel> ChangeSizeButtons
         {
             get { return _changeSizeButtons; }
+        }
+        /// <summary>
+        /// Gets change position buttons.
+        /// </summary>
+        /// <value>
+        /// The change position buttons collection.
+        /// </value>
+        public ObservableCollection<TopMenuButtonViewModel> ChangePositionButtons
+        {
+            get { return _changePositionButtons; }
+        }
+        /// <summary>
+        /// Gets change position buttons.
+        /// </summary>
+        /// <value>
+        /// The change position buttons collection.
+        /// </value>
+        public ObservableCollection<TopMenuButtonViewModel> ChangeSizePositionButtons
+        {
+            get { return _changeSizePositionButtons; }
+            set
+            {
+                if (_changeSizePositionButtons == value)
+                    return;
+                _changeSizePositionButtons = value;
+                OnPropertyChanged("ChangeSizePositionButtons");
+            }
         }
         /// <summary>
         /// Gets clear buttons.
@@ -139,6 +174,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
             {
                 new ChangeTypeButtonViewModel(Properties.Resources.menu_menWomen),
                 new ChangeSizeButtonViewModel(Properties.Resources.menu_arrows),
+                new ChangePositionButtonViewModel(Properties.Resources.arrows_up_down),
                 new ClearItemsButtonViewModel(Properties.Resources.menu_clear),
                 new SoundsButtonViewModel(Properties.Resources.menu_speaker),
                 new ExitButtonViewModel(Properties.Resources.menu_doors)
@@ -152,6 +188,11 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
                 new ScalePlusButtonViewModel(Properties.Resources.arrows_bigger),
                 new ScaleMinusButtonViewModel(Properties.Resources.arrows_smaller)
             };
+            _changePositionButtons = new ObservableCollection<TopMenuButtonViewModel>()
+            {
+                new MoveUpButtonViewModel(Properties.Resources.move_up),
+                new MoveDownButtonViewModel(Properties.Resources.move_down)
+            };
             _clearButtons = new ObservableCollection<TopMenuButtonViewModel>()
             {
                 new ClearLastItemButtonViewModel(Properties.Resources.menu_clearOne),
@@ -160,7 +201,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
             MenuButton = new MenuButtonViewModel(Properties.Resources.menu);
             CameraButton = new ScreenshotButtonViewModel(Properties.Resources.menu_camera);
             CameraButtonVisibility = Visibility.Collapsed;
-            SizeButtonsVisibility = Visibility.Collapsed;
+            SizePositionButtonsVisibility = Visibility.Collapsed;
         }
         #endregion
         /// <summary>

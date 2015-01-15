@@ -1,7 +1,7 @@
-# Blender MTL File: 'cowboy_hat.blend'
+# Blender MTL File: 'None'
 # Material Count: 2
 
-newmtl Material.001
+newmtl Material.006
 Ns 96.078431
 Ka 0.000000 0.000000 0.000000
 Kd 0.474062 0.233374 0.037925
@@ -10,7 +10,7 @@ Ni 1.000000
 d 1.000000
 illum 1
 
-newmtl Material.002
+newmtl Material.007
 Ns 96.078431
 Ka 0.000000 0.000000 0.000000
 Kd 0.035564 0.016155 0.004937

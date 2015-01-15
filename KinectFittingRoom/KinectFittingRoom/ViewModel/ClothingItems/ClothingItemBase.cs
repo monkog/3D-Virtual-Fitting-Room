@@ -13,13 +13,17 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// </summary>
         private Model3DGroup _model;
         /// <summary>
-        /// the height scale
+        /// The height scale
         /// </summary>
         private double _heightScale;
         /// <summary>
         /// The width scale
         /// </summary>
         private double _widthScale;
+        /// <summary>
+        /// The delta between positions
+        /// </summary>
+        private double _deltaPosition;
         #endregion Private Fields
         #region Public Properties
         /// <summary>
@@ -88,6 +92,22 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
             }
         }
         /// <summary>
+        /// Gets or sets the delta value.
+        /// </summary>
+        /// <value>
+        /// The delta value.
+        /// </value>
+        public double DeltaPosition
+        {
+            get { return _deltaPosition; }
+            set
+            {
+                if (_deltaPosition == value)
+                    return;
+                _deltaPosition = value;
+            }
+        }
+        /// <summary>
         /// Gets or sets the joint to track position.
         /// </summary>
         /// <value>
@@ -117,6 +137,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         protected ClothingItemBase(Model3DGroup model)
         {
             Model = model;
+            _deltaPosition = 0;
         }
         #endregion
         #region Protected Methods
@@ -168,9 +189,8 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
             Angle = TrackJointsRotation(sensor, skeleton.Joints[LeftJointToTrackAngle], skeleton.Joints[RightJointToTrackAngle]);
 
             var joint = KinectService.GetJointPoint(skeleton.Joints[JointToTrackPosition], sensor, width, height);
-            joint = new Point3D(joint.X + ClothingManager.Instance.EmptySpace * 0.5, joint.Y, joint.Z);
 
-            var position3D = ClothingManager.Instance.TransformationMatrix.Transform(new Point3D(joint.X, joint.Y, joint.Z));
+            var position3D = ClothingManager.Instance.TransformationMatrix.Transform(new Point3D(joint.X + ClothingManager.Instance.EmptySpace * 0.5, joint.Y + _deltaPosition, joint.Z));
 
             if (_heightScale == 0)
                 GetBasicWidth(skeleton, sensor, width, height);
@@ -208,7 +228,8 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
             HatItem,
             SkirtItem,
             GlassesItem,
-            DressItem
+            DressItem,
+            TieItem
         }
 
         public enum MaleFemaleType

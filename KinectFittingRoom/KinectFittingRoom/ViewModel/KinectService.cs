@@ -16,9 +16,9 @@ namespace KinectFittingRoom.ViewModel
     {
         #region Constants
         /// <summary>
-        /// Base width of orthographic camera
+        /// Base width of user screen
         /// </summary>
-        private const int BaseCameraWidth = 1;
+        private double BaseScreenWidth = 1366;
         #endregion Constants
         #region Private Fields
         /// <summary>
@@ -38,9 +38,13 @@ namespace KinectFittingRoom.ViewModel
         /// </summary>
         private WriteableBitmap _kinectCameraImage;
         /// <summary>
-        /// The width of camera
+        /// The width of orthographic camera
         /// </summary>
         private double _cameraWidth;
+        /// <summary>
+        /// Width of orthographic camera before scaling
+        /// </summary>
+        private double _originalCameraWidth;
         /// <summary>
         /// Bounds of camera source
         /// </summary>
@@ -288,7 +292,7 @@ namespace KinectFittingRoom.ViewModel
                 catch (Exception)
                 {
                     ErrorGridVisibility = Visibility.Visible;
-                    ErrorGridMessage = "Kinect jest używany przez inny proces." + Environment.NewLine + 
+                    ErrorGridMessage = "Kinect jest używany przez inny proces." + Environment.NewLine +
                         "Spróbuj odłączyć i ponownie podłączyć urządzenie do komputera." + Environment.NewLine +
                         "Upewnij się, że wszystkie programy używajace Kinecta zostały wyłączone.";
                 }
@@ -324,7 +328,7 @@ namespace KinectFittingRoom.ViewModel
                 if (skeleton == null)
                 {
                     ErrorGridVisibility = Visibility.Visible;
-                    ErrorGridMessage = "Nie wykryto szkieletu lub utracono jego położenie." + Environment.NewLine + 
+                    ErrorGridMessage = "Nie wykryto szkieletu lub utracono jego położenie." + Environment.NewLine +
                         "Poczekaj chwilę i sprawdź, czy stoisz w odpowiedniej odległości od urządzenia.";
                     ClothesAreaVisibility = Visibility.Hidden;
                     return;
@@ -435,7 +439,7 @@ namespace KinectFittingRoom.ViewModel
             var head = KinectService.GetJointPoint(skeleton.Joints[JointType.Head], Kinect, Width, Height);
             var footRight = KinectService.GetJointPoint(skeleton.Joints[JointType.FootRight], Kinect, Width, Height);
 
-            CameraWidth = _skeletonHeight / (footRight.Y - head.Y);
+            CameraWidth = _originalCameraWidth * _skeletonHeight / (footRight.Y - head.Y);
         }
         #endregion Private Methods
         #region Public Methods
@@ -451,7 +455,7 @@ namespace KinectFittingRoom.ViewModel
             ErrorGridVisibility = Visibility.Hidden;
             ClothesAreaVisibility = Visibility.Visible;
             DiscoverKinectSensors();
-            CameraWidth = BaseCameraWidth;
+            CameraWidth = _originalCameraWidth = SystemParameters.PrimaryScreenWidth / BaseScreenWidth;
         }
         /// <summary>
         /// Looks for the closest skeleton

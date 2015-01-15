@@ -7,7 +7,7 @@ namespace KinectFittingRoom.View.Buttons
     /// <summary>
     /// Size button class that responds to Kincect events
     /// </summary>
-    class KinectSizeButton : KinectButton
+    class KinectRepeatableButton : KinectButton
     {
         #region Protected Methods
         /// <summary>

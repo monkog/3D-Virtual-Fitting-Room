@@ -43,7 +43,7 @@
         <!--Canvas containing button panels-->
         <Canvas Name="ButtonPanelsCanvas" Width="{Binding KinectService.Width}" Height="{Binding KinectService.Height}">
             <Canvas x:Name="LeftPanel"
-                    Width="170" 
+                    Width="160" 
                     Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Canvas}}
                     , Path=ActualHeight, Converter={StaticResource ReducedValueConverter}, ConverterParameter=40}" 
                     Background="GhostWhite" 
@@ -84,7 +84,7 @@
                 </canvases:ScrollableCanvas.ItemTemplate>
             </canvases:ScrollableCanvas>
             <Canvas x:Name="RightPanel"
-                    Width="170"
+                    Width="160"
                     Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Canvas}}
                     , Path=ActualHeight, Converter={StaticResource ReducedValueConverter}, ConverterParameter=40}" 
                     Background="GhostWhite" 
@@ -124,27 +124,14 @@
                 </canvases:ScrollableCanvas.ItemTemplate>
             </canvases:ScrollableCanvas>
             <!--StackPanel containing all the buttons from top menu-->
-            <Canvas Name="AllTopButtonsPanel"
-                    Canvas.Left="{Binding ElementName=LeftPanel, Path=ActualWidth, Converter={StaticResource IncreasedValueConverter}, ConverterParameter=20}"
-                    Canvas.Top="20"
-                    Width="80"
-                    Height="80"
-                    Background="Transparent"/>
-            <Canvas Name="SizeButtonsPanel"
-                    Canvas.Left="{Binding ElementName=AllTopButtonsPanel, Path=(Canvas.Left), Converter={StaticResource IncreasedValueConverter}, ConverterParameter=80}"
-                    Canvas.Top="20"
-                    Width="400"
-                    Height="80"
-                    Background="Transparent"
-                    Visibility="{Binding SizeButtonsVisibility, Source={x:Static topButtons:TopMenuManager.Instance}}"/>
             <StackPanel
                     Orientation="Horizontal"
-                    Width="600"
-                    Height="{Binding Height, ElementName=AllTopButtonsPanel}" 
-                    Canvas.Left="{Binding (Canvas.Left), ElementName=AllTopButtonsPanel}"
-                    Canvas.Top="{Binding (Canvas.Top), ElementName=AllTopButtonsPanel}"
+                    Width="650"
+                    Height="80" 
+                    Canvas.Left="{Binding ElementName=LeftPanel, Path=ActualWidth, Converter={StaticResource IncreasedValueConverter}, ConverterParameter=20}"
+                    Canvas.Top="20"
                     Visibility="{Binding KinectService.KinectCameraImage, Converter={StaticResource ValueToVisibilityConverter}}">
-                <buttons:KinectButton Width="70" Height="70" Margin="5,0,5,5" Style="{StaticResource RoundButton}"
+                <buttons:KinectRepeatableButton Width="70" Height="70" Margin="5,0,5,5" Style="{StaticResource RoundButton}"
                                       DataContext="{Binding MenuButton, Source={x:Static topButtons:TopMenuManager.Instance}}">
                     <Image Source="{Binding Image, Converter={StaticResource BitmapToImageSourceConverter}}"
                            Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Width}"
@@ -156,9 +143,9 @@
                             <i:InvokeCommandAction Command="{Binding TopMenuCommand}"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
-                </buttons:KinectButton>
-                <ItemsControl ItemsSource="{Binding ChangeSizeButtons, Source={x:Static topButtons:TopMenuManager.Instance}}"
-                              Visibility="{Binding SizeButtonsVisibility, Source={x:Static topButtons:TopMenuManager.Instance}}">
+                </buttons:KinectRepeatableButton>
+                <ItemsControl ItemsSource="{Binding ChangeSizePositionButtons, Source={x:Static topButtons:TopMenuManager.Instance}}"
+                              Visibility="{Binding SizePositionButtonsVisibility, Source={x:Static topButtons:TopMenuManager.Instance}}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel Orientation="Horizontal"/>
@@ -166,7 +153,7 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <buttons:KinectSizeButton Width="70" Height="70" Margin="5,0,5,5" Style="{StaticResource RoundButton}">
+                            <buttons:KinectRepeatableButton Width="70" Height="70" Margin="5,0,5,5" Style="{StaticResource RoundButton}">
                                 <Image Source="{Binding Image, Converter={StaticResource BitmapToImageSourceConverter}}" 
                                        Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Width}"
 									   Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Height}"
@@ -177,7 +164,7 @@
                                         <i:InvokeCommandAction Command="{Binding TopMenuCommand}" />
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
-                            </buttons:KinectSizeButton>
+                            </buttons:KinectRepeatableButton>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

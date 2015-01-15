@@ -152,6 +152,16 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
             tmp.Last().Value.WidthScale += ratio;
             ChosenClothesModels = new Dictionary<ClothingItemBase.ClothingType, ClothingItemBase>(tmp);
         }
+        /// <summary>
+        /// Changes position of clothes
+        /// </summary>
+        /// <param name="ratio">Position delta</param>
+        public void ChangeImagePosition(double delta)
+        {
+            Dictionary<ClothingItemBase.ClothingType, ClothingItemBase> tmp = ChosenClothesModels;
+            tmp.Last().Value.DeltaPosition += delta;
+            ChosenClothesModels = new Dictionary<ClothingItemBase.ClothingType, ClothingItemBase>(tmp);
+        }
         #endregion Protected Methods
         #region Public Methods
         /// <summary>

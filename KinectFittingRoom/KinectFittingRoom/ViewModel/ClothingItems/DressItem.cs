@@ -5,7 +5,10 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
 {
     class DressItem : ClothingItemBase
     {
-        private const double RegularProportionHipWidthToHeight = 0.2;
+        /// <summary>
+        /// Margins for hips width
+        /// </summary>
+        private const double Margins = 50;
         #region .ctor
         /// <summary>
         /// Constructor of Dress object
@@ -28,10 +31,10 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// <param name="height">Kinect image heigh</param>
         public override void GetBasicWidth(Skeleton skeleton, KinectSensor sensor, double width, double height)
         {
-            var head = KinectService.GetJointPoint(skeleton.Joints[JointType.Head], sensor, width, height); ;
-            var footRight = KinectService.GetJointPoint(skeleton.Joints[JointType.FootRight], sensor, width, height);
+            var leftHip = KinectService.GetJointPoint(skeleton.Joints[JointType.HipLeft], sensor, width, height);
+            var rightHip = KinectService.GetJointPoint(skeleton.Joints[JointType.HipRight], sensor, width, height);
             var t = Model.Bounds.SizeX * ModelSizeRatio;
-            HeightScale = WidthScale = (footRight.Y - head.Y) * (RegularProportionHipWidthToHeight / t);
+            HeightScale = WidthScale = (rightHip.X - leftHip.X + Margins) / t;
         }
     }
 }

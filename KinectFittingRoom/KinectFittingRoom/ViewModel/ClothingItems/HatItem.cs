@@ -5,7 +5,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
 {
     class HatItem : ClothingItemBase
     {
-        private const double RegularProportionShoulderWidthToHead = 0.5;
+        private const double RegularProportionShoulderWidthToHead = 0.6;
         /// <summary>
         /// Initializes a new instance of the <see cref="HatItem"/> class.
         /// </summary>
@@ -13,7 +13,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         public HatItem(Model3DGroup model)
             : base(model)
         {
-            JointToTrackPosition = JointType.ShoulderCenter;
+            JointToTrackPosition = JointType.Head;
             LeftJointToTrackAngle = JointType.ShoulderLeft;
             RightJointToTrackAngle = JointType.ShoulderRight;
         }
@@ -28,7 +28,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         {
             var leftShoulder = KinectService.GetJointPoint(skeleton.Joints[JointType.ShoulderLeft], sensor, width, height); ;
             var rightShoulder = KinectService.GetJointPoint(skeleton.Joints[JointType.ShoulderRight], sensor, width, height);
-            var t = Model.Children[0].Bounds.SizeX * ModelSizeRatio;
+            var t = Model.Bounds.SizeX * ModelSizeRatio;
             HeightScale = WidthScale = (rightShoulder.X - leftShoulder.X) * (RegularProportionShoulderWidthToHead / t);
         }
     }

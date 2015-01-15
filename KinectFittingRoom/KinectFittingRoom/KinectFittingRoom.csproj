@@ -122,6 +122,8 @@
     <Compile Include="ViewModel\ButtonItems\HatButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\ModelBase.cs" />
     <Compile Include="ViewModel\ButtonItems\SkirtButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\TieButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ChangePositionButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ChangeSizeButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ChangeTypeButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ClearItemsButtonViewModel.cs" />
@@ -133,6 +135,8 @@
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\MakeThinnerButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\MakeWiderButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\MenuButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\MoveDownButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\MoveUpButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ScaleMinusButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ScalePlusButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ScreenshotButtonViewModel.cs" />
@@ -145,6 +149,7 @@
     <Compile Include="ViewModel\ClothingItems\GlassesItem.cs" />
     <Compile Include="ViewModel\ClothingItems\HatItem.cs" />
     <Compile Include="ViewModel\ClothingItems\SkirtItem.cs" />
+    <Compile Include="ViewModel\ClothingItems\TieItem.cs" />
     <Compile Include="View\Buttons\Events\HandCursorEventArgs.cs" />
     <Compile Include="View\Buttons\Events\ButtonsManager.cs" />
     <Compile Include="View\Buttons\Events\KinectEvents.cs" />
@@ -159,7 +164,7 @@
     <Compile Include="ViewModel\KinectViewModelLoader.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\Buttons\KinectScreenshotButton.cs" />
-    <Compile Include="View\Buttons\KinectSizeButton.cs" />
+    <Compile Include="View\Buttons\KinectRepeatableButton.cs" />
     <Compile Include="View\Helpers\HandProperties.cs" />
     <Compile Include="View\Canvases\ScrollableCanvas.cs" />
     <Compile Include="View\Helpers\DataTemplate3D.cs" />
@@ -339,6 +344,48 @@
     <None Include="Resources\Models\Skirts\short_skirt_red.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Resources\Models\Ties\tie_beige.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Ties\tie_beige.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Ties\tie_blue.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Ties\tie_blue.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Ties\tie_colourful.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Ties\tie_colourful.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Ties\tie_dark.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Ties\tie_dark.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Ties\tie_gray.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Ties\tie_gray.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Ties\tie_green.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Ties\tie_green.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Ties\tie_stripes.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Ties\tie_stripes.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Models\Hats\cowboy_hat.mtl">
@@ -481,16 +528,10 @@
     <None Include="Resources\Icons\Menu\vertical_arrows_smaller.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Images\Bags\briefcase.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Images\Skirts\short_skirt.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Images\Skirts\long_skirt.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Icons\Categories\briefcase_symbol.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\Skirts\breezy_skirt_red.png" />
@@ -605,6 +646,50 @@
     <None Include="Resources\Materials\dress_violet.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\Menu\move_down.png" />
+    <Resource Include="Resources\Icons\Menu\move_up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\Menu\arrows_up_down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\Categories\tie_symbol.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Materials\tie_blue.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Materials\tie_colourful.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Materials\tie_gray.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Materials\tie_green.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Materials\tie_stripes.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Materials\tie_beige.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Ties\tie_beige.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Ties\tie_blue.png" />
+    <Resource Include="Resources\Images\Ties\tie_gray.png" />
+    <Resource Include="Resources\Images\Ties\tie_green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Ties\tie_color.png" />
+    <Resource Include="Resources\Images\Ties\tie_stripes.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

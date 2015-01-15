@@ -20,13 +20,13 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
         /// </summary>
         public override void ClickEventExecuted()
         {
-            if (TopMenuManager.Instance.ActualTopMenuButtons != null)
+            if (TopMenuManager.Instance.ActualTopMenuButtons == TopMenuManager.Instance.AllButtons)
                 base.ClearMenu();
             else
             {
                 TopMenuManager.Instance.ActualTopMenuButtons = TopMenuManager.Instance.AllButtons;
                 TopMenuManager.Instance.CameraButtonVisibility = Visibility.Visible;
-                TopMenuManager.Instance.SizeButtonsVisibility = Visibility.Collapsed;
+                TopMenuManager.Instance.SizePositionButtonsVisibility = Visibility.Collapsed;
             }
 
         }
