@@ -1,0 +1,4 @@
+~ zmienic sposób odtwarzania dŸwiêku przy robieniu zdjêcia
+~ zmienic sposób sprawdzania, czy wyzerowaæ ostatni¹ pozycjê animacji
+~ czy zmieniæ ustalanie szerokoœci kamery
+~ wykonaæ TODO z warningów
