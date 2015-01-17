@@ -21,8 +21,9 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
         /// <summary>
         /// Moves last added item down
         /// </summary>
-        public override void ClickEventExecuted()
+        public override void ClickExecuted(object parameter)
         {
+            PlaySound();
             if (ClothingManager.Instance.ChosenClothesModels.Count != 0)
                 ClothingManager.Instance.ChangeImagePosition(MoveFactor);
         }

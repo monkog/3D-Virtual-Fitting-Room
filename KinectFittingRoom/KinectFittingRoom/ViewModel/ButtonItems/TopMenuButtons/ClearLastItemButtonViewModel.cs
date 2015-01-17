@@ -20,8 +20,9 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
         /// <summary>
         /// Clears last chosen item
         /// </summary>
-        public override void ClickEventExecuted()
+        public override void ClickExecuted(object parameter)
         {
+            PlaySound();
             if (ClothingManager.Instance.ChosenClothesModels.Count == 0)
                 return;
 

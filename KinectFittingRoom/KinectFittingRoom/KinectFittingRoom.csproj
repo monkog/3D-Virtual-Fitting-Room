@@ -227,6 +227,18 @@
     <None Include="Resources\Models\Dresses\dress_dark.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Resources\Models\Dresses\dress_green.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Dresses\dress_green.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Dresses\dress_navy.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Dresses\dress_navy.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\Models\Dresses\dress_orange.mtl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -690,6 +702,26 @@
   <ItemGroup>
     <Resource Include="Resources\Images\Ties\tie_color.png" />
     <Resource Include="Resources\Images\Ties\tie_stripes.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Materials\dress_green.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Materials\dress_navy.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Dresses\dress_green.png" />
+    <Resource Include="Resources\Images\Dresses\dress_navy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Materials\tie_dark.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Ties\tie_dark.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

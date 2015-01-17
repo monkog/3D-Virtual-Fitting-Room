@@ -313,4 +313,13 @@
   <data name="tie_stripes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\images\ties\tie_stripes.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="dress_green" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\dresses\dress_green.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dress_navy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\dresses\dress_navy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tie_dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\ties\tie_dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

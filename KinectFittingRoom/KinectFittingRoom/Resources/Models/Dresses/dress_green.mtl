@@ -2,11 +2,11 @@
 # Material Count: 1
 
 newmtl Material.001
-Ns 96.078431
-Ka 0.500000 0.500000 0.500000
-Kd 0.640000 0.640000 0.640000
+Ns 90.196078
+Ka 0.800000 0.800000 0.800000
+Kd 0.409600 0.409600 0.409600
 Ks 0.500000 0.500000 0.500000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd ..\..\Materials\short_skirt_denim.jpg
+map_Kd ..\..\Materials\dress_green.jpg

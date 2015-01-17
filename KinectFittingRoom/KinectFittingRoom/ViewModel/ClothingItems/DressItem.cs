@@ -6,9 +6,9 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
     class DressItem : ClothingItemBase
     {
         /// <summary>
-        /// Margins for hips width
+        /// Hips width with margins
         /// </summary>
-        private const double Margins = 50;
+        private const double Margins = 1.8;
         #region .ctor
         /// <summary>
         /// Constructor of Dress object
@@ -34,7 +34,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
             var leftHip = KinectService.GetJointPoint(skeleton.Joints[JointType.HipLeft], sensor, width, height);
             var rightHip = KinectService.GetJointPoint(skeleton.Joints[JointType.HipRight], sensor, width, height);
             var t = Model.Bounds.SizeX * ModelSizeRatio;
-            HeightScale = WidthScale = (rightHip.X - leftHip.X + Margins) / t;
+            HeightScale = WidthScale = (rightHip.X - leftHip.X) * Margins / t;
         }
     }
 }

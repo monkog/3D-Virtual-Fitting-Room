@@ -9,4 +9,4 @@ Ks 0.200000 0.200000 0.200000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd
+map_Kd ..\..\Materials\big_skirt_waves.jpg

@@ -18,8 +18,9 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
         /// <summary>
         /// Shows buttons to change size of item
         /// </summary>
-        public override void ClickEventExecuted()
+        public override void ClickExecuted(object parameter)
         {
+            PlaySound();
             ClearMenu();
             TopMenuManager.Instance.ChangeSizePositionButtons = TopMenuManager.Instance.ChangeSizeButtons;
             TopMenuManager.Instance.SizePositionButtonsVisibility = Visibility.Visible;

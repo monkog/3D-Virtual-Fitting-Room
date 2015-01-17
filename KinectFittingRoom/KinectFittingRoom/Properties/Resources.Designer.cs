@@ -201,6 +201,26 @@ namespace KinectFittingRoom.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap dress_green {
+            get {
+                object obj = ResourceManager.GetObject("dress_green", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap dress_navy {
+            get {
+                object obj = ResourceManager.GetObject("dress_navy", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap dress_orange {
             get {
                 object obj = ResourceManager.GetObject("dress_orange", resourceCulture);
@@ -644,6 +664,16 @@ namespace KinectFittingRoom.Properties {
         internal static System.Drawing.Bitmap tie_color {
             get {
                 object obj = ResourceManager.GetObject("tie_color", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tie_dark {
+            get {
+                object obj = ResourceManager.GetObject("tie_dark", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

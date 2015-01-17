@@ -1,11 +1,13 @@
-﻿using System.Drawing;
+﻿using Microsoft.Practices.Prism.Commands;
+using System.Drawing;
+using System.Windows.Input;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems
 {
     /// <summary>
     /// Base class for button view models
     /// </summary>
-    public class ButtonViewModelBase : ViewModelBase
+    public abstract class ButtonViewModelBase : ViewModelBase
     {
         #region Private Fields
         /// <summary>
@@ -32,5 +34,33 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
             }
         }
         #endregion Public Properties
+        #region Commands
+        /// <summary>
+        /// The command, executed after clicking on button
+        /// </summary>
+        private ICommand _clickCommand;
+        /// <summary>
+        /// Gets the command.
+        /// </summary>
+        /// <value>
+        /// The command.
+        /// </value>
+        public ICommand ClickCommand
+        {
+            get { return _clickCommand ?? (_clickCommand = new DelegateCommand<object>(ClickExecuted)); }
+        }
+        /// <summary>
+        /// Executes when button was hit.
+        /// </summary>
+        /// <param name="parameter">The parameter.</param>
+        public abstract void ClickExecuted(object parameter);
+        #endregion Commands
+
+        public void PlaySound()
+        {
+            if (KinectViewModel.SoundsOn)
+                KinectViewModel.ButtonPlayer.Play();
+        }
+
     }
 }

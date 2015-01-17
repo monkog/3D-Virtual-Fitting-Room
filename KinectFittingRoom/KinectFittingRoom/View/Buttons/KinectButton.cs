@@ -1,5 +1,4 @@
 using KinectFittingRoom.View.Buttons.Events;
-using KinectFittingRoom.ViewModel;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -216,10 +215,6 @@ namespace KinectFittingRoom.View.Buttons
         protected virtual void KinectButton_HandCursorClick(object sender, HandCursorEventArgs args)
         {
             SetValue(IsClickedProperty, true);
-
-            if (KinectViewModel.SoundsOn)
-                KinectViewModel.ButtonPlayer.Play();
-
             AfterClickTimer.Start();
         }
         /// <summary>

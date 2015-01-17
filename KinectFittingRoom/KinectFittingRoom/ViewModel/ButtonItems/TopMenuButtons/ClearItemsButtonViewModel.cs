@@ -17,9 +17,10 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
         /// <summary>
         /// Shows buttons to clear items
         /// </summary>
-        public override void ClickEventExecuted()
+        public override void ClickExecuted(object parameter)
         {
-            base.ClearMenu();
+            PlaySound();
+            ClearMenu();
             TopMenuManager.Instance.ActualTopMenuButtons = TopMenuManager.Instance.ClearButtons;
         }
         #endregion

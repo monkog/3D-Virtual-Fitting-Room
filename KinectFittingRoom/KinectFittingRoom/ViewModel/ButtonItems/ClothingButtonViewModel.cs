@@ -2,8 +2,6 @@ using System;
 using System.Collections.Generic;
 using HelixToolkit.Wpf;
 using KinectFittingRoom.ViewModel.ClothingItems;
-using Microsoft.Practices.Prism.Commands;
-using System.Windows.Input;
 using System.IO;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems
@@ -53,27 +51,6 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// </value>
         public string ModelPath { get; set; }
         #endregion Public Properties
-        #region Commands
-        /// <summary>
-        /// The category command, executed after clicking on Category button
-        /// </summary>
-        private ICommand _clothCommand;
-        /// <summary>
-        /// Gets the category command.
-        /// </summary>
-        /// <value>
-        /// The category command.
-        /// </value>
-        public ICommand ClothCommand
-        {
-            get { return _clothCommand ?? (_clothCommand = new DelegateCommand<object>(CategoryExecuted)); }
-        }
-        /// <summary>
-        /// Executes when the Category button was hit.
-        /// </summary>
-        /// <param name="parameter">The parameter.</param>
-        public abstract void CategoryExecuted(object parameter);
-        #endregion Commands
         #region .ctor
         /// <summary>
         /// Initializes a new instance of the <see cref="ClothingButtonViewModel"/> class.
@@ -97,30 +74,8 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         protected void AddClothingItem<T>()
         {
             Dictionary<ClothingItemBase.ClothingType, ClothingItemBase> tmpModels = ClothingManager.Instance.ChosenClothesModels;
-            GenerateTexturePath(ModelPath);
-
             tmpModels[Category] = (ClothingItemBase)Activator.CreateInstance(typeof(T), Importer.Load(ModelPath));
             ClothingManager.Instance.ChosenClothesModels = new Dictionary<ClothingItemBase.ClothingType, ClothingItemBase>(tmpModels);
-        }
-        /// <summary>
-        /// Generates in mtl file actual path to texture
-        /// </summary>
-        /// <param name="modelPath">Path to model</param>
-        private void GenerateTexturePath(string modelPath)
-        {
-            int i = 0;
-            var lines = File.ReadAllLines(Path.GetFullPath(modelPath.Replace("obj", "mtl")));
-            foreach (var l in lines)
-            {
-                if (l.StartsWith("map_Kd"))
-                    break;
-                i++;
-            }
-            if (i == lines.Length)
-                return;
-
-            lines[i] = "map_Kd " + Path.GetFullPath(@".\Resources\Materials\"+Path.GetFileNameWithoutExtension(modelPath)+".jpg");
-            File.WriteAllLines(Path.GetFullPath(modelPath.Replace("obj", "mtl")), lines);
         }
         #endregion Protected Methods
     }

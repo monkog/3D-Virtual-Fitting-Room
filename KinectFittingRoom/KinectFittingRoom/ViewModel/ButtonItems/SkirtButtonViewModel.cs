@@ -20,8 +20,9 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// Executes when the Category button was hit.
         /// </summary>
         /// <param name="parameter">The parameter.</param>
-        public override void CategoryExecuted(object parameter)
+        public override void ClickExecuted(object parameter)
         {
+            PlaySound();
             Dictionary<ClothingItemBase.ClothingType, ClothingItemBase> tmp = ClothingManager.Instance.ChosenClothesModels;
             if (tmp.ContainsKey(ClothingItemBase.ClothingType.DressItem))
                 tmp.Remove(ClothingItemBase.ClothingType.DressItem);

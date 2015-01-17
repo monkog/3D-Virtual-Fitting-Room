@@ -46,24 +46,11 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         #endregion Public Properties
         #region Commands
         /// <summary>
-        /// The category command, executed after clicking on Category button
-        /// </summary>
-        private ICommand _categoryCommand;
-        /// <summary>
-        /// Gets the category command.
-        /// </summary>
-        /// <value>
-        /// The category command.
-        /// </value>
-        public ICommand CategoryCommand
-        {
-            get { return _categoryCommand ?? (_categoryCommand = new DelegateCommand(CategoryExecuted)); }
-        }
-        /// <summary>
         /// Executes when the Category button was hit.
         /// </summary>
-        public void CategoryExecuted()
+        public override void ClickExecuted(object parameter)
         {
+            PlaySound();
             if (ClothingManager.Instance.Clothing != null && ClothingManager.Instance.Clothing.Count != 0 && ClothingManager.Instance.Clothing[0].Category == Clothes[0].Category)
                 return;
             ClothingManager.Instance.LastChosenCategory = this;

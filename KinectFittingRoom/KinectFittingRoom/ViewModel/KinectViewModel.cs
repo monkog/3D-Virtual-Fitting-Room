@@ -105,10 +105,10 @@ namespace KinectFittingRoom.ViewModel
             ClothingManager.Instance.ClothingCategories = new ObservableCollection<ClothingCategoryButtonViewModel>
             {
                 CreateHatsClothingCategoryButton(),
+                CreateTiesClothingCategoryButton(),
                 CreateSkirtsClothingCategoryButton(),
                 CreateDressesClothingCategoryButton(),
-                CreateGlassesClothingCategoryButton(),
-                CreateTiesClothingCategoryButton()
+                CreateGlassesClothingCategoryButton()
             };
             ClothingManager.Instance.UpdateActualCategories();
         }
@@ -189,10 +189,14 @@ namespace KinectFittingRoom.ViewModel
                 {
                     new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\dress_dark.obj") 
                     { Image = Properties.Resources.dress_dark }
+                    , new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\dress_green.obj") 
+                    { Image = Properties.Resources.dress_green }
                     , new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\dress_orange_black.obj") 
                     { Image = Properties.Resources.dress_brownblack }
                     , new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\dress_red.obj") 
                     { Image = Properties.Resources.dress_red }
+                    , new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\dress_navy.obj") 
+                    { Image = Properties.Resources.dress_navy }
                     , new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\dress_violet.obj") 
                     { Image = Properties.Resources.dress_violet }
                     , new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\dress_pink.obj") 
@@ -251,7 +255,7 @@ namespace KinectFittingRoom.ViewModel
                         { Image = Properties.Resources.tie_beige }
                         , new TieButtonViewModel(ClothingItemBase.ClothingType.TieItem, @".\Resources\Models\Ties\tie_blue.obj")
                         { Image = Properties.Resources.tie_blue }
-                        , new TieButtonViewModel(ClothingItemBase.ClothingType.TieItem, @".\Resources\Models\Ties\tie_color.obj")
+                        , new TieButtonViewModel(ClothingItemBase.ClothingType.TieItem, @".\Resources\Models\Ties\tie_colourful.obj")
                         { Image = Properties.Resources.tie_color }
                         , new TieButtonViewModel(ClothingItemBase.ClothingType.TieItem, @".\Resources\Models\Ties\tie_green.obj")
                         { Image = Properties.Resources.tie_green }
@@ -259,6 +263,8 @@ namespace KinectFittingRoom.ViewModel
                         { Image = Properties.Resources.tie_gray }
                         , new TieButtonViewModel(ClothingItemBase.ClothingType.TieItem, @".\Resources\Models\Ties\tie_stripes.obj")
                         { Image = Properties.Resources.tie_stripes }
+                        , new TieButtonViewModel(ClothingItemBase.ClothingType.TieItem, @".\Resources\Models\Ties\tie_dark.obj")
+                        { Image = Properties.Resources.tie_dark }
                     }
             };
         }

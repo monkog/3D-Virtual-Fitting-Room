@@ -1,7 +1,5 @@
-﻿using Microsoft.Practices.Prism.Commands;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows;
-using System.Windows.Input;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
 {
@@ -19,28 +17,10 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
             Image = image;
         }
         #endregion
-        #region Commands
-        /// <summary>
-        /// The top menu command, executed after clicking on button from top menu
-        /// </summary>
-        private ICommand _topMenuCommand;
-        /// <summary>
-        /// Gets the top menu command.
-        /// </summary>
-        /// <value>
-        /// The top menu command.
-        /// </value>
-        public ICommand TopMenuCommand
-        {
-            get { return _topMenuCommand ?? (_topMenuCommand = new DelegateCommand(ClickEventExecuted)); }
-        }
-        #endregion Commands
         #region Methods
         /// <summary>
-        /// Does functionality of buttons
+        /// Clears additional buttons in top menu
         /// </summary>
-        public abstract void ClickEventExecuted();
-
         public void ClearMenu()
         {
             TopMenuManager.Instance.ActualTopMenuButtons = null;

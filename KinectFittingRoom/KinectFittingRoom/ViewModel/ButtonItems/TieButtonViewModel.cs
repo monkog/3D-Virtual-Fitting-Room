@@ -5,7 +5,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
 {
     class TieButtonViewModel : ClothingButtonViewModel
     {
-        #region .ctor        
+        #region .ctor
         /// <summary>
         /// Initializes a new instance of the <see cref="TieButtonViewModel"/> class.
         /// </summary>
@@ -20,12 +20,9 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// Executes when the Category button was hit.
         /// </summary>
         /// <param name="parameter">The parameter.</param>
-        public override void CategoryExecuted(object parameter)
+        public override void ClickExecuted(object parameter)
         {
-            Dictionary<ClothingItemBase.ClothingType, ClothingItemBase> tmp = ClothingManager.Instance.ChosenClothesModels;
-            if (tmp.ContainsKey(ClothingItemBase.ClothingType.TieItem))
-                tmp.Remove(ClothingItemBase.ClothingType.TieItem);
-            ClothingManager.Instance.ChosenClothesModels = new Dictionary<ClothingItemBase.ClothingType, ClothingItemBase>(tmp);
+            PlaySound();
             AddClothingItem<TieItem>();
         }
         #endregion Commands

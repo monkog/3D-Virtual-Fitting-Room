@@ -20,8 +20,9 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
         /// <summary>
         /// Changes type of displayed clothes
         /// </summary>
-        public override void ClickEventExecuted()
+        public override void ClickExecuted(object parameter)
         {
+            PlaySound();
             ClothingManager.Instance.ChosenType = ClothingManager.Instance.ChosenType == ClothingItemBase.MaleFemaleType.Female
                 ? ClothingItemBase.MaleFemaleType.Male : ClothingItemBase.MaleFemaleType.Female;
 

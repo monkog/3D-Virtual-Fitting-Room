@@ -72,6 +72,10 @@ namespace KinectFittingRoom.View.Canvases
         /// Bottom boundary to start scroll down
         /// </summary>
         private double _canvasMaxHeight;
+        /// <summary>
+        /// Count of last scrolled canvas children
+        /// </summary>
+        private int _lastScrolledCanvasChildren;
         #endregion
         #region Events
         /// <summary>
@@ -173,11 +177,17 @@ namespace KinectFittingRoom.View.Canvases
             _isMoved = true;
 
             StackPanel stackPanel = (Name == "LeftScrollableCanvas") ? FindChild<StackPanel>(Application.Current.MainWindow, "LeftStackPanel") : FindChild<StackPanel>(Application.Current.MainWindow, "RightStackPanel");
+            if (_lastScrolledCanvasChildren != stackPanel.Children.Count)
+            {
+                _startAnimationPoint = 0;
+                _lastScrolledCanvasChildren = stackPanel.Children.Count;
+            }
 
             if (stackPanel.Children.Count == 0)
                 return;
 
-            _firstButtonPositionY = stackPanel.Children[0].TransformToAncestor(Application.Current.MainWindow).Transform(new Point(0, 0)).Y;
+            if (_firstButtonPositionY == 0)
+                _firstButtonPositionY = stackPanel.Children[0].TransformToAncestor(Application.Current.MainWindow).Transform(new Point(0, 0)).Y;
             _lastButtonPositionY = stackPanel.Children[stackPanel.Children.Count - 1].TransformToAncestor(Application.Current.MainWindow).Transform(new Point(0, 0)).Y;
 
             if (_leftPanelPosition.X == 0 && _leftPanelPosition.Y == 0)

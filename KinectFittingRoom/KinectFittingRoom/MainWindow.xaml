@@ -76,7 +76,7 @@
                                    Margin="-5"/>
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="HandCursorClick">
-                                    <i:InvokeCommandAction Command="{Binding CategoryCommand}" />
+                                    <i:InvokeCommandAction Command="{Binding ClickCommand}" />
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                         </buttons:KinectButton>
@@ -116,7 +116,7 @@
                                    Canvas.Top="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=(Canvas.Top)}"/>
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="HandCursorClick">
-                                    <i:InvokeCommandAction Command="{Binding ClothCommand}"/>
+                                    <i:InvokeCommandAction Command="{Binding ClickCommand}"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                         </buttons:KinectButton>
@@ -140,7 +140,7 @@
                            Canvas.Top="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=(Canvas.Top)}"/>
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="HandCursorClick">
-                            <i:InvokeCommandAction Command="{Binding TopMenuCommand}"/>
+                            <i:InvokeCommandAction Command="{Binding ClickCommand}"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </buttons:KinectRepeatableButton>
@@ -161,7 +161,7 @@
                                        Canvas.Top="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=(Canvas.Top)}"/>
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="HandCursorClick">
-                                        <i:InvokeCommandAction Command="{Binding TopMenuCommand}" />
+                                        <i:InvokeCommandAction Command="{Binding ClickCommand}" />
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
                             </buttons:KinectRepeatableButton>
@@ -178,7 +178,7 @@
                            Canvas.Top="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=(Canvas.Top)}"/>
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="HandCursorClick">
-                            <i:InvokeCommandAction Command="{Binding TopMenuCommand}" />
+                            <i:InvokeCommandAction Command="{Binding ClickCommand}" />
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </buttons:KinectScreenshotButton>
@@ -198,7 +198,7 @@
                                        Canvas.Top="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=(Canvas.Top)}"/>
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="HandCursorClick">
-                                        <i:InvokeCommandAction Command="{Binding TopMenuCommand}" />
+                                        <i:InvokeCommandAction Command="{Binding ClickCommand}" />
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
                             </buttons:KinectButton>
