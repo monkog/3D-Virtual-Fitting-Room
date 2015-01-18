@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:converters="clr-namespace:KinectFittingRoom.Converters"
         xmlns:buttons="clr-namespace:KinectFittingRoom.View.Buttons"
-        xmlns:canvases="clr-namespace:KinectFittingRoom.View.Canvases"
         xmlns:helpers="clr-namespace:KinectFittingRoom.View.Helpers"
         xmlns:local="clr-namespace:KinectFittingRoom.ViewModel.ClothingItems"
         xmlns:topButtons="clr-namespace:KinectFittingRoom.ViewModel.ButtonItems"
@@ -50,20 +49,20 @@
                     Opacity="0.5" 
                     Margin="20"/>
             <!--StackPanel containing all the buttons with clothing categories-->
-            <canvases:ScrollableCanvas x:Name="LeftScrollableCanvas"
-                                       ItemsSource="{Binding ActualClothingCategories, Source={x:Static local:ClothingManager.Instance}}" 
-                                       ClipToBounds="True"
-                                       Width="{Binding ActualWidth, ElementName=LeftPanel}"
-                                       Height="{Binding ActualHeight, ElementName=LeftPanel}" 
-                                       Canvas.Left="{Binding (Canvas.Left), ElementName=LeftPanel}"
-                                       Canvas.Top="{Binding (Canvas.Top), ElementName=LeftPanel}"
-                                       Margin="{Binding Margin, ElementName=LeftPanel}">
-                <canvases:ScrollableCanvas.ItemsPanel>
+            <helpers:ScrollableCanvas x:Name="LeftScrollableCanvas"
+                                      ItemsSource="{Binding ActualClothingCategories, Source={x:Static local:ClothingManager.Instance}}" 
+                                      ClipToBounds="True"
+                                      Width="{Binding ActualWidth, ElementName=LeftPanel}"
+                                      Height="{Binding ActualHeight, ElementName=LeftPanel}" 
+                                      Canvas.Left="{Binding (Canvas.Left), ElementName=LeftPanel}"
+                                      Canvas.Top="{Binding (Canvas.Top), ElementName=LeftPanel}"
+                                      Margin="{Binding Margin, ElementName=LeftPanel}">
+                <helpers:ScrollableCanvas.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel x:Name="LeftStackPanel"/>
                     </ItemsPanelTemplate>
-                </canvases:ScrollableCanvas.ItemsPanel>
-                <canvases:ScrollableCanvas.ItemTemplate>
+                </helpers:ScrollableCanvas.ItemsPanel>
+                <helpers:ScrollableCanvas.ItemTemplate>
                     <DataTemplate>
                         <buttons:KinectButton Width="{Binding ElementName=LeftPanel, Path=Width, Converter={StaticResource ReducedValueConverter}, ConverterParameter=30}" 
                                               Height="{Binding ElementName=LeftPanel, Path=Width, Converter={StaticResource ReducedValueConverter}, ConverterParameter=30}" 
@@ -81,8 +80,8 @@
                             </i:Interaction.Triggers>
                         </buttons:KinectButton>
                     </DataTemplate>
-                </canvases:ScrollableCanvas.ItemTemplate>
-            </canvases:ScrollableCanvas>
+                </helpers:ScrollableCanvas.ItemTemplate>
+            </helpers:ScrollableCanvas>
             <Canvas x:Name="RightPanel"
                     Width="160"
                     Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Canvas}}
@@ -92,19 +91,19 @@
 					Canvas.Right="0"
                     Margin="20"/>
             <!--StackPanel containing all the buttons with clothes-->
-            <canvases:ScrollableCanvas ItemsSource="{Binding Clothing, Source={x:Static local:ClothingManager.Instance}}"
-                                       ClipToBounds="True"
-                                       Width="{Binding ActualWidth, ElementName=RightPanel}"
-                                       Height="{Binding ActualHeight, ElementName=RightPanel}" 
-                                       Canvas.Right="{Binding (Canvas.Right), ElementName=RightPanel}" 
-                                       Canvas.Top="{Binding (Canvas.Top), ElementName=RightPanel}" 
-                                       Margin="{Binding Margin, ElementName=RightPanel}">
-                <canvases:ScrollableCanvas.ItemsPanel>
+            <helpers:ScrollableCanvas ItemsSource="{Binding Clothing, Source={x:Static local:ClothingManager.Instance}}"
+                                      ClipToBounds="True"
+                                      Width="{Binding ActualWidth, ElementName=RightPanel}"
+                                      Height="{Binding ActualHeight, ElementName=RightPanel}" 
+                                      Canvas.Right="{Binding (Canvas.Right), ElementName=RightPanel}" 
+                                      Canvas.Top="{Binding (Canvas.Top), ElementName=RightPanel}" 
+                                      Margin="{Binding Margin, ElementName=RightPanel}">
+                <helpers:ScrollableCanvas.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel x:Name="RightStackPanel"/>
                     </ItemsPanelTemplate>
-                </canvases:ScrollableCanvas.ItemsPanel>
-                <canvases:ScrollableCanvas.ItemTemplate>
+                </helpers:ScrollableCanvas.ItemsPanel>
+                <helpers:ScrollableCanvas.ItemTemplate>
                     <DataTemplate>
                         <buttons:KinectButton Width="{Binding ElementName=LeftPanel, Path=Width, Converter={StaticResource ReducedValueConverter}, ConverterParameter=20}" 
                                               Height="{Binding ElementName=LeftPanel, Path=Width, Converter={StaticResource ReducedValueConverter}, ConverterParameter=20}" 
@@ -121,8 +120,8 @@
                             </i:Interaction.Triggers>
                         </buttons:KinectButton>
                     </DataTemplate>
-                </canvases:ScrollableCanvas.ItemTemplate>
-            </canvases:ScrollableCanvas>
+                </helpers:ScrollableCanvas.ItemTemplate>
+            </helpers:ScrollableCanvas>
             <!--StackPanel containing all the buttons from top menu-->
             <StackPanel
                     Orientation="Horizontal"

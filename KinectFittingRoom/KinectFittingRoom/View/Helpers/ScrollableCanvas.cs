@@ -1,12 +1,12 @@
-﻿using KinectFittingRoom.View.Buttons.Events;
-using System;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
+using KinectFittingRoom.View.Buttons.Events;
 
-namespace KinectFittingRoom.View.Canvases
+namespace KinectFittingRoom.View.Helpers
 {
     /// <summary>
     /// ItemsControl class that responds to Kincect events
@@ -31,7 +31,7 @@ namespace KinectFittingRoom.View.Canvases
         /// <summary>
         /// Position of LeftPanel
         /// </summary>
-        Point _leftPanelPosition;
+        private Point _leftPanelPosition;
         /// <summary>
         /// Determines how much time elapsed since hand position over canvas checked
         /// </summary>
@@ -72,10 +72,6 @@ namespace KinectFittingRoom.View.Canvases
         /// Bottom boundary to start scroll down
         /// </summary>
         private double _canvasMaxHeight;
-        /// <summary>
-        /// Count of last scrolled canvas children
-        /// </summary>
-        private int _lastScrolledCanvasChildren;
         #endregion
         #region Events
         /// <summary>
@@ -133,6 +129,8 @@ namespace KinectFittingRoom.View.Canvases
             _enterTimer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0, 0, 1) };
             _enterTimerTicks = 0;
             _enterTimer.Tick += EnterTimer_Tick;
+
+            Items.CurrentChanged += (sender, args) => { _startAnimationPoint = 0; };
         }
         #endregion
         #region Methods
@@ -177,11 +175,6 @@ namespace KinectFittingRoom.View.Canvases
             _isMoved = true;
 
             StackPanel stackPanel = (Name == "LeftScrollableCanvas") ? FindChild<StackPanel>(Application.Current.MainWindow, "LeftStackPanel") : FindChild<StackPanel>(Application.Current.MainWindow, "RightStackPanel");
-            if (_lastScrolledCanvasChildren != stackPanel.Children.Count)
-            {
-                _startAnimationPoint = 0;
-                _lastScrolledCanvasChildren = stackPanel.Children.Count;
-            }
 
             if (stackPanel.Children.Count == 0)
                 return;

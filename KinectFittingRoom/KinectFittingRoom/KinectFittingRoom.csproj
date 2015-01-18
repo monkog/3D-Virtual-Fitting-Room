@@ -166,11 +166,11 @@
     <Compile Include="View\Buttons\KinectScreenshotButton.cs" />
     <Compile Include="View\Buttons\KinectRepeatableButton.cs" />
     <Compile Include="View\Helpers\HandProperties.cs" />
-    <Compile Include="View\Canvases\ScrollableCanvas.cs" />
+    <Compile Include="View\Helpers\ScrollableCanvas.cs" />
     <Compile Include="View\Helpers\DataTemplate3D.cs" />
+    <Compile Include="View\Helpers\HelixViewport3DEx.cs" />
     <Compile Include="View\Helpers\ItemsVisual3D.cs" />
     <Compile Include="View\Helpers\SizeObserver.cs" />
-    <Compile Include="View\Helpers\ViewportHelper.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
