@@ -1,9 +1,6 @@
-﻿using System.ComponentModel;
-using System.Diagnostics;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using KinectFittingRoom.View.Buttons.Events;
-using KinectFittingRoom.ViewModel;
 
 namespace KinectFittingRoom
 {
@@ -12,40 +9,65 @@ namespace KinectFittingRoom
     /// </summary>
     public partial class MainWindow
     {
+        #region Public Properties
+        /// <summary>
+        /// Gets or sets the position of the left hand.
+        /// </summary>
+        /// <value>
+        /// The position of the left hand.
+        /// </value>
+        public Point LeftPosition
+        {
+            get { return (Point)GetValue(LeftPositionProperty); }
+            set { SetValue(LeftPositionProperty, value); }
+        }
+        /// <summary>
+        /// Gets or sets the position of the right hand.
+        /// </summary>
+        /// <value>
+        /// The position of the right hand.
+        /// </value>
+        public Point RightPosition
+        {
+            get { return (Point)GetValue(RightPositionProperty); }
+            set { SetValue(RightPositionProperty, value); }
+        }
+        #endregion Public Properties
+        #region Dependency Properties
+        /// <summary>
+        /// The right hand position property
+        /// </summary>
+        public static readonly DependencyProperty RightPositionProperty =
+            DependencyProperty.Register("RightPosition", typeof(Point), typeof(MainWindow)
+            , new FrameworkPropertyMetadata(new Point(), Hand_PropertyChanged));
+        /// <summary>
+        /// The left hand position property
+        /// </summary>
+        public static readonly DependencyProperty LeftPositionProperty =
+            DependencyProperty.RegisterAttached("LeftPosition", typeof(Point), typeof(MainWindow)
+            , new FrameworkPropertyMetadata(new Point(), Hand_PropertyChanged));
+        #endregion Dependency Properties
         #region .ctor
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MainWindow"/> class.
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
-            SubscribeForHandPositionChanges();
             Loaded += ((sender, e) => ClothesArea.SetTransformMatrix());
         }
         #endregion .ctor
         #region Private Methods
         /// <summary>
-        /// Subscribes for hand position changes.
-        /// </summary>
-        private void SubscribeForHandPositionChanges()
-        {
-            var dataContext = DataContext as KinectViewModel;
-            Debug.Assert(dataContext != null, "DataContext != null");
-            dataContext.KinectService.Hand.PropertyChanged += KinectService_PropertyChanged;
-        }
-        /// <summary>
         /// Handles the PropertyChanged event of the Hand.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="PropertyChangedEventArgs"/> instance containing the event data.</param>
-        private void KinectService_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        /// <param name="d">The d.</param>
+        /// <param name="e">The <see cref="DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        private static void Hand_PropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            switch (e.PropertyName)
-            {
-                case "RightPosition":
-                case "LeftPosition":
-                    var dataContext = DataContext as KinectViewModel;
-                    Debug.Assert(dataContext != null, "DataContext != null");
-                    HandleHandMoved(dataContext.KinectService.Hand.LeftPosition, dataContext.KinectService.Hand.RightPosition);
-                    break;
-            }
+            MainWindow window = d as MainWindow;
+            if (window != null) 
+                window.HandleHandMoved(window.LeftPosition, window.RightPosition);
         }
         /// <summary>
         /// Handles the hand moved event.
@@ -69,8 +91,6 @@ namespace KinectFittingRoom
                 }
             }
 
-#warning TODO
-            // TODO: Change that to MVVM
             HandCursor.Visibility = Visibility.Visible;
             Canvas.SetLeft(HandCursor, hand.X - HandCursor.ActualWidth / 2.0);
             Canvas.SetTop(HandCursor, hand.Y - HandCursor.ActualHeight / 2.0);

@@ -10,6 +10,7 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:h="http://helix-toolkit.org/wpf"
+        xmlns:kinectFittingRoom="clr-namespace:KinectFittingRoom"
         mc:Ignorable="d"
         WindowState="Maximized"
 		WindowStyle="None"
@@ -29,6 +30,12 @@
             <ModelVisual3D Content="{Binding Model}"/>
         </helpers:DataTemplate3D>
     </Window.Resources>
+    <Window.Style>
+        <Style>
+            <Setter Property="kinectFittingRoom:MainWindow.LeftPosition" Value="{Binding KinectService.Hand.LeftPosition}"/>
+            <Setter Property="kinectFittingRoom:MainWindow.RightPosition" Value="{Binding KinectService.Hand.RightPosition}"/>
+        </Style>
+    </Window.Style>
     <!--Main Grid. Keeps all of the UI elements.-->
     <Grid>
         <Grid.Background>

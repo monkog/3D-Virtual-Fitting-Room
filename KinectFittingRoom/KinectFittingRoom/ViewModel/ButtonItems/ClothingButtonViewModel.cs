@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using HelixToolkit.Wpf;
 using KinectFittingRoom.ViewModel.ClothingItems;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems
