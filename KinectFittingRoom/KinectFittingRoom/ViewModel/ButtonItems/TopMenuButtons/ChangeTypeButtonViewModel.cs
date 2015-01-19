@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using KinectFittingRoom.ViewModel.ClothingItems;
 using System.Drawing;
-using System.Collections.ObjectModel;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
 {
@@ -31,9 +30,9 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
             if (ClothingManager.Instance.Clothing != null)
             {
                 ClothingManager.Instance.Clothing.Clear();
-                foreach (var c in ClothingManager.Instance.LastChosenCategory.Clothes.Where(
-                    c => c.Type == ClothingManager.Instance.ChosenType || c.Type == ClothingItemBase.MaleFemaleType.Both))
-                    ClothingManager.Instance.Clothing.Add(c);
+                foreach (var cloth in ClothingManager.Instance.LastChosenCategory.Clothes.Where(
+                    cloth => cloth.Type == ClothingManager.Instance.ChosenType || cloth.Type == ClothingItemBase.MaleFemaleType.Both))
+                    ClothingManager.Instance.Clothing.Add(cloth);
             }
 
             ClearMenu();

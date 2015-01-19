@@ -23,7 +23,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         public override void ClickExecuted(object parameter)
         {
             PlaySound();
-            AddClothingItem<HatItem>();
+            ClothingManager.Instance.AddClothingItem<HatItem>(Category, ModelPath);
         }
         #endregion Commands
     }

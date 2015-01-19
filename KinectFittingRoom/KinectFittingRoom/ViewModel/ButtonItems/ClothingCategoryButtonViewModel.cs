@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Windows.Input;
-using Microsoft.Practices.Prism.Commands;
 using System.Collections.ObjectModel;
 using KinectFittingRoom.ViewModel.ClothingItems;
 
@@ -51,13 +49,14 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         public override void ClickExecuted(object parameter)
         {
             PlaySound();
-            if (ClothingManager.Instance.Clothing != null && ClothingManager.Instance.Clothing.Count != 0 && ClothingManager.Instance.Clothing[0].Category == Clothes[0].Category)
+            if (ClothingManager.Instance.Clothing != null && ClothingManager.Instance.Clothing.Count != 0 
+                && ClothingManager.Instance.Clothing[0].Category == Clothes[0].Category)
                 return;
             ClothingManager.Instance.LastChosenCategory = this;
             ClothingManager.Instance.Clothing = new ObservableCollection<ClothingButtonViewModel>();
-            foreach (var c in Clothes)
-                if (c.Type == ClothingManager.Instance.ChosenType || c.Type == ClothingItemBase.MaleFemaleType.Both)
-                    ClothingManager.Instance.Clothing.Add(c);
+            foreach (var cloth in Clothes)
+                if (cloth.Type == ClothingManager.Instance.ChosenType || cloth.Type == ClothingItemBase.MaleFemaleType.Both)
+                    ClothingManager.Instance.Clothing.Add(cloth);
         }
         #endregion Commands
         #region .ctor

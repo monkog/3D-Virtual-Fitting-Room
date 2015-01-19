@@ -1,5 +1,4 @@
-﻿using System.Windows;
-#if DEBUG
+﻿#if DEBUG
 using Microsoft.Kinect;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

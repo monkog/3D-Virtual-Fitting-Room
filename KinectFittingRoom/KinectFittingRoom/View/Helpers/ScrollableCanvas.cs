@@ -26,6 +26,13 @@ namespace KinectFittingRoom.View.Helpers
         /// Number of seconds of animation
         /// </summary>
         private const int TimeOfAnimation = 10;
+        /// <summary>
+        /// The minimum height factor
+        /// </summary>
+        private const double MinHeightFactor = 0.2;
+
+        private const double MaxHeightFactor = 0.4;
+
         #endregion
         #region Fields
         /// <summary>
@@ -185,8 +192,8 @@ namespace KinectFittingRoom.View.Helpers
 
             if (_leftPanelPosition.X == 0 && _leftPanelPosition.Y == 0)
                 _leftPanelPosition = TransformToAncestor(Application.Current.MainWindow).Transform(new Point(0, 0));
-            _canvasMinHeight = ActualHeight * 0.2 + _leftPanelPosition.Y;
-            _canvasMaxHeight = ActualHeight * 0.4 + _leftPanelPosition.Y;
+            _canvasMinHeight = ActualHeight * MinHeightFactor + _leftPanelPosition.Y;
+            _canvasMaxHeight = ActualHeight * MaxHeightFactor + _leftPanelPosition.Y;
 
             if (_handPosition.Y > _canvasMinHeight && _handPosition.Y < _canvasMaxHeight)
                 return;

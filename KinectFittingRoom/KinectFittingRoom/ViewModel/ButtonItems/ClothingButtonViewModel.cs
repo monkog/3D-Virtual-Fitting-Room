@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using HelixToolkit.Wpf;
 using KinectFittingRoom.ViewModel.ClothingItems;
-using System.IO;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems
 {
@@ -37,13 +36,6 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
             get { return _type; }
         }
         /// <summary>
-        /// Gets or sets the model importer.
-        /// </summary>
-        /// <value>
-        /// The model importer.
-        /// </value>
-        public ModelImporter Importer { get; set; }
-        /// <summary>
         /// Gets or sets the model path.
         /// </summary>
         /// <value>
@@ -63,21 +55,8 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
             _category = category;
             _type = type;
             ModelPath = pathToModel;
-            Importer = new ModelImporter();
         }
         #endregion
-        #region Protected Methods
-        /// <summary>
-        /// Adds the clothing item.
-        /// </summary>
-        /// <typeparam name="T">Type of the item</typeparam>
-        protected void AddClothingItem<T>()
-        {
-            Dictionary<ClothingItemBase.ClothingType, ClothingItemBase> tmpModels = ClothingManager.Instance.ChosenClothesModels;
-            tmpModels[Category] = (ClothingItemBase)Activator.CreateInstance(typeof(T), Importer.Load(ModelPath));
-            ClothingManager.Instance.ChosenClothesModels = new Dictionary<ClothingItemBase.ClothingType, ClothingItemBase>(tmpModels);
-        }
-        #endregion Protected Methods
     }
 }
 

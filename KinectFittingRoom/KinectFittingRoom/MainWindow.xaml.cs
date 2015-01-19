@@ -2,8 +2,6 @@
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media.Media3D;
-using HelixToolkit.Wpf;
 using KinectFittingRoom.View.Buttons.Events;
 using KinectFittingRoom.ViewModel;
 

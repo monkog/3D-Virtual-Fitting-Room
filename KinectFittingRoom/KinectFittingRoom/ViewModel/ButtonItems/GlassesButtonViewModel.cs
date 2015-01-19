@@ -22,7 +22,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         public override void ClickExecuted(object parameter)
         {
             PlaySound();
-            AddClothingItem<GlassesItem>();
+            ClothingManager.Instance.AddClothingItem<GlassesItem>(Category, ModelPath);
         }
         #endregion Commands
     }

@@ -1,5 +1,4 @@
 ﻿using KinectFittingRoom.ViewModel.ClothingItems;
-using System.Collections.Generic;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems
 {
@@ -23,7 +22,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         public override void ClickExecuted(object parameter)
         {
             PlaySound();
-            AddClothingItem<TieItem>();
+            ClothingManager.Instance.AddClothingItem<TieItem>(Category, ModelPath);
         }
         #endregion Commands
     }

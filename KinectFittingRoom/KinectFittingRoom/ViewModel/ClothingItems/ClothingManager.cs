@@ -1,7 +1,9 @@
+using System;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Media.Media3D;
+using HelixToolkit.Wpf;
 using KinectFittingRoom.ViewModel.ButtonItems;
 using Microsoft.Kinect;
 
@@ -27,6 +29,13 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// The transformation matrix for transforming joint points to Viewport space
         /// </summary>
         private Matrix3D _transformationMatrix;
+        /// <summary>
+        /// Gets or sets the model importer.
+        /// </summary>
+        /// <value>
+        /// The model importer.
+        /// </value>
+        private ModelImporter _importer;
         #endregion Private Fields
         #region Public Properties
         /// <summary>
@@ -129,6 +138,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         {
             ChosenType = ClothingItemBase.MaleFemaleType.Female;
             ChosenClothesModels = new Dictionary<ClothingItemBase.ClothingType, ClothingItemBase>();
+            _importer = new ModelImporter();
         }
         #endregion .ctor
         #region Protected Methods
@@ -155,7 +165,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// <summary>
         /// Changes position of clothes
         /// </summary>
-        /// <param name="ratio">Position delta</param>
+        /// <param name="delta">Position delta</param>
         public void ChangeImagePosition(double delta)
         {
             Dictionary<ClothingItemBase.ClothingType, ClothingItemBase> tmp = ChosenClothesModels;
@@ -182,12 +192,24 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         public void UpdateActualCategories()
         {
             if (ActualClothingCategories == null)
-                _actualClothingCategories = new ObservableCollection<ClothingCategoryButtonViewModel>();
+                ActualClothingCategories = new ObservableCollection<ClothingCategoryButtonViewModel>();
 
             ActualClothingCategories.Clear();
             foreach (var category in ClothingCategories)
                 if (category.Type == ClothingItemBase.MaleFemaleType.Both || category.Type == ChosenType)
                     ActualClothingCategories.Add(category);
+        }
+        /// <summary>
+        /// Adds the clothing item.
+        /// </summary>
+        /// <typeparam name="T">Type of the item</typeparam>
+        /// <param name="category">The category of the item.</param>
+        /// <param name="modelPath">The model path.</param>
+        public void AddClothingItem<T>(ClothingItemBase.ClothingType category, string modelPath)
+        {
+            Dictionary<ClothingItemBase.ClothingType, ClothingItemBase> tmpModels = ChosenClothesModels;
+            tmpModels[category] = (ClothingItemBase)Activator.CreateInstance(typeof(T), _importer.Load(modelPath));
+            ChosenClothesModels = new Dictionary<ClothingItemBase.ClothingType, ClothingItemBase>(tmpModels);
         }
         #endregion Public Methods
     }

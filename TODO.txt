@@ -1,3 +1,6 @@
 ~ zmienic sposób odtwarzania dŸwiêku przy robieniu zdjêcia
 ~ czy zmieniæ ustalanie szerokoœci kamery
 ~ wykonaæ TODO z warningów
+
+
+~ refactoring ScrollableCanvas.ScrollableCanvas_HandCursorEnter -> ta metoda jest za dluga! + duplikacja kodu.
