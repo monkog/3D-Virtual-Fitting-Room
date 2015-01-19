@@ -46,7 +46,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// <summary>
         /// Executes when the Category button was hit.
         /// </summary>
-        public override void ClickExecuted(object parameter)
+        public override void ClickExecuted()
         {
             PlaySound();
             if (ClothingManager.Instance.Clothing != null && ClothingManager.Instance.Clothing.Count != 0 

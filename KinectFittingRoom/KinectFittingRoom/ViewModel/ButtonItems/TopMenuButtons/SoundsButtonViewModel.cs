@@ -17,7 +17,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
         /// <summary>
         /// Turns off/on sounds in application
         /// </summary>
-        public override void ClickExecuted(object parameter)
+        public override void ClickExecuted()
         {
             PlaySound();
             KinectViewModel.SoundsOn = !KinectViewModel.SoundsOn;

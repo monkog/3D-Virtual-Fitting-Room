@@ -19,8 +19,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// <summary>
         /// Executes when the Category button was hit.
         /// </summary>
-        /// <param name="parameter">The parameter.</param>
-        public override void ClickExecuted(object parameter)
+        public override void ClickExecuted()
         {
             PlaySound();
             ClothingManager.Instance.AddClothingItem<HatItem>(Category, ModelPath);
