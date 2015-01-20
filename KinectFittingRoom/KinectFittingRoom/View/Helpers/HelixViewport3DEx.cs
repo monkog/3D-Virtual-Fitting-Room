@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Media.Media3D;
 using HelixToolkit.Wpf;
+using Petzold.Media3D;
 
 namespace KinectFittingRoom.View.Helpers
 {
@@ -8,33 +9,48 @@ namespace KinectFittingRoom.View.Helpers
     {
         #region Dependency Properties
         /// <summary>
-        /// The transform matrix property
+        /// The ViewportTransform property
         /// </summary>
-        public static readonly DependencyProperty TransformMatrixProperty = DependencyProperty.RegisterAttached(
-            "TransformMatrix", typeof(Matrix3D), typeof(HelixViewport3DEx), new FrameworkPropertyMetadata(null));
+        public static readonly DependencyProperty ViewportTransformProperty = DependencyProperty.RegisterAttached(
+            "ViewportTransform", typeof(Matrix3D), typeof(HelixViewport3DEx), new FrameworkPropertyMetadata(null));
+        /// <summary>
+        /// The CameraTransform property
+        /// </summary>
+        public static readonly DependencyProperty CameraTransformProperty = DependencyProperty.RegisterAttached(
+            "CameraTransform", typeof(Matrix3D), typeof(HelixViewport3DEx), new FrameworkPropertyMetadata(null));
         #endregion Dependency Properties
         #region Public Properties
         /// <summary>
-        /// Gets or sets the transform matrix.
+        /// Gets or sets the camera transform.
         /// </summary>
         /// <value>
-        /// The transform matrix.
+        /// The camera transform.
         /// </value>
-        public Matrix3D TransformMatrix
+        public Matrix3D CameraTransform
         {
-            get { return (Matrix3D)GetValue(TransformMatrixProperty); }
-            set { SetValue(TransformMatrixProperty, value); }
+            get { return (Matrix3D)GetValue(CameraTransformProperty); }
+            set { SetValue(CameraTransformProperty, value); }
+        }
+        /// <summary>
+        /// Gets or sets the viewport transform.
+        /// </summary>
+        /// <value>
+        /// The viewport transform.
+        /// </value>
+        public Matrix3D ViewportTransform
+        {
+            get { return (Matrix3D)GetValue(ViewportTransformProperty); }
+            set { SetValue(ViewportTransformProperty, value); }
         }
         #endregion Public Properties
         #region Public Methods
         /// <summary>
-        /// Sets the transform matrix.
+        /// Sets the ViewportTransform matrix and CameraTransform matrix.
         /// </summary>
-        internal void SetTransformMatrix()
+        public void SetTransformMatrix()
         {
-            var matrix = Viewport.GetTotalTransform();
-            matrix.Invert();
-            SetCurrentValue(TransformMatrixProperty, matrix);
+            SetCurrentValue(ViewportTransformProperty, ViewportInfo.GetViewportTransform(Viewport));
+            SetCurrentValue(CameraTransformProperty, ViewportInfo.GetCameraTransform(Viewport));
         }
         #endregion Public Methods
     }

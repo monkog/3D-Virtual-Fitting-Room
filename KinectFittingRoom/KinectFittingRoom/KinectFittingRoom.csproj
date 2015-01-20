@@ -80,6 +80,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\CommonServiceLocator.1.2\lib\portable-windows8+net40+sl5+windowsphone8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
+    <Reference Include="Petzold.Media3D">
+      <HintPath>..\..\..\..\..\..\Pobrane\Petzold.Media3D\Petzold.Media3D.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />

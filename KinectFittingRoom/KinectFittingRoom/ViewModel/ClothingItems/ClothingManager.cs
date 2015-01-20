@@ -26,9 +26,13 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// </summary>
         private ObservableCollection<ClothingButtonViewModel> _clothing;
         /// <summary>
-        /// The transformation matrix for transforming joint points to Viewport space
+        /// The viewport transform
         /// </summary>
-        private Matrix3D _transformationMatrix;
+        private Matrix3D _viewportTransform;
+        /// <summary>
+        /// The camera transform
+        /// </summary>
+        private Matrix3D _cameraTransform;
         /// <summary>
         /// Gets or sets the model importer.
         /// </summary>
@@ -38,10 +42,6 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         private ModelImporter _importer;
         #endregion Private Fields
         #region Public Properties
-        /// <summary>
-        /// Gets or sets difference between screen width and camera image width
-        /// </summary>
-        public double EmptySpace { get; set; }
         /// <summary>
         /// Gets or sets the clothing categories collection.
         /// </summary>
@@ -113,20 +113,37 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
             get { return _instance ?? (_instance = new ClothingManager()); }
         }
         /// <summary>
-        /// Gets or sets the transformation matrix.
+        /// Gets or sets the viewport transform.
         /// </summary>
         /// <value>
-        /// The transformation matrix.
+        /// The viewport transform.
         /// </value>
-        public Matrix3D TransformationMatrix
+        public Matrix3D ViewportTransform
         {
-            get { return _transformationMatrix; }
+            get { return _viewportTransform; }
             set
             {
-                if (_transformationMatrix == value)
+                if (_viewportTransform == value)
                     return;
-                _transformationMatrix = value;
-                OnPropertyChanged("TransformationMatrix");
+                _viewportTransform = value;
+                OnPropertyChanged("ViewportTransform");
+            }
+        }
+        /// <summary>
+        /// Gets or sets the camera transform.
+        /// </summary>
+        /// <value>
+        /// The camera transform.
+        /// </value>
+        public Matrix3D CameraTransform
+        {
+            get { return _cameraTransform; }
+            set
+            {
+                if (_cameraTransform == value)
+                    return;
+                _cameraTransform = value;
+                OnPropertyChanged("CameraTransform");
             }
         }
         #endregion Public Properties

@@ -189,7 +189,6 @@ namespace KinectFittingRoom.ViewModel
                 if (_imageWidth == value)
                     return;
                 _imageWidth = value;
-                ClothingManager.Instance.EmptySpace = SystemParameters.PrimaryScreenWidth - value;
                 OnPropertyChanged("Width");
             }
         }

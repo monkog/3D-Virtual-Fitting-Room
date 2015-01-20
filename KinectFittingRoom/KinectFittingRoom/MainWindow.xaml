@@ -224,7 +224,10 @@
                                    ShowCameraInfo="{Binding DebugModeOn}"
                                    IsHitTestVisible="False"
                                    ClipToBounds="False" 
-                                   TransformMatrix="{Binding Path=TransformationMatrix, Source={x:Static local:ClothingManager.Instance}, Mode=OneWayToSource}">
+								   Width="{Binding KinectService.Width}" 
+								   Height="{Binding KinectService.Height}"
+                                   CameraTransform="{Binding Path=CameraTransform, Source={x:Static local:ClothingManager.Instance}, Mode=OneWayToSource}"
+                                   ViewportTransform="{Binding Path=ViewportTransform, Source={x:Static local:ClothingManager.Instance}, Mode=OneWayToSource}">
             <h:HelixViewport3D.Camera>
                 <OrthographicCamera Position="0, 0, 10"  LookDirection="0, 0, -10" UpDirection="0,1,0" Width="{Binding KinectService.CameraWidth}"/>
             </h:HelixViewport3D.Camera>

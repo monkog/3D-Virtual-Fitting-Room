@@ -1,17 +1,22 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Media.Media3D;
 using Microsoft.Kinect;
+using Petzold.Media3D;
 
 namespace KinectFittingRoom.ViewModel.ClothingItems
 {
     public abstract class ClothingItemBase : ViewModelBase
     {
-        protected const int ModelSizeRatio = 1000;
         #region Protected Fields
         /// <summary>
         /// The height scale
         /// </summary>
         protected double _heightScale;
+        /// <summary>
+        /// Tolerance of the width
+        /// </summary>
+        protected double Tolerance;
         #endregion Protected Fields
         #region Private Fields
         /// <summary>
@@ -132,14 +137,17 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         public JointType RightJointToTrackAngle { get; protected set; }
         #endregion Public Properties
         #region .ctor
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ClothingItemBase"/> class.
         /// </summary>
         /// <param name="model">3D model</param>
-        protected ClothingItemBase(Model3DGroup model)
+        /// <param name="tolerance">Tolerance of the model scale</param>
+        protected ClothingItemBase(Model3DGroup model, double tolerance)
         {
             Model = model;
             _deltaPosition = 0;
+            Tolerance = tolerance;
         }
         #endregion
         #region Protected Methods
@@ -193,8 +201,9 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
 
             var joint = KinectService.GetJointPoint(skeleton.Joints[JointToTrackPosition], sensor, width, height);
 
-            var position3D = ClothingManager.Instance.TransformationMatrix.Transform(
-                new Point3D(joint.X + ClothingManager.Instance.EmptySpace * 0.5, joint.Y + _deltaPosition, joint.Z));
+            LineRange range;
+            Point2DtoPoint3D(new Point(joint.X, joint.Y + _deltaPosition), out range);
+            var point3D = range.PointFromZ(0);
 
             if (_heightScale == 0)
                 GetBasicWidth(skeleton, sensor, width, height);
@@ -202,8 +211,43 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
             var transform = new Transform3DGroup();
             transform.Children.Add(ScaleTransformation);
             transform.Children.Add(new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 1, 0), Angle)));
-            transform.Children.Add(new TranslateTransform3D(position3D.X, position3D.Y, position3D.Z));
+            transform.Children.Add(new TranslateTransform3D(point3D.X, point3D.Y, point3D.Z));
             Model.Transform = transform;
+        }
+        /// <summary>
+        /// Maps the Point in 2D to point in 3D.
+        /// </summary>
+        /// <param name="point2D">The 2D point.</param>
+        /// <param name="range">The range.</param>
+        private void Point2DtoPoint3D(Point point2D, out LineRange range)
+        {
+            Point3D point = new Point3D(point2D.X, point2D.Y, 0);
+            Matrix3D matxViewport = ClothingManager.Instance.ViewportTransform;
+            Matrix3D matxCamera = ClothingManager.Instance.CameraTransform;
+
+            matxViewport.Invert();
+            matxCamera.Invert();
+
+            Point3D pointNormalized = matxViewport.Transform(point);
+            pointNormalized.Z = 0.01;
+            Point3D pointNear = matxCamera.Transform(pointNormalized);
+            pointNormalized.Z = 0.99;
+            Point3D pointFar = matxCamera.Transform(pointNormalized);
+
+            range = new LineRange(pointNear, pointFar);
+        }
+        /// <summary>
+        /// Maps the Point in 3D to point in 2D.
+        /// </summary>
+        /// <param name="point">The 3D point.</param>
+        /// <returns></returns>
+        private Point Point3DtoPoint2D(Point3D point)
+        {
+            Matrix3D matrix = ClothingManager.Instance.CameraTransform;
+            matrix.Append(ClothingManager.Instance.ViewportTransform);
+
+            Point3D pointTransformed = matrix.Transform(point);
+            return new Point(pointTransformed.X, pointTransformed.Y);
         }
         /// <summary>
         /// Fit width of model to width of body
@@ -212,7 +256,20 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// <param name="sensor">Kinect sensor</param>
         /// <param name="width">Kinect image width</param>
         /// <param name="height">Kinect image heigh</param>
-        public abstract void GetBasicWidth(Skeleton skeleton, KinectSensor sensor, double width, double height);
+        public void GetBasicWidth(Skeleton skeleton, KinectSensor sensor, double width, double height)
+        {
+            var leftJoint = KinectService.GetJointPoint(skeleton.Joints[LeftJointToTrackAngle], sensor, width, height);
+            var rightJoint = KinectService.GetJointPoint(skeleton.Joints[RightJointToTrackAngle], sensor, width, height);
+
+            var location = Model.Bounds.Location;
+            var bounds = Model.Bounds;
+            Point leftBound = Point3DtoPoint2D(location);
+            Point rightBound =
+                Point3DtoPoint2D(new Point3D(location.X + bounds.SizeX, location.Y + bounds.SizeY
+                    , location.Z + bounds.SizeZ));
+            var ratio = (Math.Abs(leftJoint.X - rightJoint.X) / Math.Abs(leftBound.X - rightBound.X));
+            WidthScale = _heightScale = ratio * Tolerance;
+        }
         #endregion Public Methods
         #region Private Methods
         /// <summary>
