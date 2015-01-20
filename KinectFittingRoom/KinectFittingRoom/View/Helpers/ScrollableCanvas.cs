@@ -9,7 +9,7 @@ using KinectFittingRoom.View.Buttons.Events;
 namespace KinectFittingRoom.View.Helpers
 {
     /// <summary>
-    /// ItemsControl class that responds to Kincect events
+    /// ItemsControl class that responds to Kinect events
     /// </summary>
     public class ScrollableCanvas : ItemsControl
     {
