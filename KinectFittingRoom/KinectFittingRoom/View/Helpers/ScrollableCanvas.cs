@@ -232,7 +232,7 @@ namespace KinectFittingRoom.View.Helpers
         /// Moves buttons in panels
         /// </summary>
         /// <param name="stackpanel">Collection of buttons in panel</param>
-        /// <param name="moveUp"></param>
+        /// <param name="moveUp">Defines if buttons are moving up</param>
         private void MoveButtons(StackPanel stackpanel, bool moveUp)
         {
             _startAnimationPoint = moveUp ? _startAnimationPoint - Distance : _startAnimationPoint + Distance;
