@@ -34,7 +34,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
             var leftHip = KinectService.GetJointPoint(skeleton.Joints[JointType.HipLeft], sensor, width, height);
             var rightHip = KinectService.GetJointPoint(skeleton.Joints[JointType.HipRight], sensor, width, height);
             var t = Model.Bounds.SizeX * ModelSizeRatio;
-            HeightScale = WidthScale = (rightHip.X - leftHip.X) * Margins / t;
+            _heightScale = WidthScale = (rightHip.X - leftHip.X) * Margins / t;
         }
     }
 }

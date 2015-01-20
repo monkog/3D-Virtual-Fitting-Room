@@ -7,19 +7,21 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
     public abstract class ClothingItemBase : ViewModelBase
     {
         protected const int ModelSizeRatio = 1000;
-        #region Private Fields
-        /// <summary>
-        /// The clothing model
-        /// </summary>
-        private Model3DGroup _model;
+        #region Protected Fields
         /// <summary>
         /// The height scale
         /// </summary>
-        private double _heightScale;
+        protected double _heightScale;
+        #endregion Protected Fields
+        #region Private Fields
         /// <summary>
         /// The width scale
         /// </summary>
         private double _widthScale;
+        /// <summary>
+        /// The clothing model
+        /// </summary>
+        private Model3DGroup _model;
         /// <summary>
         /// The delta between positions
         /// </summary>
@@ -39,7 +41,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// <value>
         /// The base transformation.
         /// </value>
-        public Transform3D BaseTransformation { get; protected set; }
+        public Transform3D ScaleTransformation { get; protected set; }
         /// <summary>
         /// Gets or sets the model.
         /// </summary>
@@ -71,7 +73,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
                 if (_heightScale == value)
                     return;
                 _heightScale = value;
-                SetBaseTransformation();
+                SetScaleTransformation();
             }
         }
         /// <summary>
@@ -88,7 +90,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
                 if (_widthScale == value)
                     return;
                 _widthScale = value;
-                SetBaseTransformation();
+                SetScaleTransformation();
             }
         }
         /// <summary>
@@ -154,10 +156,11 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
                 || joint2.TrackingState == JointTrackingState.NotTracked)
                 return double.NaN;
 
-            var rightHip = sensor.CoordinateMapper.MapSkeletonPointToDepthPoint(joint1.Position, sensor.DepthStream.Format);
-            var leftHip = sensor.CoordinateMapper.MapSkeletonPointToDepthPoint(joint2.Position, sensor.DepthStream.Format);
+            var joint1Position = sensor.CoordinateMapper.MapSkeletonPointToDepthPoint(joint1.Position, sensor.DepthStream.Format);
+            var joint2Position = sensor.CoordinateMapper.MapSkeletonPointToDepthPoint(joint2.Position, sensor.DepthStream.Format);
 
-            return -(Math.Atan(((double)rightHip.Depth - leftHip.Depth) / ((double)leftHip.X - rightHip.X)) * 180.0 / Math.PI);
+            return -(Math.Atan(((double)joint1Position.Depth - joint2Position.Depth)
+                / ((double)joint2Position.X - joint1Position.X)) * 180.0 / Math.PI);
         }
         #endregion Protected Methods
         #region Public Methods
@@ -190,13 +193,14 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
 
             var joint = KinectService.GetJointPoint(skeleton.Joints[JointToTrackPosition], sensor, width, height);
 
-            var position3D = ClothingManager.Instance.TransformationMatrix.Transform(new Point3D(joint.X + ClothingManager.Instance.EmptySpace * 0.5, joint.Y + _deltaPosition, joint.Z));
+            var position3D = ClothingManager.Instance.TransformationMatrix.Transform(
+                new Point3D(joint.X + ClothingManager.Instance.EmptySpace * 0.5, joint.Y + _deltaPosition, joint.Z));
 
             if (_heightScale == 0)
                 GetBasicWidth(skeleton, sensor, width, height);
 
             var transform = new Transform3DGroup();
-            transform.Children.Add(BaseTransformation);
+            transform.Children.Add(ScaleTransformation);
             transform.Children.Add(new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 1, 0), Angle)));
             transform.Children.Add(new TranslateTransform3D(position3D.X, position3D.Y, position3D.Z));
             Model.Transform = transform;
@@ -214,12 +218,12 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// <summary>
         /// Sets the base transformation.
         /// </summary>
-        private void SetBaseTransformation()
+        private void SetScaleTransformation()
         {
             Transform3DGroup transform = new Transform3DGroup();
             transform.Children.Add(new ScaleTransform3D(_widthScale, 1, _widthScale));
             transform.Children.Add(new ScaleTransform3D(1, _heightScale, 1));
-            BaseTransformation = transform;
+            ScaleTransformation = transform;
         }
         #endregion Private Methods
         #region Enums

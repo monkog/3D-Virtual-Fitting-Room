@@ -291,6 +291,8 @@ namespace KinectFittingRoom.ViewModel
                 }
                 catch (Exception)
                 {
+                    UninitializeKinectSensor(sensor);
+                    Kinect = null;
                     ErrorGridVisibility = Visibility.Visible;
                     ErrorGridMessage = "Kinect jest używany przez inny proces." + Environment.NewLine +
                         "Spróbuj odłączyć i ponownie podłączyć urządzenie do komputera." + Environment.NewLine +
@@ -395,9 +397,9 @@ namespace KinectFittingRoom.ViewModel
                     ErrorGridMessage = "Inicjalizacja Kinecta...";
                     break;
                 case KinectStatus.Connected:
+                    ErrorGridVisibility = Visibility.Hidden;
                     if (Kinect == null)
                         Kinect = e.Sensor;
-                    ErrorGridVisibility = Visibility.Hidden;
                     break;
                 case KinectStatus.Disconnected:
                     if (Kinect == e.Sensor)
