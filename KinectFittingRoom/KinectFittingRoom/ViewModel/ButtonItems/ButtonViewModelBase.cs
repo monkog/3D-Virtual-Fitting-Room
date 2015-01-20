@@ -54,12 +54,15 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// </summary>
         public abstract void ClickExecuted();
         #endregion Commands
-
+        #region Public Methods
+        /// <summary>
+        /// Plays the sound associated with the button when sounns are on.
+        /// </summary>
         public void PlaySound()
         {
             if (KinectViewModel.SoundsOn)
                 KinectViewModel.ButtonPlayer.Play();
         }
-
+        #endregion Public Methods
     }
 }

@@ -1,8 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows;
-using KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons;
 
-namespace KinectFittingRoom.ViewModel.ButtonItems
+namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
 {
     public sealed class TopMenuManager : ViewModelBase
     {
