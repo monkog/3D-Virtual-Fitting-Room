@@ -23,7 +23,7 @@ namespace KinectFittingRoom.View.Helpers
         /// </summary>
         private const int Distance = 10;
         /// <summary>
-        /// Number of miliseconds of animation
+        /// Number of milliseconds of animation
         /// </summary>
         private const int TimeOfAnimation = 10;
         /// <summary>
@@ -232,7 +232,6 @@ namespace KinectFittingRoom.View.Helpers
         /// Moves buttons in panels
         /// </summary>
         /// <param name="stackpanel">Collection of buttons in panel</param>
-        /// <param name="startPoint"></param>
         /// <param name="moveUp"></param>
         private void MoveButtons(StackPanel stackpanel, bool moveUp)
         {
