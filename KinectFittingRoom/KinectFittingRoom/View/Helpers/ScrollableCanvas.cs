@@ -23,16 +23,17 @@ namespace KinectFittingRoom.View.Helpers
         /// </summary>
         private const int Distance = 10;
         /// <summary>
-        /// Number of seconds of animation
+        /// Number of miliseconds of animation
         /// </summary>
         private const int TimeOfAnimation = 10;
         /// <summary>
         /// The minimum height factor
         /// </summary>
         private const double MinHeightFactor = 0.2;
-
+        /// <summary>
+        /// The maximum height factor
+        /// </summary>
         private const double MaxHeightFactor = 0.4;
-
         #endregion
         #region Fields
         /// <summary>
@@ -182,66 +183,79 @@ namespace KinectFittingRoom.View.Helpers
             _isMoved = true;
 
             StackPanel stackPanel = (Name == "LeftScrollableCanvas") ? FindChild<StackPanel>(Application.Current.MainWindow, "LeftStackPanel") : FindChild<StackPanel>(Application.Current.MainWindow, "RightStackPanel");
-
             if (stackPanel.Children.Count == 0)
                 return;
 
+            SetPositions(stackPanel);
+            if (!CheckHandPosition(stackPanel))
+                return;
+
+            if (_isHandOverCanvas)
+                _enterTimer.Start();
+        }
+        /// <summary>
+        /// Checks hand position and runs MoveButtons method
+        /// </summary>
+        /// <param name="stackPanel">Collection of buttons in panel</param>
+        /// <returns>Value if hand is over panel sensitive area</returns>
+        private bool CheckHandPosition(StackPanel stackPanel)
+        {
+            if (_handPosition.Y > _canvasMinHeight && _handPosition.Y < _canvasMaxHeight)
+                return false;
+            if (_handPosition.Y > _canvasMaxHeight)
+                while (_isMoved && _lastButtonPositionY + _startAnimationPoint > _canvasMaxHeight)
+                    MoveButtons(stackPanel, true);
+            else if (_handPosition.Y < _canvasMinHeight)
+                while (_isMoved && _firstButtonPositionY + _startAnimationPoint < _firstButtonPositionY)
+                    MoveButtons(stackPanel, false);
+            return true;
+        }
+        /// <summary>
+        /// Sets positions of first and last buttons in panel
+        /// Sets minimum and maximum height of panel sensitive area 
+        /// </summary>
+        /// <param name="stackPanel">Collection of buttons in panel</param>
+        private void SetPositions(StackPanel stackPanel)
+        {
             if (_firstButtonPositionY == 0)
                 _firstButtonPositionY = stackPanel.Children[0].TransformToAncestor(Application.Current.MainWindow).Transform(new Point(0, 0)).Y;
             _lastButtonPositionY = stackPanel.Children[stackPanel.Children.Count - 1].TransformToAncestor(Application.Current.MainWindow).Transform(new Point(0, 0)).Y;
 
             if (_leftPanelPosition.X == 0 && _leftPanelPosition.Y == 0)
+            {
                 _leftPanelPosition = TransformToAncestor(Application.Current.MainWindow).Transform(new Point(0, 0));
-            _canvasMinHeight = ActualHeight * MinHeightFactor + _leftPanelPosition.Y;
-            _canvasMaxHeight = ActualHeight * MaxHeightFactor + _leftPanelPosition.Y;
-
-            if (_handPosition.Y > _canvasMinHeight && _handPosition.Y < _canvasMaxHeight)
-                return;
-
-            if (_handPosition.Y > _canvasMaxHeight)
-            {
-                while (_isMoved && _lastButtonPositionY + _startAnimationPoint > _canvasMaxHeight)
-                {
-                    _startAnimationPoint -= Distance;
-                    MoveButtons(stackPanel, _startAnimationPoint, true);
-                    _isMoved = !_isMoved;
-                }
+                _canvasMinHeight = ActualHeight * MinHeightFactor + _leftPanelPosition.Y;
+                _canvasMaxHeight = ActualHeight * MaxHeightFactor + _leftPanelPosition.Y;
             }
-            else if (_handPosition.Y < _canvasMinHeight)
-            {
-                while (_isMoved && _firstButtonPositionY + _startAnimationPoint < _firstButtonPositionY)
-                {
-                    _startAnimationPoint += Distance;
-                    MoveButtons(stackPanel, _startAnimationPoint, false);
-                    _isMoved = !_isMoved;
-                }
-            }
-            if (_isHandOverCanvas)
-                _enterTimer.Start();
         }
         /// <summary>
         /// Moves buttons in panels
         /// </summary>
-        /// <param name="stackpanel"></param>
+        /// <param name="stackpanel">Collection of buttons in panel</param>
         /// <param name="startPoint"></param>
         /// <param name="moveUp"></param>
-        private void MoveButtons(StackPanel stackpanel, double startPoint, bool moveUp)
+        private void MoveButtons(StackPanel stackpanel, bool moveUp)
         {
+            _startAnimationPoint = moveUp ? _startAnimationPoint - Distance : _startAnimationPoint + Distance;
+
             Button button;
             TranslateTransform translation = new TranslateTransform();
             DoubleAnimation animation = new DoubleAnimation()
             {
                 Duration = TimeSpan.FromMilliseconds(TimeOfAnimation),
-                From = moveUp ? startPoint + Distance : startPoint,
-                To = moveUp ? startPoint : startPoint + Distance
+                From = moveUp ? _startAnimationPoint + Distance : _startAnimationPoint,
+                To = moveUp ? _startAnimationPoint : _startAnimationPoint + Distance
             };
+
             foreach (var control in stackpanel.Children)
             {
                 button = FindChild<Button>(control as ContentPresenter, "");
                 if (button != null)
                     button.RenderTransform = translation;
             }
+
             translation.BeginAnimation(TranslateTransform.YProperty, animation);
+            _isMoved = !_isMoved;
         }
         /// <summary>
         /// Find child control in Visual Tree Helper of parent control
