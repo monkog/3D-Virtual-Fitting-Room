@@ -17,7 +17,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
         /// <summary>
         /// Hides all top buttons
         /// </summary>
-        public override void ClickExecuted(object parameter)
+        public override void ClickExecuted()
         {
             PlaySound();
             ClearMenu();

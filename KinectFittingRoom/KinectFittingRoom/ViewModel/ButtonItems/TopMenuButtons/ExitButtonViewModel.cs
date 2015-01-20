@@ -18,7 +18,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
         /// <summary>
         /// Closes the application
         /// </summary>
-        public override void ClickExecuted(object parameter)
+        public override void ClickExecuted()
         {
             PlaySound();
             Application.Current.MainWindow.Close();

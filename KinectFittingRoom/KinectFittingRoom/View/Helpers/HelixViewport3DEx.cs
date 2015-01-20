@@ -35,7 +35,6 @@ namespace KinectFittingRoom.View.Helpers
             var matrix = Viewport.GetTotalTransform();
             matrix.Invert();
             SetCurrentValue(TransformMatrixProperty, matrix);
-            var x = this;
         }
         #endregion Public Methods
     }

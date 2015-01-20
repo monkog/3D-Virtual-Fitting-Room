@@ -165,7 +165,6 @@
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\Buttons\KinectScreenshotButton.cs" />
     <Compile Include="View\Buttons\KinectRepeatableButton.cs" />
-    <Compile Include="View\Helpers\HandProperties.cs" />
     <Compile Include="View\Helpers\ScrollableCanvas.cs" />
     <Compile Include="View\Helpers\DataTemplate3D.cs" />
     <Compile Include="View\Helpers\HelixViewport3DEx.cs" />

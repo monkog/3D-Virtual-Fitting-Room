@@ -47,20 +47,22 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// </value>
         public ICommand ClickCommand
         {
-            get { return _clickCommand ?? (_clickCommand = new DelegateCommand<object>(ClickExecuted)); }
+            get { return _clickCommand ?? (_clickCommand = new DelegateCommand(ClickExecuted)); }
         }
         /// <summary>
         /// Executes when button was hit.
         /// </summary>
-        /// <param name="parameter">The parameter.</param>
-        public abstract void ClickExecuted(object parameter);
+        public abstract void ClickExecuted();
         #endregion Commands
-
+        #region Public Methods
+        /// <summary>
+        /// Plays the sound associated with the button when sounns are on.
+        /// </summary>
         public void PlaySound()
         {
             if (KinectViewModel.SoundsOn)
                 KinectViewModel.ButtonPlayer.Play();
         }
-
+        #endregion Public Methods
     }
 }

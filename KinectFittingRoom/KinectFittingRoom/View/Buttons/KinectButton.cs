@@ -197,7 +197,7 @@ namespace KinectFittingRoom.View.Buttons
             RaiseEvent(new HandCursorEventArgs(HandCursorClickEvent, _lastHandPosition));
         }
         /// <summary>
-        /// Counts the number of timer ticks of m_afterClickTimer
+        /// Counts the number of timer ticks of _afterClickTimer
         /// </summary>
         private void AfterClickTimer_Tick(object sender, EventArgs e)
         {

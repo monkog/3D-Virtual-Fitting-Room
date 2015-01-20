@@ -5,8 +5,6 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
 {
     public abstract class TopMenuButtonViewModel : ButtonViewModelBase
     {
-        #region Public Properties
-        #endregion
         #region .ctor
         /// <summary>
         /// Initializes a new instance of the <see cref="TopMenuButtonViewModel"/> class.

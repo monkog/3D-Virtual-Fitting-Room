@@ -4,3 +4,9 @@
 
 
 ~ refactoring ScrollableCanvas.ScrollableCanvas_HandCursorEnter -> ta metoda jest za dluga! + duplikacja kodu.
+~ refactoring konstruktora TopMenuManager -> ekstrakcja metod dla tworzenia przyciskow
+
+
+~ KinectService: tam da³am bazow¹ szerokoœæ ekranu 1366 i w linijce 458 dziele przez t¹ wartoœæ (robie to dlatego ¿e ustalona jest szerokoœæ kamery = 1. ale dla ekranów o innej rozdzielczoœci szerokoœæ kamery, mimo ¿e =1, to obiekty nie s¹ juz tej samej wielkoœci
+~ ClothingItemBase: tam da³am wielkoœæ 1000 i mno¿e przez ni¹ wymiary modeli (ale o tym ju¿ wiesz)
+~ W glassItem/ dressItem/ skirtItem/ hatItem s¹ te procentowe wielkosci do ustalania pocz¹tkowych wymiarów ubrañ wg standardowych wymiarów

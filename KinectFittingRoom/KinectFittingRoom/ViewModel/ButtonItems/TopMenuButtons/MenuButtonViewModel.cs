@@ -18,11 +18,11 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
         /// <summary>
         /// Shows or hides all top buttons
         /// </summary>
-        public override void ClickExecuted(object parameter)
+        public override void ClickExecuted()
         {
             PlaySound();
             if (TopMenuManager.Instance.ActualTopMenuButtons == TopMenuManager.Instance.AllButtons)
-                base.ClearMenu();
+                ClearMenu();
             else
             {
                 TopMenuManager.Instance.ActualTopMenuButtons = TopMenuManager.Instance.AllButtons;
