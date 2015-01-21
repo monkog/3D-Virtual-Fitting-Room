@@ -8,7 +8,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// <summary>
         /// Hips width with margins
         /// </summary>
-        private const double Ratio = 1.2;
+        private const double Ratio = 1.5;
         #region .ctor
         /// <summary>
         /// Constructor of Dress object
