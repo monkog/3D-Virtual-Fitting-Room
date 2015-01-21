@@ -290,7 +290,8 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
             SkirtItem,
             GlassesItem,
             DressItem,
-            TieItem
+            TieItem,
+            BagItem
         }
 
         public enum MaleFemaleType

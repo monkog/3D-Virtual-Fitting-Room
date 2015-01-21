@@ -9,6 +9,9 @@
 //------------------------------------------------------------------------------
 
 namespace KinectFittingRoom.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -60,6 +63,46 @@ namespace KinectFittingRoom.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap armani_bag_beige {
+            get {
+                object obj = ResourceManager.GetObject("armani_bag_beige", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap armani_bag_brown {
+            get {
+                object obj = ResourceManager.GetObject("armani_bag_brown", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap armani_bag_camel {
+            get {
+                object obj = ResourceManager.GetObject("armani_bag_camel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap armani_bag_white {
+            get {
+                object obj = ResourceManager.GetObject("armani_bag_white", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap arrows_bigger {
             get {
                 object obj = ResourceManager.GetObject("arrows_bigger", resourceCulture);
@@ -83,6 +126,16 @@ namespace KinectFittingRoom.Properties {
         internal static System.Drawing.Bitmap arrows_up_down {
             get {
                 object obj = ResourceManager.GetObject("arrows_up_down", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bag_symbol {
+            get {
+                object obj = ResourceManager.GetObject("bag_symbol", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -368,9 +421,39 @@ namespace KinectFittingRoom.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap hat_black {
+            get {
+                object obj = ResourceManager.GetObject("hat_black", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hat_brown {
+            get {
+                object obj = ResourceManager.GetObject("hat_brown", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap hat_symbol {
             get {
                 object obj = ResourceManager.GetObject("hat_symbol", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hat_white {
+            get {
+                object obj = ResourceManager.GetObject("hat_white", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -431,6 +514,36 @@ namespace KinectFittingRoom.Properties {
         internal static System.Drawing.Bitmap long_skirt_violet2 {
             get {
                 object obj = ResourceManager.GetObject("long_skirt_violet2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap men_bag_brown {
+            get {
+                object obj = ResourceManager.GetObject("men_bag_brown", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap men_bag_brown2 {
+            get {
+                object obj = ResourceManager.GetObject("men_bag_brown2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap men_bag_gray {
+            get {
+                object obj = ResourceManager.GetObject("men_bag_gray", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -601,6 +714,96 @@ namespace KinectFittingRoom.Properties {
         internal static System.Drawing.Bitmap skirt_symbol {
             get {
                 object obj = ResourceManager.GetObject("skirt_symbol", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap small_bag_beige {
+            get {
+                object obj = ResourceManager.GetObject("small_bag_beige", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap small_bag_brown {
+            get {
+                object obj = ResourceManager.GetObject("small_bag_brown", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap small_bag_gray {
+            get {
+                object obj = ResourceManager.GetObject("small_bag_gray", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sport_bag_blue {
+            get {
+                object obj = ResourceManager.GetObject("sport_bag_blue", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sport_bag_green {
+            get {
+                object obj = ResourceManager.GetObject("sport_bag_green", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sport_bag_red {
+            get {
+                object obj = ResourceManager.GetObject("sport_bag_red", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap suitcase_brown {
+            get {
+                object obj = ResourceManager.GetObject("suitcase_brown", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap suitcase_brown2 {
+            get {
+                object obj = ResourceManager.GetObject("suitcase_brown2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap suitcase_gray {
+            get {
+                object obj = ResourceManager.GetObject("suitcase_gray", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

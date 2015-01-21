@@ -322,4 +322,64 @@
   <data name="tie_dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\images\ties\tie_dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="armani_bag_beige" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\bags\armani_bag_beige.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="armani_bag_brown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\bags\armani_bag_brown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="armani_bag_camel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\bags\armani_bag_camel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="armani_bag_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\bags\armani_bag_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bag_symbol" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icons\categories\bag_symbol.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="men_bag_brown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\bags\men_bag_brown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="men_bag_brown2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\bags\men_bag_brown2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="men_bag_gray" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\bags\men_bag_gray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="small_bag_beige" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\bags\small_bag_beige.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="small_bag_brown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\bags\small_bag_brown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="small_bag_gray" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\bags\small_bag_gray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sport_bag_blue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\bags\sport_bag_blue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sport_bag_green" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\bags\sport_bag_green.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sport_bag_red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\bags\sport_bag_red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hat_black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\hats\hat_black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hat_brown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\hats\hat_brown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hat_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\hats\hat_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="suitcase_brown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\bags\suitcase_brown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="suitcase_brown2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\bags\suitcase_brown2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="suitcase_gray" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\bags\suitcase_gray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

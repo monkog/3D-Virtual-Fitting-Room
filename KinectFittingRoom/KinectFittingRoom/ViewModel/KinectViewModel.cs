@@ -108,7 +108,8 @@ namespace KinectFittingRoom.ViewModel
                 CreateTiesClothingCategoryButton(),
                 CreateSkirtsClothingCategoryButton(),
                 CreateDressesClothingCategoryButton(),
-                CreateGlassesClothingCategoryButton()
+                CreateGlassesClothingCategoryButton(),
+                CreateBagsClothingCategoryButton()
             };
             ClothingManager.Instance.UpdateActualCategories();
         }
@@ -123,18 +124,24 @@ namespace KinectFittingRoom.ViewModel
                 Image = Properties.Resources.hat_symbol,
                 Clothes = new List<ClothingButtonViewModel>
                 {
-                    new HatButtonViewModel(ClothingItemBase.ClothingType.HatItem, ClothingItemBase.MaleFemaleType.Both
-                        , @".\Resources\Models\Hats\cowboy_hat.obj")  { Image = Properties.Resources.cowboy_hat }
-                        , new HatButtonViewModel(ClothingItemBase.ClothingType.HatItem, ClothingItemBase.MaleFemaleType.Both
-                        , @".\Resources\Models\Hats\cowboy_hat_straw.obj") { Image = Properties.Resources.cowboy_straw }
-                        , new HatButtonViewModel(ClothingItemBase.ClothingType.HatItem, ClothingItemBase.MaleFemaleType.Both
-                        , @".\Resources\Models\Hats\cowboy_hat_gray.obj") { Image = Properties.Resources.cowboy_dark }
-                        , new HatButtonViewModel(ClothingItemBase.ClothingType.HatItem, ClothingItemBase.MaleFemaleType.Male
-                        , @".\Resources\Models\Hats\fedora_hat.obj") { Image = Properties.Resources.fedora_hat_black }
-                        , new HatButtonViewModel(ClothingItemBase.ClothingType.HatItem, ClothingItemBase.MaleFemaleType.Male
-                        , @".\Resources\Models\Hats\fedora_brown_hat.obj") { Image = Properties.Resources.fedora_hat_brown }
-                        , new HatButtonViewModel(ClothingItemBase.ClothingType.HatItem, ClothingItemBase.MaleFemaleType.Male
-                        , @".\Resources\Models\Hats\fedora_darkgreen_hat.obj") { Image = Properties.Resources.fedora_hat_darkgreen }
+                    new HatButtonViewModel(ClothingItemBase.ClothingType.HatItem, @".\Resources\Models\Hats\cowboy_hat.obj")  
+                    { Image = Properties.Resources.cowboy_hat }
+                    , new HatButtonViewModel(ClothingItemBase.ClothingType.HatItem, @".\Resources\Models\Hats\cowboy_hat_straw.obj") 
+                    { Image = Properties.Resources.cowboy_straw }
+                    , new HatButtonViewModel(ClothingItemBase.ClothingType.HatItem , @".\Resources\Models\Hats\cowboy_hat_gray.obj")
+                    { Image = Properties.Resources.cowboy_dark }
+                    , new HatButtonViewModel(ClothingItemBase.ClothingType.HatItem , @".\Resources\Models\Hats\fedora_brown_hat.obj")
+                    { Image = Properties.Resources.fedora_hat_brown }
+                    , new HatButtonViewModel(ClothingItemBase.ClothingType.HatItem, @".\Resources\Models\Hats\fedora_darkgreen_hat.obj")
+                    { Image = Properties.Resources.fedora_hat_darkgreen }
+                    , new HatButtonViewModel(ClothingItemBase.ClothingType.HatItem, @".\Resources\Models\Hats\fedora_hat.obj")
+                    { Image = Properties.Resources.fedora_hat_black }
+                    , new HatButtonViewModel(ClothingItemBase.ClothingType.HatItem, @".\Resources\Models\Hats\hat_brown.obj")
+                    { Image = Properties.Resources.hat_brown }
+                    , new HatButtonViewModel(ClothingItemBase.ClothingType.HatItem, @".\Resources\Models\Hats\hat_black.obj")
+                    { Image = Properties.Resources.hat_black }
+                    , new HatButtonViewModel(ClothingItemBase.ClothingType.HatItem, @".\Resources\Models\Hats\hat_white.obj")
+                    { Image = Properties.Resources.hat_white }
                 }
             };
         }
@@ -265,6 +272,53 @@ namespace KinectFittingRoom.ViewModel
                         { Image = Properties.Resources.tie_stripes }
                         , new TieButtonViewModel(ClothingItemBase.ClothingType.TieItem, @".\Resources\Models\Ties\tie_dark.obj")
                         { Image = Properties.Resources.tie_dark }
+                    }
+            };
+        }
+        /// <summary>
+        /// Creates the bags clothing category button.
+        /// </summary>
+        /// <returns>Bags clothing category button</returns>
+        private ClothingCategoryButtonViewModel CreateBagsClothingCategoryButton()
+        {
+            return new ClothingCategoryButtonViewModel(ClothingItemBase.MaleFemaleType.Both)
+            {
+                Image = Properties.Resources.bag_symbol,
+                Clothes =
+                    new List<ClothingButtonViewModel>
+                    {
+                        new BagButtonViewModel(ClothingItemBase.ClothingType.BagItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\Bags\armani_bag_beige.obj")
+                        { Image = Properties.Resources.armani_bag_beige }
+                        , new BagButtonViewModel(ClothingItemBase.ClothingType.BagItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\Bags\armani_bag_brown.obj")
+                        { Image = Properties.Resources.armani_bag_brown }
+                        , new BagButtonViewModel(ClothingItemBase.ClothingType.BagItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\Bags\armani_bag_camel.obj")
+                        { Image = Properties.Resources.armani_bag_camel }
+                        , new BagButtonViewModel(ClothingItemBase.ClothingType.BagItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\Bags\armani_bag_white.obj")
+                        { Image = Properties.Resources.armani_bag_white }
+                        , new BagButtonViewModel(ClothingItemBase.ClothingType.BagItem, ClothingItemBase.MaleFemaleType.Male, @".\Resources\Models\Bags\men_bag_brown.obj")
+                        { Image = Properties.Resources.men_bag_brown }
+                        , new BagButtonViewModel(ClothingItemBase.ClothingType.BagItem, ClothingItemBase.MaleFemaleType.Male, @".\Resources\Models\Bags\men_bag_brown2.obj")
+                        { Image = Properties.Resources.men_bag_brown2 }
+                        , new BagButtonViewModel(ClothingItemBase.ClothingType.BagItem, ClothingItemBase.MaleFemaleType.Male, @".\Resources\Models\Bags\men_bag_gray.obj")
+                        { Image = Properties.Resources.men_bag_gray }
+                        , new BagButtonViewModel(ClothingItemBase.ClothingType.BagItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\Bags\small_bag_beige.obj")
+                        { Image = Properties.Resources.small_bag_beige }
+                        , new BagButtonViewModel(ClothingItemBase.ClothingType.BagItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\Bags\small_bag_brown.obj")
+                        { Image = Properties.Resources.small_bag_brown }
+                        , new BagButtonViewModel(ClothingItemBase.ClothingType.BagItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\Bags\small_bag_gray.obj")
+                        { Image = Properties.Resources.small_bag_gray }
+                        , new BagButtonViewModel(ClothingItemBase.ClothingType.BagItem, ClothingItemBase.MaleFemaleType.Male, @".\Resources\Models\Bags\sport_bag_red.obj")
+                        { Image = Properties.Resources.sport_bag_red }
+                        , new BagButtonViewModel(ClothingItemBase.ClothingType.BagItem, ClothingItemBase.MaleFemaleType.Male, @".\Resources\Models\Bags\sport_bag_blue.obj")
+                        { Image = Properties.Resources.sport_bag_blue }
+                        , new BagButtonViewModel(ClothingItemBase.ClothingType.BagItem, ClothingItemBase.MaleFemaleType.Male, @".\Resources\Models\Bags\sport_bag_green.obj")
+                        { Image = Properties.Resources.sport_bag_green }
+                        , new BagButtonViewModel(ClothingItemBase.ClothingType.BagItem, ClothingItemBase.MaleFemaleType.Male, @".\Resources\Models\Bags\suitcase_brown.obj")
+                        { Image = Properties.Resources.suitcase_brown }
+                        , new BagButtonViewModel(ClothingItemBase.ClothingType.BagItem, ClothingItemBase.MaleFemaleType.Male, @".\Resources\Models\Bags\suitcase_brown2.obj")
+                        { Image = Properties.Resources.suitcase_brown2 }
+                        , new BagButtonViewModel(ClothingItemBase.ClothingType.BagItem, ClothingItemBase.MaleFemaleType.Male, @".\Resources\Models\Bags\suitcase_gray.obj")
+                        { Image = Properties.Resources.suitcase_gray }
                     }
             };
         }
