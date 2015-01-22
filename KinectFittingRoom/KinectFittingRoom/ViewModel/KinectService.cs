@@ -435,17 +435,6 @@ namespace KinectFittingRoom.ViewModel
                 , point.Y * (height / sensor.DepthStream.FrameHeight), point.Depth);
         }
         /// <summary>
-        /// Maps the joint point to 3D space.
-        /// </summary>
-        /// <param name="joint">The joint coordiates in the screen resolution space.</param>
-        /// <param name="width">Half of the Kinect image width</param>
-        /// <param name="height">Half of the Kinect image height</param>
-        /// <returns>Mapped joint point in 3D space</returns>
-        public static Point MapJointPointTo3DSpace(Point joint, double width, double height)
-        {
-            return new Point((joint.X - width) / width, -(joint.Y - height) / height);
-        }
-        /// <summary>
         /// Calculates the distance between joints.
         /// </summary>
         /// <param name="joint1">The 1st joint.</param>
