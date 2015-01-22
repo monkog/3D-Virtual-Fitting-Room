@@ -66,7 +66,7 @@ namespace KinectFittingRoom
         private static void Hand_PropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             MainWindow window = d as MainWindow;
-            if (window != null) 
+            if (window != null)
                 window.HandleHandMoved(window.LeftPosition, window.RightPosition);
         }
         /// <summary>
@@ -78,11 +78,12 @@ namespace KinectFittingRoom
         {
             HandCursor.Visibility = Visibility.Collapsed;
 
-            var element = ButtonPanelsCanvas.InputHitTest(leftHand);
+            var element = (CloseAppGrid.Visibility == Visibility.Visible) ? CloseAppGrid.InputHitTest(leftHand) : ButtonPanelsCanvas.InputHitTest(leftHand);
             var hand = leftHand;
+
             if (!(element is UIElement))
             {
-                element = ButtonPanelsCanvas.InputHitTest(rightHand);
+                element = (CloseAppGrid.Visibility == Visibility.Visible) ? CloseAppGrid.InputHitTest(rightHand) : ButtonPanelsCanvas.InputHitTest(rightHand);
                 hand = rightHand;
                 if (!(element is UIElement))
                 {

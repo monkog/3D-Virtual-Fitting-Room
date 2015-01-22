@@ -1,9 +1,9 @@
 ﻿using System.Drawing;
 using System.Windows;
 
-namespace KinectFittingRoom.ViewModel.ButtonItems
+namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
 {
-    public class YesCloseButtonViewModel : ButtonViewModelBase
+    public class YesCloseButtonViewModel : TopMenuButtonViewModel
     {
         #region .ctor
         /// <summary>
@@ -11,9 +11,8 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// </summary>
         /// <param name="image">Image of button</param>
         public YesCloseButtonViewModel(Bitmap image)
-        {
-            Image = image;
-        }
+            : base(image)
+        { }
         #endregion
         #region Methods
         /// <summary>

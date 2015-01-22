@@ -1,7 +1,7 @@
 # Blender v2.72 (sub 0) OBJ File: ''
 # www.blender.org
 mtllib dress_orange_black.mtl
-o Dress_Form
+o Dress_Form.003
 v 0.130639 -0.185995 0.009625
 v 0.130008 -0.216670 0.005992
 v 0.131822 -0.216670 -0.004929
@@ -4226,8 +4226,8 @@ vt 0.764534 0.420043
 vt 0.853405 0.430969
 vt 0.847514 0.396807
 vt 0.855992 0.465365
-usemtl Material.001
-s off
+usemtl Material.011
+s 1
 f 1/1 2/2 3/3 4/4
 f 5/5 6/6 3/3 2/2
 f 7/7 8/8 3/3 6/6

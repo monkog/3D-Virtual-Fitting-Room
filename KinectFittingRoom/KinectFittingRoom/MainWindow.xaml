@@ -239,48 +239,47 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </StackPanel>
-            <!--Grid used for closing application-->
-            <Grid Name="CloseAppGrid" Width="{Binding ActualWidth, ElementName=ImageArea}"
-              Visibility="{Binding CloseAppGridVisibility, Source={x:Static topMenuButtons:TopMenuManager.Instance}}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="600"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <buttons:KinectButton Grid.Column="0"
-                                      Width="{Binding ActualWidth, ElementName=LeftPanel}"
-                                      Height="{Binding ActualHeight, ElementName=LeftPanel}"
-                                      Canvas.Left="{Binding (Canvas.Left), ElementName=LeftPanel}"
-                                      Canvas.Top="5"
-                                      Style="{StaticResource GlassButton}"
-                                      Margin="10,20,20,20"
-                                      DataContext="{Binding YesCloseButton, Source={x:Static topMenuButtons:TopMenuManager.Instance}}">
-                    <TextBlock Text="TAK" FontSize="70"/>
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="HandCursorClick">
-                            <i:InvokeCommandAction Command="{Binding ClickCommand}"/>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </buttons:KinectButton>
-                <TextBlock Grid.Column="1" FontSize="30" Margin="60,20,0,20" TextAlignment="Center" Opacity="1" VerticalAlignment="Top" 
-                       Foreground="White" Text="Czy na pewno chcesz wyjść z programu?"/>
-                <buttons:KinectButton Grid.Column="2"
-                                      Width="{Binding ActualWidth, ElementName=LeftPanel}"
-                                      Height="{Binding ActualHeight, ElementName=LeftPanel}"
-                                      Canvas.Left="{Binding (Canvas.Left), ElementName=LeftPanel}"
-                                      Canvas.Top="5"
-                                      Style="{StaticResource GlassButton}"
-                                      Margin="20,20,10,20"
-                                      DataContext="{Binding NoCloseButton, Source={x:Static topMenuButtons:TopMenuManager.Instance}}">
-                    <TextBlock Text="NIE" FontSize="70"/>
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="HandCursorClick">
-                            <i:InvokeCommandAction Command="{Binding ClickCommand}"/>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </buttons:KinectButton>
-            </Grid>
         </Canvas>
+
+        <!--Grids used for closing application-->
+        <Grid Width="{Binding ActualWidth, ElementName=ImageArea}" Background="Black" Opacity="0.7"
+              Visibility="{Binding CloseAppGridVisibility, Source={x:Static topMenuButtons:TopMenuManager.Instance}}">
+            <TextBlock Text="Czy na pewno chcesz wyjść z programu?"
+                       FontSize="30" TextAlignment="Center" VerticalAlignment="Top" Foreground="White" Margin="40"/>
+        </Grid>
+        <Grid Name="CloseAppGrid" Width="{Binding ActualWidth, ElementName=ImageArea}"
+              Visibility="{Binding CloseAppGridVisibility, Source={x:Static topMenuButtons:TopMenuManager.Instance}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <buttons:KinectButton Grid.Column="0" Width="70" Height="70" Margin="5,0,5,5" Style="{StaticResource RoundButton}"
+                                  DataContext="{Binding YesCloseButton, Source={x:Static topMenuButtons:TopMenuManager.Instance}}">
+                <Image Source="{Binding Image, Converter={StaticResource BitmapToImageSourceConverter}}"
+                       Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Width}"
+                       Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Height}"
+                       Canvas.Left="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=(Canvas.Left)}"
+                       Canvas.Top="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=(Canvas.Top)}"/>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="HandCursorClick">
+                        <i:InvokeCommandAction Command="{Binding ClickCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </buttons:KinectButton>
+            <buttons:KinectButton Grid.Column="1" Width="70" Height="70" Margin="5,0,5,5" Style="{StaticResource RoundButton}"
+                                  DataContext="{Binding NoCloseButton, Source={x:Static topMenuButtons:TopMenuManager.Instance}}">
+                <Image Source="{Binding Image, Converter={StaticResource BitmapToImageSourceConverter}}"
+                       Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Width}"
+                       Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=Height}"
+                       Canvas.Left="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=(Canvas.Left)}"
+                       Canvas.Top="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type buttons:KinectButton}}, Path=(Canvas.Top)}"/>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="HandCursorClick">
+                        <i:InvokeCommandAction Command="{Binding ClickCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </buttons:KinectButton>
+        </Grid>
         <!--Hand Cursor canvas-->
         <Canvas Width="{Binding KinectService.Width}" Height="{Binding KinectService.Height}">
             <Canvas Name="HandCursor" Width="70" Height="70" Visibility="Collapsed">

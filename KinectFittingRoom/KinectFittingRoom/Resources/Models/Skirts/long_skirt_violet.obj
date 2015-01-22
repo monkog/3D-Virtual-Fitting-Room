@@ -1,7 +1,7 @@
 # Blender v2.72 (sub 0) OBJ File: ''
 # www.blender.org
 mtllib long_skirt_violet.mtl
-o g1_avatar_skirt.001
+o g1_avatar_skirt.003
 v -0.162668 -0.635616 -0.015163
 v -0.144619 -0.635616 0.008783
 v -0.154408 -0.533943 -0.015184
@@ -312,8 +312,8 @@ vt 0.241000 0.308000
 vt 0.244000 0.452000
 vt 0.270000 0.452000
 vt 0.493000 0.018000
-usemtl Material.001
-s off
+usemtl Material.008
+s 1
 f 1/1 2/2 3/3
 f 4/4 5/5 6/6
 f 5/5 7/7 6/6

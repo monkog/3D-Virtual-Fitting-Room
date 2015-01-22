@@ -206,7 +206,6 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
             InitializeTopMenuButtons();
             
             CreateCloseButtons();
-            CloseAppGridVisibility = Visibility.Collapsed;
         }
         #endregion
         #region Private Methods
@@ -281,8 +280,9 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
         /// </summary>
         private void CreateCloseButtons()
         {
-            NoCloseButton = new NoCloseButtonViewModel(null);
-            YesCloseButton = new YesCloseButtonViewModel(null);
+            NoCloseButton = new NoCloseButtonViewModel(Properties.Resources.no);
+            YesCloseButton = new YesCloseButtonViewModel(Properties.Resources.yes);
+            CloseAppGridVisibility = Visibility.Collapsed;
         }
         #endregion Private Methods
         /// <summary>

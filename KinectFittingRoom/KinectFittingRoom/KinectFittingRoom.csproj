@@ -125,7 +125,7 @@
     <Compile Include="ViewModel\ButtonItems\GlassesButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\HatButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\ModelBase.cs" />
-    <Compile Include="ViewModel\ButtonItems\NoCloseButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\NoCloseButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\SkirtButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TieButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ChangePositionButtonViewModel.cs" />
@@ -148,7 +148,7 @@
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\SoundsButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\TopMenuButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\TopMenuManager.cs" />
-    <Compile Include="ViewModel\ButtonItems\YesCloseButtonViewModel.cs" />
+    <Compile Include="ViewModel\ButtonItems\TopMenuButtons\YesCloseButtonViewModel.cs" />
     <Compile Include="ViewModel\ClothingItems\BagItem.cs" />
     <Compile Include="ViewModel\ClothingItems\ClothingItemBase.cs" />
     <Compile Include="ViewModel\ClothingItems\ClothingManager.cs" />
@@ -870,6 +870,10 @@
     <Resource Include="Resources\Images\Bags\suitcase_brown.png" />
     <Resource Include="Resources\Images\Bags\suitcase_brown2.png" />
     <Resource Include="Resources\Images\Bags\suitcase_gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\Menu\no.png" />
+    <Resource Include="Resources\Icons\Menu\yes.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

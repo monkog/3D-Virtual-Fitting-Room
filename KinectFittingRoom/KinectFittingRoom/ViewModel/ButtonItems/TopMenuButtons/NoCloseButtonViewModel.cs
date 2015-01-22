@@ -1,5 +1,4 @@
-﻿using KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -7,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace KinectFittingRoom.ViewModel.ButtonItems
+namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
 {
-    public class NoCloseButtonViewModel : ButtonViewModelBase
+    public class NoCloseButtonViewModel : TopMenuButtonViewModel
     {
         #region .ctor
         /// <summary>
@@ -17,9 +16,8 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// </summary>
         /// <param name="image">Image of button</param>
         public NoCloseButtonViewModel(Bitmap image)
-        {
-            Image = image;
-        }
+            : base(image)
+        { }
         #endregion
         #region Methods
         /// <summary>

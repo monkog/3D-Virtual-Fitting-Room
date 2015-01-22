@@ -7,13 +7,6 @@ namespace KinectFittingRoom_UnitTests
     public class KinectChecking
     {
         [TestMethod]
-        public void CheckNoKinectExceptionHandling()
-        {
-            KinectService s = new KinectService();
-            s.Initialize();
-        }
-
-        [TestMethod]
         public void CheckNoKinectExceptionHandlingText()
         {
             KinectService s = new KinectService();
