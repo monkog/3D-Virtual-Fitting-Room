@@ -31,5 +31,21 @@ namespace KinectFittingRoom_UnitTests
             Assert.AreEqual(new Point(0, 0), midPoint3D);
             Assert.AreEqual(new Point(1, 1), topRightCorner3D);
         }
+
+        [TestMethod]
+        public void GetDistanceBetweenJoinPoints()
+        {
+            var leftJoint = new Point(0, 0);
+            var rightJoint = new Point(SystemParameters.PrimaryScreenWidth, 0);
+
+            var distanceFull = KinectService.CalculateDistanceBetweenJoints(rightJoint, leftJoint);
+            var distanceFull2 = KinectService.CalculateDistanceBetweenJoints(rightJoint, leftJoint);
+            var distanceZero = KinectService.CalculateDistanceBetweenJoints(leftJoint, leftJoint);
+
+            Assert.AreNotEqual(new Point(0, 0), distanceFull);
+            Assert.AreNotEqual(new Point(0, 0), distanceFull2);
+            Assert.AreEqual(distanceFull2, distanceFull);
+            Assert.AreEqual(new Point(0, 0), distanceZero);
+        }
     }
 }
