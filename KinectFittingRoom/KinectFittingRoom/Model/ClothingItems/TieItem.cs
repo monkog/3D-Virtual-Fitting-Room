@@ -14,7 +14,7 @@ namespace KinectFittingRoom.Model.ClothingItems
         /// </summary>
         /// <param name="model">3D model</param>
         public TieItem(Model3DGroup model)
-            : base(model, Ratio, verticalTrack: true)
+            : base(model, Ratio)
         {
             JointToTrackPosition = JointType.ShoulderCenter;
             LeftJointToTrackAngle = JointType.ShoulderLeft;

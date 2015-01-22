@@ -14,7 +14,7 @@ namespace KinectFittingRoom.Model.ClothingItems
         /// </summary>
         /// <param name="model">3D model of the hat</param>
         public HatItem(Model3DGroup model)
-            : base(model, Ratio, verticalTrack: true)
+            : base(model, Ratio)
         {
             JointToTrackPosition = JointType.Head;
             LeftJointToTrackAngle = JointType.ShoulderLeft;
