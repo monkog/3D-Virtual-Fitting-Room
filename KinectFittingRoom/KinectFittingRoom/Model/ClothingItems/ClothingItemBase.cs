@@ -40,10 +40,6 @@ namespace KinectFittingRoom.Model.ClothingItems
         /// The basic bounds of the model
         /// </summary>
         private Rect3D _basicBounds;
-        /// <summary>
-        /// A value indicating whether scale factor should be tracked in vertical position.
-        /// </summary>
-        private bool _verticalScaleTrack;
         #endregion Private Fields
         #region Public Properties
         /// <summary>
@@ -160,14 +156,12 @@ namespace KinectFittingRoom.Model.ClothingItems
         /// </summary>
         /// <param name="model">3D model</param>
         /// <param name="tolerance">Tolerance of the model scale</param>
-        /// <param name="verticalTrack">Whether scale factor should be tracked in vertical position</param>
-        protected ClothingItemBase(Model3DGroup model, double tolerance, bool verticalTrack = false)
+        protected ClothingItemBase(Model3DGroup model, double tolerance)
         {
             Model = model;
             _basicBounds = model.Bounds;
             DeltaPosition = 0;
             Tolerance = tolerance;
-            _verticalScaleTrack = verticalTrack;
             _widthScale = _heightScale = 1;
         }
         #endregion
@@ -310,18 +304,7 @@ namespace KinectFittingRoom.Model.ClothingItems
                 Point3DtoPoint2D(new Point3D(location.X + _basicBounds.SizeX, location.Y + _basicBounds.SizeY
                     , location.Z + _basicBounds.SizeZ));
 
-            double ratio;
-            if (_verticalScaleTrack)
-                ratio = (Math.Abs(joint1Position.Y - joint2Position.Y) / Math.Abs(leftBound.Y - rightBound.Y));
-            else
-            {
-                var xLength3D = Math.Sqrt(Math.Pow(joint2Position.X - joint1Position.X, 2)
-                    + Math.Pow(joint2Position.Z - joint1Position.Z, 2));
-                var xLength = Math.Abs(joint2Position.X - joint1Position.X);
-                //xLength3D = Math.Abs(joint2Position.X - joint1Position.X) * Math.Tan(Math.Abs(angle));
-                ratio = (xLength3D / Math.Abs(leftBound.X - rightBound.X));
-                Console.WriteLine("xLength:" + xLength + "xLength3D:" + xLength3D + "|ratio:" + ratio);
-            }
+            double ratio = (Math.Abs(joint1Position.Y - joint2Position.Y) / Math.Abs(leftBound.Y - rightBound.Y));
             _widthModelScale = _heightModelScale = ratio * Tolerance;
             SetScaleTransformation();
         }

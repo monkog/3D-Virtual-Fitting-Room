@@ -8,7 +8,7 @@ namespace KinectFittingRoom.Model.ClothingItems
         /// <summary>
         /// The ratio
         /// </summary>
-        private const double Ratio = 0.5;
+        private const double Ratio = 1;
         /// <summary>
         /// Initializes a new instance of the <see cref="BagItem"/> class.
         /// </summary>
@@ -19,8 +19,8 @@ namespace KinectFittingRoom.Model.ClothingItems
             JointToTrackPosition = JointType.HandLeft;
             LeftJointToTrackAngle = JointType.ShoulderLeft;
             RightJointToTrackAngle = JointType.ShoulderRight;
-            LeftJointToTrackScale = JointType.ShoulderLeft;
-            RightJointToTrackScale = JointType.ShoulderRight;
+            LeftJointToTrackScale = JointType.ShoulderCenter;
+            RightJointToTrackScale = JointType.HipCenter;
         }
     }
 }
