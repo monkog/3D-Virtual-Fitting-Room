@@ -1,29 +1,29 @@
 # Blender MTL File: 'None'
 # Material Count: 3
 
-newmtl Material.004_peas_DIFFUSE.jpg.001
-Ns 96.078431
+newmtl Material.004_NONE
+Ns 1.960784
 Ka 0.000000 0.000000 0.000000
-Kd 0.640000 0.640000 0.640000
-Ks 0.500000 0.500000 0.500000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd ..\..\Materials\dress_blue.jpg
-
-newmtl Material.004
-Ns 3.921569
-Ka 0.000000 0.000000 0.000000
-Kd 0.010654 0.163581 0.558553
+Kd 0.008523 0.130865 0.446842
 Ks 0.000000 0.000000 0.000000
 Ni 1.500000
 d 1.000000
 illum 2
 
-newmtl Material.004_NONE
-Ns 3.921569
+newmtl Material.004_peas_DIFFUSE.jpg.001
+Ns 92.156863
 Ka 0.000000 0.000000 0.000000
-Kd 0.010654 0.163581 0.558553
+Kd 0.512000 0.512000 0.512000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\Users\MK\Documents\Studia\MiNI_INŻ\KinectFittingRoom\KinectFittingRoom\Resources\Materials\dress_blue.jpg
+
+newmtl Material.022
+Ns 1.960784
+Ka 0.000000 0.000000 0.000000
+Kd 0.008523 0.130865 0.446842
 Ks 0.000000 0.000000 0.000000
 Ni 1.500000
 d 1.000000

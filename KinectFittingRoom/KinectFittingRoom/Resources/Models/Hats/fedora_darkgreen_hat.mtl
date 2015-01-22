@@ -1,30 +1,30 @@
 # Blender MTL File: 'None'
 # Material Count: 3
 
-newmtl Material.006
-Ns 90.196078
+newmtl Material.010
+Ns 86.274510
 Ka 0.000000 0.000000 0.000000
-Kd 0.084330 0.082322 0.082322
+Kd 0.067464 0.065858 0.065858
 Ks 0.049020 0.049020 0.049020
 Ni 1.000000
 d 1.000000
 illum 2
 
-newmtl Material.007
-Ns 90.196078
+newmtl Material.011
+Ns 92.156863
 Ka 0.000000 0.000000 0.000000
-Kd 0.216847 0.212831 0.212831
-Ks 0.500000 0.500000 0.500000
-Ni 1.000000
-d 1.000000
-illum 2
-
-newmtl Material.009
-Ns 96.078431
-Ka 0.000000 0.000000 0.000000
-Kd 0.640000 0.640000 0.640000
+Kd 0.512000 0.512000 0.512000
 Ks 0.200000 0.200000 0.200000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd ..\..\Materials\fedora_darkgreen_hat.jpg
+map_Kd C:\Users\MK\Documents\Studia\MiNI_INŻ\KinectFittingRoom\KinectFittingRoom\Resources\Materials\fedora_darkgreen_hat.jpg
+
+newmtl Material.012
+Ns 86.274510
+Ka 0.000000 0.000000 0.000000
+Kd 0.173478 0.170265 0.170265
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2

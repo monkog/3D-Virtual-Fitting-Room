@@ -1,8 +1,8 @@
 # Blender MTL File: 'None'
 # Material Count: 2
 
-newmtl Material.006
-Ns 92.156863
+newmtl Material.003
+Ns 90.196078
 Ka 0.000000 0.000000 0.000000
 Kd 0.000000 0.000000 0.000000
 Ks 0.159574 0.159574 0.159574
@@ -10,12 +10,12 @@ Ni 1.000000
 d 1.000000
 illum 2
 
-newmtl Material.007
-Ns 96.078431
+newmtl Material.004
+Ns 92.156863
 Ka 0.000000 0.000000 0.000000
-Kd 0.640000 0.640000 0.640000
+Kd 0.512000 0.512000 0.512000
 Ks 0.500000 0.500000 0.500000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd ..\..\Materials\cowboy_hat_straw.jpg
+map_Kd C:\Users\MK\Documents\Studia\MiNI_INŻ\KinectFittingRoom\KinectFittingRoom\Resources\Materials\cowboy_hat_straw.jpg
