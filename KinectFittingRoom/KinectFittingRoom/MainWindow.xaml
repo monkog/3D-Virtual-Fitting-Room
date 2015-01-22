@@ -62,7 +62,7 @@
                                    CameraTransform="{Binding Path=CameraTransform, Source={x:Static local:ClothingManager.Instance}, Mode=OneWayToSource}"
                                    ViewportTransform="{Binding Path=ViewportTransform, Source={x:Static local:ClothingManager.Instance}, Mode=OneWayToSource}">
             <h:HelixViewport3D.Camera>
-                <PerspectiveCamera Position="0,0,10" LookDirection="0,0,-10" UpDirection="0,1,0"/>
+                <OrthographicCamera Position="0,0,10" LookDirection="0,0,-10" UpDirection="0,1,0"/>
             </h:HelixViewport3D.Camera>
             <h:DefaultLights/>
             <helpers:ItemsVisual3D ItemTemplate="{StaticResource ModelTemplate}" 
