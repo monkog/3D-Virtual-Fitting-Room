@@ -1,9 +1,10 @@
 ~ zmienic sposób odtwarzania dŸwiêku przy robieniu zdjêcia
-~ czy zmieniæ ustalanie szerokoœci kamery?
 ~ wszystkie b³êdy jêzykowe w pracy!
 ~ remove delta position w clothing manager?
 ~ usunac zauszniki z okularow
 ~ Dlaczego spodnice zle sie skaluja?
-
-
-~ KinectService: tam da³am bazow¹ szerokoœæ ekranu 1366 i w linijce 458 dziele przez t¹ wartoœæ (robie to dlatego ¿e ustalona jest szerokoœæ kamery = 1. ale dla ekranów o innej rozdzielczoœci szerokoœæ kamery, mimo ¿e =1, to obiekty nie s¹ juz tej samej wielkoœci)
+~ ostatnie kapelusze sa przesuniete lekko na lewo
+~ Sprawdzic wielkosci modeli
+~ Przesunac srodek w odpowiednie miejsce
+~ Dla kapelusza zrobic skalowanie wg Head-ShoulderCenter
+~ Dla krawatów zrobiæ skalowanie wg ShoulderCenter-Spine/HipCenter

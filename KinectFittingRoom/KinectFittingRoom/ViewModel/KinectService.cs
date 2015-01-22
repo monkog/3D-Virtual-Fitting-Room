@@ -14,21 +14,11 @@ namespace KinectFittingRoom.ViewModel
 {
     public class KinectService : ViewModelBase, IKinectService
     {
-        #region Constants
-        /// <summary>
-        /// Base width of user screen
-        /// </summary>
-        private double BaseScreenWidth = 1366;
-        #endregion Constants
         #region Private Fields
         /// <summary>
         /// Captured skeletons
         /// </summary>
         private Skeleton[] _skeletons;
-        /// <summary>
-        /// Height of skeleton before zooming
-        /// </summary>
-        private double _skeletonHeight;
         /// <summary>
         /// Current KinectSensor
         /// </summary>
@@ -37,14 +27,6 @@ namespace KinectFittingRoom.ViewModel
         /// WritableBitmap that source from Kinect camera is written to
         /// </summary>
         private WriteableBitmap _kinectCameraImage;
-        /// <summary>
-        /// The width of orthographic camera
-        /// </summary>
-        private double _cameraWidth;
-        /// <summary>
-        /// Width of orthographic camera before scaling
-        /// </summary>
-        private double _originalCameraWidth;
         /// <summary>
         /// Bounds of camera source
         /// </summary>
@@ -123,20 +105,6 @@ namespace KinectFittingRoom.ViewModel
                     return;
                 _kinectCameraImage = value;
                 OnPropertyChanged("KinectCameraImage");
-            }
-        }
-        /// <summary>
-        /// Gets or sets the width of camera
-        /// </summary>
-        public double CameraWidth
-        {
-            get { return _cameraWidth; }
-            set
-            {
-                if (_cameraWidth == value)
-                    return;
-                _cameraWidth = value;
-                OnPropertyChanged("CameraWidth");
             }
         }
         /// <summary>
@@ -340,8 +308,6 @@ namespace KinectFittingRoom.ViewModel
                     ClothesAreaVisibility = Visibility.Visible;
                 }
                 Hand.UpdateHandCursor(skeleton, Kinect, Width, Height);
-
-                SetCameraWidth(skeleton, Kinect, Width, Height);
                 ClothingManager.Instance.UpdateItemPosition(skeleton, Kinect, Width, Height);
 #if DEBUG
                 Brush brush = Brushes.Coral;
@@ -422,26 +388,6 @@ namespace KinectFittingRoom.ViewModel
                     break;
             }
         }
-        /// <summary>
-        /// Sets new width of camera after skeleton update
-        /// </summary>
-        /// <param name="skeleton">The skeleton</param>
-        /// <param name="sensor">The sensor</param>
-        /// <param name="width">The width</param>
-        /// <param name="height">The Height</param>
-        private void SetCameraWidth(Skeleton skeleton, KinectSensor sensor, double width, double height)
-        {
-            if (ClothingManager.Instance.ChosenClothesModels.Count == 0)
-                return;
-
-            if (_skeletonHeight == 0)
-                _skeletonHeight = KinectService.GetJointPoint(skeleton.Joints[JointType.FootRight], Kinect, Width, Height).Y - KinectService.GetJointPoint(skeleton.Joints[JointType.Head], Kinect, Width, Height).Y;
-
-            var head = KinectService.GetJointPoint(skeleton.Joints[JointType.Head], Kinect, Width, Height);
-            var footRight = KinectService.GetJointPoint(skeleton.Joints[JointType.FootRight], Kinect, Width, Height);
-
-            CameraWidth = _originalCameraWidth * _skeletonHeight / (footRight.Y - head.Y);
-        }
         #endregion Private Methods
         #region Public Methods
         /// <summary>
@@ -456,7 +402,6 @@ namespace KinectFittingRoom.ViewModel
             ErrorGridVisibility = Visibility.Hidden;
             ClothesAreaVisibility = Visibility.Visible;
             DiscoverKinectSensors();
-            CameraWidth = _originalCameraWidth = SystemParameters.PrimaryScreenWidth / BaseScreenWidth;
         }
         /// <summary>
         /// Looks for the closest skeleton
