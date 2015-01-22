@@ -14,11 +14,13 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// </summary>
         /// <param name="model">3D model</param>
         public GlassesItem(Model3DGroup model)
-            : base(model, Ratio)
+            : base(model, Ratio, verticalTrack: true)
         {
             JointToTrackPosition = JointType.Head;
             LeftJointToTrackAngle = JointType.ShoulderLeft;
             RightJointToTrackAngle = JointType.ShoulderRight;
+            LeftJointToTrackScale = JointType.Head;
+            RightJointToTrackScale = JointType.ShoulderCenter;
         }
     }
 }

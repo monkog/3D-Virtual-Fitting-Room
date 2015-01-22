@@ -19,6 +19,8 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
             JointToTrackPosition = JointType.HandLeft;
             LeftJointToTrackAngle = JointType.ShoulderLeft;
             RightJointToTrackAngle = JointType.ShoulderRight;
+            LeftJointToTrackScale = JointType.ShoulderLeft;
+            RightJointToTrackScale = JointType.ShoulderRight;
         }
     }
 }
