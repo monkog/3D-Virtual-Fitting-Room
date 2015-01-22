@@ -42,6 +42,10 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
         /// Visibility of size and position buttons
         /// </summary>
         private Visibility _sizePositionButtonsVisibility;
+        /// <summary>
+        /// Visibility of CloseAppGrid
+        /// </summary>
+        private Visibility _closeAppGridVisibility;
         #endregion Private Fields
         #region Public Properties
         /// <summary>
@@ -162,6 +166,36 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
                 OnPropertyChanged("SizePositionButtonsVisibility");
             }
         }
+        /// <summary>
+        /// Gets or sets cancel closing button
+        /// </summary>
+        public NoCloseButtonViewModel NoCloseButton
+        {
+            get;
+            private set;
+        }
+        /// <summary>
+        /// Gets or sets confirm closing button
+        /// </summary>
+        public YesCloseButtonViewModel YesCloseButton
+        {
+            get;
+            private set;
+        }
+        /// <summary>
+        /// Gets or sets the visibility of CloseAppGrid
+        /// </summary>
+        public Visibility CloseAppGridVisibility
+        {
+            get { return _closeAppGridVisibility; }
+            set
+            {
+                if (_closeAppGridVisibility == value)
+                    return;
+                _closeAppGridVisibility = value;
+                OnPropertyChanged("CloseAppGridVisibility");
+            }
+        }
         #endregion Public Properties
         #region .ctor
         /// <summary>
@@ -170,6 +204,9 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
         private TopMenuManager()
         {
             InitializeTopMenuButtons();
+            
+            CreateCloseButtons();
+            CloseAppGridVisibility = Visibility.Collapsed;
         }
         #endregion
         #region Private Methods
@@ -238,6 +275,14 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
                 new ClearLastItemButtonViewModel(Properties.Resources.menu_clearOne),
                 new ClearSetButtonViewModel(Properties.Resources.menu_clearSet)
             };
+        }
+        /// <summary>
+        /// Creates cancel and confirm closing buttons
+        /// </summary>
+        private void CreateCloseButtons()
+        {
+            NoCloseButton = new NoCloseButtonViewModel(null);
+            YesCloseButton = new YesCloseButtonViewModel(null);
         }
         #endregion Private Methods
         /// <summary>

@@ -16,12 +16,13 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
         #endregion
         #region Methods
         /// <summary>
-        /// Closes the application
+        /// Display closing screen with buttons
         /// </summary>
         public override void ClickExecuted()
         {
             PlaySound();
-            Application.Current.MainWindow.Close();
+            ClearMenu();
+            TopMenuManager.Instance.CloseAppGridVisibility = Visibility.Visible;
         }
         #endregion
     }

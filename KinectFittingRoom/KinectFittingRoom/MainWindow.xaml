@@ -239,6 +239,47 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </StackPanel>
+            <!--Grid used for closing application-->
+            <Grid Name="CloseAppGrid" Width="{Binding ActualWidth, ElementName=ImageArea}"
+              Visibility="{Binding CloseAppGridVisibility, Source={x:Static topMenuButtons:TopMenuManager.Instance}}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="600"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <buttons:KinectButton Grid.Column="0"
+                                      Width="{Binding ActualWidth, ElementName=LeftPanel}"
+                                      Height="{Binding ActualHeight, ElementName=LeftPanel}"
+                                      Canvas.Left="{Binding (Canvas.Left), ElementName=LeftPanel}"
+                                      Canvas.Top="5"
+                                      Style="{StaticResource GlassButton}"
+                                      Margin="10,20,20,20"
+                                      DataContext="{Binding YesCloseButton, Source={x:Static topMenuButtons:TopMenuManager.Instance}}">
+                    <TextBlock Text="TAK" FontSize="70"/>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="HandCursorClick">
+                            <i:InvokeCommandAction Command="{Binding ClickCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </buttons:KinectButton>
+                <TextBlock Grid.Column="1" FontSize="30" Margin="60,20,0,20" TextAlignment="Center" Opacity="1" VerticalAlignment="Top" 
+                       Foreground="White" Text="Czy na pewno chcesz wyjść z programu?"/>
+                <buttons:KinectButton Grid.Column="2"
+                                      Width="{Binding ActualWidth, ElementName=LeftPanel}"
+                                      Height="{Binding ActualHeight, ElementName=LeftPanel}"
+                                      Canvas.Left="{Binding (Canvas.Left), ElementName=LeftPanel}"
+                                      Canvas.Top="5"
+                                      Style="{StaticResource GlassButton}"
+                                      Margin="20,20,10,20"
+                                      DataContext="{Binding NoCloseButton, Source={x:Static topMenuButtons:TopMenuManager.Instance}}">
+                    <TextBlock Text="NIE" FontSize="70"/>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="HandCursorClick">
+                            <i:InvokeCommandAction Command="{Binding ClickCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </buttons:KinectButton>
+            </Grid>
         </Canvas>
         <!--Hand Cursor canvas-->
         <Canvas Width="{Binding KinectService.Width}" Height="{Binding KinectService.Height}">

@@ -1,7 +1,6 @@
 ~ zmienic sposób odtwarzania dŸwiêku przy robieniu zdjêcia
 ~ wszystkie b³êdy jêzykowe w pracy!
 ~ remove delta position w clothing manager?
-~ usunac zauszniki z okularow
 ~ Dlaczego spodnice zle sie skaluja?
 ~ ostatnie kapelusze sa przesuniete lekko na lewo
 ~ Sprawdzic wielkosci modeli
