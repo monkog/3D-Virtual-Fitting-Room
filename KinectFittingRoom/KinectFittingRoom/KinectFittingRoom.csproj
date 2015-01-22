@@ -124,7 +124,6 @@
     <Compile Include="ViewModel\ButtonItems\DressButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\GlassesButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\HatButtonViewModel.cs" />
-    <Compile Include="ViewModel\ButtonItems\ModelBase.cs" />
     <Compile Include="ViewModel\ButtonItems\SkirtButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TieButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\ChangePositionButtonViewModel.cs" />
@@ -147,20 +146,20 @@
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\SoundsButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\TopMenuButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\TopMenuManager.cs" />
-    <Compile Include="ViewModel\ClothingItems\BagItem.cs" />
-    <Compile Include="ViewModel\ClothingItems\ClothingItemBase.cs" />
-    <Compile Include="ViewModel\ClothingItems\ClothingManager.cs" />
-    <Compile Include="ViewModel\ClothingItems\DressItem.cs" />
-    <Compile Include="ViewModel\ClothingItems\GlassesItem.cs" />
-    <Compile Include="ViewModel\ClothingItems\HatItem.cs" />
-    <Compile Include="ViewModel\ClothingItems\SkirtItem.cs" />
-    <Compile Include="ViewModel\ClothingItems\TieItem.cs" />
+    <Compile Include="Model\ClothingItems\BagItem.cs" />
+    <Compile Include="Model\ClothingItems\ClothingItemBase.cs" />
+    <Compile Include="ViewModel\ClothingManager.cs" />
+    <Compile Include="Model\ClothingItems\DressItem.cs" />
+    <Compile Include="Model\ClothingItems\GlassesItem.cs" />
+    <Compile Include="Model\ClothingItems\HatItem.cs" />
+    <Compile Include="Model\ClothingItems\SkirtItem.cs" />
+    <Compile Include="Model\ClothingItems\TieItem.cs" />
     <Compile Include="View\Buttons\Events\HandCursorEventArgs.cs" />
     <Compile Include="View\Buttons\Events\ButtonsManager.cs" />
     <Compile Include="View\Buttons\Events\KinectEvents.cs" />
     <Compile Include="View\Buttons\Events\KinectInput.cs" />
     <Compile Include="View\Buttons\KinectButton.cs" />
-    <Compile Include="ViewModel\Debug\SkeletonManager.cs" />
+    <Compile Include="Model\Debug\SkeletonManager.cs" />
     <Compile Include="ViewModel\ButtonItems\ClothingCategoryButtonViewModel.cs" />
     <Compile Include="ViewModel\HandTracking.cs" />
     <Compile Include="ViewModel\KinectService.cs" />
@@ -869,6 +868,7 @@
     <Resource Include="Resources\Images\Bags\suitcase_brown2.png" />
     <Resource Include="Resources\Images\Bags\suitcase_gray.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

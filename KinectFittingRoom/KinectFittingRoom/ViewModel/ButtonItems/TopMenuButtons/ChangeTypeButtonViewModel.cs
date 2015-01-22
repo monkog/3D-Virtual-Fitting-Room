@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using KinectFittingRoom.ViewModel.ClothingItems;
+using KinectFittingRoom.Model.ClothingItems;
 using System.Drawing;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons

@@ -1,7 +1,7 @@
 ﻿using System.Windows.Media.Media3D;
 using Microsoft.Kinect;
 
-namespace KinectFittingRoom.ViewModel.ClothingItems
+namespace KinectFittingRoom.Model.ClothingItems
 {
     class BagItem : ClothingItemBase
     {

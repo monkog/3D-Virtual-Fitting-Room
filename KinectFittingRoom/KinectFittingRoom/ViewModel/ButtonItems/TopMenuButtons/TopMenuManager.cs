@@ -45,6 +45,18 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
         #endregion Private Fields
         #region Public Properties
         /// <summary>
+        /// Method with access to only instance of TopMenuManager
+        /// </summary>
+        public static TopMenuManager Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new TopMenuManager();
+                return _instance;
+            }
+        }
+        /// <summary>
         /// Gets actual top menu buttons.
         /// </summary>
         /// <value>
@@ -240,17 +252,5 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
             };
         }
         #endregion Private Methods
-        /// <summary>
-        /// Method with access to only instance of TopMenuManager
-        /// </summary>
-        public static TopMenuManager Instance
-        {
-            get
-            {
-                if (_instance == null)
-                    _instance = new TopMenuManager();
-                return _instance;
-            }
-        }
     }
 }

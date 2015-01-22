@@ -6,5 +6,8 @@
 ~ ostatnie kapelusze sa przesuniete lekko na lewo
 ~ Sprawdzic wielkosci modeli
 ~ Przesunac srodek w odpowiednie miejsce
-~ Dla kapelusza zrobic skalowanie wg Head-ShoulderCenter
-~ Dla krawatów zrobiæ skalowanie wg ShoulderCenter-Spine/HipCenter
+
+~ spytac o recenzenta
+~ czcionka 11?
+~ pytania na egzaminie
+~ termin obrony
