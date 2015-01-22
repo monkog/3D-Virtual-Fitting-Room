@@ -20,6 +20,8 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
             JointToTrackPosition = JointType.HipCenter;
             LeftJointToTrackAngle = JointType.HipLeft;
             RightJointToTrackAngle = JointType.HipRight;
+            LeftJointToTrackScale = JointType.HipLeft;
+            RightJointToTrackScale = JointType.HipRight;
         }
         #endregion .ctor
     }

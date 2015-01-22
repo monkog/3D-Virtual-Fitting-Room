@@ -8,7 +8,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// <summary>
         /// Hips width with margins
         /// </summary>
-        private const double Ratio = 1.5;
+        private const double Ratio = 1.1;
         #region .ctor
         /// <summary>
         /// Constructor of Dress object
@@ -20,6 +20,8 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
             JointToTrackPosition = JointType.HipCenter;
             LeftJointToTrackAngle = JointType.ShoulderLeft;
             RightJointToTrackAngle = JointType.ShoulderRight;
+            LeftJointToTrackScale = JointType.ShoulderLeft;
+            RightJointToTrackScale = JointType.ShoulderRight;
         }
         #endregion .ctor
     }

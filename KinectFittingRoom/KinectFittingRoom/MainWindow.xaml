@@ -46,6 +46,33 @@
 			   helpers:SizeObserver.Observe="True"
 			   helpers:SizeObserver.ObservedWidth="{Binding KinectService.Width, Mode=OneWayToSource}"
 			   helpers:SizeObserver.ObservedHeight="{Binding KinectService.Height, Mode=OneWayToSource}"/>
+        <!--3D control-->
+        <helpers:HelixViewport3DEx CameraRotationMode="Turntable"
+                                   ModelUpDirection="0, 1, 0" 
+                                   x:Name="ClothesArea"
+                                   ShowCoordinateSystem="False" 
+                                   Visibility="{Binding KinectService.ClothesAreaVisibility}"
+                                   ShowViewCube="{Binding DebugModeOn}"
+                                   ShowFrameRate="{Binding DebugModeOn}"
+                                   ShowCameraInfo="{Binding DebugModeOn}"
+                                   IsHitTestVisible="False"
+                                   ClipToBounds="False" 
+								   Width="{Binding KinectService.Width}" 
+								   Height="{Binding KinectService.Height}"
+                                   CameraTransform="{Binding Path=CameraTransform, Source={x:Static local:ClothingManager.Instance}, Mode=OneWayToSource}"
+                                   ViewportTransform="{Binding Path=ViewportTransform, Source={x:Static local:ClothingManager.Instance}, Mode=OneWayToSource}">
+            <h:HelixViewport3D.Camera>
+                <PerspectiveCamera Position="0,0,10" LookDirection="0,0,-10" UpDirection="0,1,0"/>
+            </h:HelixViewport3D.Camera>
+            <h:DefaultLights/>
+            <helpers:ItemsVisual3D ItemTemplate="{StaticResource ModelTemplate}" 
+                                   ItemsSource="{Binding Path=ChosenClothesModels.Values, Source={x:Static local:ClothingManager.Instance}}"/>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid Width="{Binding KinectService.Width}" Height="{Binding KinectService.Height}"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </helpers:HelixViewport3DEx>
         <!--Canvas containing button panels-->
         <Canvas Name="ButtonPanelsCanvas" Width="{Binding KinectService.Width}" Height="{Binding KinectService.Height}">
             <Canvas x:Name="LeftPanel"
@@ -213,33 +240,6 @@
                 </ItemsControl>
             </StackPanel>
         </Canvas>
-        <!--3D control-->
-        <helpers:HelixViewport3DEx CameraRotationMode="Turntable"
-                                   ModelUpDirection="0, 1, 0" 
-                                   x:Name="ClothesArea"
-                                   ShowCoordinateSystem="False" 
-                                   Visibility="{Binding KinectService.ClothesAreaVisibility}"
-                                   ShowViewCube="{Binding DebugModeOn}"
-                                   ShowFrameRate="{Binding DebugModeOn}"
-                                   ShowCameraInfo="{Binding DebugModeOn}"
-                                   IsHitTestVisible="False"
-                                   ClipToBounds="False" 
-								   Width="{Binding KinectService.Width}" 
-								   Height="{Binding KinectService.Height}"
-                                   CameraTransform="{Binding Path=CameraTransform, Source={x:Static local:ClothingManager.Instance}, Mode=OneWayToSource}"
-                                   ViewportTransform="{Binding Path=ViewportTransform, Source={x:Static local:ClothingManager.Instance}, Mode=OneWayToSource}">
-            <h:HelixViewport3D.Camera>
-                <PerspectiveCamera Position="0,0,10" LookDirection="0,0,-10" UpDirection="0,1,0"/>
-            </h:HelixViewport3D.Camera>
-            <h:DefaultLights/>
-            <helpers:ItemsVisual3D ItemTemplate="{StaticResource ModelTemplate}" 
-                                   ItemsSource="{Binding Path=ChosenClothesModels.Values, Source={x:Static local:ClothingManager.Instance}}"/>
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <Grid Width="{Binding KinectService.Width}" Height="{Binding KinectService.Height}"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-        </helpers:HelixViewport3DEx>
         <!--Hand Cursor canvas-->
         <Canvas Width="{Binding KinectService.Width}" Height="{Binding KinectService.Height}">
             <Canvas Name="HandCursor" Width="70" Height="70" Visibility="Collapsed">
