@@ -124,7 +124,6 @@
     <Compile Include="ViewModel\ButtonItems\DressButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\GlassesButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\HatButtonViewModel.cs" />
-    <Compile Include="ViewModel\ButtonItems\ModelBase.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\NoCloseButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\SkirtButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TieButtonViewModel.cs" />
@@ -149,14 +148,6 @@
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\TopMenuButtonViewModel.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\TopMenuManager.cs" />
     <Compile Include="ViewModel\ButtonItems\TopMenuButtons\YesCloseButtonViewModel.cs" />
-    <Compile Include="ViewModel\ClothingItems\BagItem.cs" />
-    <Compile Include="ViewModel\ClothingItems\ClothingItemBase.cs" />
-    <Compile Include="ViewModel\ClothingItems\ClothingManager.cs" />
-    <Compile Include="ViewModel\ClothingItems\DressItem.cs" />
-    <Compile Include="ViewModel\ClothingItems\GlassesItem.cs" />
-    <Compile Include="ViewModel\ClothingItems\HatItem.cs" />
-    <Compile Include="ViewModel\ClothingItems\SkirtItem.cs" />
-    <Compile Include="ViewModel\ClothingItems\TieItem.cs" />
     <Compile Include="Model\ClothingItems\BagItem.cs" />
     <Compile Include="Model\ClothingItems\ClothingItemBase.cs" />
     <Compile Include="ViewModel\ClothingManager.cs" />
