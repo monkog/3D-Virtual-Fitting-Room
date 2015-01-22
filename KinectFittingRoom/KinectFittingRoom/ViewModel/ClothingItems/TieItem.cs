@@ -8,7 +8,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// <summary>
         /// The ratio
         /// </summary>
-        private const double Ratio = 0.3;
+        private const double Ratio = 1;
         /// <summary>
         /// Initializes a new instance of the <see cref="TieItem"/> class.
         /// </summary>
