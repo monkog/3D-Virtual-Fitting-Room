@@ -14,15 +14,23 @@ namespace KinectFittingRoom.Model.ClothingItems
         /// Constructor of Dress object
         /// </summary>
         /// <param name="model">3D model</param>
-        public DressItem(Model3DGroup model)
+        /// <param name="bottomJoint">Bottom joint to track size</param>
+        public DressItem(Model3DGroup model, JointType bottomJoint)
             : base(model, Ratio)
         {
             JointToTrackPosition = JointType.HipCenter;
             LeftJointToTrackAngle = JointType.ShoulderLeft;
             RightJointToTrackAngle = JointType.ShoulderRight;
             LeftJointToTrackScale = JointType.ShoulderCenter;
-            RightJointToTrackScale = JointType.HipCenter;
+            RightJointToTrackScale = bottomJoint;
         }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DressItem"/> class.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        public DressItem(Model3DGroup model)
+            : this(model, JointType.HipCenter)
+        { }
         #endregion .ctor
     }
 }

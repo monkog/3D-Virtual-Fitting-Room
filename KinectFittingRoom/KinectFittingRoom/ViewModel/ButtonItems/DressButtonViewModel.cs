@@ -1,10 +1,20 @@
 ﻿using KinectFittingRoom.Model.ClothingItems;
+using Microsoft.Kinect;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems
 {
     public class DressButtonViewModel : ClothingButtonViewModel
     {
-        #region .ctor        
+        #region Public Properties
+        /// <summary>
+        /// Gets or sets the bottom joint to track scale.
+        /// </summary>
+        /// <value>
+        /// The bottom joint to track scale.
+        /// </value>
+        public JointType? BottomJointToTrackScale { get; set; }
+        #endregion Public Properties
+        #region .ctor
         /// <summary>
         /// Initializes a new instance of the <see cref="DressButtonViewModel"/> class.
         /// </summary>
@@ -23,7 +33,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
             PlaySound();
             if (ClothingManager.Instance.ChosenClothesModels.ContainsKey(ClothingItemBase.ClothingType.SkirtItem))
                 ClothingManager.Instance.ChosenClothesModels.Remove(ClothingItemBase.ClothingType.SkirtItem);
-            ClothingManager.Instance.AddClothingItem<DressItem>(Category, ModelPath);
+            ClothingManager.Instance.AddClothingItem<DressItem>(Category, ModelPath, BottomJointToTrackScale);
         }
         #endregion Commands
     }

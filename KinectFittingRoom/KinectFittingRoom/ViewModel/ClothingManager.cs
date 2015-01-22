@@ -223,10 +223,14 @@ namespace KinectFittingRoom.ViewModel
         /// <typeparam name="T">Type of the item</typeparam>
         /// <param name="category">The category of the item.</param>
         /// <param name="modelPath">The model path.</param>
-        public void AddClothingItem<T>(ClothingItemBase.ClothingType category, string modelPath)
+        /// <param name="bottomJoint">Bottom joint to track size</param>
+        public void AddClothingItem<T>(ClothingItemBase.ClothingType category, string modelPath, JointType? bottomJoint = null)
         {
             Dictionary<ClothingItemBase.ClothingType, ClothingItemBase> tmpModels = ChosenClothesModels;
-            tmpModels[category] = (ClothingItemBase)Activator.CreateInstance(typeof(T), _importer.Load(modelPath));
+            if (bottomJoint != null)
+                tmpModels[category] = (ClothingItemBase)Activator.CreateInstance(typeof(T), _importer.Load(modelPath), bottomJoint);
+            else
+                tmpModels[category] = (ClothingItemBase)Activator.CreateInstance(typeof(T), _importer.Load(modelPath));
             ChosenClothesModels = new Dictionary<ClothingItemBase.ClothingType, ClothingItemBase>(tmpModels);
         }
         #endregion Public Methods

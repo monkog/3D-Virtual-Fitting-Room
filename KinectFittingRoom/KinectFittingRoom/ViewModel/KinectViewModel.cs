@@ -3,6 +3,7 @@ using KinectFittingRoom.ViewModel.ButtonItems;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Media;
+using Microsoft.Kinect;
 
 namespace KinectFittingRoom.ViewModel
 {
@@ -167,19 +168,19 @@ namespace KinectFittingRoom.ViewModel
                     ,new SkirtButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\Skirts\short_skirt_red.obj") 
                     { Image = Properties.Resources.short_skirt_red }
                     , new SkirtButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\Skirts\long_skirt.obj") 
-                    { Image = Properties.Resources.long_skirt }
+                    { Image = Properties.Resources.long_skirt, BottomJointToTrackScale = JointType.FootLeft }
                     , new SkirtButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\Skirts\long_skirt_bikes.obj") 
-                    { Image = Properties.Resources.long_skirt_bikes }
+                    { Image = Properties.Resources.long_skirt_bikes, BottomJointToTrackScale = JointType.FootLeft }
                     , new SkirtButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\Skirts\long_skirt_indian.obj") 
-                    { Image = Properties.Resources.long_skirt_indian }
+                    { Image = Properties.Resources.long_skirt_indian, BottomJointToTrackScale = JointType.FootLeft }
                     , new SkirtButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\Skirts\long_skirt_violet.obj") 
-                    { Image = Properties.Resources.long_skirt_violet2 }
+                    { Image = Properties.Resources.long_skirt_violet2, BottomJointToTrackScale = JointType.FootLeft }
                      , new SkirtButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\Skirts\big_skirt_green.obj") 
-                    { Image = Properties.Resources.breezy_skirt_winter }
+                    { Image = Properties.Resources.breezy_skirt_winter, BottomJointToTrackScale = JointType.FootLeft }
                      , new SkirtButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\Skirts\big_skirt_waves.obj") 
-                    { Image = Properties.Resources.breezy_skirt_waves }
+                    { Image = Properties.Resources.breezy_skirt_waves, BottomJointToTrackScale = JointType.FootLeft }
                      , new SkirtButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\Skirts\big_skirt_red.obj") 
-                    { Image = Properties.Resources.breezy_skirt_red }
+                    { Image = Properties.Resources.breezy_skirt_red, BottomJointToTrackScale = JointType.FootLeft }
                 }
             };
         }
