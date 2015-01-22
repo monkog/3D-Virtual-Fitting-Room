@@ -12,7 +12,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// <summary>
         /// Initializes a new instance of the <see cref="BagItem"/> class.
         /// </summary>
-        /// <param name="model">3D model of the hat</param>
+        /// <param name="model">3D model of the bag</param>
         public BagItem(Model3DGroup model)
             : base(model, Ratio)
         {
