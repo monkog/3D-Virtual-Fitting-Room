@@ -1,5 +1,5 @@
-﻿using KinectFittingRoom.ViewModel.ButtonItems;
-using KinectFittingRoom.ViewModel.ClothingItems;
+﻿using KinectFittingRoom.Model.ClothingItems;
+using KinectFittingRoom.ViewModel.ButtonItems;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Media;

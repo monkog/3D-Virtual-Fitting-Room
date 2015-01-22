@@ -1,4 +1,4 @@
-﻿using KinectFittingRoom.ViewModel.ClothingItems;
+﻿using KinectFittingRoom.Model.ClothingItems;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems
 {

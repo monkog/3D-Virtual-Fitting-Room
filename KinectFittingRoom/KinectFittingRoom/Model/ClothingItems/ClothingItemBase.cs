@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Media.Media3D;
+using KinectFittingRoom.ViewModel;
 using Microsoft.Kinect;
 using Petzold.Media3D;
 
-namespace KinectFittingRoom.ViewModel.ClothingItems
+namespace KinectFittingRoom.Model.ClothingItems
 {
     public abstract class ClothingItemBase : ViewModelBase
     {
         #region Protected Fields
-        /// <summary>
-        /// The height scale
-        /// </summary>
-        protected double _heightScale;
         /// <summary>
         /// Tolerance of the width
         /// </summary>
@@ -20,9 +17,21 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         #endregion Protected Fields
         #region Private Fields
         /// <summary>
+        /// The height scale
+        /// </summary>
+        private double _heightScale;
+        /// <summary>
         /// The width scale
         /// </summary>
         private double _widthScale;
+        /// <summary>
+        /// The height model scale. Determined by the measurement of model.
+        /// </summary>
+        private double _heightModelScale;
+        /// <summary>
+        /// The width model scale. Determined by the measurement of model.
+        /// </summary>
+        private double _widthModelScale;
         /// <summary>
         /// The clothing model
         /// </summary>
@@ -159,6 +168,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
             DeltaPosition = 0;
             Tolerance = tolerance;
             _verticalScaleTrack = verticalTrack;
+            _widthScale = _heightScale = 1;
         }
         #endregion
         #region Public Methods
@@ -178,6 +188,8 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
 
             TrackSkeletonParts(skeleton, sensor, width, height);
         }
+        #endregion Public Methods
+        #region Private Methods
         /// <summary>
         /// Set position for part of set
         /// </summary>
@@ -185,7 +197,7 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
         /// <param name="sensor">Kinect sensor</param>
         /// <param name="width">Kinect image width</param>
         /// <param name="height">Kinect image height</param>
-        public void TrackSkeletonParts(Skeleton skeleton, KinectSensor sensor, double width, double height)
+        private void TrackSkeletonParts(Skeleton skeleton, KinectSensor sensor, double width, double height)
         {
             Angle = TrackJointsRotation(sensor, skeleton.Joints[LeftJointToTrackAngle], skeleton.Joints[RightJointToTrackAngle]);
 
@@ -234,52 +246,13 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
             }
         }
         /// <summary>
-        /// Fit width of model to width of body
-        /// </summary>
-        /// <param name="joint1">The first joint.</param>
-        /// <param name="joint2">The second joint.</param>
-        /// <param name="sensor">The sensor.</param>
-        /// <param name="width">The width.</param>
-        /// <param name="height">The height.</param>
-        public void FitModelToBody(Joint joint1, Joint joint2, KinectSensor sensor, double width, double height, double angle)
-        {
-            if (joint1.TrackingState == JointTrackingState.NotTracked
-                || joint2.TrackingState == JointTrackingState.NotTracked)
-                WidthScale = _heightScale = 0;
-
-            var joint1Position = KinectService.GetJointPoint(joint1, sensor, width, height);
-            var joint2Position = KinectService.GetJointPoint(joint2, sensor, width, height);
-
-            var location = _basicBounds.Location;
-            Point leftBound = Point3DtoPoint2D(location);
-            Point rightBound =
-                Point3DtoPoint2D(new Point3D(location.X + _basicBounds.SizeX, location.Y + _basicBounds.SizeY
-                    , location.Z + _basicBounds.SizeZ));
-
-            double ratio;
-            if (_verticalScaleTrack)
-                ratio = (Math.Abs(joint1Position.Y - joint2Position.Y) / Math.Abs(leftBound.Y - rightBound.Y));
-            else
-            {
-                var xLength3D = Math.Sqrt(Math.Pow(joint2Position.X - joint1Position.X, 2)
-                    + Math.Pow(joint2Position.Z - joint1Position.Z, 2));
-                var xLength = Math.Abs(joint2Position.X - joint1Position.X);
-                //xLength3D = Math.Abs(joint2Position.X - joint1Position.X) * Math.Tan(Math.Abs(angle));
-                ratio = (xLength3D / Math.Abs(leftBound.X - rightBound.X));
-                Console.WriteLine("xLength:" + xLength + "xLength3D:" + xLength3D + "|ratio:" + ratio);
-            }
-            WidthScale = _heightScale = ratio * Tolerance;
-        }
-        #endregion Public Methods
-        #region Private Methods
-        /// <summary>
         /// Sets the base transformation.
         /// </summary>
         private void SetScaleTransformation()
         {
             Transform3DGroup transform = new Transform3DGroup();
-            transform.Children.Add(new ScaleTransform3D(_widthScale, 1, _widthScale));
-            transform.Children.Add(new ScaleTransform3D(1, _heightScale, 1));
+            transform.Children.Add(new ScaleTransform3D(_widthScale * _widthModelScale, 1, _widthScale * _widthModelScale));
+            transform.Children.Add(new ScaleTransform3D(1, _heightScale * _heightModelScale, 1));
             ScaleTransformation = transform;
         }
         /// <summary>
@@ -313,6 +286,44 @@ namespace KinectFittingRoom.ViewModel.ClothingItems
 
             return -(Math.Atan(((double)jointLeftPosition.Depth - jointRightPosition.Depth)
                 / ((double)jointRightPosition.X - jointLeftPosition.X)) * 180.0 / Math.PI);
+        }
+        /// <summary>
+        /// Fit width of model to width of body
+        /// </summary>
+        /// <param name="joint1">The first joint.</param>
+        /// <param name="joint2">The second joint.</param>
+        /// <param name="sensor">The sensor.</param>
+        /// <param name="width">The width.</param>
+        /// <param name="height">The height.</param>
+        private void FitModelToBody(Joint joint1, Joint joint2, KinectSensor sensor, double width, double height, double angle)
+        {
+            if (joint1.TrackingState == JointTrackingState.NotTracked
+                || joint2.TrackingState == JointTrackingState.NotTracked)
+                WidthScale = _heightScale = 0;
+
+            var joint1Position = KinectService.GetJointPoint(joint1, sensor, width, height);
+            var joint2Position = KinectService.GetJointPoint(joint2, sensor, width, height);
+
+            var location = _basicBounds.Location;
+            Point leftBound = Point3DtoPoint2D(location);
+            Point rightBound =
+                Point3DtoPoint2D(new Point3D(location.X + _basicBounds.SizeX, location.Y + _basicBounds.SizeY
+                    , location.Z + _basicBounds.SizeZ));
+
+            double ratio;
+            if (_verticalScaleTrack)
+                ratio = (Math.Abs(joint1Position.Y - joint2Position.Y) / Math.Abs(leftBound.Y - rightBound.Y));
+            else
+            {
+                var xLength3D = Math.Sqrt(Math.Pow(joint2Position.X - joint1Position.X, 2)
+                    + Math.Pow(joint2Position.Z - joint1Position.Z, 2));
+                var xLength = Math.Abs(joint2Position.X - joint1Position.X);
+                //xLength3D = Math.Abs(joint2Position.X - joint1Position.X) * Math.Tan(Math.Abs(angle));
+                ratio = (xLength3D / Math.Abs(leftBound.X - rightBound.X));
+                Console.WriteLine("xLength:" + xLength + "xLength3D:" + xLength3D + "|ratio:" + ratio);
+            }
+            _widthModelScale = _heightModelScale = ratio * Tolerance;
+            SetScaleTransformation();
         }
         #endregion Private Methods
         #region Enums

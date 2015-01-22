@@ -7,7 +7,6 @@ namespace KinectFittingRoom.View.Helpers
     /// </summary>
     public static class SizeObserver
     {
-#warning Add property for hand tracking
         #region Dependency Properties
         /// <summary>
         /// The observe property

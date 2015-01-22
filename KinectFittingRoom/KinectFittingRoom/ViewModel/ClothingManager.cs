@@ -1,13 +1,14 @@
 using System;
-using System.Collections.ObjectModel;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Media.Media3D;
 using HelixToolkit.Wpf;
+using KinectFittingRoom.Model.ClothingItems;
 using KinectFittingRoom.ViewModel.ButtonItems;
 using Microsoft.Kinect;
 
-namespace KinectFittingRoom.ViewModel.ClothingItems
+namespace KinectFittingRoom.ViewModel
 {
     public sealed class ClothingManager : ViewModelBase
     {

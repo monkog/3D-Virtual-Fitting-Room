@@ -1,4 +1,5 @@
 ﻿#if DEBUG
+using KinectFittingRoom.ViewModel;
 using Microsoft.Kinect;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,7 +8,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-namespace KinectFittingRoom.ViewModel.Debug
+namespace KinectFittingRoom.Model.Debug
 {
     /// <summary>
     /// Manages Skeleton parts when debugging

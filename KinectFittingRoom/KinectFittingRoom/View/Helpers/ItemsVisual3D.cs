@@ -38,9 +38,9 @@ namespace KinectFittingRoom.View.Helpers
         /// <value>
         /// The items source.
         /// </value>
-        public IEnumerable ItemsSource
+        public ICollection ItemsSource
         {
-            get { return (IEnumerable)GetValue(ItemsSourceProperty); }
+            get { return (ICollection)GetValue(ItemsSourceProperty); }
             set { SetValue(ItemsSourceProperty, value); }
         }
         #endregion Public Properties

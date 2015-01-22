@@ -157,12 +157,20 @@
     <Compile Include="ViewModel\ClothingItems\HatItem.cs" />
     <Compile Include="ViewModel\ClothingItems\SkirtItem.cs" />
     <Compile Include="ViewModel\ClothingItems\TieItem.cs" />
+    <Compile Include="Model\ClothingItems\BagItem.cs" />
+    <Compile Include="Model\ClothingItems\ClothingItemBase.cs" />
+    <Compile Include="ViewModel\ClothingManager.cs" />
+    <Compile Include="Model\ClothingItems\DressItem.cs" />
+    <Compile Include="Model\ClothingItems\GlassesItem.cs" />
+    <Compile Include="Model\ClothingItems\HatItem.cs" />
+    <Compile Include="Model\ClothingItems\SkirtItem.cs" />
+    <Compile Include="Model\ClothingItems\TieItem.cs" />
     <Compile Include="View\Buttons\Events\HandCursorEventArgs.cs" />
     <Compile Include="View\Buttons\Events\ButtonsManager.cs" />
     <Compile Include="View\Buttons\Events\KinectEvents.cs" />
     <Compile Include="View\Buttons\Events\KinectInput.cs" />
     <Compile Include="View\Buttons\KinectButton.cs" />
-    <Compile Include="ViewModel\Debug\SkeletonManager.cs" />
+    <Compile Include="Model\Debug\SkeletonManager.cs" />
     <Compile Include="ViewModel\ButtonItems\ClothingCategoryButtonViewModel.cs" />
     <Compile Include="ViewModel\HandTracking.cs" />
     <Compile Include="ViewModel\KinectService.cs" />
@@ -875,6 +883,7 @@
     <Resource Include="Resources\Icons\Menu\no.png" />
     <Resource Include="Resources\Icons\Menu\yes.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

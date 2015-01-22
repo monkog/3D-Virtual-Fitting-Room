@@ -1,26 +1,26 @@
 ﻿using System.Windows.Media.Media3D;
 using Microsoft.Kinect;
 
-namespace KinectFittingRoom.ViewModel.ClothingItems
+namespace KinectFittingRoom.Model.ClothingItems
 {
-    class GlassesItem : ClothingItemBase
+    class TieItem : ClothingItemBase
     {
         /// <summary>
         /// The ratio
         /// </summary>
-        private const double Ratio = 0.3;
+        private const double Ratio = 1;
         /// <summary>
-        /// Initializes a new instance of the <see cref="GlassesItem"/> class.
+        /// Initializes a new instance of the <see cref="TieItem"/> class.
         /// </summary>
         /// <param name="model">3D model</param>
-        public GlassesItem(Model3DGroup model)
+        public TieItem(Model3DGroup model)
             : base(model, Ratio, verticalTrack: true)
         {
-            JointToTrackPosition = JointType.Head;
+            JointToTrackPosition = JointType.ShoulderCenter;
             LeftJointToTrackAngle = JointType.ShoulderLeft;
             RightJointToTrackAngle = JointType.ShoulderRight;
-            LeftJointToTrackScale = JointType.Head;
-            RightJointToTrackScale = JointType.ShoulderCenter;
+            LeftJointToTrackScale = JointType.ShoulderCenter;
+            RightJointToTrackScale = JointType.Spine;
         }
     }
 }
