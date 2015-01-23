@@ -10,6 +10,10 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
         /// Only instance of TopMenuManager
         /// </summary>
         private static TopMenuManager _instance;
+		/// <summary>
+        /// Information about sounds.
+        /// </summary>
+        private bool _soundsOn;
         /// <summary>
         /// Actually displayed top menu buttons
         /// </summary>
@@ -179,6 +183,20 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
             }
         }
         /// <summary>
+        /// Gets or sets information about sounds.
+        /// </summary>
+        public bool SoundsOn
+        {
+            get { return _soundsOn; }
+            set
+            {
+                if (_soundsOn == value)
+                    return;
+                _soundsOn = value;
+                OnPropertyChanged("SoundsOn");
+            }
+        }
+        /// <summary>
         /// Gets or sets cancel closing button
         /// </summary>
         public NoCloseButtonViewModel NoCloseButton
@@ -216,7 +234,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
         private TopMenuManager()
         {
             InitializeTopMenuButtons();
-            
+            SoundsOn = true;
             CreateCloseButtons();
         }
         #endregion

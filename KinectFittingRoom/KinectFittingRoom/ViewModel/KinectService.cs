@@ -63,7 +63,7 @@ namespace KinectFittingRoom.ViewModel
         private double _imageHeight;
         /// <summary>
         /// The error grid message
-        /// </summary>
+        /// </summary>`
         private string _errorGridMessage;
         #endregion Private Fields
         #region Public Properties
@@ -75,18 +75,15 @@ namespace KinectFittingRoom.ViewModel
             get { return _kinectSensor; }
             set
             {
-                //if (_kinectSensor != value)
+                if (_kinectSensor != null)
                 {
-                    if (_kinectSensor != null)
-                    {
-                        UninitializeKinectSensor(_kinectSensor);
-                        _kinectSensor = null;
-                    }
-                    if (value != null && value.Status == KinectStatus.Connected)
-                    {
-                        _kinectSensor = value;
-                        InitializeKinectSensor(_kinectSensor);
-                    }
+                    UninitializeKinectSensor(_kinectSensor);
+                    _kinectSensor = null;
+                }
+                if (value != null && value.Status == KinectStatus.Connected)
+                {
+                    _kinectSensor = value;
+                    InitializeKinectSensor(_kinectSensor);
                 }
             }
         }

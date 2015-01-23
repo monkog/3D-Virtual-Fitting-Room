@@ -1,4 +1,3 @@
-~ zmienic sposób odtwarzania dŸwiêku przy robieniu zdjêcia
 ~ wszystkie b³êdy jêzykowe w pracy!
 ~ remove delta position w clothing manager?
 ~ Dlaczego spodnice zle sie skaluja?
@@ -7,6 +6,4 @@
 ~ Przesunac srodek w odpowiednie miejsce
 
 ~ spytac o recenzenta
-~ czcionka 11?
-~ pytania na egzaminie
 ~ termin obrony

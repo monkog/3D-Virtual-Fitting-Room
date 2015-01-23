@@ -23,7 +23,6 @@ namespace KinectFittingRoom.ViewModel
         private readonly KinectService _kinectService;
         #endregion Private Fields
         #region Public Properties
-        public static bool SoundsOn { get; set; }
         /// <summary>
         /// Gets the button player.
         /// </summary>
@@ -31,13 +30,6 @@ namespace KinectFittingRoom.ViewModel
         /// The button player.
         /// </value>
         public static SoundPlayer ButtonPlayer { get; private set; }
-        /// <summary>
-        /// Gets the camera player.
-        /// </summary>
-        /// <value>
-        /// The camera player.
-        /// </value>
-        public static SoundPlayer CameraPlayer { get; private set; }
         /// <summary>
         /// Gets or sets the clothing manager.
         /// </summary>
@@ -89,9 +81,7 @@ namespace KinectFittingRoom.ViewModel
         /// <param name="kinectService">The kinect service.</param>
         public KinectViewModel(KinectService kinectService)
         {
-            SoundsOn = true;
             ButtonPlayer = new SoundPlayer(Properties.Resources.ButtonClick);
-            CameraPlayer = new SoundPlayer(Properties.Resources.CameraClick);
             InitializeClothingCategories();
             _kinectService = kinectService;
             _kinectService.Initialize();

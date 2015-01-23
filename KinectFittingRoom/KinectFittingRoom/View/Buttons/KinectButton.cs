@@ -105,6 +105,17 @@ namespace KinectFittingRoom.View.Buttons
             set { SetValue(IsClickedProperty, value); }
         }
         /// <summary>
+        /// Gets or sets information about sounds.
+        /// </summary>
+        /// <value>
+        /// Information about sounds.
+        /// </value>
+        public bool AreSoundsOn
+        {
+            get { return (bool)GetValue(AreSoundsOnProperty); }
+            set { SetValue(AreSoundsOnProperty, value); }
+        }
+        /// <summary>
         /// Gets or sets the command to invoke when this button is pressed.
         /// </summary>
         public new ICommand Command
@@ -135,6 +146,11 @@ namespace KinectFittingRoom.View.Buttons
         /// </summary>
         public static readonly DependencyProperty IsClickedProperty = DependencyProperty.Register(
             "IsClicked", typeof(bool), typeof(KinectButton), new PropertyMetadata(default(bool)));
+        /// <summary>
+        /// AreSoundsOn dependency property
+        /// </summary>
+        public static readonly DependencyProperty AreSoundsOnProperty = DependencyProperty.Register(
+            "AreSoundsOn", typeof(bool), typeof(KinectButton), new PropertyMetadata(default(bool)));
         #endregion Dependency Properties
         #region .ctor
         /// <summary>

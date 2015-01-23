@@ -19,8 +19,8 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
         /// </summary>
         public override void ClickExecuted()
         {
+            TopMenuManager.Instance.SoundsOn = !TopMenuManager.Instance.SoundsOn;
             PlaySound();
-            KinectViewModel.SoundsOn = !KinectViewModel.SoundsOn;
             ClearMenu();
         }
         #endregion

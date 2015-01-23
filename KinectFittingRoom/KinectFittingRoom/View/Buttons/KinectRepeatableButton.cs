@@ -16,10 +16,6 @@ namespace KinectFittingRoom.View.Buttons
         protected override void KinectButton_HandCursorClick(object sender, HandCursorEventArgs args)
         {
             SetValue(IsClickedProperty, true);
-
-            if (KinectViewModel.SoundsOn)
-                KinectViewModel.ButtonPlayer.Play();
-
             AfterClickTimer.Start();
         }
         /// <summary>

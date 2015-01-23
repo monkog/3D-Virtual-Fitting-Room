@@ -60,7 +60,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// </summary>
         public void PlaySound()
         {
-            if (KinectViewModel.SoundsOn)
+            if(TopMenuButtons.TopMenuManager.Instance.SoundsOn)
                 KinectViewModel.ButtonPlayer.Play();
         }
         #endregion Public Methods

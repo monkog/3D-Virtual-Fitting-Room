@@ -3,6 +3,7 @@ using KinectFittingRoom.ViewModel;
 using System;
 using System.Globalization;
 using System.IO;
+using System.Media;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -30,6 +31,10 @@ namespace KinectFittingRoom.View.Buttons
         /// The number of _screenshotTimer ticks
         /// </summary>
         private int _ticks;
+        /// <summary>
+        /// The camera player.
+        /// </summary>
+        private SoundPlayer _cameraPlayer;
         #endregion Private Fields
         #region .ctor
         /// <summary>
@@ -38,6 +43,7 @@ namespace KinectFittingRoom.View.Buttons
         public KinectScreenshotButton()
             : base()
         {
+            _cameraPlayer = new SoundPlayer(Properties.Resources.CameraClick);
             _screenshotTimer = new DispatcherTimer() { Interval = new TimeSpan(0, 0, 0, 1) };
             _screenshotTimer.Tick += ScreenshotTimer_Tick;
         }
@@ -103,8 +109,8 @@ namespace KinectFittingRoom.View.Buttons
                 pngImage.Save(fileStream);
             }
 
-            if (KinectViewModel.SoundsOn)
-                KinectViewModel.CameraPlayer.Play();
+            if((bool)GetValue(AreSoundsOnProperty))
+                _cameraPlayer.Play();
         }
         /// <summary>
         /// Create watermark on screenshot
