@@ -246,7 +246,7 @@
         <Grid Width="{Binding ActualWidth, ElementName=ImageArea}" Background="Black" Opacity="0.5"
               Visibility="{Binding CloseAppGridVisibility, Source={x:Static topMenuButtons:TopMenuManager.Instance}}">
             <TextBlock Text="Czy na pewno chcesz wyjść z programu?" Opacity="1"
-                       FontSize="30" TextAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                       FontSize="30" TextAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,200" Foreground="White"/>
         </Grid>
         <Grid Name="CloseAppGrid" Width="{Binding ActualWidth, ElementName=ImageArea}"
               Visibility="{Binding CloseAppGridVisibility, Source={x:Static topMenuButtons:TopMenuManager.Instance}}">
