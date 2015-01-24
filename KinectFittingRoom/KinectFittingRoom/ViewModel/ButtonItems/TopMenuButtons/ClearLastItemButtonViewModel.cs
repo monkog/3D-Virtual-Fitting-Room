@@ -1,7 +1,6 @@
 ﻿using KinectFittingRoom.Model.ClothingItems;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
+using KinectFittingRoom.ViewModel.Helpers;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
 {
@@ -26,9 +25,9 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
             if (ClothingManager.Instance.ChosenClothesModels.Count == 0)
                 return;
 
-            Dictionary<ClothingItemBase.ClothingType, ClothingItemBase> tmp = ClothingManager.Instance.ChosenClothesModels;
-            tmp.Remove(tmp.Last().Key);
-            ClothingManager.Instance.ChosenClothesModels = new Dictionary<ClothingItemBase.ClothingType, ClothingItemBase>(tmp);
+            OrderedDictionary<ClothingItemBase.ClothingType, ClothingItemBase> tmp = ClothingManager.Instance.ChosenClothesModels;
+            tmp.Remove(tmp.LastKey);
+            ClothingManager.Instance.ChosenClothesModels = new OrderedDictionary<ClothingItemBase.ClothingType, ClothingItemBase>(tmp);
             ClearMenu();
         }
         #endregion

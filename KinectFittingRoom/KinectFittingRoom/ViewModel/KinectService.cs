@@ -7,7 +7,6 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Media.Media3D;
-using KinectFittingRoom.Model.ClothingItems;
 using Microsoft.Kinect;
 
 namespace KinectFittingRoom.ViewModel

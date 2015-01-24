@@ -1,6 +1,6 @@
 ﻿using KinectFittingRoom.Model.ClothingItems;
-using System.Collections.Generic;
 using System.Drawing;
+using KinectFittingRoom.ViewModel.Helpers;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
 {
@@ -22,7 +22,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
         public override void ClickExecuted()
         {
             PlaySound();
-            ClothingManager.Instance.ChosenClothesModels = new Dictionary<ClothingItemBase.ClothingType, ClothingItemBase>();
+            ClothingManager.Instance.ChosenClothesModels = new OrderedDictionary<ClothingItemBase.ClothingType, ClothingItemBase>();
             ClearMenu();
         }
         #endregion

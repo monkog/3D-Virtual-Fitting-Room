@@ -23,6 +23,7 @@ namespace KinectFittingRoom.Model.ClothingItems
             RightJointToTrackAngle = JointType.ShoulderRight;
             LeftJointToTrackScale = JointType.ShoulderCenter;
             RightJointToTrackScale = bottomJoint;
+            DeltaPosition = 20;
         }
         /// <summary>
         /// Initializes a new instance of the <see cref="DressItem"/> class.
