@@ -50,9 +50,9 @@ namespace KinectFittingRoom.ViewModel
         /// </summary>
         private Visibility _errorGridVisibility;
         /// <summary>
-        /// Visibility of ClothesArea 
+        /// Opacity of ClothesArea 
         /// </summary>
-        private Visibility _clothesAreaVisibility;
+        private double _clothesAreaOpacity;
         /// <summary>
         /// The image width
         /// </summary>
@@ -180,15 +180,15 @@ namespace KinectFittingRoom.ViewModel
         /// <value>
         /// The visibility of ClothesArea
         /// </value>
-        public Visibility ClothesAreaVisibility
+        public double ClothesAreaOpacity
         {
-            get { return _clothesAreaVisibility; }
+            get { return _clothesAreaOpacity; }
             set
             {
-                if (_clothesAreaVisibility == value)
+                if (_clothesAreaOpacity == value)
                     return;
-                _clothesAreaVisibility = value;
-                OnPropertyChanged("ClothesAreaVisibility");
+                _clothesAreaOpacity = value;
+                OnPropertyChanged("ClothesAreaOpacity");
             }
         }
         /// <summary>
@@ -293,16 +293,16 @@ namespace KinectFittingRoom.ViewModel
                 var skeleton = GetPrimarySkeleton(_skeletons);
                 if (skeleton == null)
                 {
+                    ClothesAreaOpacity = 0;
                     ErrorGridVisibility = Visibility.Visible;
                     ErrorGridMessage = "Nie wykryto szkieletu lub utracono jego położenie." + Environment.NewLine +
                         "Poczekaj chwilę i sprawdź, czy stoisz w odpowiedniej odległości od urządzenia.";
-                    ClothesAreaVisibility = Visibility.Hidden;
                     return;
                 }
-                if (ClothesAreaVisibility == Visibility.Hidden)
+                if (ClothesAreaOpacity == 0)
                 {
                     ErrorGridVisibility = Visibility.Collapsed;
-                    ClothesAreaVisibility = Visibility.Visible;
+                    ClothesAreaOpacity = 1;
                 }
                 Hand.UpdateHandCursor(skeleton, Kinect, Width, Height);
                 ClothingManager.Instance.UpdateItemPosition(skeleton, Kinect, Width, Height);
@@ -397,7 +397,7 @@ namespace KinectFittingRoom.ViewModel
             SkeletonManager = new SkeletonManager();
 #endif
             ErrorGridVisibility = Visibility.Hidden;
-            ClothesAreaVisibility = Visibility.Visible;
+            ClothesAreaOpacity = 1;
             DiscoverKinectSensors();
         }
         /// <summary>
