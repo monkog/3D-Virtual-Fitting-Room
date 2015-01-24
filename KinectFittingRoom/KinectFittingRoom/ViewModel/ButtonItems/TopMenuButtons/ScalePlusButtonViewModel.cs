@@ -1,5 +1,4 @@
-﻿using KinectFittingRoom.Model.ClothingItems;
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
 {

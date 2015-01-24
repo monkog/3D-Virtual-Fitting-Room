@@ -80,9 +80,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\CommonServiceLocator.1.2\lib\portable-windows8+net40+sl5+windowsphone8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
-    <Reference Include="Petzold.Media3D">
-      <HintPath>..\..\..\..\..\Desktop\Petzold.Media3D.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -156,6 +153,7 @@
     <Compile Include="Model\ClothingItems\HatItem.cs" />
     <Compile Include="Model\ClothingItems\SkirtItem.cs" />
     <Compile Include="Model\ClothingItems\TieItem.cs" />
+    <Compile Include="ViewModel\Helpers\OrderedDictionary.cs" />
     <Compile Include="View\Buttons\Events\HandCursorEventArgs.cs" />
     <Compile Include="View\Buttons\Events\ButtonsManager.cs" />
     <Compile Include="View\Buttons\Events\KinectEvents.cs" />
@@ -874,7 +872,6 @@
     <Resource Include="Resources\Icons\Menu\no.png" />
     <Resource Include="Resources\Icons\Menu\yes.png" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

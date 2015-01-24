@@ -1,11 +1,10 @@
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Windows.Media.Media3D;
 using HelixToolkit.Wpf;
 using KinectFittingRoom.Model.ClothingItems;
 using KinectFittingRoom.ViewModel.ButtonItems;
+using KinectFittingRoom.ViewModel.Helpers;
 using Microsoft.Kinect;
 
 namespace KinectFittingRoom.ViewModel
@@ -21,7 +20,7 @@ namespace KinectFittingRoom.ViewModel
         /// <summary>
         /// The chosen clothing models collection
         /// </summary>
-        private Dictionary<ClothingItemBase.ClothingType, ClothingItemBase> _chosenClothesModels;
+        private OrderedDictionary<ClothingItemBase.ClothingType, ClothingItemBase> _chosenClothesModels;
         /// <summary>
         /// The clothing collection
         /// </summary>
@@ -78,7 +77,7 @@ namespace KinectFittingRoom.ViewModel
         /// <value>
         /// The chosen clothing models collection.
         /// </value>
-        public Dictionary<ClothingItemBase.ClothingType, ClothingItemBase> ChosenClothesModels
+        public OrderedDictionary<ClothingItemBase.ClothingType, ClothingItemBase> ChosenClothesModels
         {
             get { return _chosenClothesModels; }
             set
@@ -155,7 +154,7 @@ namespace KinectFittingRoom.ViewModel
         private ClothingManager()
         {
             ChosenType = ClothingItemBase.MaleFemaleType.Female;
-            ChosenClothesModels = new Dictionary<ClothingItemBase.ClothingType, ClothingItemBase>();
+            ChosenClothesModels = new OrderedDictionary<ClothingItemBase.ClothingType, ClothingItemBase>();
             _importer = new ModelImporter();
         }
         #endregion .ctor
@@ -166,9 +165,9 @@ namespace KinectFittingRoom.ViewModel
         /// <param name="ratio">The ratio of scaling</param>
         public void ScaleImageHeight(double ratio)
         {
-            Dictionary<ClothingItemBase.ClothingType, ClothingItemBase> tmp = ChosenClothesModels;
-            tmp.Last().Value.HeightScale += ratio;
-            ChosenClothesModels = new Dictionary<ClothingItemBase.ClothingType, ClothingItemBase>(tmp);
+            OrderedDictionary<ClothingItemBase.ClothingType, ClothingItemBase> tmp = ChosenClothesModels;
+            tmp.Last.HeightScale += ratio;
+            ChosenClothesModels = new OrderedDictionary<ClothingItemBase.ClothingType, ClothingItemBase>(tmp);
         }
         /// <summary>
         /// Scales width of clothes
@@ -176,9 +175,9 @@ namespace KinectFittingRoom.ViewModel
         /// <param name="ratio">The ratio of scaling</param>
         public void ScaleImageWidth(double ratio)
         {
-            Dictionary<ClothingItemBase.ClothingType, ClothingItemBase> tmp = ChosenClothesModels;
-            tmp.Last().Value.WidthScale += ratio;
-            ChosenClothesModels = new Dictionary<ClothingItemBase.ClothingType, ClothingItemBase>(tmp);
+            OrderedDictionary<ClothingItemBase.ClothingType, ClothingItemBase> tmp = ChosenClothesModels;
+            tmp.Last.WidthScale += ratio;
+            ChosenClothesModels = new OrderedDictionary<ClothingItemBase.ClothingType, ClothingItemBase>(tmp);
         }
         /// <summary>
         /// Changes position of clothes
@@ -186,9 +185,9 @@ namespace KinectFittingRoom.ViewModel
         /// <param name="delta">Position delta</param>
         public void ChangeImagePosition(double delta)
         {
-            Dictionary<ClothingItemBase.ClothingType, ClothingItemBase> tmp = ChosenClothesModels;
-            tmp.Last().Value.DeltaPosition += delta;
-            ChosenClothesModels = new Dictionary<ClothingItemBase.ClothingType, ClothingItemBase>(tmp);
+            OrderedDictionary<ClothingItemBase.ClothingType, ClothingItemBase> tmp = ChosenClothesModels;
+            tmp.Last.DeltaPosition += delta;
+            ChosenClothesModels = new OrderedDictionary<ClothingItemBase.ClothingType, ClothingItemBase>(tmp);
         }
         #endregion Protected Methods
         #region Public Methods
@@ -226,12 +225,12 @@ namespace KinectFittingRoom.ViewModel
         /// <param name="bottomJoint">Bottom joint to track size</param>
         public void AddClothingItem<T>(ClothingItemBase.ClothingType category, string modelPath, JointType? bottomJoint = null)
         {
-            Dictionary<ClothingItemBase.ClothingType, ClothingItemBase> tmpModels = ChosenClothesModels;
+            OrderedDictionary<ClothingItemBase.ClothingType, ClothingItemBase> tmpModels = ChosenClothesModels;
             if (bottomJoint != null)
                 tmpModels[category] = (ClothingItemBase)Activator.CreateInstance(typeof(T), _importer.Load(modelPath), bottomJoint);
             else
                 tmpModels[category] = (ClothingItemBase)Activator.CreateInstance(typeof(T), _importer.Load(modelPath));
-            ChosenClothesModels = new Dictionary<ClothingItemBase.ClothingType, ClothingItemBase>(tmpModels);
+            ChosenClothesModels = new OrderedDictionary<ClothingItemBase.ClothingType, ClothingItemBase>(tmpModels);
         }
         #endregion Public Methods
     }

@@ -21,6 +21,7 @@ namespace KinectFittingRoom.Model.ClothingItems
             RightJointToTrackAngle = JointType.ShoulderRight;
             LeftJointToTrackScale = JointType.Head;
             RightJointToTrackScale = JointType.ShoulderCenter;
+            DeltaPosition = 20;
         }
     }
 }

@@ -3,7 +3,6 @@ using System.Windows;
 using System.Windows.Media.Media3D;
 using KinectFittingRoom.ViewModel;
 using Microsoft.Kinect;
-using Petzold.Media3D;
 
 namespace KinectFittingRoom.Model.ClothingItems
 {
@@ -196,10 +195,7 @@ namespace KinectFittingRoom.Model.ClothingItems
             Angle = TrackJointsRotation(sensor, skeleton.Joints[LeftJointToTrackAngle], skeleton.Joints[RightJointToTrackAngle]);
 
             var joint = KinectService.GetJointPoint(skeleton.Joints[JointToTrackPosition], sensor, width, height);
-
-            LineRange range;
-            Point2DtoPoint3D(new Point(joint.X, joint.Y + DeltaPosition), out range);
-            var point3D = range.PointFromZ(0);
+            var point3D = Point2DtoPoint3D(new Point(joint.X, joint.Y + DeltaPosition));
 
             FitModelToBody(skeleton.Joints[LeftJointToTrackScale], skeleton.Joints[RightJointToTrackScale], sensor, width, height, Angle);
 
@@ -213,8 +209,7 @@ namespace KinectFittingRoom.Model.ClothingItems
         /// Maps the Point in 2D to point in 3D.
         /// </summary>
         /// <param name="point2D">The 2D point.</param>
-        /// <param name="range">The range.</param>
-        private void Point2DtoPoint3D(Point point2D, out LineRange range)
+        private Point3D Point2DtoPoint3D(Point point2D)
         {
             Point3D point = new Point3D(point2D.X, point2D.Y, 0);
             Matrix3D matxViewport = ClothingManager.Instance.ViewportTransform;
@@ -224,20 +219,22 @@ namespace KinectFittingRoom.Model.ClothingItems
             {
                 matxViewport.Invert();
                 matxCamera.Invert();
-
-                Point3D pointNormalized = matxViewport.Transform(point);
-                pointNormalized.Z = 0.01;
-                Point3D pointNear = matxCamera.Transform(pointNormalized);
-                pointNormalized.Z = 0.99;
-                Point3D pointFar = matxCamera.Transform(pointNormalized);
-
-                range = new LineRange(pointNear, pointFar);
-
             }
             catch (Exception)
             {
-                range = new LineRange();
+                return new Point3D();
             }
+
+            Point3D pointNormalized = matxViewport.Transform(point);
+            pointNormalized.Z = 0.01;
+            Point3D pointNear = matxCamera.Transform(pointNormalized);
+            pointNormalized.Z = 0.99;
+            Point3D pointFar = matxCamera.Transform(pointNormalized);
+
+            double factor = (0 - pointNear.Z) / (pointFar.Z - pointNear.Z);
+            double x = pointNear.X + factor * (pointFar.X - pointNear.X);
+            double y = pointNear.Y + factor * (pointFar.Y - pointNear.Y);
+            return new Point3D(x, y, 0);
         }
         /// <summary>
         /// Sets the base transformation.
