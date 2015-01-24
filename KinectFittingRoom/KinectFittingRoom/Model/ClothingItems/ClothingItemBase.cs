@@ -197,7 +197,7 @@ namespace KinectFittingRoom.Model.ClothingItems
             var joint = KinectService.GetJointPoint(skeleton.Joints[JointToTrackPosition], sensor, width, height);
             var point3D = Point2DtoPoint3D(new Point(joint.X, joint.Y + DeltaPosition));
 
-            FitModelToBody(skeleton.Joints[LeftJointToTrackScale], skeleton.Joints[RightJointToTrackScale], sensor, width, height, Angle);
+            FitModelToBody(skeleton.Joints[LeftJointToTrackScale], skeleton.Joints[RightJointToTrackScale], sensor, width, height);
 
             var transform = new Transform3DGroup();
             transform.Children.Add(ScaleTransformation);
@@ -286,11 +286,11 @@ namespace KinectFittingRoom.Model.ClothingItems
         /// <param name="sensor">The sensor.</param>
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
-        private void FitModelToBody(Joint joint1, Joint joint2, KinectSensor sensor, double width, double height, double angle)
+        private void FitModelToBody(Joint joint1, Joint joint2, KinectSensor sensor, double width, double height)
         {
             if (joint1.TrackingState == JointTrackingState.NotTracked
                 || joint2.TrackingState == JointTrackingState.NotTracked)
-                WidthScale = HeightScale = 0.1;
+                WidthScale = _heightScale = 0.1;
 
             var joint1Position = KinectService.GetJointPoint(joint1, sensor, width, height);
             var joint2Position = KinectService.GetJointPoint(joint2, sensor, width, height);
