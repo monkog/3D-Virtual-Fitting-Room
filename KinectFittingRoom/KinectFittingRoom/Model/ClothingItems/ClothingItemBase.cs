@@ -155,13 +155,15 @@ namespace KinectFittingRoom.Model.ClothingItems
         /// </summary>
         /// <param name="model">3D model</param>
         /// <param name="tolerance">Tolerance of the model scale</param>
-        protected ClothingItemBase(Model3DGroup model, double tolerance)
+        /// <param name="deltaPosition">Factor to move the model in Y coordinate</param>
+        protected ClothingItemBase(Model3DGroup model, double tolerance, double deltaPosition = 1)
         {
             Model = model;
             _basicBounds = model.Bounds;
             DeltaPosition = 0;
             Tolerance = tolerance;
             _widthScale = _heightScale = 1;
+            DeltaPosition = deltaPosition;
         }
         #endregion
         #region Public Methods
@@ -195,7 +197,7 @@ namespace KinectFittingRoom.Model.ClothingItems
             Angle = TrackJointsRotation(sensor, skeleton.Joints[LeftJointToTrackAngle], skeleton.Joints[RightJointToTrackAngle]);
 
             var joint = KinectService.GetJointPoint(skeleton.Joints[JointToTrackPosition], sensor, width, height);
-            var point3D = Point2DtoPoint3D(new Point(joint.X, joint.Y + DeltaPosition));
+            var point3D = Point2DtoPoint3D(new Point(joint.X, joint.Y * DeltaPosition));
 
             FitModelToBody(skeleton.Joints[LeftJointToTrackScale], skeleton.Joints[RightJointToTrackScale], sensor, width, height);
 
