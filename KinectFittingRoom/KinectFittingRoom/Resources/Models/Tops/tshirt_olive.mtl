@@ -1,0 +1,21 @@
+# Blender MTL File: 'None'
+# Material Count: 2
+
+newmtl Material.001
+Ns 96.078431
+Ka 0.700000 0.700000 0.700000
+Kd 0.640000 0.640000 0.640000
+Ks 0.200000 0.200000 0.200000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd ..\..\Materials\tshirt_olive.jpg
+
+newmtl T_Shirt
+Ns 3.921569
+Ka 0.000000 0.000000 0.000000
+Kd 0.181267 0.140036 0.102741
+Ks 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2

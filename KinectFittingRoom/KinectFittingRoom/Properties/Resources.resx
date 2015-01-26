@@ -436,4 +436,19 @@
   <data name="top_orange" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\images\tops\top_orange.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="tshirt_coral_blue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\tops\tshirt_coral_blue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tshirt_green_blue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\tops\tshirt_green_blue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tshirt_navy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\tops\tshirt_navy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tshirt_olive" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\tops\tshirt_olive.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tshirt_orange_blue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\tops\tshirt_orange_blue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

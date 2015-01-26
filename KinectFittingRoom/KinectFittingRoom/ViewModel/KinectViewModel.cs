@@ -329,29 +329,39 @@ namespace KinectFittingRoom.ViewModel
 
         private ClothingCategoryButtonViewModel CreateTopsClothingCategoryButton()
         {
-            return new ClothingCategoryButtonViewModel(ClothingItemBase.MaleFemaleType.Female)
+            return new ClothingCategoryButtonViewModel(ClothingItemBase.MaleFemaleType.Both)
             {
                 Image = Properties.Resources.top_symbol,
                 Clothes = new List<ClothingButtonViewModel>
                 {
-                    new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, @".\Resources\Models\Tops\big_top_colourful.obj") 
+                    new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\Tops\big_top_colourful.obj") 
                     { Image = Properties.Resources.big_top_colourful }
-                    , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, @".\Resources\Models\Tops\big_top_dark.obj") 
+                    , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\Tops\big_top_dark.obj") 
                     { Image = Properties.Resources.big_top_dark }
-                    , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, @".\Resources\Models\Tops\big_top_green.obj") 
+                    , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\Tops\big_top_green.obj") 
                     { Image = Properties.Resources.big_top_green }
-                    , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, @".\Resources\Models\Tops\long_top_blue.obj") 
+                    , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\Tops\long_top_blue.obj") 
                     { Image = Properties.Resources.long_top_blue }
-                    , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, @".\Resources\Models\Tops\long_top_pink.obj") 
+                    , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\Tops\long_top_pink.obj") 
                     { Image = Properties.Resources.long_top_pink }
-                    , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, @".\Resources\Models\Tops\top_blue.obj") 
+                    , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\Tops\top_blue.obj") 
                     { Image = Properties.Resources.top_blue }
-                    , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, @".\Resources\Models\Tops\top_red.obj") 
+                    , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\Tops\top_red.obj") 
                     { Image = Properties.Resources.top_red }
-                    , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, @".\Resources\Models\Tops\top2_green.obj") 
+                    , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\Tops\top2_green.obj") 
                     { Image = Properties.Resources.top_green }
-                    , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, @".\Resources\Models\Tops\top2_orange.obj") 
+                    , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\Tops\top2_orange.obj") 
                     { Image = Properties.Resources.top_orange }
+                    , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, ClothingItemBase.MaleFemaleType.Male, @".\Resources\Models\Tops\tshirt_navy.obj") 
+                    { Image = Properties.Resources.tshirt_navy }
+                    , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, ClothingItemBase.MaleFemaleType.Male, @".\Resources\Models\Tops\tshirt_green_blue.obj") 
+                    { Image = Properties.Resources.tshirt_green_blue }
+                    , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, ClothingItemBase.MaleFemaleType.Male, @".\Resources\Models\Tops\tshirt_coral_blue.obj") 
+                    { Image = Properties.Resources.tshirt_coral_blue }
+                    , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, ClothingItemBase.MaleFemaleType.Male, @".\Resources\Models\Tops\tshirt_olive.obj") 
+                    { Image = Properties.Resources.tshirt_olive }
+                    , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, ClothingItemBase.MaleFemaleType.Male, @".\Resources\Models\Tops\tshirt_orange_blue.obj") 
+                    { Image = Properties.Resources.tshirt_orange_blue }
                 }
             };
         }

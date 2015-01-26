@@ -20,8 +20,8 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// </summary>
         /// <param name="type">The type of the clothing.</param>
         /// <param name="pathToModel">The path to model.</param>
-        public TopButtonViewModel(ClothingItemBase.ClothingType type, string pathToModel)
-            : base(type, ClothingItemBase.MaleFemaleType.Female, pathToModel)
+        public TopButtonViewModel(ClothingItemBase.ClothingType type, ClothingItemBase.MaleFemaleType maleFemaleType, string pathToModel)
+            : base(type, maleFemaleType, pathToModel)
         { }
         #endregion .ctor
         #region Commands
