@@ -314,7 +314,8 @@ namespace KinectFittingRoom.Model.ClothingItems
             GlassesItem,
             DressItem,
             TieItem,
-            BagItem
+            BagItem,
+            TopItem
         }
 
         public enum MaleFemaleType

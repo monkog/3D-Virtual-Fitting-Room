@@ -1,31 +1,12 @@
 # Blender MTL File: 'None'
-# Material Count: 3
+# Material Count: 1
 
-newmtl Material.004_peas_DIFFUSE.jpg.001
+newmtl Material.001
 Ns 96.078431
-Ka 0.000000 0.000000 0.000000
+Ka 0.600000 0.600000 0.600000
 Kd 0.640000 0.640000 0.640000
 Ks 0.200000 0.200000 0.200000
 Ni 1.000000
 d 1.000000
 illum 2
 map_Kd ..\..\Materials\dress_pink.jpg
-
-newmtl Material.004
-Ns 96.078431
-Ka 0.000000 0.000000 0.000000
-Kd 0.640000 0.640000 0.640000
-Ks 0.500000 0.500000 0.500000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd Obj2\peas_DIFFUSE.jpg
-
-newmtl Material.004_NONE
-Ns 96.078431
-Ka 0.000000 0.000000 0.000000
-Kd 0.640000 0.640000 0.640000
-Ks 0.500000 0.500000 0.500000
-Ni 1.000000
-d 1.000000
-illum 

@@ -1,0 +1,22 @@
+# Blender MTL File: 'None'
+# Material Count: 2
+
+newmtl Material79
+Ns 0.000000
+Ka 0.000000 0.000000 0.000000
+Kd 0.479294 0.147236 0.168769
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd pat13\pat13_DIFFUSE.png
+
+newmtl Material85
+Ns 0.000000
+Ka 0.000000 0.000000 0.000000
+Kd 0.479294 0.002593 0.030674
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd pattern 6\pat6_DIFFUSE.png

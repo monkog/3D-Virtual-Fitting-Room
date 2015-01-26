@@ -100,6 +100,7 @@ namespace KinectFittingRoom.ViewModel
                 CreateSkirtsClothingCategoryButton(),
                 CreateDressesClothingCategoryButton(),
                 CreateGlassesClothingCategoryButton(),
+                CreateTopsClothingCategoryButton(),
                 CreateBagsClothingCategoryButton()
             };
             ClothingManager.Instance.UpdateActualCategories();
@@ -147,16 +148,20 @@ namespace KinectFittingRoom.ViewModel
                 Image = Properties.Resources.skirt_symbol,
                 Clothes = new List<ClothingButtonViewModel>
                 {
-                    new SkirtButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\Skirts\short_skirt.obj") 
-                    { Image = Properties.Resources.short_skirt }
-                    ,new SkirtButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\Skirts\short_skirt_checked.obj") 
-                    { Image = Properties.Resources.short_skirt_checked }
-                    ,new SkirtButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\Skirts\short_skirt_denim.obj") 
-                    { Image = Properties.Resources.short_skirt_denim }
-                    ,new SkirtButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\Skirts\short_skirt_green_stripes.obj") 
-                    { Image = Properties.Resources.short_skirt_green }
-                    ,new SkirtButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\Skirts\short_skirt_red.obj") 
-                    { Image = Properties.Resources.short_skirt_red }
+                    new SkirtButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\Skirts\medium_skirt.obj") 
+                    { Image = Properties.Resources.medium_skirt }
+                    , new SkirtButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\Skirts\medium_skirt_checked.obj") 
+                    { Image = Properties.Resources.medium_skirt_checked }
+                    , new SkirtButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\Skirts\medium_skirt_denim.obj") 
+                    { Image = Properties.Resources.medium_skirt_denim }
+                    , new SkirtButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\Skirts\medium_skirt_green_stripes.obj") 
+                    { Image = Properties.Resources.medium_skirt_green_stripes }
+                    , new SkirtButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\Skirts\medium_skirt_violet.obj") 
+                    { Image = Properties.Resources.medium_skirt_violet }
+                    , new SkirtButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\Skirts\medium_skirt_red.obj") 
+                    { Image = Properties.Resources.medium_skirt_red }
+                    , new SkirtButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\Skirts\medium_skirt_navy.obj") 
+                    { Image = Properties.Resources.medium_skirt_navy }
                     , new SkirtButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\Skirts\long_skirt.obj") 
                     { Image = Properties.Resources.long_skirt, BottomJointToTrackScale = JointType.FootLeft }
                     , new SkirtButtonViewModel(ClothingItemBase.ClothingType.SkirtItem, @".\Resources\Models\Skirts\long_skirt_bikes.obj") 
@@ -189,20 +194,28 @@ namespace KinectFittingRoom.ViewModel
                     { Image = Properties.Resources.dress_dark }
                     , new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\dress_green.obj") 
                     { Image = Properties.Resources.dress_green }
-                    , new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\dress_orange_black.obj") 
-                    { Image = Properties.Resources.dress_brownblack }
-                    , new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\dress_red.obj") 
-                    { Image = Properties.Resources.dress_red }
                     , new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\dress_navy.obj") 
                     { Image = Properties.Resources.dress_navy }
-                    , new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\dress_violet.obj") 
-                    { Image = Properties.Resources.dress_violet }
-                    , new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\dress_pink.obj") 
-                    { Image = Properties.Resources.dress_pink }
+                    , new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\dress_red.obj") 
+                    { Image = Properties.Resources.dress_red }
+                    , new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\dress_darkgreen.obj") 
+                    { Image = Properties.Resources.dress_darkgreen }
                     , new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\dress_orange.obj") 
                     { Image = Properties.Resources.dress_orange }
+                    , new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\dress_violet.obj") 
+                    { Image = Properties.Resources.dress_violet }
                     , new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\dress_blue.obj") 
                     { Image = Properties.Resources.dress_blue }
+                    , new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\dress_sunny.obj") 
+                    { Image = Properties.Resources.dress_sunny }
+                    , new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\dress_pink.obj") 
+                    { Image = Properties.Resources.dress_pink }
+                    , new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\dress_kitchen.obj") 
+                    { Image = Properties.Resources.dress_kitchen }
+                    , new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\dress_egipt.obj") 
+                    { Image = Properties.Resources.dress_egipt }
+                    , new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\dress_beige.obj") 
+                    { Image = Properties.Resources.dress_beige }
                 }
             };
         }
@@ -311,6 +324,35 @@ namespace KinectFittingRoom.ViewModel
                         , new BagButtonViewModel(ClothingItemBase.ClothingType.BagItem, ClothingItemBase.MaleFemaleType.Male, @".\Resources\Models\Bags\suitcase_gray.obj")
                         { Image = Properties.Resources.suitcase_gray }
                     }
+            };
+        }
+
+        private ClothingCategoryButtonViewModel CreateTopsClothingCategoryButton()
+        {
+            return new ClothingCategoryButtonViewModel(ClothingItemBase.MaleFemaleType.Female)
+            {
+                Image = Properties.Resources.top_symbol,
+                Clothes = new List<ClothingButtonViewModel>
+                {
+                    new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, @".\Resources\Models\Tops\big_top_colourful.obj") 
+                    { Image = Properties.Resources.big_top_colourful }
+                    , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, @".\Resources\Models\Tops\big_top_dark.obj") 
+                    { Image = Properties.Resources.big_top_dark }
+                    , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, @".\Resources\Models\Tops\big_top_green.obj") 
+                    { Image = Properties.Resources.big_top_green }
+                    , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, @".\Resources\Models\Tops\long_top_blue.obj") 
+                    { Image = Properties.Resources.long_top_blue }
+                    , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, @".\Resources\Models\Tops\long_top_pink.obj") 
+                    { Image = Properties.Resources.long_top_pink }
+                    , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, @".\Resources\Models\Tops\top_blue.obj") 
+                    { Image = Properties.Resources.top_blue }
+                    , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, @".\Resources\Models\Tops\top_red.obj") 
+                    { Image = Properties.Resources.top_red }
+                    , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, @".\Resources\Models\Tops\top2_green.obj") 
+                    { Image = Properties.Resources.top_green }
+                    , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, @".\Resources\Models\Tops\top2_orange.obj") 
+                    { Image = Properties.Resources.top_orange }
+                }
             };
         }
         #endregion Private Methods

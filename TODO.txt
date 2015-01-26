@@ -1,7 +1,4 @@
 ~ wszystkie b³êdy jêzykowe w pracy!
-~ remove delta position w clothing manager?
-~ Dlaczego spodnice zle sie skaluja?
-~ ostatnie kapelusze sa przesuniete lekko na lewo
 ~ Sprawdzic wielkosci modeli
 ~ Przesunac srodek w odpowiednie miejsce
 

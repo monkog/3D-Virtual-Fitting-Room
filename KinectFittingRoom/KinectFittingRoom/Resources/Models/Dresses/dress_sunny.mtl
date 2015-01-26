@@ -1,0 +1,21 @@
+# Blender MTL File: 'None'
+# Material Count: 2
+
+newmtl Material.004_peas_DIFFUSE.jpg.001
+Ns 86.274510
+Ka 0.400000 0.400000 0.400000
+Kd 0.327680 0.327680 0.327680
+Ks 0.200000 0.200000 0.200000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd ..\..\Materials\dress_sunny.jpg
+
+newmtl Material.022
+Ns 0.000000
+Ka 0.100000 0.100000 0.100000
+Kd 0.729114 0.046494 0.003593
+Ks 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2

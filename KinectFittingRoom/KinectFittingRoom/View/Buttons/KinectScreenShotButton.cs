@@ -109,7 +109,7 @@ namespace KinectFittingRoom.View.Buttons
                 pngImage.Save(fileStream);
             }
 
-            if((bool)GetValue(AreSoundsOnProperty))
+            if(AreSoundsOn)
                 _cameraPlayer.Play();
         }
         /// <summary>
