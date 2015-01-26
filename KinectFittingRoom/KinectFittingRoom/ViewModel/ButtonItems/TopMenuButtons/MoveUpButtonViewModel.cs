@@ -5,7 +5,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems.TopMenuButtons
     class MoveUpButtonViewModel : TopMenuButtonViewModel
     {
         #region Consts
-        private const double MoveFactor = -5;
+        private const double MoveFactor = -0.05;
         #endregion
         #region .ctor
         /// <summary>
