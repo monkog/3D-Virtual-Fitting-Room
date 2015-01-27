@@ -33,6 +33,8 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
             PlaySound();
             if (ClothingManager.Instance.ChosenClothesModels.ContainsKey(ClothingItemBase.ClothingType.SkirtItem))
                 ClothingManager.Instance.ChosenClothesModels.Remove(ClothingItemBase.ClothingType.SkirtItem);
+            if (ClothingManager.Instance.ChosenClothesModels.ContainsKey(ClothingItemBase.ClothingType.TopItem))
+                ClothingManager.Instance.ChosenClothesModels.Remove(ClothingItemBase.ClothingType.TopItem);
             ClothingManager.Instance.AddClothingItem<DressItem>(Category, ModelPath, BottomJointToTrackScale);
         }
         #endregion Commands
