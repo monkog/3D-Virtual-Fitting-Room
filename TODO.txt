@@ -1,5 +1,0 @@
-~ Sprawdzic wielkosci modeli
-~ Przesunac srodek w odpowiednie miejsce
-
-~ spytac o recenzenta
-~ termin obrony
