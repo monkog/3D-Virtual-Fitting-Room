@@ -1,5 +1,3 @@
 ~ sprawdziæ wszystkie b³êdy jêzykowe w pracy!
-~ zast¹piæ obrazek ze szkieletem zrzutem z aplikacji ze szkieletem
-~ dodaæ zrzut z aplikacji z zaznaczonym sposobem pomiaru rozmiaru dla np. sukienki
-~ napisaæ o napotkanych problemach i o próbach z 2D
 ~ streszczenie
+~ wykonaæ plakat
