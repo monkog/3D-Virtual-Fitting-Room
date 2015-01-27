@@ -341,9 +341,9 @@ namespace KinectFittingRoom.ViewModel
                     , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\Tops\big_top_green.obj") 
                     { Image = Properties.Resources.big_top_green }
                     , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\Tops\long_top_blue.obj") 
-                    { Image = Properties.Resources.long_top_blue }
+                    { Image = Properties.Resources.long_top_blue, BottomJointToTrackScale = JointType.HipCenter }
                     , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\Tops\long_top_pink.obj") 
-                    { Image = Properties.Resources.long_top_pink }
+                    { Image = Properties.Resources.long_top_pink, BottomJointToTrackScale = JointType.HipCenter }
                     , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\Tops\top_blue.obj") 
                     { Image = Properties.Resources.top_blue }
                     , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\Tops\top_red.obj") 

@@ -12,7 +12,7 @@ namespace KinectFittingRoom.Model.ClothingItems
         /// <summary>
         /// The factor to move model in Y coordinate
         /// </summary>
-        private const double DeltaY = 1.05;
+        private const double DeltaY = 1;
         #region .ctor
         /// <summary>
         /// Constructor of Top object
