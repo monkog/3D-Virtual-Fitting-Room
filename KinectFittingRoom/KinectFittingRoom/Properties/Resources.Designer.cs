@@ -73,16 +73,6 @@ namespace KinectFittingRoom.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap armani_bag_brown {
-            get {
-                object obj = ResourceManager.GetObject("armani_bag_brown", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap armani_bag_camel {
             get {
                 object obj = ResourceManager.GetObject("armani_bag_camel", resourceCulture);
@@ -854,6 +844,16 @@ namespace KinectFittingRoom.Properties {
         internal static System.Drawing.Bitmap small_bag_brown {
             get {
                 object obj = ResourceManager.GetObject("small_bag_brown", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap small_bag_camel {
+            get {
+                object obj = ResourceManager.GetObject("small_bag_camel", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

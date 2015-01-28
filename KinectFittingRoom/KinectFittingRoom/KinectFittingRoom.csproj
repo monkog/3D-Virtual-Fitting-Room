@@ -226,12 +226,6 @@
     <None Include="Resources\Models\Bags\armani_bag_beige.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Models\Bags\armani_bag_brown.mtl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\Models\Bags\armani_bag_brown.obj">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Resources\Models\Bags\armani_bag_camel.mtl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -272,6 +266,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Resources\Models\Bags\small_bag_brown.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Bags\small_bag_camel.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Models\Bags\small_bag_camel.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Resources\Models\Bags\small_bag_gray.mtl">
@@ -956,7 +956,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\Bags\armani_bag_beige.png" />
-    <Resource Include="Resources\Images\Bags\armani_bag_brown.png" />
     <Resource Include="Resources\Images\Bags\armani_bag_camel.png" />
     <Resource Include="Resources\Images\Bags\armani_bag_white.png" />
     <Resource Include="Resources\Images\Bags\men_bag_brown.png" />
@@ -1078,6 +1077,9 @@
     <Resource Include="Resources\Images\Tops\tshirt_navy.png" />
     <Resource Include="Resources\Images\Tops\tshirt_olive.png" />
     <Resource Include="Resources\Images\Tops\tshirt_orange_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Bags\small_bag_camel.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

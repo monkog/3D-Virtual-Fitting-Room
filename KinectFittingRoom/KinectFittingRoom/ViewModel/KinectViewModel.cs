@@ -293,8 +293,6 @@ namespace KinectFittingRoom.ViewModel
                     {
                         new BagButtonViewModel(ClothingItemBase.ClothingType.BagItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\Bags\armani_bag_beige.obj")
                         { Image = Properties.Resources.armani_bag_beige }
-                        , new BagButtonViewModel(ClothingItemBase.ClothingType.BagItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\Bags\armani_bag_brown.obj")
-                        { Image = Properties.Resources.armani_bag_brown }
                         , new BagButtonViewModel(ClothingItemBase.ClothingType.BagItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\Bags\armani_bag_camel.obj")
                         { Image = Properties.Resources.armani_bag_camel }
                         , new BagButtonViewModel(ClothingItemBase.ClothingType.BagItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\Bags\armani_bag_white.obj")
@@ -307,6 +305,8 @@ namespace KinectFittingRoom.ViewModel
                         { Image = Properties.Resources.men_bag_gray }
                         , new BagButtonViewModel(ClothingItemBase.ClothingType.BagItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\Bags\small_bag_beige.obj")
                         { Image = Properties.Resources.small_bag_beige }
+                        , new BagButtonViewModel(ClothingItemBase.ClothingType.BagItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\Bags\small_bag_camel.obj")
+                        { Image = Properties.Resources.small_bag_camel }
                         , new BagButtonViewModel(ClothingItemBase.ClothingType.BagItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\Bags\small_bag_brown.obj")
                         { Image = Properties.Resources.small_bag_brown }
                         , new BagButtonViewModel(ClothingItemBase.ClothingType.BagItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\Bags\small_bag_gray.obj")

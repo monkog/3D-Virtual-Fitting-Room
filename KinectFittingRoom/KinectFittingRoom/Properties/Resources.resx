@@ -307,9 +307,6 @@
   <data name="armani_bag_beige" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\images\bags\armani_bag_beige.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="armani_bag_brown" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\images\bags\armani_bag_brown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="armani_bag_camel" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\images\bags\armani_bag_camel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -450,5 +447,8 @@
   </data>
   <data name="tshirt_orange_blue" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\images\tops\tshirt_orange_blue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="small_bag_camel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\bags\small_bag_camel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
