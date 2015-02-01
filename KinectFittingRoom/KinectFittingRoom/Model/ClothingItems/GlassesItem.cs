@@ -6,19 +6,13 @@ namespace KinectFittingRoom.Model.ClothingItems
     class GlassesItem : ClothingItemBase
     {
         /// <summary>
-        /// The ratio
-        /// </summary>
-        private const double Ratio = 0.3;
-        /// <summary>
-        /// The factor to move model in Y coordinate
-        /// </summary>
-        private const double DeltaY = 1.2;
-        /// <summary>
         /// Initializes a new instance of the <see cref="GlassesItem"/> class.
         /// </summary>
         /// <param name="model">3D model</param>
-        public GlassesItem(Model3DGroup model)
-            : base(model, Ratio, DeltaY)
+        /// <param name="ratio">Size ratio</param>
+        /// <param name="deltaY">Default Y position</param>
+        public GlassesItem(Model3DGroup model, double ratio, double deltaY)
+            : base(model, ratio, deltaY)
         {
             JointToTrackPosition = JointType.Head;
             LeftJointToTrackAngle = JointType.ShoulderLeft;

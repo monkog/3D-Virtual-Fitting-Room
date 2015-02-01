@@ -156,11 +156,10 @@ namespace KinectFittingRoom.Model.ClothingItems
         /// <param name="model">3D model</param>
         /// <param name="tolerance">Tolerance of the model scale</param>
         /// <param name="deltaPosition">Factor to move the model in Y coordinate</param>
-        protected ClothingItemBase(Model3DGroup model, double tolerance, double deltaPosition = 1)
+        protected ClothingItemBase(Model3DGroup model, double tolerance, double deltaPosition)
         {
             Model = model;
             _basicBounds = model.Bounds;
-            DeltaPosition = 0;
             Tolerance = tolerance;
             _widthScale = _heightScale = 1;
             DeltaPosition = deltaPosition;
@@ -224,7 +223,7 @@ namespace KinectFittingRoom.Model.ClothingItems
             }
             catch (Exception)
             {
-                return new Point3D();
+                return new Point3D(0, 0, 0);
             }
 
             Point3D pointNormalized = matxViewport.Transform(point);
@@ -292,7 +291,7 @@ namespace KinectFittingRoom.Model.ClothingItems
         {
             if (joint1.TrackingState == JointTrackingState.NotTracked
                 || joint2.TrackingState == JointTrackingState.NotTracked)
-                WidthScale = _heightScale = 0.1;
+                return;
 
             var joint1Position = KinectService.GetJointPoint(joint1, sensor, width, height);
             var joint2Position = KinectService.GetJointPoint(joint2, sensor, width, height);

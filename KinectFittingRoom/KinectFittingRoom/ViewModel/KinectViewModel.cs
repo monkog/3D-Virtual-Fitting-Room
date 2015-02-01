@@ -123,17 +123,17 @@ namespace KinectFittingRoom.ViewModel
                     , new HatButtonViewModel(ClothingItemBase.ClothingType.HatItem , @".\Resources\Models\Hats\cowboy_hat_gray.obj")
                     { Image = Properties.Resources.cowboy_dark }
                     , new HatButtonViewModel(ClothingItemBase.ClothingType.HatItem , @".\Resources\Models\Hats\fedora_brown_hat.obj")
-                    { Image = Properties.Resources.fedora_hat_brown }
+                    { Image = Properties.Resources.fedora_hat_brown, Ratio = 0.6 }
                     , new HatButtonViewModel(ClothingItemBase.ClothingType.HatItem, @".\Resources\Models\Hats\fedora_darkgreen_hat.obj")
-                    { Image = Properties.Resources.fedora_hat_darkgreen }
+                    { Image = Properties.Resources.fedora_hat_darkgreen, Ratio = 0.6 }
                     , new HatButtonViewModel(ClothingItemBase.ClothingType.HatItem, @".\Resources\Models\Hats\fedora_hat.obj")
-                    { Image = Properties.Resources.fedora_hat_black }
+                    { Image = Properties.Resources.fedora_hat_black, Ratio = 0.6 }
                     , new HatButtonViewModel(ClothingItemBase.ClothingType.HatItem, @".\Resources\Models\Hats\hat_brown.obj")
-                    { Image = Properties.Resources.hat_brown }
+                    { Image = Properties.Resources.hat_brown, Ratio = 1 }
                     , new HatButtonViewModel(ClothingItemBase.ClothingType.HatItem, @".\Resources\Models\Hats\hat_black.obj")
-                    { Image = Properties.Resources.hat_black }
+                    { Image = Properties.Resources.hat_black, Ratio = 1 }
                     , new HatButtonViewModel(ClothingItemBase.ClothingType.HatItem, @".\Resources\Models\Hats\hat_white.obj")
-                    { Image = Properties.Resources.hat_white }
+                    { Image = Properties.Resources.hat_white, Ratio = 1 }
                 }
             };
         }
@@ -197,11 +197,11 @@ namespace KinectFittingRoom.ViewModel
                     , new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\dress_navy.obj") 
                     { Image = Properties.Resources.dress_navy }
                     , new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\dress_red.obj") 
-                    { Image = Properties.Resources.dress_red }
+                    { Image = Properties.Resources.dress_red, Ratio = 1.8, DeltaY = 0.95 }
                     , new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\dress_darkgreen.obj") 
-                    { Image = Properties.Resources.dress_darkgreen }
+                    { Image = Properties.Resources.dress_darkgreen, Ratio = 1.8, DeltaY = 0.95 }
                     , new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\dress_orange.obj") 
-                    { Image = Properties.Resources.dress_orange }
+                    { Image = Properties.Resources.dress_orange, Ratio = 1.8, DeltaY = 0.95 }
                     , new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\dress_violet.obj") 
                     { Image = Properties.Resources.dress_violet }
                     , new DressButtonViewModel(ClothingItemBase.ClothingType.DressItem, @".\Resources\Models\Dresses\dress_blue.obj") 
@@ -335,33 +335,33 @@ namespace KinectFittingRoom.ViewModel
                 Clothes = new List<ClothingButtonViewModel>
                 {
                     new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\Tops\big_top_colourful.obj") 
-                    { Image = Properties.Resources.big_top_colourful }
+                    { Image = Properties.Resources.big_top_colourful, DeltaY = 0.9 }
                     , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\Tops\big_top_dark.obj") 
-                    { Image = Properties.Resources.big_top_dark }
+                    { Image = Properties.Resources.big_top_dark, DeltaY = 0.9 }
                     , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\Tops\big_top_green.obj") 
-                    { Image = Properties.Resources.big_top_green }
+                    { Image = Properties.Resources.big_top_green, DeltaY = 0.9 }
                     , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\Tops\long_top_blue.obj") 
                     { Image = Properties.Resources.long_top_blue, BottomJointToTrackScale = JointType.HipCenter }
                     , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\Tops\long_top_pink.obj") 
                     { Image = Properties.Resources.long_top_pink, BottomJointToTrackScale = JointType.HipCenter }
                     , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\Tops\top_blue.obj") 
-                    { Image = Properties.Resources.top_blue }
+                    { Image = Properties.Resources.top_blue, Ratio = 1, DeltaY = 0.9 }
                     , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\Tops\top_red.obj") 
-                    { Image = Properties.Resources.top_red }
+                    { Image = Properties.Resources.top_red, Ratio = 1, DeltaY = 0.9 }
                     , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\Tops\top2_green.obj") 
-                    { Image = Properties.Resources.top_green }
+                    { Image = Properties.Resources.top_green, DeltaY = 0.9 }
                     , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, ClothingItemBase.MaleFemaleType.Female, @".\Resources\Models\Tops\top2_orange.obj") 
-                    { Image = Properties.Resources.top_orange }
+                    { Image = Properties.Resources.top_orange, DeltaY = 0.9 }
                     , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, ClothingItemBase.MaleFemaleType.Male, @".\Resources\Models\Tops\tshirt_navy.obj") 
-                    { Image = Properties.Resources.tshirt_navy }
+                    { Image = Properties.Resources.tshirt_navy, Ratio = 1.45 }
                     , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, ClothingItemBase.MaleFemaleType.Male, @".\Resources\Models\Tops\tshirt_green_blue.obj") 
-                    { Image = Properties.Resources.tshirt_green_blue }
+                    { Image = Properties.Resources.tshirt_green_blue, Ratio = 1.45 }
                     , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, ClothingItemBase.MaleFemaleType.Male, @".\Resources\Models\Tops\tshirt_coral_blue.obj") 
-                    { Image = Properties.Resources.tshirt_coral_blue }
+                    { Image = Properties.Resources.tshirt_coral_blue, Ratio = 1.45 }
                     , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, ClothingItemBase.MaleFemaleType.Male, @".\Resources\Models\Tops\tshirt_olive.obj") 
-                    { Image = Properties.Resources.tshirt_olive }
+                    { Image = Properties.Resources.tshirt_olive, Ratio = 1.45 }
                     , new TopButtonViewModel(ClothingItemBase.ClothingType.TopItem, ClothingItemBase.MaleFemaleType.Male, @".\Resources\Models\Tops\tshirt_orange_blue.obj") 
-                    { Image = Properties.Resources.tshirt_orange_blue }
+                    { Image = Properties.Resources.tshirt_orange_blue, Ratio = 1.45 }
                 }
             };
         }

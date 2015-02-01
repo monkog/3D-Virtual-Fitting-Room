@@ -4,7 +4,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
 {
     class GlassesButtonViewModel : ClothingButtonViewModel
     {
-        #region .ctor        
+        #region .ctor
         /// <summary>
         /// Initializes a new instance of the <see cref="GlassesButtonViewModel"/> class.
         /// </summary>
@@ -12,7 +12,10 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// <param name="pathToModel">The path to model.</param>
         public GlassesButtonViewModel(ClothingItemBase.ClothingType type, string pathToModel)
             : base(type, ClothingItemBase.MaleFemaleType.Both, pathToModel)
-        { }
+        {
+            Ratio = 0.3;
+            DeltaY = 1.2;
+        }
         #endregion .ctor
         #region Commands
         /// <summary>
@@ -21,7 +24,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         public override void ClickExecuted()
         {
             PlaySound();
-            ClothingManager.Instance.AddClothingItem<GlassesItem>(Category, ModelPath);
+            ClothingManager.Instance.AddClothingItem<GlassesItem>(Category, ModelPath, Ratio, DeltaY);
         }
         #endregion Commands
     }

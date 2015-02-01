@@ -12,17 +12,22 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// <value>
         /// The bottom joint to track scale.
         /// </value>
-        public JointType? BottomJointToTrackScale { get; set; }
+        public JointType BottomJointToTrackScale = JointType.Spine;
         #endregion Public Properties
         #region .ctor
         /// <summary>
         /// Initializes a new instance of the <see cref="TopButtonViewModel"/> class.
         /// </summary>
         /// <param name="type">The type of the clothing.</param>
+        /// <param name="maleFemaleType">Male/Female type of clothing</param>
         /// <param name="pathToModel">The path to model.</param>
-        public TopButtonViewModel(ClothingItemBase.ClothingType type, ClothingItemBase.MaleFemaleType maleFemaleType, string pathToModel)
+        public TopButtonViewModel(ClothingItemBase.ClothingType type, ClothingItemBase.MaleFemaleType maleFemaleType,
+            string pathToModel)
             : base(type, maleFemaleType, pathToModel)
-        { }
+        {
+            Ratio = 1.2;
+            DeltaY = 0.95;
+        }
         #endregion .ctor
         #region Commands
         /// <summary>
@@ -33,7 +38,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
             PlaySound();
             if (ClothingManager.Instance.ChosenClothesModels.ContainsKey(ClothingItemBase.ClothingType.DressItem))
                 ClothingManager.Instance.ChosenClothesModels.Remove(ClothingItemBase.ClothingType.DressItem);
-            ClothingManager.Instance.AddClothingItem<TopItem>(Category, ModelPath, BottomJointToTrackScale);
+            ClothingManager.Instance.AddClothingItem<TopItem>(Category, ModelPath, BottomJointToTrackScale, Ratio, DeltaY);
         }
         #endregion Commands
     }

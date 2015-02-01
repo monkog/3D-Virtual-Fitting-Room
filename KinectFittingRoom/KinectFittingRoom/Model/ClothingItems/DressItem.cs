@@ -5,22 +5,16 @@ namespace KinectFittingRoom.Model.ClothingItems
 {
     class DressItem : ClothingItemBase
     {
-        /// <summary>
-        /// Hips width with margins
-        /// </summary>
-        private const double Ratio = 1.7;
-        /// <summary>
-        /// The factor to move model in Y coordinate
-        /// </summary>
-        private const double DeltaY = 1.05;
         #region .ctor
         /// <summary>
         /// Constructor of Dress object
         /// </summary>
         /// <param name="model">3D model</param>
         /// <param name="bottomJoint">Bottom joint to track size</param>
-        public DressItem(Model3DGroup model, JointType bottomJoint)
-            : base(model, Ratio, DeltaY)
+        /// <param name="ratio">Hips width with margins</param>
+        /// <param name="deltaY">Default Y position</param>
+        public DressItem(Model3DGroup model, JointType bottomJoint, double ratio, double deltaY)
+            : base(model, ratio, deltaY)
         {
             JointToTrackPosition = JointType.HipCenter;
             LeftJointToTrackAngle = JointType.ShoulderLeft;
@@ -28,13 +22,6 @@ namespace KinectFittingRoom.Model.ClothingItems
             LeftJointToTrackScale = JointType.ShoulderCenter;
             RightJointToTrackScale = bottomJoint;
         }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DressItem"/> class.
-        /// </summary>
-        /// <param name="model">The model.</param>
-        public DressItem(Model3DGroup model)
-            : this(model, JointType.HipCenter)
-        { }
         #endregion .ctor
     }
 }
