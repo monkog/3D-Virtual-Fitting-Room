@@ -1,4 +1,5 @@
 using KinectFittingRoom.Model.ClothingItems;
+using Microsoft.Kinect;
 
 namespace KinectFittingRoom.ViewModel.ButtonItems
 {
@@ -39,6 +40,14 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// The model path.
         /// </value>
         public string ModelPath { get; set; }
+        /// <summary>
+        /// Hips width with margins
+        /// </summary>
+        public double Ratio { get; set; }
+        /// <summary>
+        /// The factor to move model in Y coordinate
+        /// </summary>
+        public double DeltaY { get; set; }
         #endregion Public Properties
         #region .ctor
         /// <summary>

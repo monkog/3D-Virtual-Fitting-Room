@@ -13,7 +13,10 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// <param name="pathToModel">The path to model.</param>
         public BagButtonViewModel(ClothingItemBase.ClothingType type, ClothingItemBase.MaleFemaleType maleFemaleType, string pathToModel)
             : base(type, maleFemaleType, pathToModel)
-        { }
+        {
+            Ratio = 1;
+            DeltaY = 1.1;
+        }
         #endregion .ctor
         #region Commands
         /// <summary>
@@ -22,7 +25,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         public override void ClickExecuted()
         {
             PlaySound();
-            ClothingManager.Instance.AddClothingItem<BagItem>(Category, ModelPath);
+            ClothingManager.Instance.AddClothingItem<BagItem>(Category, ModelPath, Ratio, DeltaY);
         }
         #endregion Commands
     }

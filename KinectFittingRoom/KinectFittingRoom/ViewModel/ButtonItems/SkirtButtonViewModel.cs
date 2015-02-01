@@ -12,7 +12,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// <value>
         /// The bottom joint to track scale.
         /// </value>
-        public JointType? BottomJointToTrackScale { get; set; }
+        public JointType BottomJointToTrackScale = JointType.KneeRight;
         #endregion Public Properties
         #region .ctor
         /// <summary>
@@ -22,7 +22,10 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// <param name="pathToModel">The path to model.</param>
         public SkirtButtonViewModel(ClothingItemBase.ClothingType type, string pathToModel)
             : base(type, ClothingItemBase.MaleFemaleType.Female, pathToModel)
-        { }
+        {
+            Ratio = 0.9;
+            DeltaY = 1;
+        }
         #endregion .ctor
         #region Commands
         /// <summary>
@@ -33,7 +36,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
             PlaySound();
             if (ClothingManager.Instance.ChosenClothesModels.ContainsKey(ClothingItemBase.ClothingType.DressItem))
                 ClothingManager.Instance.ChosenClothesModels.Remove(ClothingItemBase.ClothingType.DressItem);
-            ClothingManager.Instance.AddClothingItem<SkirtItem>(Category, ModelPath, BottomJointToTrackScale);
+            ClothingManager.Instance.AddClothingItem<SkirtItem>(Category, ModelPath, BottomJointToTrackScale, Ratio, DeltaY);
         }
         #endregion Commands
     }

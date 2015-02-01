@@ -4,7 +4,8 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
 {
     public class HatButtonViewModel : ClothingButtonViewModel
     {
-        #region .ctor        
+        #region .ctor
+
         /// <summary>
         /// Initializes a new instance of the <see cref="HatButtonViewModel"/> class.
         /// </summary>
@@ -12,7 +13,10 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         /// <param name="pathToModel">The path to model.</param>
         public HatButtonViewModel(ClothingItemBase.ClothingType type, string pathToModel)
             : base(type, ClothingItemBase.MaleFemaleType.Male, pathToModel)
-        { }
+        {
+            Ratio = 0.8;
+            DeltaY = 1.2;
+        }
         #endregion .ctor
         #region Commands
         /// <summary>
@@ -21,7 +25,7 @@ namespace KinectFittingRoom.ViewModel.ButtonItems
         public override void ClickExecuted()
         {
             PlaySound();
-            ClothingManager.Instance.AddClothingItem<HatItem>(Category, ModelPath);
+            ClothingManager.Instance.AddClothingItem<HatItem>(Category, ModelPath, Ratio, DeltaY);
         }
         #endregion Commands
     }

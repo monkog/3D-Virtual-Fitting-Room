@@ -223,13 +223,26 @@ namespace KinectFittingRoom.ViewModel
         /// <param name="category">The category of the item.</param>
         /// <param name="modelPath">The model path.</param>
         /// <param name="bottomJoint">Bottom joint to track size</param>
-        public void AddClothingItem<T>(ClothingItemBase.ClothingType category, string modelPath, JointType? bottomJoint = null)
+        /// <param name="ratio">Scale ratio</param>
+        /// <param name="deltaY">Default y position</param>
+        public void AddClothingItem<T>(ClothingItemBase.ClothingType category, string modelPath, JointType bottomJoint, double ratio, double deltaY)
         {
             OrderedDictionary<ClothingItemBase.ClothingType, ClothingItemBase> tmpModels = ChosenClothesModels;
-            if (bottomJoint != null)
-                tmpModels[category] = (ClothingItemBase)Activator.CreateInstance(typeof(T), _importer.Load(modelPath), bottomJoint);
-            else
-                tmpModels[category] = (ClothingItemBase)Activator.CreateInstance(typeof(T), _importer.Load(modelPath));
+            tmpModels[category] = (ClothingItemBase)Activator.CreateInstance(typeof(T), _importer.Load(modelPath), bottomJoint, ratio, deltaY);
+            ChosenClothesModels = new OrderedDictionary<ClothingItemBase.ClothingType, ClothingItemBase>(tmpModels);
+        }
+        /// <summary>
+        /// Adds the clothing item.
+        /// </summary>
+        /// <typeparam name="T">Type of the item</typeparam>
+        /// <param name="category">The category of the item.</param>
+        /// <param name="modelPath">The model path.</param>
+        /// <param name="ratio">Scale ratio</param>
+        /// <param name="deltaY">Default y position</param>
+        public void AddClothingItem<T>(ClothingItemBase.ClothingType category, string modelPath, double ratio, double deltaY)
+        {
+            OrderedDictionary<ClothingItemBase.ClothingType, ClothingItemBase> tmpModels = ChosenClothesModels;
+            tmpModels[category] = (ClothingItemBase)Activator.CreateInstance(typeof(T), _importer.Load(modelPath), ratio, deltaY);
             ChosenClothesModels = new OrderedDictionary<ClothingItemBase.ClothingType, ClothingItemBase>(tmpModels);
         }
         #endregion Public Methods
