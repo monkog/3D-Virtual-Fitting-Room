@@ -291,7 +291,7 @@ namespace KinectFittingRoom.Model.ClothingItems
         {
             if (joint1.TrackingState == JointTrackingState.NotTracked
                 || joint2.TrackingState == JointTrackingState.NotTracked)
-                WidthScale = _heightScale = 0.1;
+                return;
 
             var joint1Position = KinectService.GetJointPoint(joint1, sensor, width, height);
             var joint2Position = KinectService.GetJointPoint(joint2, sensor, width, height);
