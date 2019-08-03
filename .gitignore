@@ -53,3 +53,4 @@ Icon
 *.user
 *.tmp_proj
 *.tmp
+**/.vs/
